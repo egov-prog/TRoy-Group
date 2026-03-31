@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troy Maritime Agency — Ship Agency Services Worldwide</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:   #0d2137;
+  --blue:   #1560a8;
+  --blue2:  #1a74c8;
+  --white:  #ffffff;
+  --bg:     #f4f6f9;
+  --border: #dde3ec;
+  --text:   #1c2b3a;
+  --muted:  #607080;
+  --sans:   'Source Sans 3','Helvetica Neue',Arial,sans-serif;
+  --serif:  'Source Serif 4',Georgia,serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);font-size:16px;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* UTILITY BAR */
+.util{background:var(--navy);padding:6px 0;font-size:12px}
+.util .wrap{display:flex;justify-content:flex-end;gap:24px;align-items:center}
+.util a{color:rgba(255,255,255,.6);transition:color .15s;display:flex;align-items:center;gap:5px}
+.util a:hover{color:#fff}
+
+/* NAVBAR */
+.navbar{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:1000;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+.navbar .wrap{display:flex;align-items:center;height:72px;gap:0}
+.logo{display:flex;align-items:center;gap:10px;margin-right:36px;flex-shrink:0}
+.logo-sq{width:44px;height:44px;background:var(--navy);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.logo-name{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--navy);display:block}
+.logo-sub{font-size:10px;color:var(--muted);letter-spacing:.8px}
+.nav-items{display:flex;height:72px;list-style:none;flex:1}
+.nav-items>li{position:relative}
+.nav-items>li>a{display:flex;align-items:center;gap:4px;height:72px;padding:0 16px;font-size:14px;font-weight:600;color:var(--text);border-bottom:3px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
+.nav-items>li>a:hover{color:var(--blue);border-bottom-color:var(--blue)}
+.chev{font-size:9px;opacity:.45;transition:transform .15s}
+.nav-items>li:hover .chev{transform:rotate(180deg)}
+.mega{position:absolute;top:72px;left:0;background:var(--white);border:1px solid var(--border);border-top:3px solid var(--blue);box-shadow:0 8px 30px rgba(0,0,0,.1);min-width:200px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:all .16s;z-index:200}
+.nav-items>li:hover .mega{opacity:1;pointer-events:auto;transform:translateY(0)}
+.mega a{display:block;padding:10px 18px;font-size:13px;color:var(--text);border-bottom:1px solid var(--border);transition:all .13s}
+.mega a:last-child{border-bottom:none}
+.mega a:hover{background:var(--bg);color:var(--blue);padding-left:24px}
+.mega-label{padding:8px 18px 4px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg)}
+.nav-right{margin-left:auto;flex-shrink:0}
+.btn-enq{background:var(--blue);color:#fff;padding:10px 22px;border-radius:3px;font-size:13px;font-weight:700;transition:background .15s;white-space:nowrap;display:inline-block}
+.btn-enq:hover{background:var(--navy);color:#fff}
+
+/* HERO */
+.hero{background:var(--navy);position:relative;overflow:hidden;padding:100px 0 110px}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(13,33,55,.98) 0%,rgba(13,33,55,.75) 55%,rgba(21,96,168,.3) 100%)}
+.hero::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(255,255,255,.018) 60px)}
+.hero .wrap{position:relative;z-index:1;max-width:740px}
+.hero-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:18px}
+.hdot{width:7px;height:7px;border-radius:50%;background:#4caf50;box-shadow:0 0 6px #4caf50;animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{font-family:var(--serif);font-size:52px;font-weight:700;color:#fff;line-height:1.12;margin-bottom:22px}
+.hero-sub{font-size:18px;color:rgba(255,255,255,.68);line-height:1.75;margin-bottom:36px;max-width:560px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-pri{background:var(--blue);color:#fff;padding:13px 30px;border-radius:3px;font-size:15px;font-weight:700;border:2px solid var(--blue);transition:all .18s;display:inline-flex;align-items:center;gap:8px}
+.btn-pri:hover{background:var(--blue2);border-color:var(--blue2);transform:translateY(-1px)}
+.btn-out{background:transparent;color:#fff;padding:13px 30px;border-radius:3px;font-size:15px;font-weight:700;border:2px solid rgba(255,255,255,.38);transition:all .18s;display:inline-flex;align-items:center;gap:8px}
+.btn-out:hover{border-color:#fff;background:rgba(255,255,255,.07)}
+
+/* STATS */
+.stats{background:#0a1b2e;border-top:1px solid rgba(255,255,255,.06);padding:32px 0}
+.stats .wrap{display:flex;justify-content:center;align-items:stretch;flex-wrap:wrap}
+.stat{text-align:center;padding:0 56px;border-right:1px solid rgba(255,255,255,.1)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--serif);font-size:38px;font-weight:700;color:#fff;line-height:1}
+.stat-l{font-size:12px;color:rgba(255,255,255,.42);letter-spacing:1.2px;text-transform:uppercase;margin-top:6px}
+
+/* INTRO */
+.intro{text-align:center;padding:60px 0 50px;border-bottom:1px solid var(--border)}
+.intro p{font-size:18px;color:var(--muted);max-width:780px;margin:0 auto;line-height:1.8}
+.intro strong{color:var(--navy)}
+
+/* SECTIONS */
+.sec{padding:76px 0}
+.sec.grey{background:var(--bg)}
+.kicker{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;display:block}
+.sec-h{font-family:var(--serif);font-size:34px;font-weight:700;color:var(--navy);line-height:1.22;margin-bottom:14px}
+.sec-p{font-size:16px;color:var(--muted);line-height:1.78;max-width:620px;margin-bottom:44px}
+
+/* SERVICES */
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.svc-card{display:flex;border:1px solid var(--border);border-radius:4px;overflow:hidden;background:#fff;transition:box-shadow .18s,transform .18s}
+.svc-card:hover{box-shadow:0 6px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
+.svc-img{width:120px;flex-shrink:0;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;overflow:hidden}
+.svc-img::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--navy) 0%,#1a3d5c 100%)}
+.svc-img span{position:relative;z-index:1}
+.svc-body{padding:22px}
+.svc-body h3{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.svc-body p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:12px}
+.svc-lnk{font-size:13px;font-weight:700;color:var(--blue);display:inline-flex;align-items:center;gap:5px;transition:gap .15s}
+.svc-card:hover .svc-lnk{gap:9px}
+
+/* SECTORS */
+.sec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.sec-card{border:1.5px solid var(--border);border-radius:4px;padding:22px 18px;display:flex;align-items:center;gap:13px;transition:all .16s}
+.sec-card:hover{border-color:var(--blue);background:var(--blue);transform:translateY(-2px);box-shadow:0 5px 16px rgba(21,96,168,.22)}
+.sec-card:hover .sec-nm{color:#fff}
+.sec-card:hover .sec-ico{background:rgba(255,255,255,.14)}
+.sec-ico{width:38px;height:38px;border-radius:6px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;transition:background .16s}
+.sec-nm{font-size:13px;font-weight:700;color:var(--navy);transition:color .16s}
+
+/* NEWS */
+.news-lay{display:grid;grid-template-columns:2fr 1fr;gap:36px;align-items:start}
+.col-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--navy);margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--blue);display:flex;justify-content:space-between;align-items:center}
+.col-title a{font-size:12px;font-weight:700;color:var(--blue)}
+.col-title a:hover{text-decoration:underline}
+.news-card{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--border)}
+.news-card:last-child{border-bottom:none}
+.n-thumb{width:88px;height:66px;flex-shrink:0;border-radius:3px;background:var(--navy);display:flex;align-items:center;justify-content:center;font-size:26px;position:relative;overflow:hidden}
+.n-thumb::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--navy),#1a3d5c)}
+.n-thumb span{position:relative;z-index:1}
+.n-tag{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.n-title{font-size:14px;font-weight:700;color:var(--navy);line-height:1.38;margin-bottom:4px}
+.n-date{font-size:11px;color:var(--muted)}
+.adv-item{padding:13px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.adv-item:last-child{border-bottom:none}
+.adv-flag{font-size:20px;flex-shrink:0}
+.adv-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--blue)}
+.adv-title{font-size:13px;font-weight:700;color:var(--navy);line-height:1.3}
+.adv-date{font-size:11px;color:var(--muted);margin-left:auto;flex-shrink:0;white-space:nowrap}
+
+/* TOOLS */
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tool-card{background:#fff;border:1px solid var(--border);border-radius:4px;padding:28px 24px;transition:all .18s}
+.tool-card:hover{box-shadow:0 6px 22px rgba(0,0,0,.09);border-color:var(--blue);transform:translateY(-2px)}
+.tool-ico{font-size:32px;margin-bottom:14px}
+.tool-card h3{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.tool-card p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px}
+.tool-lnk{font-size:13px;font-weight:700;color:var(--blue);display:inline-flex;align-items:center;gap:5px;transition:gap .15s}
+.tool-card:hover .tool-lnk{gap:9px}
+
+/* CTA BANNER */
+.cta{background:var(--navy);padding:64px 0;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:'⚓';position:absolute;right:10%;top:50%;transform:translateY(-50%);font-size:200px;opacity:.04;pointer-events:none}
+.cta h2{font-family:var(--serif);font-size:34px;font-weight:700;color:#fff;margin-bottom:12px}
+.cta p{font-size:16px;color:rgba(255,255,255,.6);margin-bottom:28px}
+
+/* CERTS */
+.certs{padding:36px 0;border-top:1px solid var(--border)}
+.certs .wrap{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
+.cert{padding:10px 26px;border-right:1px solid var(--border);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.5px}
+.cert:last-child{border-right:none}
+.cert span{font-size:18px}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-boxes{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.abox{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:24px;text-align:center}
+.abox-n{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--navy)}
+.abox-l{font-size:12px;color:var(--muted);margin-top:5px;letter-spacing:.5px}
+
+/* FOOTER */
+footer{background:var(--navy);padding:52px 0 0}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08)}
+.ft-desc{font-size:13px;color:rgba(255,255,255,.4);line-height:1.75;margin:14px 0 20px;max-width:260px}
+.ft-links{display:flex;flex-direction:column;gap:9px}
+.ft-links a{font-size:12px;color:rgba(255,255,255,.42);display:flex;align-items:center;gap:7px;transition:color .14s}
+.ft-links a:hover{color:rgba(255,255,255,.85)}
+.ft-col h4{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px}
+.ft-col ul{list-style:none}
+.ft-col li{margin-bottom:9px}
+.ft-col li a{font-size:13px;color:rgba(255,255,255,.38);transition:color .14s}
+.ft-col li a:hover{color:#fff}
+.ft-bot{display:flex;justify-content:space-between;align-items:center;padding:16px 0;font-size:11px;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:10px}
+.ft-bot a{color:rgba(255,255,255,.25);transition:color .14s}
+.ft-bot a:hover{color:rgba(255,255,255,.6)}
+.ft-bot-links{display:flex;gap:20px}
+
+/* WA FLOAT */
+.wa{position:fixed;right:22px;bottom:28px;z-index:900;background:#25d366;color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:all .18s}
+.wa:hover{transform:scale(1.1);box-shadow:0 6px 22px rgba(37,211,102,.5)}
+.wa-tip{position:absolute;right:64px;background:var(--navy);color:#fff;font-size:12px;font-weight:700;white-space:nowrap;padding:6px 12px;border-radius:4px;opacity:0;pointer-events:none;transition:opacity .15s}
+.wa:hover .wa-tip{opacity:1}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .svc-grid{grid-template-columns:1fr}
+  .sec-grid{grid-template-columns:repeat(2,1fr)}
+  .tools-grid{grid-template-columns:1fr 1fr}
+  .news-lay{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr 1fr;gap:32px}
+  .about-grid{grid-template-columns:1fr;gap:36px}
+}
+@media(max-width:768px){
+  .hero h1{font-size:34px}
+  .nav-items{display:none}
+  .stat{padding:0 28px}
+  .sec-grid{grid-template-columns:repeat(2,1fr)}
+  .tools-grid{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr}
+}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero .wrap>*{animation:up .5s ease both}
+.hero .wrap>*:nth-child(1){animation-delay:.05s}
+.hero .wrap>*:nth-child(2){animation-delay:.15s}
+.hero .wrap>*:nth-child(3){animation-delay:.25s}
+.hero .wrap>*:nth-child(4){animation-delay:.35s}
+</style>
+</head>
+<body>
+
+<!-- UTILITY BAR -->
+<div class="util">
+  <div class="wrap">
+    <a href="#network">Our Network</a>
+    <a href="#tools">Find a Port</a>
+    <a href="#tracker">Live Tracker</a>
+    <a href="https://wa.me/61476496693" target="_blank">💬 WhatsApp</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="wrap">
+    <a href="#" class="logo">
+      <div class="logo-sq">⚓</div>
+      <div>
+        <span class="logo-name">Troy Maritime Agency</span>
+        <span class="logo-sub">Darwin · Australia · Worldwide</span>
+      </div>
+    </a>
+    <ul class="nav-items">
+      <li>
+        <a href="#about">About <span class="chev">▾</span></a>
+        <div class="mega">
+          <a href="#about">About Us</a>
+          <a href="#about">Our Experience</a>
+          <a href="#network">Our Network</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </li>
+      <li>
+        <a href="#services">Services <span class="chev">▾</span></a>
+        <div class="mega">
+          <div class="mega-label">Port Agency</div>
+          <a href="#services">Full Port Agency</a>
+          <a href="#services">Husbandry Services</a>
+          <a href="#services">Canal & Straits Transits</a>
+          <a href="#services">Launch & Agent Boat</a>
+          <div class="mega-label">Vessel Services</div>
+          <a href="#services">Crew Change & Shore Passes</a>
+          <a href="#services">Provisions & Supplies</a>
+          <a href="#services">Repairs Coordination</a>
+          <a href="#services">PDA / FDA Accounts</a>
+          <a href="#services">24/7 Emergency Response</a>
+        </div>
+      </li>
+      <li>
+        <a href="#sectors">Sectors <span class="chev">▾</span></a>
+        <div class="mega">
+          <a href="#sectors">Tanker</a>
+          <a href="#sectors">Dry Bulk</a>
+          <a href="#sectors">Container / Liner</a>
+          <a href="#sectors">Cruise</a>
+          <a href="#sectors">LNG / Gas</a>
+          <a href="#sectors">Offshore</a>
+          <a href="#sectors">Yacht & Leisure</a>
+          <a href="#sectors">Government / Navy</a>
+        </div>
+      </li>
+      <li><a href="#news">News & Advisories</a></li>
+      <li>
+        <a href="#tools">Tools <span class="chev">▾</span></a>
+        <div class="mega">
+          <a href="#tracker">Live Vessel Tracker</a>
+          <a href="/cdn-cgi/l/email-protection#8efafce1f7e3effce7fae7e3ebefe9ebe0edf7cee9e3efe7e2a0ede1e3b1fdfbece4ebedfab3decacfaedcebfffbebfdfa">Request a PDA</a>
+          <a href="#network">Find a Port</a>
+        </div>
+      </li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="/cdn-cgi/l/email-protection#dbafa9b4a2b6baa9b2afb2b6bebabcbeb5b8a29bbcb6bab2b7f5b8b4b6e4a8aeb9b1beb8afe68bb4a9affb9eb5aaaeb2a9a2" class="btn-enq">Make an Enquiry</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-label"><span class="hdot"></span> Darwin, Australia &nbsp;·&nbsp; 24/7 Global Operations</div>
+    <h1>We handle everything<br>for your vessel —<br>worldwide.</h1>
+    <p class="hero-sub">Port agency, husbandry and maritime services for all vessel types. Fast. Transparent. Available around the clock.</p>
+    <div class="hero-btns">
+      <a href="/cdn-cgi/l/email-protection#3347415c4a5e52415a475a5e565254565d504a73545e525a5f1d505c5e0c404651595650470e6377721361564246564047" class="btn-pri">Request a PDA</a>
+      <a href="#services" class="btn-out">Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stat"><div class="stat-n">30+</div><div class="stat-l">Years Experience</div></div>
+    <div class="stat"><div class="stat-n">58+</div><div class="stat-l">Ports Covered</div></div>
+    <div class="stat"><div class="stat-n">All</div><div class="stat-l">Vessel Types</div></div>
+    <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Always Available</div></div>
+    <div class="stat"><div class="stat-n">2hr</div><div class="stat-l">PDA Response</div></div>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <div class="wrap">
+    <p><strong>Troy Maritime Agency</strong> is a global provider of port agency and husbandry services that takes care of all your vessel's needs — worldwide — through our experience, network and commitment to full transparency, so you can concentrate on your voyage.</p>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="sec">
+  <div class="wrap">
+    <span class="kicker">What We Do</span>
+    <h2 class="sec-h">Our Services</h2>
+    <p class="sec-p">Everything your vessel needs in port — handled professionally, transparently, and on time.</p>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-img"><span>🛂</span></div>
+        <div class="svc-body">
+          <h3>Port Clearance & Customs</h3>
+          <p>Full arrival and departure clearance. We handle customs, immigration and all port authority paperwork for any vessel at any port.</p>
+          <span class="svc-lnk">Learn more →</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-img"><span>🤝</span></div>
+        <div class="svc-body">
+          <h3>Husbandry Services</h3>
+          <p>Everything your vessel needs while in port — fresh water, provisions, medical, mail and all crew requirements, coordinated and delivered.</p>
+          <span class="svc-lnk">Learn more →</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-img"><span>👥</span></div>
+        <div class="svc-body">
+          <h3>Crew Change & Shore Passes</h3>
+          <p>End-to-end crew change management. Immigration, shore passes, transport, hotels and all documentation handled smoothly.</p>
+          <span class="svc-lnk">Learn more →</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-img"><span>🛒</span></div>
+        <div class="svc-body">
+          <h3>Provisions & Ship Supplies</h3>
+          <p>Sourcing and delivery of food, stores and all vessel supplies. Payment received first — we procure, you receive. Simple and safe.</p>
+          <span class="svc-lnk">Learn more →</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-img"><span>🔧</span></div>
+        <div class="svc-body">
+          <h3>Repairs Coordination</h3>
+          <p>Finding and coordinating qualified technicians and workshops for any repair or maintenance requirement at any port worldwide.</p>
+          <span class="svc-lnk">Learn more →</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-img"><span>⚓</span></div>
+        <div class="svc-body">
+          <h3>Pilotage & Tugboat Arranging</h3>
+          <p>Coordinating pilots, tugs, anchoring, lights and all navigation assistance for safe and compliant port entry and departure.</p>
+          <span class="svc-lnk">Learn more →</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-img"><span>⛵</span></div>
+        <div class="svc-body">
+          <h3>Launch & Agent Boat Service</h3>
+          <p>Professional agent boat service for crew transfers, document delivery, pilot boarding and all anchorage-to-shore requirements.</p>
+          <span class="svc-lnk">Learn more →</span>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-img"><span>📋</span></div>
+        <div class="svc-body">
+          <h3>PDA / FDA Accounts</h3>
+          <p>Clear proforma and final disbursement accounts. Every cost itemised before your vessel arrives. Full transparency, no surprises.</p>
+          <span class="svc-lnk">Learn more →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section id="sectors" class="sec grey">
+  <div class="wrap">
+    <span class="kicker">Who We Serve</span>
+    <h2 class="sec-h">All Vessel Types</h2>
+    <p class="sec-p">From supertankers to superyachts — we serve every type of vessel and every type of operation, worldwide.</p>
+    <div class="sec-grid">
+      <div class="sec-card"><div class="sec-ico">🛢️</div><div class="sec-nm">Tanker</div></div>
+      <div class="sec-card"><div class="sec-ico">⚓</div><div class="sec-nm">Dry Bulk</div></div>
+      <div class="sec-card"><div class="sec-ico">📦</div><div class="sec-nm">Container / Liner</div></div>
+      <div class="sec-card"><div class="sec-ico">🚢</div><div class="sec-nm">Cruise</div></div>
+      <div class="sec-card"><div class="sec-ico">🔥</div><div class="sec-nm">LNG / Gas</div></div>
+      <div class="sec-card"><div class="sec-ico">🛳️</div><div class="sec-nm">Offshore & Energy</div></div>
+      <div class="sec-card"><div class="sec-ico">⛵</div><div class="sec-nm">Yacht & Leisure</div></div>
+      <div class="sec-card"><div class="sec-ico">🎖️</div><div class="sec-nm">Government / Navy</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS & ADVISORIES -->
+<section id="news" class="sec">
+  <div class="wrap">
+    <span class="kicker">Stay Informed</span>
+    <h2 class="sec-h">News & Advisories</h2>
+    <p class="sec-p">Port updates, strait conditions and maritime alerts that affect your operations.</p>
+    <div class="news-lay">
+      <div>
+        <div class="col-title">Latest News <a href="#">All News →</a></div>
+        <div class="news-card">
+          <div class="n-thumb"><span>🌊</span></div>
+          <div>
+            <div class="n-tag">Port Advisory</div>
+            <div class="n-title">Çanakkale Strait — Traffic Suspension for 18 March Celebrations</div>
+            <div class="n-date">18 March 2026</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="n-thumb"><span>🛢️</span></div>
+          <div>
+            <div class="n-tag">Operations</div>
+            <div class="n-title">Strait of Hormuz — Increased LNG Transit Activity</div>
+            <div class="n-date">24 March 2026</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="n-thumb"><span>🦘</span></div>
+          <div>
+            <div class="n-tag">Darwin Port</div>
+            <div class="n-title">Darwin Port Infrastructure Expansion Continues in 2026</div>
+            <div class="n-date">March 2026</div>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="n-thumb"><span>🏜️</span></div>
+          <div>
+            <div class="n-tag">Suez Canal</div>
+            <div class="n-title">Suez Canal — Convoy Scheduling Notice Issued</div>
+            <div class="n-date">20 March 2026</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="col-title">Advisories <a href="#">All →</a></div>
+        <div class="adv-item"><div class="adv-flag">🌍</div><div><div class="adv-tag">Middle East</div><div class="adv-title">Middle East Operational Status</div></div><div class="adv-date">16 Mar</div></div>
+        <div class="adv-item"><div class="adv-flag">🇹🇷</div><div><div class="adv-tag">Turkish Straits</div><div class="adv-title">Çanakkale Strait Suspension</div></div><div class="adv-date">18 Mar</div></div>
+        <div class="adv-item"><div class="adv-flag">🇪🇬</div><div><div class="adv-tag">Suez Canal</div><div class="adv-title">Convoy Scheduling Notice</div></div><div class="adv-date">20 Mar</div></div>
+        <div class="adv-item"><div class="adv-flag">🇦🇺</div><div><div class="adv-tag">Darwin Port</div><div class="adv-title">Berth Allocation Update</div></div><div class="adv-date">22 Mar</div></div>
+        <div class="adv-item"><div class="adv-flag">🌊</div><div><div class="adv-tag">Hormuz</div><div class="adv-title">LNG Traffic Advisory</div></div><div class="adv-date">24 Mar</div></div>
+        <div class="adv-item"><div class="adv-flag">🇲🇾</div><div><div class="adv-tag">Malacca Strait</div><div class="adv-title">Traffic Management Update</div></div><div class="adv-date">25 Mar</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" class="sec grey">
+  <div class="wrap">
+    <span class="kicker">Tools</span>
+    <h2 class="sec-h">Our Tools</h2>
+    <p class="sec-p">Practical tools to help you plan and manage your vessel's port calls.</p>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-ico">🗺️</div>
+        <h3>Live Vessel Tracker</h3>
+        <p>Monitor live AIS vessel traffic at 58+ major straits, canals and ports worldwide — updated in real time, 24/7.</p>
+        <a href="troy-global-tracker.html" target="_blank" class="tool-lnk">Open Tracker →</a>
+      </div>
+      <div class="tool-card">
+        <div class="tool-ico">📋</div>
+        <h3>Request a PDA</h3>
+        <p>Send us your vessel details and port — we reply with a clear proforma disbursement account within 2 hours.</p>
+        <a href="/cdn-cgi/l/email-protection#9eeaecf1e7f3ffecf7eaf7f3fbfff9fbf0fde7def9f3fff7f2b0fdf1f3a1edebfcf4fbfdeaa3cedadfbeccfbefebfbedea" class="tool-lnk">Request Now →</a>
+      </div>
+      <div class="tool-card" id="network">
+        <div class="tool-ico">🌍</div>
+        <h3>Find a Port</h3>
+        <p>We cover 58+ ports worldwide through direct operations and our trusted sub-agent network. Ask us about your port.</p>
+        <a href="#contact" class="tool-lnk">Ask About Your Port →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <span class="kicker">About Us</span>
+        <h2 class="sec-h">Experienced. Transparent.<br>Always Available.</h2>
+        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:14px">Troy Maritime Agency is a Darwin-based ship agency with over 30 years of hands-on maritime experience. We operate digitally — keeping our costs low and our response times fast.</p>
+        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:28px">Our global sub-agent network means your vessel is covered at ports worldwide — with professional local knowledge at every call.</p>
+        <a href="#contact" class="btn-pri">Get in Touch</a>
+      </div>
+      <div class="about-boxes">
+        <div class="abox"><div class="abox-n">30+</div><div class="abox-l">Years of experience</div></div>
+        <div class="abox"><div class="abox-n">58+</div><div class="abox-l">Ports in network</div></div>
+        <div class="abox"><div class="abox-n">24/7</div><div class="abox-l">Always reachable</div></div>
+        <div class="abox"><div class="abox-n">2hr</div><div class="abox-l">PDA turnaround</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta" id="contact">
+  <div class="wrap">
+    <h2>Ready to make an enquiry?</h2>
+    <p>Tell us your vessel and port — we will handle everything from there.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="/cdn-cgi/l/email-protection#5024223f293d31223924393d353137353e332910373d31393c7e333f3d6f2325323a3533246d003f222470153e2125392229" class="btn-pri">✉ Send an Enquiry</a>
+      <a href="https://wa.me/61476496693" target="_blank" class="btn-out">💬 WhatsApp Us</a>
+    </div>
+    <p style="margin-top:18px;font-size:13px;color:rgba(255,255,255,.4)"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f2b2d3026323e2d362b36323a3e383a313c261f38323e3633713c3032">[email&#160;protected]</a> &nbsp;·&nbsp; Darwin, NT, Australia &nbsp;·&nbsp; Available 24/7</p>
+  </div>
+</div>
+
+<!-- LIVE TRACKER -->
+<section id="tracker" class="sec grey">
+  <div class="wrap">
+    <span class="kicker">Live AIS Data</span>
+    <h2 class="sec-h">Global Vessel Tracker</h2>
+    <p class="sec-p">Live vessel traffic at the world's most important straits and ports — in real time, 24/7.</p>
+    <div style="border-radius:4px;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.12);height:360px;position:relative">
+      <iframe src="https://www.marinetraffic.com/en/ais/embed/zoom:9/centery:26.5/centerx:56.5/maptype:4/shownames:true/mmsi:0/shipid:0/fleet:/fleet_id:/vtypes:/showmenu:/remember:false" style="width:100%;height:100%;border:none;display:block" allowfullscreen></iframe>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0,rgba(13,33,55,.88),transparent);padding:14px 18px;display:flex;justify-content:space-between;pointer-events:none">
+        <span style="font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.8px">🔴 LIVE · STRAIT OF HORMUZ</span>
+        <span style="font-size:11px;color:rgba(255,255,255,.5)" id="clk">--:-- UTC</span>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:22px">
+      <a href="troy-global-tracker.html" target="_blank" class="btn-pri">Open Full Global Tracker — 58+ Ports →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<div class="certs">
+  <div class="wrap">
+    <div class="cert"><span>🏛️</span> FONASBA Standards</div>
+    <div class="cert"><span>⚖️</span> IMO Compliant</div>
+    <div class="cert"><span>📜</span> BIMCO Agreements</div>
+    <div class="cert"><span>🔒</span> Transparent Pricing</div>
+    <div class="cert"><span>✅</span> Pre-payment Policy</div>
+    <div class="cert"><span>🌐</span> Global Sub-Agent Network</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="ft-top">
+      <div>
+        <div class="logo" style="margin-bottom:0">
+          <div class="logo-sq">⚓</div>
+          <div>
+            <span class="logo-name" style="color:#fff">Troy Maritime Agency</span>
+            <span class="logo-sub" style="color:rgba(255,255,255,.35)">Darwin · Australia · Worldwide</span>
+          </div>
+        </div>
+        <p class="ft-desc">Professional ship agency and husbandry services for all vessel types. Operating from Darwin, NT — serving ports worldwide, 24 hours a day, 7 days a week.</p>
+        <div class="ft-links">
+          <a href="/cdn-cgi/l/email-protection#87f3f5e8feeae6f5eef3eeeae2e6e0e2e9e4fec7e0eae6eeeba9e4e8ea">✉ <span class="__cf_email__" data-cfemail="3541475a4c5854475c415c58505452505b564c755258545c591b565a58">[email&#160;protected]</span></a>
+          <a href="https://wa.me/61476496693" target="_blank">💬 WhatsApp — Available 24/7</a>
+          <a href="#">📍 Darwin, Northern Territory, Australia</a>
+          <a href="#">🌐 troymaritimeagency.com</a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Port Clearance & Customs</a></li>
+          <li><a href="#">Husbandry Services</a></li>
+          <li><a href="#">Crew Change</a></li>
+          <li><a href="#">Provisions & Supplies</a></li>
+          <li><a href="#">Repairs Coordination</a></li>
+          <li><a href="#">Pilotage & Tugboat</a></li>
+          <li><a href="#">Launch & Agent Boat</a></li>
+          <li><a href="#">PDA / FDA Accounts</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Sectors</h4>
+        <ul>
+          <li><a href="#">Tanker</a></li>
+          <li><a href="#">Dry Bulk</a></li>
+          <li><a href="#">Container / Liner</a></li>
+          <li><a href="#">Cruise</a></li>
+          <li><a href="#">LNG / Gas</a></li>
+          <li><a href="#">Offshore</a></li>
+          <li><a href="#">Yacht & Leisure</a></li>
+          <li><a href="#">Government / Navy</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Our Network</a></li>
+          <li><a href="#">News & Advisories</a></li>
+          <li><a href="#">Live Vessel Tracker</a></li>
+          <li><a href="#">Request a PDA</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div 
