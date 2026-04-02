@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRoyGo™ — Your World. Your Way. | TRoy Travel Agency™</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #00aa6c;
+  --green-dark: #007a4d;
+  --green-light: #e6f7f1;
+  --green-mid: #b3e8d4;
+  --black: #111827;
+  --grey-dark: #374151;
+  --grey-mid: #6b7280;
+  --grey-light: #f3f4f6;
+  --border: #e5e7eb;
+  --white: #ffffff;
+  --gold: #f59e0b;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.14);
+  --radius: 12px;
+  --font: 'Nunito', sans-serif;
+  --font-serif: 'Lora', serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--black); background: var(--white); }
+
+/* ── TOPBAR ── */
+.topbar {
+  background: var(--black); color: rgba(255,255,255,0.65);
+  font-size: 0.78rem; padding: 7px 0;
+}
+.topbar-inner {
+  max-width: 1180px; margin: 0 auto; padding: 0 20px;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.topbar a { color: var(--green-mid); text-decoration: none; }
+.topbar a:hover { color: var(--white); }
+
+/* ── NAVBAR ── */
+nav {
+  background: var(--white); border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 200; box-shadow: var(--shadow);
+}
+.nav-inner {
+  max-width: 1180px; margin: 0 auto; padding: 0 20px;
+  display: flex; align-items: center; justify-content: space-between; height: 62px; gap: 16px;
+}
+.logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.logo-owl {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--green); display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.logo-name { font-size: 1.4rem; font-weight: 900; color: var(--green); letter-spacing: -0.5px; }
+.logo-tag { font-size: 0.65rem; color: var(--grey-mid); font-style: italic; margin-top: -2px; }
+.nav-links { display: flex; gap: 2px; align-items: center; }
+.nav-links a {
+  padding: 7px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 700;
+  color: var(--grey-dark); text-decoration: none; transition: all 0.2s; white-space: nowrap;
+}
+.nav-links a:hover { background: var(--green-light); color: var(--green-dark); }
+.nav-cta { background: var(--green) !important; color: var(--white) !important; }
+.nav-cta:hover { background: var(--green-dark) !important; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, #0a3d28 0%, #0d5c3a 45%, #00aa6c 100%);
+  padding: 56px 20px 48px; position: relative; overflow: hidden; text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner { max-width: 780px; margin: 0 auto; position: relative; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+  padding: 5px 16px; border-radius: 20px;
+  font-size: 0.75rem; color: rgba(255,255,255,0.9); font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 18px;
+}
+.hero h1 {
+  font-size: 2.8rem; font-weight: 900; color: var(--white); line-height: 1.1;
+  margin-bottom: 12px; letter-spacing: -0.5px;
+}
+.hero h1 em { font-style: italic; font-family: var(--font-serif); font-weight: 600; color: rgba(255,255,255,0.85); }
+.hero-sub {
+  font-size: 1.05rem; color: rgba(255,255,255,0.8); line-height: 1.65;
+  max-width: 580px; margin: 0 auto 28px;
+}
+
+/* ── PLAN WITH AI BUTTON ── */
+.plan-ai-wrap { display: flex; justify-content: center; margin-bottom: 20px; }
+.plan-ai-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--white); color: var(--green-dark);
+  padding: 14px 32px; border-radius: 32px;
+  font-weight: 900; font-size: 1rem; text-decoration: none;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.18);
+  transition: all 0.25s; border: none; cursor: pointer;
+  font-family: var(--font);
+}
+.plan-ai-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 36px rgba(0,0,0,0.22); background: var(--green-light); }
+.plan-ai-btn .ai-sparkle {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 0.95rem; flex-shrink: 0;
+}
+.plan-ai-label { display: flex; flex-direction: column; text-align: left; }
+.plan-ai-label strong { font-size: 1rem; font-weight: 900; line-height: 1.1; }
+.plan-ai-label span { font-size: 0.7rem; color: var(--grey-mid); font-weight: 600; }
+
+/* Search tabs */
+.search-bar {
+  background: var(--white); border-radius: 16px; overflow: hidden;
+  box-shadow: var(--shadow-lg); max-width: 820px; margin: 0 auto;
+}
+.search-tabs { display: flex; border-bottom: 1px solid var(--border); overflow-x: auto; }
+.search-tab {
+  padding: 12px 18px; font-size: 0.82rem; font-weight: 700; color: var(--grey-mid);
+  cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: all 0.15s; background: none; border-top: none; border-left: none; border-right: none;
+  font-family: var(--font);
+}
+.search-tab.active { color: var(--green-dark); border-bottom-color: var(--green); }
+.search-tab:hover { color: var(--green-dark); background: var(--green-light); }
+.search-fields {
+  padding: 16px 20px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+}
+.search-field {
+  flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 3px;
+  border-right: 1px solid var(--border); padding-right: 16px;
+}
+.search-field:last-of-type { border-right: none; }
+.field-label { font-size: 0.68rem; font-weight: 800; color: var(--black); text-transform: uppercase; letter-spacing: 0.06em; }
+.field-input {
+  border: none; outline: none; font-family: var(--font); font-size: 0.9rem;
+  color: var(--grey-dark); font-weight: 600; background: transparent; width: 100%;
+}
+.field-input::placeholder { color: var(--grey-mid); font-weight: 400; }
+.search-btn {
+  background: var(--green); color: var(--white); border: none; padding: 12px 24px;
+  border-radius: 10px; font-weight: 800; font-size: 0.9rem; cursor: pointer;
+  font-family: var(--font); transition: background 0.2s; white-space: nowrap; flex-shrink: 0;
+}
+.search-btn:hover { background: var(--green-dark); }
+
+/* ── MAIN LAYOUT ── */
+.main-wrap { max-width: 1180px; margin: 0 auto; padding: 32px 20px; }
+.layout { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+
+/* ── SECTION ── */
+.section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.section-title { font-size: 1.2rem; font-weight: 800; color: var(--black); }
+.see-all { font-size: 0.82rem; font-weight: 700; color: var(--green-dark); text-decoration: none; }
+.see-all:hover { text-decoration: underline; }
+
+/* ── AI PLAN SECTION ── */
+.ai-section { margin-bottom: 28px; }
+.ai-hero-bar {
+  background: linear-gradient(135deg, #0a3d28, #0d5c3a);
+  border-radius: var(--radius); padding: 20px 24px; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.ai-hero-text { flex: 1; }
+.ai-hero-text h3 { font-size: 1.1rem; font-weight: 900; color: var(--white); margin-bottom: 4px; }
+.ai-hero-text p { font-size: 0.82rem; color: rgba(255,255,255,0.7); }
+.ai-hero-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--white); color: var(--green-dark);
+  padding: 11px 22px; border-radius: 24px;
+  font-weight: 900; font-size: 0.88rem; text-decoration: none;
+  border: none; cursor: pointer; font-family: var(--font);
+  transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
+}
+.ai-hero-btn:hover { background: var(--green-light); transform: translateY(-1px); }
+
+/* Chat window */
+.ai-chat-window {
+  background: var(--white); border: 1.5px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+}
+.ai-chat-header {
+  background: linear-gradient(135deg, #0a3d28, #0d5c3a);
+  padding: 14px 18px; display: flex; align-items: center; gap: 10px;
+}
+.ai-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: var(--green); display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.ai-name { color: var(--white); font-weight: 800; font-size: 0.9rem; }
+.ai-status { color: rgba(255,255,255,0.6); font-size: 0.7rem; }
+.ai-live {
+  margin-left: auto; display: flex; align-items: center; gap: 4px;
+  font-size: 0.7rem; color: #4cffb3; font-weight: 700;
+}
+.ai-live::before { content:''; width:6px; height:6px; border-radius:50%; background:#4cffb3; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+.ai-messages {
+  padding: 16px 18px; min-height: 240px; max-height: 340px;
+  overflow-y: auto; display: flex; flex-direction: column; gap: 12px;
+  background: #f9fafb;
+}
+.ai-messages::-webkit-scrollbar { width: 3px; }
+.ai-messages::-webkit-scrollbar-thumb { background: var(--border); }
+
+.msg { display: flex; gap: 7px; align-items: flex-end; }
+.msg.user { flex-direction: row-reverse; }
+.msg-avatar {
+  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 0.75rem;
+}
+.msg.bot .msg-avatar { background: var(--green); color: var(--white); }
+.msg.user .msg-avatar { background: var(--grey-dark); color: var(--white); }
+.msg-bubble {
+  padding: 10px 14px; border-radius: 14px;
+  font-size: 0.84rem; line-height: 1.6; max-width: 78%;
+}
+.msg.bot .msg-bubble { background: var(--white); color: var(--black); border-bottom-left-radius: 4px; box-shadow: var(--shadow); }
+.msg.user .msg-bubble { background: var(--green); color: var(--white); border-bottom-right-radius: 4px; }
+
+.typing { display: flex; gap: 3px; padding: 10px 14px; background: var(--white); border-radius: 14px; border-bottom-left-radius: 4px; box-shadow: var(--shadow); }
+.typing span { width:6px; height:6px; background: var(--green-mid); border-radius:50%; animation: bounce 1.2s infinite; }
+.typing span:nth-child(2){animation-delay:0.2s;} .typing span:nth-child(3){animation-delay:0.4s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
+
+/* Suggestion chips */
+.ai-suggestions {
+  padding: 10px 16px; background: var(--white); border-top: 1px solid var(--border);
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.suggestion-chip {
+  background: var(--green-light); border: 1px solid var(--green-mid);
+  color: var(--green-dark); padding: 5px 12px; border-radius: 16px;
+  font-size: 0.76rem; font-weight: 700; cursor: pointer; transition: all 0.15s;
+  font-family: var(--font);
+}
+.suggestion-chip:hover { background: var(--green-mid); }
+
+.ai-input-row {
+  display: flex; gap: 8px; padding: 10px 14px 14px;
+  background: var(--white); border-top: 1px solid var(--border);
+  align-items: center;
+}
+.ai-input {
+  flex: 1; padding: 10px 14px; border-radius: 22px;
+  border: 1.5px solid var(--border); font-family: var(--font); font-size: 0.84rem;
+  color: var(--black); outline: none; transition: border-color 0.2s;
+}
+.ai-input:focus { border-color: var(--green); }
+.ai-send {
+  width: 38px; height: 38px; border-radius: 50%; border: none;
+  background: var(--green); color: var(--white); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  flex-shrink: 0; transition: background 0.2s;
+}
+.ai-send:hover { background: var(--green-dark); }
+
+/* ── RATING BAR ── */
+.rating-bar {
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 18px 22px; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 28px; flex-wrap: wrap;
+}
+.rating-big { text-align: center; }
+.rating-score { font-size: 3rem; font-weight: 900; color: var(--green); line-height: 1; }
+.rating-stars { color: var(--green); font-size: 1.1rem; margin: 3px 0; }
+.rating-count { font-size: 0.75rem; color: var(--grey-mid); font-weight: 600; }
+.rating-breakdown { flex: 1; min-width: 180px; }
+.rating-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+.rating-label { font-size: 0.78rem; color: var(--grey-mid); width: 76px; flex-shrink: 0; }
+.rating-bar-track { flex: 1; height: 7px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.rating-bar-fill { height: 100%; background: var(--green); border-radius: 4px; }
+.rating-num { font-size: 0.76rem; font-weight: 700; color: var(--grey-dark); width: 20px; text-align: right; }
+.ta-partner-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--green-light); border: 1px solid var(--green-mid);
+  border-radius: 8px; padding: 8px 12px;
+}
+.ta-partner-badge .owl { font-size: 1.4rem; }
+.ta-partner-badge-text strong { font-size: 0.78rem; font-weight: 800; color: var(--green-dark); display: block; }
+.ta-partner-badge-text span { font-size: 0.68rem; color: var(--grey-mid); }
+
+/* ── PHOTO GRID ── */
+.photo-section { margin-bottom: 28px; }
+.photo-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 155px 155px;
+  gap: 6px; border-radius: var(--radius); overflow: hidden;
+}
+.photo-item { position: relative; overflow: hidden; cursor: pointer; background: var(--green-light); }
+.photo-item:first-child { grid-row: 1 / 3; }
+.photo-inner {
+  width: 100%; height: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; font-size: 2.4rem; gap: 4px;
+  transition: transform 0.3s;
+}
+.photo-item:hover .photo-inner { transform: scale(1.06); }
+.photo-inner span { font-size: 0.7rem; font-weight: 800; color: var(--green-dark); }
+.photo-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.5));
+  color: var(--white); font-size: 0.72rem; font-weight: 700;
+  padding: 18px 8px 6px; text-align: center;
+}
+.photo-item:nth-child(2) { background: linear-gradient(135deg,#dbeafe,#bfdbfe); }
+.photo-item:nth-child(3) { background: linear-gradient(135deg,#fef3c7,#fde68a); }
+.photo-item:nth-child(4) { background: linear-gradient(135deg,#fce7f3,#fbcfe8); }
+.photo-item:nth-child(5) { background: linear-gradient(135deg,#ede9fe,#ddd6fe); }
+
+/* ── PACKAGES ── */
+.packages-section { margin-bottom: 28px; }
+.pkg-card {
+  display: flex; gap: 14px; background: var(--white);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 14px 16px; margin-bottom: 12px; transition: all 0.2s; cursor: pointer;
+}
+.pkg-card:hover { box-shadow: var(--shadow); border-color: var(--green-mid); }
+.pkg-thumb {
+  width: 84px; height: 68px; border-radius: 8px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 2rem;
+  background: linear-gradient(135deg, var(--green-light), var(--green-mid));
+}
+.pkg-info { flex: 1; }
+.pkg-name { font-weight: 800; font-size: 0.92rem; color: var(--black); margin-bottom: 3px; }
+.pkg-detail { font-size: 0.76rem; color: var(--grey-mid); margin-bottom: 6px; }
+.pkg-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pkg-stars { color: var(--green); font-size: 0.82rem; }
+.pkg-tag {
+  background: var(--green-light); color: var(--green-dark);
+  padding: 2px 8px; border-radius: 10px; font-size: 0.68rem; font-weight: 700;
+}
+.pkg-price { font-weight: 900; font-size: 0.95rem; color: var(--green-dark); white-space: nowrap; align-self: center; }
+
+/* ── REVIEWS ── */
+.reviews-section { margin-bottom: 28px; }
+.review-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 18px 20px; margin-bottom: 12px; transition: box-shadow 0.2s;
+}
+.review-card:hover { box-shadow: var(--shadow); }
+.review-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.reviewer { display: flex; align-items: center; gap: 9px; }
+.reviewer-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-weight: 800; font-size: 0.85rem; flex-shrink: 0;
+}
+.reviewer-name { font-weight: 800; font-size: 0.88rem; color: var(--black); }
+.reviewer-meta { font-size: 0.73rem; color: var(--grey-mid); }
+.review-stars { color: var(--green); font-size: 0.95rem; }
+.review-date { font-size: 0.73rem; color: var(--grey-mid); text-align: right; }
+.review-title { font-weight: 800; font-size: 0.92rem; color: var(--black); margin-bottom: 5px; }
+.review-body { font-size: 0.845rem; color: var(--grey-dark); line-height: 1.65; }
+.review-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 9px; }
+.review-tag { background: var(--green-light); color: var(--green-dark); padding: 3px 9px; border-radius: 10px; font-size: 0.7rem; font-weight: 700; }
+.agency-reply {
+  background: var(--grey-light); border-left: 3px solid var(--green);
+  border-radius: 0 8px 8px 0; padding: 9px 13px; margin-top: 11px;
+}
+.agency-reply-label { font-size: 0.7rem; font-weight: 800; color: var(--green-dark); margin-bottom: 3px; }
+.agency-reply p { font-size: 0.8rem; color: var(--grey-dark); line-height: 1.6; }
+
+/* ── SERVICES ── */
+.services-section { margin-bottom: 28px; }
+.services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.service-tile {
+  border: 1px solid var(--border); border-radius: 10px; padding: 14px;
+  transition: all 0.2s; cursor: pointer; background: var(--white);
+}
+.service-tile:hover { border-color: var(--green); box-shadow: var(--shadow); }
+.service-icon { font-size: 1.5rem; margin-bottom: 7px; }
+.service-name { font-weight: 800; font-size: 0.87rem; color: var(--black); margin-bottom: 3px; }
+.service-desc { font-size: 0.75rem; color: var(--grey-mid); line-height: 1.45; }
+
+/* ── SIDEBAR ── */
+.sidebar { display: flex; flex-direction: column; gap: 16px; }
+.sidebar-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px;
+}
+.sidebar-card h4 {
+  font-size: 0.78rem; font-weight: 800; color: var(--black);
+  margin-bottom: 13px; padding-bottom: 9px; border-bottom: 1px solid var(--border);
+  text-transform: uppercase; letter-spacing: 0.07em;
+}
+.about-text { font-size: 0.845rem; color: var(--grey-dark); line-height: 1.7; margin-bottom: 10px; }
+.info-row {
+  display: flex; align-items: flex-start; gap: 7px;
+  font-size: 0.82rem; color: var(--grey-dark); margin-bottom: 9px;
+}
+.info-row:last-child { margin-bottom: 0; }
+.info-icon { font-size: 0.95rem; flex-shrink: 0; margin-top: 1px; }
+.info-row a { color: var(--green-dark); text-decoration: none; }
+.info-row a:hover { text-decoration: underline; }
+
+.contact-btn {
+  display: block; width: 100%; padding: 11px; text-align: center;
+  background: var(--green); color: var(--white); font-weight: 800; font-size: 0.88rem;
+  border: none; border-radius: var(--radius); cursor: pointer;
+  text-decoration: none; transition: background 0.2s; margin-bottom: 7px; font-family: var(--font);
+}
+.contact-btn:hover { background: var(--green-dark); }
+.contact-btn.outline {
+  background: var(--white); color: var(--green-dark); border: 2px solid var(--green);
+}
+.contact-btn.outline:hover { background: var(--green-light); }
+
+.social-links { display: flex; flex-wrap: wrap; gap: 7px; }
+.social-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 6px 11px; border: 1px solid var(--border); border-radius: 18px;
+  font-size: 0.76rem; font-weight: 700; color: var(--grey-dark); text-decoration: none; transition: all 0.15s;
+}
+.social-btn:hover { border-color: var(--green); color: var(--green-dark); background: var(--green-light); }
+
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stat-box { background: var(--grey-light); border-radius: 8px; padding: 11px; text-align: center; }
+.stat-val { font-size: 1.3rem; font-weight: 900; color: var(--green); line-height: 1; }
+.stat-lbl { font-size: 0.65rem; color: var(--grey-mid); font-weight: 700; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+.dest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.dest-card {
+  background: var(--grey-light); border-radius: 9px; overflow: hidden;
+  text-decoration: none; transition: all 0.2s; display: block;
+}
+.dest-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.dest-thumb {
+  height: 66px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, var(--green-light), var(--green-mid));
+}
+.dest-name { font-size: 0.76rem; font-weight: 800; color: var(--black); padding: 5px 7px 2px; }
+.dest-count { font-size: 0.66rem; color: var(--grey-mid); padding: 0 7px 6px; }
+
+/* ── AWARDS ── */
+.awards-grid { display: flex; flex-direction: column; gap: 8px; }
+.award-item {
+  display: flex; align-items: center; gap: 9px;
+  padding: 9px; background: var(--green-light); border-radius: 8px;
+}
+.award-icon { font-size: 1.5rem; flex-shrink: 0; }
+.award-text h5 { font-size: 0.8rem; font-weight: 800; color: var(--green-dark); }
+.award-text p { font-size: 0.68rem; color: var(--grey-mid); }
+
+/* ── FOOTER ── */
+footer { background: var(--black); color: rgba(255,255,255,0.65); padding: 40px 20px 24px; }
+.footer-inner { max-width: 1180px; margin: 0 auto; }
+.footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 28px; }
+.footer-logo-name { font-size: 1.4rem; font-weight: 900; color: var(--green); margin-bottom: 5px; }
+.footer-tagline { font-style: italic; font-family: var(--font-serif); color: rgba(255,255,255,0.45); font-size: 0.85rem; margin-bottom: 10px; }
+.footer-desc { font-size: 0.78rem; line-height: 1.7; color: rgba(255,255,255,0.4); }
+.footer-col h5 { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 11px; font-weight: 800; }
+.footer-col a { display: block; color: rgba(255,255,255,0.55); font-size: 0.8rem; text-decoration: none; margin-bottom: 7px; transition: color 0.15s; }
+.footer-col a:hover { color: var(--green); }
+.footer-bottom {
+  padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+  font-size: 0.75rem; color: rgba(255,255,255,0.28);
+}
+.footer-bottom a { color: rgba(255,255,255,0.38); text-decoration: none; }
+.footer-bottom a:hover { color: var(--green); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .photo-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 130px 130px 130px; }
+  .photo-item:first-child { grid-row: 1; grid-column: 1 / 3; height: 130px; }
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.9rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .search-fields { flex-direction: column; }
+  .search-field { border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>🌍 TRoy Travel Agency™ — TRoyGo™ · Online · Worldwide · Tripadvisor Partner</span>
+    <div style="display:flex;gap:16px;">
+      <a href="mailto:troytravelagency@gmail.com">troytravelagency@gmail.com</a>
+      <a href="https://wa.me/61476496693" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      <a href="troy-group-main.html" target="_blank" rel="noopener noreferrer">← TRoy Group™</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#top">
+      <div class="logo-owl">🦉</div>
+      <div>
+        <div class="logo-name">TRoyGo™</div>
+        <div class="logo-tag">Your World. Your Way.</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#ai-trip">Plan with AI</a>
+      <a href="#packages">Packages</a>
+      <a href="#services">Services</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact" class="nav-cta">Contact Us</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">✈️ TRoy Travel Agency™ — TRoyGo™</div>
+    <h1>Your World.<br><em>Your Way.</em></h1>
+    <p class="hero-sub">AI-powered travel planning, curated packages, flights, hotels, cruises and more — built by travel experts with 30+ years of experience.</p>
+
+    <!-- PLAN WITH AI BUTTON -->
+    <div class="plan-ai-wrap">
+      <button class="plan-ai-btn" onclick="document.getElementById('ai-trip').scrollIntoView({behavior:'smooth'});document.getElementById('chat-input').focus();">
+        <div class="ai-sparkle">✨</div>
+        <div class="plan-ai-label">
+          <strong>Plan with AI</strong>
+          <span>Build your itinerary in seconds</span>
+        </div>
+      </button>
+    </div>
+
+    <!-- SEARCH BAR -->
+    <div class="search-bar">
+      <div class="search-tabs">
+        <button class="search-tab active" onclick="setTab(this)">✈️ Flights</button>
+        <button class="search-tab" onclick="setTab(this)">🏨 Hotels</button>
+        <button class="search-tab" onclick="setTab(this)">✈️🏨 Flight+Hotel</button>
+        <button class="search-tab" onclick="setTab(this)">🚢 Cruises</button>
+        <button class="search-tab" onclick="setTab(this)">🗺️ Tours</button>
+        <button class="search-tab" onclick="setTab(this)">🚐 Transfers</button>
+        <button class="search-tab" onclick="setTab(this)">🛂 Visa Help</button>
+      </div>
+      <div class="search-fields">
+        <div class="search-field">
+          <div class="field-label">From</div>
+          <input class="field-input" placeholder="City or airport">
+        </div>
+        <div class="search-field">
+          <div class="field-label">To</div>
+          <input class="field-input" placeholder="Destination">
+        </div>
+        <div class="search-field">
+          <div class="field-label">Dates</div>
+          <input class="field-input" type="date">
+        </div>
+        <div class="search-field" style="border-right:none;">
+          <div class="field-label">Travellers</div>
+          <input class="field-input" placeholder="2 adults">
+        </div>
+        <button class="search-btn" onclick="alert('For bookings, please contact us at troytravelagency@gmail.com or use the AI Trip Creator below!')">Search</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-wrap" id="overview">
+  <div class="layout">
+
+    <!-- LEFT -->
+    <div>
+
+      <!-- RATING -->
+      <div class="rating-bar">
+        <div class="rating-big">
+          <div class="rating-score">5.0</div>
+          <div class="rating-stars">★★★★★</div>
+          <div class="rating-count">Verified Rating</div>
+        </div>
+        <div class="rating-breakdown">
+          <div class="rating-row"><span class="rating-label">Excellent</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:100%"></div></div><span class="rating-num">5</span></div>
+          <div class="rating-row"><span class="rating-label">Very Good</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><span class="rating-num">0</span></div>
+          <div class="rating-row"><span class="rating-label">Average</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><span class="rating-num">0</span></div>
+          <div class="rating-row"><span class="rating-label">Poor</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><span class="rating-num">0</span></div>
+          <div class="rating-row"><span class="rating-label">Terrible</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><span class="rating-num">0</span></div>
+        </div>
+        <div class="ta-partner-badge">
+          <span class="owl">🦉</span>
+          <div class="ta-partner-badge-text">
+            <strong>Tripadvisor Partner</strong>
+            <span>Official travel partner</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAN WITH AI SECTION -->
+      <div class="ai-section" id="ai-trip">
+        <div class="ai-hero-bar">
+          <div class="ai-hero-text">
+            <h3>✨ Plan with AI — TRoyGo™ Trip Creator</h3>
+            <p>Describe your dream trip and get a personalised day-by-day itinerary instantly</p>
+          </div>
+          <button class="ai-hero-btn" onclick="document.getElementById('chat-input').focus()">
+            ✨ Plan with AI
+          </button>
+        </div>
+
+        <div class="ai-chat-window">
+          <div class="ai-chat-header">
+            <div class="ai-avatar">🦉</div>
+            <div>
+              <div class="ai-name">TRoyGo™ AI Trip Creator</div>
+              <div class="ai-status">Powered by Claude AI · Ready to plan your trip</div>
+            </div>
+            <div class="ai-live">Live</div>
+          </div>
+
+          <div class="ai-messages" id="chat-msgs">
+            <div class="msg bot">
+              <div class="msg-avatar">🦉</div>
+              <div class="msg-bubble">
+                ✈️ Hi! I'm TRoyGo™'s AI Trip Creator.<br><br>
+                Tell me where you want to go, how long, your budget, and who's travelling — and I'll build you a personalised itinerary in seconds.<br><br>
+                <strong>Where in the world shall we go? 🌍</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="ai-suggestions" id="chat-chips">
+            <button class="suggestion-chip" onclick="useChip(this)">🗼 2 weeks Europe</button>
+            <button class="suggestion-chip" onclick="useChip(this)">🌴 Maldives honeymoon</button>
+            <button class="suggestion-chip" onclick="useChip(this)">🕌 Turkey 10 days</button>
+            <button class="suggestion-chip" onclick="useChip(this)">🚢 Mediterranean cruise</button>
+            <button class="suggestion-chip" onclick="useChip(this)">🌸 Japan 12 days</button>
+            <button class="suggestion-chip" onclick="useChip(this)">🦘 Australia road trip</button>
+          </div>
+
+          <div class="ai-input-row">
+            <input class="ai-input" id="chat-input" type="text"
+              placeholder="E.g. 10 days in Japan for 2, mid-range budget, love culture & food..."
+              onkeydown="if(event.key==='Enter')sendMsg()">
+            <button class="ai-send" onclick="sendMsg()">➤</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PHOTOS -->
+      <div class="photo-section" id="photos">
+        <div class="section-header">
+          <div class="section-title">📸 Destinations</div>
+          <a href="mailto:troytravelagency@gmail.com" class="see-all">Request custom trip</a>
+        </div>
+        <div class="photo-grid">
+          <div class="photo-item">
+            <div class="photo-inner">🗺️<span>Worldwide</span></div>
+            <div class="photo-label">Global Destinations</div>
+          </div>
+          <div class="photo-item">
+            <div class="photo-inner">🗼<span>Europe</span></div>
+            <div class="photo-label">Europe Tours</div>
+          </div>
+          <div class="photo-item">
+            <div class="photo-inner">🌴<span>Maldives</span></div>
+            <div class="photo-label">Island Escapes</div>
+          </div>
+          <div class="photo-item">
+            <div class="photo-inner">🕌<span>Turkey</span></div>
+            <div class="photo-label">Turkey & Straits</div>
+          </div>
+          <div class="photo-item">
+            <div class="photo-inner">🚢<span>Cruises</span></div>
+            <div class="photo-label">Cruise Packages</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PACKAGES -->
+      <div class="packages-section" id="packages">
+        <div class="section-header">
+          <div class="section-title">🌟 Popular Packages</div>
+          <a href="mailto:troytravelagency@gmail.com" class="see-all">Request custom →</a>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-thumb">🗼</div>
+          <div class="pkg-info">
+            <div class="pkg-name">European Grand Tour — 14 Days</div>
+            <div class="pkg-detail">Paris · Rome · Barcelona · Amsterdam · Prague</div>
+            <div class="pkg-meta"><span class="pkg-stars">★★★★★</span><span class="pkg-tag">Flights + Hotels</span><span class="pkg-tag">AI-curated</span></div>
+          </div>
+          <div class="pkg-price">From $2,490</div>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-thumb">🌴</div>
+          <div class="pkg-info">
+            <div class="pkg-name">Maldives Luxury Escape — 7 Nights</div>
+            <div class="pkg-detail">Overwater villas · Snorkelling · Sunset cruises</div>
+            <div class="pkg-meta"><span class="pkg-stars">★★★★★</span><span class="pkg-tag">All Inclusive</span><span class="pkg-tag">Most popular</span></div>
+          </div>
+          <div class="pkg-price">From $3,890</div>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-thumb">🕌</div>
+          <div class="pkg-info">
+            <div class="pkg-name">Turkey & Turkish Straits — 10 Days</div>
+            <div class="pkg-detail">Istanbul · Çanakkale · Troy · Cappadocia · Aegean Coast</div>
+            <div class="pkg-meta"><span class="pkg-stars">★★★★★</span><span class="pkg-tag">Specialist Route</span><span class="pkg-tag">Expert guided</span></div>
+          </div>
+          <div class="pkg-price">From $1,890</div>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-thumb">🚢</div>
+          <div class="pkg-info">
+            <div class="pkg-name">Mediterranean Cruise — 12 Nights</div>
+            <div class="pkg-detail">Athens · Santorini · Dubrovnik · Kotor · Venice</div>
+            <div class="pkg-meta"><span class="pkg-stars">★★★★★</span><span class="pkg-tag">Cruise + Stays</span><span class="pkg-tag">Maritime experts</span></div>
+          </div>
+          <div class="pkg-price">From $2,990</div>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-thumb">🌸</div>
+          <div class="pkg-info">
+            <div class="pkg-name">Japan Discovery — 12 Days</div>
+            <div class="pkg-detail">Tokyo · Kyoto · Osaka · Hiroshima · Hakone</div>
+            <div class="pkg-meta"><span class="pkg-stars">★★★★★</span><span class="pkg-tag">Cultural immersion</span><span class="pkg-tag">Group & Private</span></div>
+          </div>
+          <div class="pkg-price">From $3,290</div>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="services-section" id="services">
+        <div class="section-header"><div class="section-title">🛎️ Our Services</div></div>
+        <div class="services-grid">
+          <div class="service-tile"><div class="service-icon">✈️</div><div class="service-name">Flights</div><div class="service-desc">International & domestic, all airlines, best fares</div></div>
+          <div class="service-tile"><div class="service-icon">🏨</div><div class="service-name">Hotels & Stays</div><div class="service-desc">600,000+ hotels, villas, resorts worldwide</div></div>
+          <div class="service-tile"><div class="service-icon">🚢</div><div class="service-name">Cruises</div><div class="service-desc">Mediterranean, Caribbean, World cruise packages</div></div>
+          <div class="service-tile"><div class="service-icon">🗺️</div><div class="service-name">Tours & Experiences</div><div class="service-desc">Guided tours, day trips, cultural experiences</div></div>
+          <div class="service-tile"><div class="service-icon">🚐</div><div class="service-name">Airport Transfers</div><div class="service-desc">Private & shared transfers at 1,000+ airports</div></div>
+          <div class="service-tile"><div class="service-icon">🛂</div><div class="service-name">Visa Assistance</div><div class="service-desc">Applications, requirements & documentation</div></div>
+          <div class="service-tile"><div class="service-icon">✨</div><div class="service-name">AI Trip Creator</div><div class="service-desc">Personalised itineraries built by AI instantly</div></div>
+          <div class="service-tile"><div class="service-icon">🏷️</div><div class="service-name">Group & Corporate</div><div class="service-desc">Retreats, groups, honeymoons, families</div></div>
+        </div>
+      </div>
+
+      <!-- REVIEWS -->
+      <div class="reviews-section" id="reviews">
+        <div class="section-header">
+          <div class="section-title">💬 Traveller Reviews</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer">
+              <div class="reviewer-avatar">MK</div>
+              <div><div class="reviewer-name">Maria K.</div><div class="reviewer-meta">Sydney, Australia · 12 reviews</div></div>
+            </div>
+            <div><div class="review-stars">★★★★★</div><div class="review-date">March 2026</div></div>
+          </div>
+          <div class="review-title">Exceptional — Turkey trip was a dream!</div>
+          <div class="review-body">TRoyGo™ planned our 10-day Turkey trip flawlessly. The Turkish Straits experience was something we could never have arranged ourselves. Every hotel, transfer and tour was perfectly coordinated. The AI Trip Creator was incredibly helpful.</div>
+          <div class="review-tags"><span class="review-tag">Turkey</span><span class="review-tag">Cultural Tour</span><span class="review-tag">Highly Recommended</span></div>
+          <div class="agency-reply">
+            <div class="agency-reply-label">Response from TRoyGo™</div>
+            <p>Thank you Maria! The Turkish Straits route is very close to our hearts — 30+ years of expertise there. So glad we could make it unforgettable! 🌍 — TRoyGo™ Team</p>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer">
+              <div class="reviewer-avatar" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);">JR</div>
+              <div><div class="reviewer-name">James R.</div><div class="reviewer-meta">London, UK · 28 reviews</div></div>
+            </div>
+            <div><div class="review-stars">★★★★★</div><div class="review-date">February 2026</div></div>
+          </div>
+          <div class="review-title">Best agency for Mediterranean cruises</div>
+          <div class="review-body">Booked a 12-night Mediterranean cruise through TRoyGo™ and it was exceptional. They handled everything — flights, cruise, pre-cruise hotel in Athens, and the Santorini day trip. Their maritime expertise really shows.</div>
+          <div class="review-tags"><span class="review-tag">Mediterranean</span><span class="review-tag">Cruise</span><span class="review-tag">Family Trip</span></div>
+          <div class="agency-reply">
+            <div class="agency-reply-label">Response from TRoyGo™</div>
+            <p>Thank you James! Our maritime background definitely helps with cruise planning — we know the ports and the best experiences at every stop. 🚢</p>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="reviewer">
+              <div class="reviewer-avatar" style="background:linear-gradient(135deg,#d97706,#b45309);">AY</div>
+              <div><div class="reviewer-name">Ayşe Y.</div><div class="reviewer-meta">Istanbul, Turkey · 6 reviews</div></div>
+            </div>
+            <div><div class="review-stars">★★★★★</div><div class="review-date">January 2026</div></div>
+          </div>
+          <div class="review-title">AI Trip Creator is incredible!</div>
+          <div class="review-body">I used the AI Trip Creator and within minutes had a full 12-day Japan itinerary tailored exactly to my interests. The team refined it, handled all bookings, and arranged a private tea ceremony in Kyoto. Simply the best.</div>
+          <div class="review-tags"><span class="review-tag">Japan</span><span class="review-tag">AI Trip Creator</span><span class="review-tag">Solo Travel</span></div>
+          <div class="agency-reply">
+            <div class="agency-reply-label">Response from TRoyGo™</div>
+            <p>Arigatou gozaimasu Ayşe! 🌸 Japan is one of our favourite destinations to plan. So pleased the AI Trip Creator worked perfectly for you!</p>
+          </div>
+        </div>
+
+        <a href="mailto:troytravelagency@gmail.com" class="contact-btn" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:4px;">
+          ✍️ Share Your Experience
+        </a>
+      </div>
+
+    </div><!-- /left -->
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="contact">
+
+      <div class="sidebar-card">
+        <h4>Contact TRoyGo™</h4>
+        <a href="mailto:troytravelagency@gmail.com" class="contact-btn">✉️ Send Enquiry</a>
+        <a href="https://wa.me/61476496693" target="_blank" rel="noopener noreferrer" class="contact-btn outline">💬 WhatsApp</a>
+        <button class="contact-btn outline" onclick="document.getElementById('ai-trip').scrollIntoView({behavior:'smooth'})">✨ Plan with AI</button>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>About</h4>
+        <p class="about-text">TRoyGo™ is the AI-powered travel division of TRoy Group™ — online worldwide, with 30+ years of travel and maritime expertise behind every itinerary.</p>
+        <div class="info-row"><span class="info-icon">🌐</span><span>Operating 100% online worldwide</span></div>
+        <div class="info-row"><span class="info-icon">✉️</span><a href="mailto:troytravelagency@gmail.com">troytravelagency@gmail.com</a></div>
+        <div class="info-row"><span class="info-icon">💬</span><a href="https://wa.me/61476496693" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+        <div class="info-row"><span class="info-icon">🕐</span><span>24/7 AI · 24h human response</span></div>
+        <div class="info-row"><span class="info-icon">🦉</span><span>Tripadvisor Official Partner</span></div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>At a Glance</h4>
+        <div class="stat-grid">
+          <div class="stat-box"><div class="stat-val">5.0</div><div class="stat-lbl">Rating</div></div>
+          <div class="stat-box"><div class="stat-val">30+</div><div class="stat-lbl">Yrs Exp.</div></div>
+          <div class="stat-box"><div class="stat-val">50+</div><div class="stat-lbl">Countries</div></div>
+          <div class="stat-box"><div class="stat-val">24/7</div><div class="stat-lbl">AI Support</div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://www.facebook.com/TRoyTravelAgency" target="_blank" rel="noopener noreferrer" class="social-btn">📘 Facebook</a>
+          <a href="https://www.instagram.com/troytravelagency" target="_blank" rel="noopener noreferrer" class="social-btn">📷 Instagram</a>
+          <a href="https://www.youtube.com/@TRoyGo-tm" target="_blank" rel="noopener noreferrer" class="social-btn">▶️ YouTube</a>
+          <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="social-btn">📌 Pinterest</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn">💼 LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Recognition</h4>
+        <div class="awards-grid">
+          <div class="award-item"><div class="award-icon">🦉</div><div class="award-text"><h5>Tripadvisor Partner</h5><p>Official travel partner</p></div></div>
+          <div class="award-item"><div class="award-icon">⭐</div><div class="award-text"><h5>5-Star Rated</h5><p>Perfect verified score</p></div></div>
+          <div class="award-item"><div class="award-icon">✨</div><div class="award-text"><h5>AI-Powered Agency</h5><p>Claude AI trip planning</p></div></div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Popular Destinations</h4>
+        <div class="dest-grid">
+          <a href="#" class="dest-card"><div class="dest-thumb">🗼</div><div class="dest-name">Europe</div><div class="dest-count">42 packages</div></a>
+          <a href="#" class="dest-card"><div class="dest-thumb" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">🌴</div><div class="dest-name">Maldives</div><div class="dest-count">12 packages</div></a>
+          <a href="#" class="dest-card"><div class="dest-thumb" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);">🕌</div><div class="dest-name">Turkey</div><div class="dest-count">18 packages</div></a>
+          <a href="#" class="dest-card"><div class="dest-thumb" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">🌸</div><div class="dest-name">Japan</div><div class="dest-count">9 packages</div></a>
+          <a href="#" class="dest-card"><div class="dest-thumb" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);">🚢</div><div class="dest-name">Cruises</div><div class="dest-count">24 packages</div></a>
+          <a href="#" class="dest-card"><div class="dest-thumb" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);">🦘</div><div class="dest-name">Australia</div><div class="dest-count">8 packages</div></a>
+        </div>
+      </div>
+
+      <div class="sidebar-card" style="background:var(--grey-light);border:none;">
+        <h4>TRoy Group™ Family</h4>
+        <div class="info-row"><span class="info-icon">⚓</span><a href="troy-maritime-home.html" target="_blank" rel="noopener noreferrer">TRoyMAR™ Maritime Agency</a></div>
+        <div class="info-row"><span class="info-icon">📊</span><a href="troytr-website.html" target="_blank" rel="noopener noreferrer">TRoyTR™ Trading Agency</a></div>
+        <div class="info-row"><span class="info-icon">🏛️</span><a href="troy-group-main.html" target="_blank" rel="noopener noreferrer">TRoy Group™ Main</a></div>
+      </div>
+
+    </div><!-- /sidebar -->
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-name">TRoyGo™</div>
+        <div class="footer-tagline">Your World. Your Way. TRoyGo™</div>
+        <p class="footer-desc">TRoy Travel Agency™ — AI-powered online travel planning. Part of TRoy Group™, with 30+ years of travel and maritime expertise behind every journey.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="#services">Flights</a>
+        <a href="#services">Hotels</a>
+        <a href="#services">Cruises</a>
+        <a href="#services">Tours</a>
+        <a href="#services">Visa Help</a>
+        <a href="#ai-trip">AI Trip Creator</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="troy-group-main.html" target="_blank" rel="noopener noreferrer">TRoy Group™</a>
+        <a href="troy-maritime-home.html" target="_blank" rel="noopener noreferrer">TRoyMAR™</a>
+        <a href="troytr-website.html" target="_blank" rel="noopener noreferrer">TRoyTR™</a>
+        <a href="mailto:troytravelagency@gmail.com">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h5>Follow</h5>
+        <a href="https://www.facebook.com/TRoyTravelAgency" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.instagram.com/troytravelagency" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.youtube.com/@TRoyGo-tm" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://wa.me/61476496693" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TRoy Travel Agency™ — TRoyGo™. All rights reserved. Part of <a href="troy-group-main.html" target="_blank">TRoy Group™</a>.</span>
+      <span><a href="#">Privacy Policy</a> · <a href="#">Terms</a> · <a href="mailto:troytravelagency@gmail.com">troytravelagency@gmail.com</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── TAB SWITCHER ──
+function setTab(el) {
+  document.querySelectorAll('.search-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── AI TRIP CREATOR ──
+let chatHistory = [];
+
+async function sendMsg() {
+  const input = document.getElementById('chat-input');
+  const txt = input.value.trim();
+  if (!txt) return;
+  input.value = '';
+  addMsg('user', txt);
+  document.getElementById('chat-chips').style.display = 'none';
+  showTyping();
+  chatHistory.push({ role: 'user', content: txt });
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `You are TRoyGo™ AI Trip Creator — a world-class AI travel planner for TRoy Travel Agency™ (part of TRoy Group™). You have 30+ years of travel and maritime expertise.
+
+When someone asks about a trip, respond with:
+1. An exciting 1-2 sentence intro about why this destination is amazing right now
+2. A practical day-by-day itinerary highlights (show 3-5 days, mention total)
+3. Best time to visit & weather note
+4. Estimated budget range (budget / mid-range / luxury)
+5. 2-3 insider tips from our experts
+6. End with: "Ready to book? Contact us at troytravelagency@gmail.com or WhatsApp — we'll handle everything! ✈️🌍"
+
+Specialities: Turkey & Turkish Straits (deep local expertise), Mediterranean cruises, Europe tours, Japan, Maldives, Australia, and worldwide custom trips.
+Be warm, knowledgeable, and inspiring. Use emojis naturally. Keep responses concise but exciting.`,
+        messages: chatHistory
+      })
+    });
+    removeTyping();
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || "Thank you for your enquiry! Please contact us at troytravelagency@gmail.com and we'll create your perfect itinerary. ✈️🌍";
+    chatHistory.push({ role: 'assistant', content: reply });
+    addMsg('bot', reply);
+  } catch(e) {
+    removeTyping();
+    addMsg('bot', "Thank you! Please contact us at troytravelagency@gmail.com or WhatsApp and our team will build your personalised itinerary. ✈️🌍");
+  }
+}
+
+function addMsg(role, text) {
+  const box = document.getElementById('chat-msgs');
+  const d = document.createElement('div');
+  d.className = `msg ${role}`;
+  const av = role === 'bot' ? '🦉' : '👤';
+  const formatted = text.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  d.innerHTML = `<div class="msg-avatar">${av}</div><div class="msg-bubble">${formatted}</div>`;
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+}
+
+function showTyping() {
+  const box = document.getElementById('chat-msgs');
+  const d = document.createElement('div');
+  d.className = 'msg bot'; d.id = 'typing-ind';
+  d.innerHTML = '<div class="msg-avatar">🦉</div><div class="typing"><span></span><span></span><span></span></div>';
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing-ind');
+  if (t) t.remove();
+}
+
+function useChip(el) {
+  document.getElementById('chat-input').value = el.textContent.replace(/^.\s/,'');
+  sendMsg();
+}
+
+// smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
