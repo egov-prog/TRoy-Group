@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRoyGo™ — Your World. Your Way.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#C9A84C;--gold-light:#E8C97A;
+  --navy:#0A1628;--navy-mid:#112240;--navy-soft:#1A2F50;
+  --text-muted:#8A9BB5;--white:#ffffff;
+  --green:#2ECC71;--green-dark:#27AE60;
+  --green-bg:#070d09;--green-surface:#0d1f12;--green-surface2:#122018;
+}
+html,body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;position:sticky;top:0;z-index:200;background:rgba(10,22,40,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.15)}
+.logo{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--gold);letter-spacing:1px;cursor:pointer}
+.logo span{color:var(--white)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:14px;transition:color 0.2s;letter-spacing:0.5px;cursor:pointer}
+.nav-links a:hover{color:var(--gold)}
+.nav-right{display:flex;gap:10px;align-items:center}
+.nav-ai-btn{background:linear-gradient(135deg,var(--green),var(--green-dark));color:var(--white);padding:9px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;letter-spacing:0.3px;display:flex;align-items:center;gap:6px;transition:opacity 0.2s}
+.nav-ai-btn:hover{opacity:0.88}
+.nav-btn{background:var(--gold);color:var(--navy);padding:9px 22px;border-radius:6px;font-size:13px;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:background 0.2s}
+.nav-btn:hover{background:var(--gold-light)}
+
+/* HERO */
+.hero{position:relative;min-height:580px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 20px 80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0A1628 0%,#112240 50%,#0D1F38 100%)}
+.hero-pattern{position:absolute;inset:0;opacity:0.04;background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(201,168,76,1) 59px,rgba(201,168,76,1) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(201,168,76,1) 59px,rgba(201,168,76,1) 60px)}
+.hero-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:350px;background:radial-gradient(ellipse,rgba(201,168,76,0.07) 0%,transparent 70%)}
+.hero-content{position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);color:var(--gold);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,64px);font-weight:700;line-height:1.1;margin-bottom:16px}
+.hero-title .accent{color:var(--gold)}
+.hero-sub{color:var(--text-muted);font-size:16px;font-weight:300;max-width:500px;margin:0 auto 40px;line-height:1.6}
+.search-box{background:rgba(26,47,80,0.9);border:1px solid rgba(201,168,76,0.2);border-radius:16px;padding:6px;max-width:820px;width:100%;backdrop-filter:blur(20px)}
+.tabs{display:flex;gap:4px;margin-bottom:6px;padding:2px;flex-wrap:wrap}
+.tab{padding:8px 18px;border-radius:10px;border:none;background:transparent;color:var(--text-muted);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;display:flex;align-items:center;gap:5px}
+.tab.active{background:var(--gold);color:var(--navy);font-weight:500}
+.tab:hover:not(.active){color:var(--gold-light);background:rgba(201,168,76,0.08)}
+.search-row{display:flex;gap:8px;align-items:center;padding:0 4px 4px;flex-wrap:wrap}
+.search-field{flex:1;min-width:120px;display:flex;flex-direction:column;background:rgba(10,22,40,0.8);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:10px 14px;cursor:text;transition:border-color 0.2s}
+.search-field:hover{border-color:rgba(201,168,76,0.4)}
+.search-field label{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--gold);font-weight:500;margin-bottom:3px}
+.search-field input{background:transparent;border:none;color:var(--white);font-size:14px;font-family:'DM Sans',sans-serif;outline:none}
+.search-field input::placeholder{color:var(--text-muted)}
+.search-btn{background:var(--gold);color:var(--navy);border:none;padding:14px 24px;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:8px;white-space:nowrap;transition:background 0.2s}
+.search-btn:hover{background:var(--gold-light)}
+
+/* SECTIONS */
+.section{padding:60px 40px}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
+.section-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:700}
+.section-title span{color:var(--gold)}
+.see-all{color:var(--gold);font-size:13px;font-weight:500;text-decoration:none;border-bottom:1px solid rgba(201,168,76,0.4);padding-bottom:2px;cursor:pointer}
+
+/* DEST GRID */
+.dest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.dest-card{border-radius:14px;overflow:hidden;position:relative;cursor:pointer;height:240px;transition:transform 0.3s}
+.dest-card:hover{transform:translateY(-4px)}
+.dest-card .bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:80px}
+.dest-card .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,40,0.92) 0%,rgba(10,22,40,0.3) 60%,transparent 100%)}
+.dest-info{position:absolute;bottom:0;left:0;right:0;padding:20px 16px}
+.dest-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:4px}
+.dest-country{font-size:12px;color:var(--text-muted);letter-spacing:0.5px}
+.dest-tag{position:absolute;top:14px;right:14px;background:var(--gold);color:var(--navy);font-size:10px;font-weight:500;padding:4px 10px;border-radius:12px}
+.bg-santorini{background:linear-gradient(135deg,#1a3a5c,#2d6a8a)}
+.bg-bali{background:linear-gradient(135deg,#1a4a2a,#2d7a4a)}
+.bg-istanbul{background:linear-gradient(135deg,#4a1a1a,#8a2d2d)}
+.bg-maldives{background:linear-gradient(135deg,#1a3a5c,#1a6080)}
+.bg-kyoto{background:linear-gradient(135deg,#3a2a4a,#6a4a8a)}
+
+/* HOTELS */
+.hotel-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.hotel-card{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.07);border-radius:14px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;cursor:pointer}
+.hotel-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-3px)}
+.hotel-img{height:170px;display:flex;align-items:center;justify-content:center;font-size:60px;position:relative}
+.hotel-badge{position:absolute;top:12px;left:12px;background:rgba(10,22,40,0.85);border:1px solid rgba(201,168,76,0.3);color:var(--gold);font-size:10px;padding:4px 10px;border-radius:10px;font-weight:500}
+.hotel-body{padding:16px}
+.hotel-name{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;margin-bottom:4px}
+.hotel-loc{font-size:12px;color:var(--text-muted);margin-bottom:10px}
+.stars{color:var(--gold);font-size:12px;letter-spacing:1px;margin-bottom:10px}
+.hotel-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;margin-top:4px}
+.price{font-size:20px;font-weight:700;color:var(--gold);font-family:'Playfair Display',serif}
+.price span{font-size:12px;font-weight:400;color:var(--text-muted);font-family:'DM Sans',sans-serif}
+.book-btn{background:transparent;border:1px solid rgba(201,168,76,0.4);color:var(--gold);padding:8px 18px;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+.book-btn:hover{background:var(--gold);color:var(--navy)}
+
+/* THINGS */
+.things-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.thing-card{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.07);border-radius:14px;padding:20px;display:flex;align-items:flex-start;gap:16px;cursor:pointer;transition:all 0.2s}
+.thing-card:hover{border-color:rgba(201,168,76,0.3);transform:translateY(-2px)}
+.thing-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.icon-blue{background:rgba(37,99,235,0.15);border:1px solid rgba(37,99,235,0.2)}
+.icon-green{background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.2)}
+.icon-purple{background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.2)}
+.icon-amber{background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.2)}
+.thing-name{font-size:15px;font-weight:500;margin-bottom:4px}
+.thing-desc{font-size:12px;color:var(--text-muted);line-height:1.5}
+
+/* ═══════════════════════════════════════════
+   AI TRIP PLANNER SECTION — FULL EMBED
+═══════════════════════════════════════════ */
+.ai-section{padding:60px 40px;background:linear-gradient(180deg,var(--navy) 0%,#050e07 40%,var(--green-bg) 100%)}
+.ai-section-header{text-align:center;margin-bottom:40px}
+.ai-section-header .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(46,204,113,0.1);border:1px solid rgba(46,204,113,0.3);color:var(--green);padding:6px 16px;border-radius:20px;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:16px}
+.ai-section-header h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:700;margin-bottom:12px}
+.ai-section-header h2 span{color:var(--green)}
+.ai-section-header p{color:var(--text-muted);font-size:15px;max-width:550px;margin:0 auto;line-height:1.7}
+
+/* Chat container embedded */
+.chat-embed{max-width:900px;margin:0 auto;border-radius:20px;overflow:hidden;border:1px solid rgba(46,204,113,0.2);box-shadow:0 0 60px rgba(46,204,113,0.06);height:660px;display:flex;flex-direction:column}
+.chat-embed-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--green-surface);border-bottom:1px solid rgba(46,204,113,0.15);flex-shrink:0}
+.embed-logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:8px}
+.embed-logo .av{width:30px;height:30px;background:linear-gradient(135deg,var(--green),var(--green-dark));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.embed-status{font-size:11px;color:var(--green);display:flex;align-items:center;gap:5px}
+.pulse{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.embed-actions{display:flex;gap:8px}
+.e-btn{padding:6px 14px;background:transparent;border:1px solid rgba(46,204,113,0.3);color:var(--green);border-radius:7px;font-size:11px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+.e-btn:hover{background:var(--green);color:var(--green-bg)}
+
+/* Messages */
+.embed-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:16px;background:var(--green-bg);scroll-behavior:smooth}
+.embed-messages::-webkit-scrollbar{width:3px}
+.embed-messages::-webkit-scrollbar-thumb{background:var(--green-surface);border-radius:3px}
+
+/* Welcome screen */
+.e-welcome{text-align:center;padding:20px 16px}
+.e-welcome-icon{font-size:44px;margin-bottom:12px}
+.e-welcome h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:6px;color:var(--white)}
+.e-welcome h3 span{color:var(--green)}
+.e-welcome p{font-size:13px;color:#7a9e84;max-width:400px;margin:0 auto 16px;line-height:1.6}
+.e-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.e-chip{padding:7px 14px;background:var(--green-surface);border:1px solid rgba(46,204,113,0.2);border-radius:16px;font-size:12px;color:var(--white);cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+.e-chip:hover{border-color:var(--green);color:var(--green);background:var(--green-surface2)}
+
+/* Message rows */
+.e-row{display:flex;gap:10px;animation:eIn 0.3s ease}
+@keyframes eIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.e-row.user{flex-direction:row-reverse}
+.e-av{width:28px;height:28px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px}
+.e-av.ai{background:linear-gradient(135deg,var(--green),var(--green-dark))}
+.e-av.user{background:var(--green-surface2);border:1px solid rgba(46,204,113,0.2)}
+.e-bubble{max-width:75%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.7}
+.e-bubble.ai{background:var(--green-surface);border:1px solid rgba(46,204,113,0.12);border-radius:3px 12px 12px 12px;color:var(--white)}
+.e-bubble.user{background:var(--green);color:var(--green-bg);font-weight:500;border-radius:12px 12px 3px 12px}
+.e-bubble.ai h3{font-family:'Playfair Display',serif;font-size:15px;color:var(--green);margin:10px 0 4px}
+.e-bubble.ai h3:first-child{margin-top:0}
+.e-bubble.ai strong{color:#A8F0C6;font-weight:600}
+.e-bubble.ai ul{padding-left:16px;margin:6px 0}
+.e-bubble.ai li{margin-bottom:3px}
+.e-bubble.ai p{margin-bottom:6px}
+.e-bubble.ai p:last-child{margin-bottom:0}
+.e-bubble.ai hr{border:none;border-top:1px solid rgba(46,204,113,0.15);margin:8px 0}
+.e-bubble.ai a{color:var(--green);text-decoration:none;border-bottom:1px solid rgba(46,204,113,0.3)}
+
+/* Typing / search */
+.e-search{display:flex;align-items:center;gap:8px;padding:8px 12px;background:rgba(46,204,113,0.05);border:1px solid rgba(46,204,113,0.15);border-radius:8px;font-size:12px;color:#7a9e84}
+.e-spinner{width:12px;height:12px;border:2px solid rgba(46,204,113,0.2);border-top-color:var(--green);border-radius:50%;animation:spin 0.8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.e-dots{display:flex;gap:4px;padding:10px 14px;background:var(--green-surface);border:1px solid rgba(46,204,113,0.12);border-radius:3px 12px 12px 12px}
+.e-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:b 1.2s infinite}
+.e-dot:nth-child(2){animation-delay:0.2s}
+.e-dot:nth-child(3){animation-delay:0.4s}
+@keyframes b{0%,80%,100%{transform:translateY(0);opacity:0.4}40%{transform:translateY(-5px);opacity:1}}
+
+/* Input */
+.embed-input{padding:12px 16px;border-top:1px solid rgba(46,204,113,0.12);background:var(--green-surface);flex-shrink:0}
+.e-input-bar{display:flex;align-items:flex-end;gap:8px;background:var(--green-surface2);border:1px solid rgba(46,204,113,0.2);border-radius:12px;padding:8px 12px;transition:border-color 0.2s}
+.e-input-bar:focus-within{border-color:var(--green)}
+.e-input-bar textarea{flex:1;background:transparent;border:none;outline:none;color:var(--white);font-size:13px;font-family:'DM Sans',sans-serif;resize:none;line-height:1.5;max-height:100px}
+.e-input-bar textarea::placeholder{color:#7a9e84}
+.e-send{width:32px;height:32px;background:var(--green);border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0}
+.e-send:hover{background:var(--green-dark)}
+.e-send:disabled{background:var(--green-surface2);cursor:not-allowed}
+.e-send svg{width:14px;height:14px;color:var(--green-bg)}
+.e-hint{font-size:10px;color:#4a6e54;text-align:center;margin-top:8px}
+
+/* ═════════════════════════
+   FLOATING CHAT BUTTON
+═════════════════════════ */
+#fab-container{position:fixed;bottom:28px;right:28px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+#fab-btn{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--green),var(--green-dark));color:var(--white);border:none;padding:14px 20px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 24px rgba(46,204,113,0.35);transition:all 0.25s;letter-spacing:0.3px}
+#fab-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(46,204,113,0.45)}
+#fab-btn .fab-dot{width:8px;height:8px;background:var(--white);border-radius:50%;opacity:0.8;animation:pulse 2s infinite}
+#fab-panel{width:380px;height:500px;background:var(--green-bg);border:1px solid rgba(46,204,113,0.25);border-radius:20px;overflow:hidden;box-shadow:0 8px 48px rgba(0,0,0,0.5);display:none;flex-direction:column;animation:popIn 0.3s ease}
+#fab-panel.open{display:flex}
+@keyframes popIn{from{opacity:0;transform:scale(0.9) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.fab-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--green-surface);border-bottom:1px solid rgba(46,204,113,0.15);flex-shrink:0}
+.fab-title{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--green);display:flex;align-items:center;gap:8px}
+.fab-close{background:transparent;border:none;color:#7a9e84;cursor:pointer;font-size:18px;line-height:1;padding:2px 6px;border-radius:5px;transition:color 0.2s}
+.fab-close:hover{color:var(--white)}
+.fab-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;background:var(--green-bg)}
+.fab-messages::-webkit-scrollbar{width:3px}
+.fab-messages::-webkit-scrollbar-thumb{background:var(--green-surface)}
+.fab-input-area{padding:10px 12px;border-top:1px solid rgba(46,204,113,0.12);background:var(--green-surface);flex-shrink:0}
+.fab-bar{display:flex;gap:8px;align-items:center;background:var(--green-surface2);border:1px solid rgba(46,204,113,0.2);border-radius:10px;padding:8px 12px;transition:border-color 0.2s}
+.fab-bar:focus-within{border-color:var(--green)}
+.fab-bar input{flex:1;background:transparent;border:none;outline:none;color:var(--white);font-size:13px;font-family:'DM Sans',sans-serif}
+.fab-bar input::placeholder{color:#7a9e84}
+.fab-send{width:28px;height:28px;background:var(--green);border:none;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;flex-shrink:0}
+.fab-send:hover{background:var(--green-dark)}
+.fab-send:disabled{background:var(--green-surface2);cursor:not-allowed}
+.fab-hint{font-size:10px;color:#4a6e54;text-align:center;margin-top:6px}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(255,255,255,0.07);padding:32px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold)}
+.footer-logo span{color:var(--text-muted)}
+.footer-text{font-size:12px;color:var(--text-muted);text-align:center}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:12px;color:var(--text-muted);text-decoration:none;cursor:pointer;transition:color 0.2s}
+.footer-links a:hover{color:var(--gold)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-content{animation:fadeUp 0.8s ease forwards}
+</style>
+</head>
+<body>
+
+<!-- ══ NAVIGATION ══ -->
+<nav>
+  <div class="logo">TRoy<span>Go</span>™</div>
+  <ul class="nav-links">
+    <li><a>Hotels</a></li>
+    <li><a>Flights</a></li>
+    <li><a>Cruises</a></li>
+    <li><a>Tours</a></li>
+    <li><a>Transfers</a></li>
+    <li><a>Visa Help</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-ai-btn" onclick="scrollToAI()">✦ AI Trip Planner</button>
+    <button class="nav-btn">Sign In</button>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✦ Your World. Your Way.</div>
+    <h1 class="hero-title">Explore the World<br>with <span class="accent">TRoyGo™</span></h1>
+    <p class="hero-sub">Curated travel experiences crafted for the modern explorer. Hotels, flights, cruises and beyond.</p>
+    <div class="search-box">
+      <div class="tabs">
+        <button class="tab active" onclick="setTab(this)">🏨 Stays</button>
+        <button class="tab" onclick="setTab(this)">✈️ Flights</button>
+        <button class="tab" onclick="setTab(this)">🚢 Cruises</button>
+        <button class="tab" onclick="setTab(this)">🗺️ Tours</button>
+        <button class="tab" onclick="setTab(this)">🚖 Transfers</button>
+        <button class="tab" onclick="setTab(this)">📄 Visa Help</button>
+      </div>
+      <div class="search-row">
+        <div class="search-field">
+          <label>Destination</label>
+          <input type="text" placeholder="Where to?">
+        </div>
+        <div class="search-field" style="max-width:150px">
+          <label>Check In</label>
+          <input type="text" placeholder="Add date">
+        </div>
+        <div class="search-field" style="max-width:150px">
+          <label>Check Out</label>
+          <input type="text" placeholder="Add date">
+        </div>
+        <div class="search-field" style="max-width:120px">
+          <label>Guests</label>
+          <input type="text" placeholder="2 guests">
+        </div>
+        <button class="search-btn">🔍 Search</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DESTINATIONS ══ -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Popular <span>Destinations</span></h2>
+    <a class="see-all">View all →</a>
+  </div>
+  <div class="dest-grid">
+    <div class="dest-card bg-santorini"><div class="bg">🏛️</div><div class="overlay"></div><div class="dest-tag">Trending</div><div class="dest-info"><div class="dest-name">Santorini</div><div class="dest-country">Greece, Europe</div></div></div>
+    <div class="dest-card bg-bali"><div class="bg">🌿</div><div class="overlay"></div><div class="dest-tag">Top Pick</div><div class="dest-info"><div class="dest-name">Bali</div><div class="dest-country">Indonesia, Asia</div></div></div>
+    <div class="dest-card bg-istanbul"><div class="bg">🕌</div><div class="overlay"></div><div class="dest-tag">Cultural</div><div class="dest-info"><div class="dest-name">Istanbul</div><div class="dest-country">Türkiye, Eurasia</div></div></div>
+    <div class="dest-card bg-maldives"><div class="bg">🏝️</div><div class="overlay"></div><div class="dest-tag">Luxury</div><div class="dest-info"><div class="dest-name">Maldives</div><div class="dest-country">Indian Ocean</div></div></div>
+    <div class="dest-card bg-kyoto"><div class="bg">⛩️</div><div class="overlay"></div><div class="dest-tag">Heritage</div><div class="dest-info"><div class="dest-name">Kyoto</div><div class="dest-country">Japan, Asia</div></div></div>
+  </div>
+</section>
+
+<!-- ══ HOTELS ══ -->
+<section class="section" style="padding-top:0">
+  <div class="section-header">
+    <h2 class="section-title">Featured <span>Hotels</span></h2>
+    <a class="see-all">See all hotels →</a>
+  </div>
+  <div class="hotel-grid">
+    <div class="hotel-card">
+      <div class="hotel-img bg-santorini"><span>🏛️</span><div class="hotel-badge">Sea View</div></div>
+      <div class="hotel-body"><div class="hotel-name">Aegean Blu Resort</div><div class="hotel-loc">📍 Oia, Santorini, Greece</div><div class="stars">★★★★★</div><div class="hotel-footer"><div class="price">$340 <span>/ night</span></div><button class="book-btn">View Deals</button></div></div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-img bg-bali"><span>🌿</span><div class="hotel-badge">Jungle Villa</div></div>
+      <div class="hotel-body"><div class="hotel-name">Ubud Forest Retreat</div><div class="hotel-loc">📍 Ubud, Bali, Indonesia</div><div class="stars">★★★★★</div><div class="hotel-footer"><div class="price">$210 <span>/ night</span></div><button class="book-btn">Check Prices</button></div></div>
+    </div>
+    <div class="hotel-card">
+      <div class="hotel-img bg-istanbul"><span>🕌</span><div class="hotel-badge">City View</div></div>
+      <div class="hotel-body"><div class="hotel-name">Grand Bosphorus Palace</div><div class="hotel-loc">📍 Sultanahmet, Istanbul</div><div class="stars">★★★★★</div><div class="hotel-footer"><div class="price">$185 <span>/ night</span></div><button class="book-btn">Check Prices</button></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ THINGS TO DO ══ -->
+<section class="section" style="padding-top:0">
+  <div class="section-header">
+    <h2 class="section-title">Things <span>To Do</span></h2>
+    <a class="see-all">Browse activities →</a>
+  </div>
+  <div class="things-grid">
+    <div class="thing-card"><div class="thing-icon icon-blue">🏔️</div><div><div class="thing-name">Mountain Adventures</div><div class="thing-desc">Guided treks, climbing & alpine experiences worldwide</div></div></div>
+    <div class="thing-card"><div class="thing-icon icon-green">🏝️</div><div><div class="thing-name">Island Tours</div><div class="thing-desc">Boat tours, snorkelling & tropical island hopping</div></div></div>
+    <div class="thing-card"><div class="thing-icon icon-purple">🏛️</div><div><div class="thing-name">Cultural Experiences</div><div class="thing-desc">History tours, local cuisine & authentic cultural immersion</div></div></div>
+    <div class="thing-card"><div class="thing-icon icon-amber">🚢</div><div><div class="thing-name">Cruise Packages</div><div class="thing-desc">Mediterranean, Aegean & world cruise itineraries</div></div></div>
+  </div>
+</section>
+
+<!-- ══ AI TRIP PLANNER SECTION ══ -->
+<section class="ai-section" id="ai-section">
+  <div class="ai-section-header">
+    <div class="badge">✦ Powered by AI + Live Search</div>
+    <h2>Meet Your <span>AI Trip Planner</span></h2>
+    <p>Ask anything — hotels, flights, itineraries, visa info, local tips. Our AI searches the web live to give you real, up-to-date answers.</p>
+  </div>
+
+  <div class="chat-embed">
+    <div class="chat-embed-header">
+      <div class="embed-logo">
+        <div class="av">✦</div>
+        TRoyGo™ AI Trip Planner
+      </div>
+      <div class="embed-status"><span class="pulse"></span> Online · Live web search active</div>
+      <div class="embed-actions">
+        <button class="e-btn" onclick="clearEmbedChat()">New Trip</button>
+        <button class="e-btn" onclick="downloadEmbedChat()">Save Plan</button>
+      </div>
+    </div>
+
+    <div class="embed-messages" id="embedMessages">
+      <div class="e-welcome" id="eWelcome">
+        <div class="e-welcome-icon">🌍</div>
+        <h3>Hi TRoyGo™, <span>need help deciding?</span></h3>
+        <p>Get recommendations tailored just for you — powered by live internet search.</p>
+        <div class="e-chips">
+          <div class="e-chip" onclick="eChip(this)">🏨 Budget hotels Santorini</div>
+          <div class="e-chip" onclick="eChip(this)">🕌 Quiet stays Turkish Aegean</div>
+          <div class="e-chip" onclick="eChip(this)">🚢 Mediterranean cruise routes</div>
+          <div class="e-chip" onclick="eChip(this)">🏝️ Maldives under $300/night</div>
+          <div class="e-chip" onclick="eChip(this)">✈️ Flights Darwin to Istanbul</div>
+          <div class="e-chip" onclick="eChip(this)">📄 Visa Turkey for Australians</div>
+          <div class="e-chip" onclick="eChip(this)">🗺️ 7-day Bali itinerary</div>
+          <div class="e-chip" onclick="eChip(this)">💰 Travel budget planner</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="embed-input">
+      <div class="e-input-bar">
+        <textarea id="eInput" placeholder="Ask anything — hotels, flights, visa, itineraries..." rows="1"
+          onkeydown="eKey(event)" oninput="eResize(this)"></textarea>
+        <button class="e-send" id="eSend" onclick="eSend()">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M10 4l6 6-6 6M4 10h12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="e-hint">TRoyGo™ AI searches the web live · Your World. Your Way. TRoyGo™</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-logo">TRoyGo™ <span>by TRoy Group™</span></div>
+  <div class="footer-text">© 2026 TRoy Group™ · All Rights Reserved · Your World. Your Way. TRoyGo™</div>
+  <div class="footer-links">
+    <a>Privacy</a><a>Terms</a><a>Contact</a>
+  </div>
+</footer>
+
+<!-- ══ FLOATING CHAT BUTTON ══ -->
+<div id="fab-container">
+  <div id="fab-panel">
+    <div class="fab-header">
+      <div class="fab-title">✦ TRoyGo™ Trip Planner</div>
+      <button class="fab-close" onclick="toggleFab()">✕</button>
+    </div>
+    <div class="fab-messages" id="fabMessages">
+      <div style="text-align:center;padding:20px 12px">
+        <div style="font-size:36px;margin-bottom:10px">🌍</div>
+        <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#e8f5ec;margin-bottom:6px">Where to next?</div>
+        <div style="font-size:12px;color:#7a9e84;line-height:1.6;margin-bottom:14px">Ask me anything about hotels, flights, tours, visa requirements...</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+          <div class="e-chip" style="font-size:11px" onclick="fabChip(this)">🏨 Hotel deals</div>
+          <div class="e-chip" style="font-size:11px" onclick="fabChip(this)">✈️ Flights</div>
+          <div class="e-chip" style="font-size:11px" onclick="fabChip(this)">🚢 Cruises</div>
+          <div class="e-chip" style="font-size:11px" onclick="fabChip(this)">📄 Visa info</div>
+        </div>
+      </div>
+    </div>
+    <div class="fab-input-area">
+      <div class="fab-bar">
+        <input id="fabInput" type="text" placeholder="Ask anything..." onkeydown="fabKey(event)">
+        <button class="fab-send" id="fabSend" onclick="fabSend()">
+          <svg viewBox="0 0 20 20" fill="none" stroke="white" stroke-width="2.5" width="13" height="13">
+            <path d="M10 4l6 6-6 6M4 10h12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="fab-hint">TRoyGo™ AI · Live web search</div>
+    </div>
+  </div>
+  <button id="fab-btn" onclick="toggleFab()">
+    <span class="fab-dot"></span>
+    ✦ AI Trip Planner
+  </button>
+</div>
+
+<script>
+// ── SYSTEM PROMPT ──
+const SYS = `You are the TRoyGo™ AI Trip Planner — a premium travel assistant for TRoyGo™ (TRoy Group™). Tagline: "Your World. Your Way. TRoyGo™".
+
+Help with: hotels, flights, itineraries, cruises, visa requirements, restaurants, activities, budget planning, transfers.
+ALWAYS use web search for: current prices, visa requirements, flight routes, hotel availability, travel advisories.
+Format responses clearly: **bold** for names/prices, ### for section headers, bullet lists for options.
+Be warm, expert and enthusiastic. Mention TRoyGo™ booking advantage where relevant.
+Keep responses concise but specific with real prices and actionable tips.`;
+
+// ── EMBEDDED CHAT ──
+let eHistory = [], eBusy = false;
+function eResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,100)+'px'}
+function eKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();eSend()}}
+function eChip(el){document.getElementById('eInput').value=el.textContent.replace(/^[^\w\s]*\s*/,'').trim();eSend()}
+
+async function eSend(){
+  if(eBusy)return;
+  const inp=document.getElementById('eInput');
+  const txt=inp.value.trim();
+  if(!txt)return;
+  const w=document.getElementById('eWelcome');
+  if(w)w.remove();
+  eAppend('user',txt);
+  inp.value='';inp.style.height='auto';
+  eHistory.push({role:'user',content:txt});
+  eBusy=true;
+  document.getElementById('eSend').disabled=true;
+  const sid='es'+Date.now();
+  eSearchInd(sid);
+  eScroll('embedMessages');
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1200,system:SYS,
+        tools:[{type:'web_search_20250305',name:'web_search'}],messages:eHistory})
+    });
+    const d=await r.json();
+    document.getElementById(sid)?.remove();
+    let aiTxt='';
+    if(d.content)for(const b of d.content)if(b.type==='text')aiTxt+=b.text;
+    if(!aiTxt)aiTxt='I searched but couldn\'t find specific results. Please rephrase your travel question!';
+    eHistory.push({role:'assistant',content:aiTxt});
+    eAppend('ai',aiTxt);
+  }catch(e){
+    document.getElementById(sid)?.remove();
+    eAppend('ai','**Connection issue** — please try again in a moment. I can still help with general travel advice!');
+  }
+  eBusy=false;document.getElementById('eSend').disabled=false;eScroll('embedMessages');
+}
+
+function eSearchInd(id){
+  const msgs=document.getElementById('embedMessages');
+  const el=document.createElement('div');
+  el.id=id;el.className='e-search';
+  el.innerHTML='<div class="e-spinner"></div><span>Searching the web for travel info...</span>';
+  msgs.appendChild(el);eScroll('embedMessages');
+}
+
+function eAppend(role,text){
+  const msgs=document.getElementById('embedMessages');
+  const row=document.createElement('div');row.className='e-row '+role;
+  const av=document.createElement('div');av.className='e-av '+role;av.textContent=role==='ai'?'✦':'👤';
+  const b=document.createElement('div');b.className='e-bubble '+role;
+  b.innerHTML=role==='ai'?fmtMD(text):escHTML(text);
+  if(role==='ai'){row.appendChild(av);row.appendChild(b);}
+  else{row.appendChild(b);row.appendChild(av);}
+  msgs.appendChild(row);eScroll('embedMessages');
+}
+
+function clearEmbedChat(){
+  eHistory=[];
+  document.getElementById('embedMessages').innerHTML=`
+  <div class="e-welcome" id="eWelcome">
+    <div class="e-welcome-icon">🌍</div>
+    <h3>Hi TRoyGo™, <span>need help deciding?</span></h3>
+    <p>Get recommendations tailored just for you — powered by live internet search.</p>
+    <div class="e-chips">
+      <div class="e-chip" onclick="eChip(this)">🏨 Budget hotels Santorini</div>
+      <div class="e-chip" onclick="eChip(this)">🕌 Quiet stays Turkish Aegean</div>
+      <div class="e-chip" onclick="eChip(this)">🚢 Mediterranean cruise routes</div>
+      <div class="e-chip" onclick="eChip(this)">🏝️ Maldives under $300/night</div>
+      <div class="e-chip" onclick="eChip(this)">✈️ Flights Darwin to Istanbul</div>
+      <div class="e-chip" onclick="eChip(this)">📄 Visa Turkey for Australians</div>
+    </div>
+  </div>`;}
+
+function downloadEmbedChat(){
+  if(!eHistory.length){alert('No conversation yet — start planning!');return}
+  let c='TRoyGo™ AI Trip Plan\nYour World. Your Way.\n'+'='.repeat(40)+'\n\n';
+  eHistory.forEach(m=>c+=(m.role==='user'?'YOU: ':'AI: ')+m.content+'\n\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/plain'}));
+  a.download='TRoyGo-Trip-Plan.txt';a.click();
+}
+
+// ── FLOATING CHAT ──
+let fabHistory=[], fabBusy=false;
+function toggleFab(){
+  const p=document.getElementById('fab-panel');
+  p.classList.toggle('open');
+}
+function fabChip(el){document.getElementById('fabInput').value=el.textContent.replace(/^[^\w\s]*\s*/,'').trim();fabSend()}
+function fabKey(e){if(e.key==='Enter')fabSend()}
+
+async function fabSend(){
+  if(fabBusy)return;
+  const inp=document.getElementById('fabInput');
+  const txt=inp.value.trim();if(!txt)return;
+  fabAppend('user',txt);inp.value='';
+  fabHistory.push({role:'user',content:txt});
+  fabBusy=true;document.getElementById('fabSend').disabled=true;
+  const sid='fb'+Date.now();fabSearchInd(sid);fabScroll();
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,system:SYS+'\n\nKeep responses concise (max 3-4 paragraphs) as this is a compact chat widget.',
+        tools:[{type:'web_search_20250305',name:'web_search'}],messages:fabHistory})
+    });
+    const d=await r.json();
+    document.getElementById(sid)?.remove();
+    let ai='';if(d.content)for(const b of d.content)if(b.type==='text')ai+=b.text;
+    if(!ai)ai='I couldn\'t find results right now. Please try again!';
+    fabHistory.push({role:'assistant',content:ai});
+    fabAppend('ai',ai);
+  }catch(e){
+    document.getElementById(sid)?.remove();
+    fabAppend('ai','Connection issue — please try again!');
+  }
+  fabBusy=false;document.getElementById('fabSend').disabled=false;fabScroll();
+}
+
+function fabSearchInd(id){
+  const msgs=document.getElementById('fabMessages');
+  const el=document.createElement('div');el.id=id;el.className='e-search';
+  el.innerHTML='<div class="e-spinner"></div><span>Searching...</span>';
+  msgs.appendChild(el);fabScroll();
+}
+
+function fabAppend(role,text){
+  const msgs=document.getElementById('fabMessages');
+  const row=document.createElement('div');row.className='e-row '+role;
+  const av=document.createElement('div');av.className='e-av '+role;av.textContent=role==='ai'?'✦':'👤';
+  const b=document.createElement('div');b.className='e-bubble '+role;
+  b.innerHTML=role==='ai'?fmtMD(text):escHTML(text);
+  if(role==='ai'){row.appendChild(av);row.appendChild(b);}
+  else{row.appendChild(b);row.appendChild(av);}
+  msgs.appendChild(row);fabScroll();
+}
+
+function fabScroll(){setTimeout(()=>{const m=document.getElementById('fabMessages');m.scrollTop=m.scrollHeight},50)}
+
+// ── HELPERS ──
+function escHTML(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function eScroll(id){setTimeout(()=>{const m=document.getElementById(id);m.scrollTop=m.scrollHeight},50)}
+function setTab(el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active')}
+function scrollToAI(){document.getElementById('ai-section').scrollIntoView({behavior:'smooth'})}
+
+function fmtMD(t){
+  let h=t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/^### (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^## (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^# (.+)$/gm,'<h3>$1</h3>')
+    .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g,'<em>$1</em>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>')
+    .replace(/^---$/gm,'<hr>')
+    .replace(/^[•\-\*] (.+)$/gm,'<li>$1</li>')
+    .replace(/^\d+\. (.+)$/gm,'<li>$1</li>');
+  h=h.replace(/(<li>[\s\S]*?<\/li>\n?)+/g,m=>`<ul>${m}</ul>`);
+  return h.split(/\n\n+/).map(p=>{
+    p=p.trim();if(!p)return'';
+    if(/^<[huo]/.test(p)||p.startsWith('<hr'))return p;
+    return`<p>${p.replace(/\n/g,'<br>')}</p>`;
+  }).join('\n');
+}
+</script>
+</body>
+</html>
