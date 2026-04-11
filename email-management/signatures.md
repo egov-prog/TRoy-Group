@@ -1,12 +1,8 @@
 # ✍️ TRoy Group™ — Email Signature Templates
 
-> Copy the relevant signature into Gmail → Settings → General → Signature.  
-> Replace `[placeholders]` with live values.
-
 ---
 
 ## 1. Personal — Ertan Govdeli
-
 ```
 Ertan Govdeli
 Founder & CEO | TRoy Group™
@@ -15,13 +11,12 @@ Founder & CEO | TRoy Group™
 📧 ertangovdeli@gmail.com
 🌐 [TRoy Group website URL]
 
-TRoy Group™ | TRoy Maritime Agency™ | TRoyGo™ | TRoy Media Agency™
+TRoy Group™ | TRoyMAR™ | TRoyTR™ | TRoyGo™ | TRoy Media Agency™
 ```
 
 ---
 
 ## 2. TRoy Group™ Corporate
-
 ```
 TRoy Group™
 International Business Group
@@ -30,66 +25,76 @@ International Business Group
 🌐 [TRoy Group website URL]
 📍 Darwin, NT, Australia
 
-Divisions: TRoy Maritime Agency™ | TRoyGo™ | TRoy Media Agency™
+Divisions: TRoyMAR™ | TRoyTR™ | TRoyGo™ | TRoy Media Agency™
 ```
 
 ---
 
-## 3. TRoy Maritime Agency™
-
+## 3. TRoyMAR™ — TRoy Maritime Agency™
 ```
-TRoy Maritime Agency™
-Ship Agency & Port Services | Turkish Straits Specialist
+TRoyMAR™ — TRoy Maritime Agency™
+Full-Service Ship Agency | Turkish Straits Specialist
 
 📧 troymaritimeagency@gmail.com
-🌐 [TRoy Maritime website URL]
-📍 Darwin, NT, Australia | Port Coverage: 58+ Global Ports
+🌐 [TRoyMAR website URL]
+📍 Darwin, NT, Australia | 58+ Global Ports
 
-For urgent vessel matters: [phone number]
-Member of: [associations if applicable]
+Port Agency | Husbandry | Crew | Bunkers | Cargo | Documentation
+Available 24/7 for urgent vessel matters: [phone number]
+30+ Years Maritime Experience
 ```
 
 ---
 
-## 4. TRoyGo™ / TRoy Travel Agency™
+## 4. TRoyTR™ — TRoy Trading Agency™
+```
+TRoyTR™ — TRoy Trading Agency™
+Global Trade Intermediary | Worldwide Commerce Solutions
 
+📧 troytradingagency@gmail.com
+🌐 [TRoyTR website URL]
+📍 Darwin, NT, Australia
+
+Logistics | Compliance | Market Entry | Trade Finance | Import/Export
+```
+
+---
+
+## 5. TRoyGo™ / TRoy Travel Agency™
 ```
 TRoyGo™ — TRoy Travel Agency™
 AI-Powered Online Travel | Your World. Your Way.™
 
 📧 troytravelagency@gmail.com
 🌐 [TRoyGo website URL]
-🤖 Try our AI Trip Creator: [AI Trip Creator URL]
+🤖 AI Trip Creator: [URL]
 
-📘 Facebook | 📸 Instagram | 📌 Pinterest | 💼 LinkedIn
+📘 Facebook | 📸 Instagram | 📌 Pinterest
 @TRoyTravelAgency
 ```
 
 ---
 
-## 5. TRoy Media Agency™
-
+## 6. TRoy Media Agency™
 ```
 TRoy Media Agency™
 Creative Content & Media Production
 
 📧 troymediagency@gmail.com
-▶️ YouTube: youtube.com/@TRoyGARTM
-🌐 [TRoy Media website URL]
+▶️ youtube.com/@TRoyGARTM
 
 Where Ideas Come to Life™
 ```
 
 ---
 
-## 6. The TRoy Garage™
-
+## 7. The TRoy Garage™
 ```
 The TRoy Garage™
 Creative Lab | TRoy Group™
 
 📧 thetroygarage@gmail.com
-▶️ YouTube: youtube.com/@TRoyGARTM
+▶️ youtube.com/@TRoyGARTM
 
 Where Ideas Come to Life™
 ```

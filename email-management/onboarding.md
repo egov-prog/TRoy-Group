@@ -1,73 +1,41 @@
 # ✅ TRoy Group™ — New Email Account Onboarding Checklist
 
-Use this checklist every time a new email account is created for any TRoy Group™ division.
-
 ---
 
-## Step 1 — Create the Account
+## Step 1 — Create Account
+- [ ] Create Gmail at https://accounts.google.com/signup
+- [ ] Convention: `troy[divisionname]@gmail.com`
+- [ ] Strong unique password → save to password manager
+- [ ] Display name = official brand name (e.g. TRoyMAR™)
+- [ ] Profile photo = division logo
 
-- [ ] Create Gmail account at https://accounts.google.com/signup
-- [ ] Use naming convention: `troy[divisionname]@gmail.com`
-- [ ] Set a strong, unique password and save to password manager
-- [ ] Set **display name** to the official brand name (e.g., `TRoy Maritime Agency™`)
-- [ ] Set **profile photo** to the division logo
+## Step 2 — Security
+- [ ] Enable 2-Step Verification (Google Authenticator preferred)
+- [ ] Recovery email → `groupoftroy@gmail.com`
+- [ ] Recovery phone → Ertan's mobile
+- [ ] Download & store backup codes securely
+- [ ] Update `security.md`
 
----
+## Step 3 — Gmail Setup
+- [ ] Set up signature (see `signatures.md`)
+- [ ] Create labels for the division
+- [ ] Set up filters (see `workflows.md`)
+- [ ] Set up auto-responder if needed
+- [ ] Enable forwarding if needed
 
-## Step 2 — Security Setup
+## Step 4 — Link to Services
+- [ ] Website contact form
+- [ ] Google Business Profile
+- [ ] Social media accounts
+- [ ] Affiliate/partner platforms
 
-- [ ] Enable **2-Step Verification** (Google Authenticator preferred)
-- [ ] Set **recovery email** → `groupoftroy@gmail.com` (or `ertangovdeli@gmail.com` for corporate)
-- [ ] Set **recovery phone** → Ertan's current mobile number
-- [ ] Download and securely store **backup codes**
-- [ ] Update [`security.md`](./security.md) with 2FA status
-
----
-
-## Step 3 — Gmail Configuration
-
-- [ ] Set up **email signature** (see [`signatures.md`](./signatures.md))
-- [ ] Configure **labels** relevant to the division (see [`workflows.md`](./workflows.md))
-- [ ] Set up **filters** for auto-labelling inbound email
-- [ ] Set up **auto-responder** if required
-- [ ] Enable **forwarding** to ertangovdeli@gmail.com if needed
-
----
-
-## Step 4 — Add as Send As Alias (Optional)
-
-- [ ] In `ertangovdeli@gmail.com` → Settings → Accounts → Send mail as → Add new address
-- [ ] Verify ownership via confirmation email
-
----
-
-## Step 5 — Link to Services
-
-- [ ] Link to relevant website contact form
-- [ ] Add to Google Business Profile (if applicable)
-- [ ] Register with relevant affiliate/partner platforms
-- [ ] Add to social media accounts for the division
-- [ ] Update [`accounts.md`](./accounts.md) with full details
-
----
-
-## Step 6 — Documentation
-
-- [ ] Add account to [`accounts.md`](./accounts.md)
-- [ ] Add routing rules to [`workflows.md`](./workflows.md)
-- [ ] Add signature to [`signatures.md`](./signatures.md)
-- [ ] Add security row to [`security.md`](./security.md)
-
----
-
-## Offboarding (Deactivating an Account)
-
-- [ ] Export all emails via Google Takeout
-- [ ] Update all linked services to a new address
-- [ ] Remove Send As alias from personal inbox
-- [ ] Disable forwarding
-- [ ] Mark account as `⛔ Inactive` in [`accounts.md`](./accounts.md)
-- [ ] Do NOT delete — suspend only
+## Step 5 — Documentation
+- [ ] Add to `accounts.md`
+- [ ] Add to `workflows.md`
+- [ ] Add to `signatures.md`
+- [ ] Add to `security.md`
+- [ ] Add to AI Agent `config/config.md`
+- [ ] Create division prompt in `ai-agents/email-agent/prompts/`
 
 ---
 

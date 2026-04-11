@@ -6,434 +6,102 @@
 <title>TRoy Group™ — Email Management</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #0a1628;
-    --navy-mid: #112240;
-    --navy-light: #1a3356;
-    --gold: #c9a84c;
-    --gold-light: #e8c97a;
-    --gold-pale: #f5e6b8;
-    --white: #f8f5ef;
-    --text: #d4cfc6;
-    --muted: #7a8899;
-    --green: #4caf82;
-    --red: #e05c5c;
-    --amber: #e0a84c;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--navy);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    min-height: 100vh;
-    background-image:
-      radial-gradient(ellipse at 20% 0%, rgba(201,168,76,0.06) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 100%, rgba(201,168,76,0.04) 0%, transparent 50%);
-  }
-
-  /* HEADER */
-  header {
-    border-bottom: 1px solid rgba(201,168,76,0.2);
-    padding: 28px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(10,22,40,0.8);
-    backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.05em;
-  }
-  .logo span { color: var(--white); }
-  .header-badge {
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    border: 1px solid rgba(201,168,76,0.2);
-    padding: 6px 14px;
-    border-radius: 20px;
-  }
-
-  /* NAV TABS */
-  .tabs {
-    display: flex;
-    gap: 4px;
-    padding: 20px 32px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tab {
-    padding: 10px 20px;
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-    transition: all 0.2s;
-    background: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    font-family: 'DM Sans', sans-serif;
-  }
-  .tab:hover { color: var(--gold-light); }
-  .tab.active { color: var(--gold); border-bottom-color: var(--gold); }
-
-  /* MAIN */
-  main { padding: 32px; max-width: 1100px; margin: 0 auto; }
-
-  .section { display: none; }
-  .section.active { display: block; }
-
-  /* ACCOUNT CARDS */
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 6px;
-  }
-  .section-sub {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 28px;
-    letter-spacing: 0.03em;
-  }
-
-  .accounts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 16px;
-  }
-
-  .account-card {
-    background: var(--navy-mid);
-    border: 1px solid rgba(201,168,76,0.12);
-    border-radius: 12px;
-    padding: 22px;
-    transition: border-color 0.2s, transform 0.2s;
-    animation: fadeUp 0.4s ease both;
-  }
-  .account-card:hover {
-    border-color: rgba(201,168,76,0.35);
-    transform: translateY(-2px);
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .account-card:nth-child(2) { animation-delay: 0.05s; }
-  .account-card:nth-child(3) { animation-delay: 0.10s; }
-  .account-card:nth-child(4) { animation-delay: 0.15s; }
-  .account-card:nth-child(5) { animation-delay: 0.20s; }
-  .account-card:nth-child(6) { animation-delay: 0.25s; }
-
-  .card-top {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 14px;
-  }
-  .card-icon {
-    width: 40px; height: 40px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-  .status-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--green);
-    box-shadow: 0 0 6px rgba(76,175,130,0.6);
-    margin-top: 4px;
-  }
-  .card-division {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 4px;
-  }
-  .card-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 2px;
-  }
-  .card-email {
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 16px;
-    word-break: break-all;
-  }
-  .card-actions {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .btn {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 7px 14px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-  }
-  .btn-gold {
-    background: rgba(201,168,76,0.12);
-    color: var(--gold);
-    border: 1px solid rgba(201,168,76,0.25);
-  }
-  .btn-gold:hover { background: rgba(201,168,76,0.22); }
-  .btn-outline {
-    background: transparent;
-    color: var(--muted);
-    border: 1px solid rgba(255,255,255,0.08);
-  }
-  .btn-outline:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
-
-  /* SECURITY TABLE */
-  .security-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 8px;
-  }
-  .security-table th {
-    text-align: left;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 10px 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    font-weight: 400;
-  }
-  .security-table td {
-    padding: 14px;
-    font-size: 13px;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    vertical-align: middle;
-  }
-  .security-table tr:hover td { background: rgba(201,168,76,0.04); }
-  .security-table .email-cell {
-    color: var(--white);
-    font-size: 12px;
-  }
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-  .badge:hover { opacity: 0.8; }
-  .badge-green { background: rgba(76,175,130,0.15); color: var(--green); border: 1px solid rgba(76,175,130,0.3); }
-  .badge-red   { background: rgba(224,92,92,0.15);  color: var(--red);   border: 1px solid rgba(224,92,92,0.3); }
-  .badge-amber { background: rgba(224,168,76,0.15); color: var(--amber); border: 1px solid rgba(224,168,76,0.3); }
-
-  /* SIGNATURES */
-  .sig-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 16px;
-  }
-  .sig-card {
-    background: var(--navy-mid);
-    border: 1px solid rgba(201,168,76,0.12);
-    border-radius: 12px;
-    overflow: hidden;
-    animation: fadeUp 0.4s ease both;
-  }
-  .sig-header {
-    padding: 16px 20px;
-    background: rgba(201,168,76,0.06);
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .sig-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--gold);
-  }
-  .sig-body {
-    padding: 18px 20px;
-    font-size: 12px;
-    line-height: 1.8;
-    color: var(--text);
-    white-space: pre-line;
-    font-family: 'DM Sans', monospace;
-  }
-  .copy-btn {
-    background: none;
-    border: 1px solid rgba(201,168,76,0.25);
-    color: var(--gold);
-    font-size: 11px;
-    padding: 5px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: all 0.2s;
-  }
-  .copy-btn:hover { background: rgba(201,168,76,0.15); }
-  .copy-btn.copied { background: rgba(76,175,130,0.15); color: var(--green); border-color: rgba(76,175,130,0.3); }
-
-  /* WORKFLOWS */
-  .workflow-section {
-    background: var(--navy-mid);
-    border: 1px solid rgba(201,168,76,0.12);
-    border-radius: 12px;
-    margin-bottom: 16px;
-    overflow: hidden;
-    animation: fadeUp 0.4s ease both;
-  }
-  .workflow-header {
-    padding: 16px 22px;
-    background: rgba(201,168,76,0.05);
-    border-bottom: 1px solid rgba(201,168,76,0.1);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .workflow-icon { font-size: 20px; }
-  .workflow-title { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--white); }
-  .workflow-email { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .workflow-body { padding: 20px 22px; }
-  .rule-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    font-size: 12px;
-    align-items: center;
-  }
-  .rule-row:last-child { border-bottom: none; }
-  .rule-trigger { color: var(--text); }
-  .rule-action { color: var(--gold-light); }
-  .rule-label {
-    font-size: 10px;
-    padding: 3px 8px;
-    border-radius: 10px;
-    background: rgba(201,168,76,0.1);
-    color: var(--gold);
-    white-space: nowrap;
-    text-align: center;
-  }
-  .col-headers {
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 12px;
-    padding: 0 0 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-
-  /* TOAST */
-  .toast {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%) translateY(80px);
-    background: var(--navy-light);
-    border: 1px solid rgba(201,168,76,0.3);
-    color: var(--gold);
-    padding: 12px 24px;
-    border-radius: 30px;
-    font-size: 13px;
-    transition: transform 0.3s ease;
-    z-index: 999;
-    white-space: nowrap;
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-
-  /* GMAIL LINK ROW */
-  .gmail-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-    margin-top: 6px;
-  }
-  .gmail-link:hover { color: var(--gold); }
-
-  @media (max-width: 600px) {
-    header { padding: 18px 16px; }
-    .tabs { padding: 16px 16px 0; }
-    main { padding: 20px 16px; }
-    .rule-row { grid-template-columns: 1fr; }
-    .col-headers { display: none; }
-  }
+  :root { --navy:#0a1628;--navy-mid:#112240;--navy-light:#1a3356;--gold:#c9a84c;--gold-light:#e8c97a;--white:#f8f5ef;--text:#d4cfc6;--muted:#7a8899;--green:#4caf82;--red:#e05c5c;--amber:#e0a84c; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;min-height:100vh;background-image:radial-gradient(ellipse at 20% 0%,rgba(201,168,76,.06) 0%,transparent 50%),radial-gradient(ellipse at 80% 100%,rgba(201,168,76,.04) 0%,transparent 50%);}
+  header{border-bottom:1px solid rgba(201,168,76,.2);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,22,40,.8);backdrop-filter:blur(10px);position:sticky;top:0;z-index:100;}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--gold);letter-spacing:.05em;}
+  .logo span{color:var(--white);}
+  .header-badge{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);border:1px solid rgba(201,168,76,.2);padding:6px 14px;border-radius:20px;}
+  .tabs{display:flex;gap:4px;padding:20px 32px 0;border-bottom:1px solid rgba(255,255,255,.06);overflow-x:auto;scrollbar-width:none;}
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{padding:10px 20px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:'DM Sans',sans-serif;}
+  .tab:hover{color:var(--gold-light);}
+  .tab.active{color:var(--gold);border-bottom-color:var(--gold);}
+  main{padding:32px;max-width:1200px;margin:0 auto;}
+  .section{display:none;}.section.active{display:block;}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--white);margin-bottom:6px;}
+  .section-sub{font-size:13px;color:var(--muted);margin-bottom:28px;}
+  .accounts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+  .account-card{background:var(--navy-mid);border:1px solid rgba(201,168,76,.12);border-radius:12px;padding:22px;transition:border-color .2s,transform .2s;animation:fadeUp .4s ease both;}
+  .account-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-2px);}
+  .account-card.featured{border-color:rgba(201,168,76,.3);background:linear-gradient(135deg,var(--navy-mid),rgba(201,168,76,.05));}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  .account-card:nth-child(2){animation-delay:.05s}.account-card:nth-child(3){animation-delay:.1s}.account-card:nth-child(4){animation-delay:.15s}.account-card:nth-child(5){animation-delay:.2s}.account-card:nth-child(6){animation-delay:.25s}.account-card:nth-child(7){animation-delay:.3s}
+  .card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+  .card-icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+  .status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(76,175,130,.6);margin-top:4px;}
+  .card-brand{font-size:13px;font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--gold-light);margin-bottom:2px;}
+  .card-division{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+  .card-email{font-size:12px;color:var(--muted);margin-bottom:12px;word-break:break-all;}
+  .card-tagline{font-size:11px;color:var(--text);margin-bottom:14px;line-height:1.6;border-left:2px solid rgba(201,168,76,.3);padding-left:10px;}
+  .card-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  .btn{font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:6px;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
+  .btn-gold{background:rgba(201,168,76,.12);color:var(--gold);border:1px solid rgba(201,168,76,.25);}
+  .btn-gold:hover{background:rgba(201,168,76,.22);}
+  .btn-outline{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,.08);}
+  .btn-outline:hover{color:var(--white);border-color:rgba(255,255,255,.2);}
+  .security-table{width:100%;border-collapse:collapse;}
+  .security-table th{text-align:left;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.06);font-weight:400;}
+  .security-table td{padding:14px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;}
+  .security-table tr:hover td{background:rgba(201,168,76,.04);}
+  .email-cell{color:var(--white);font-size:12px;}
+  .brand-cell{font-size:11px;color:var(--gold);font-weight:500;}
+  .badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;cursor:pointer;transition:opacity .2s;}
+  .badge:hover{opacity:.8;}
+  .badge-green{background:rgba(76,175,130,.15);color:var(--green);border:1px solid rgba(76,175,130,.3);}
+  .badge-red{background:rgba(224,92,92,.15);color:var(--red);border:1px solid rgba(224,92,92,.3);}
+  .badge-amber{background:rgba(224,168,76,.15);color:var(--amber);border:1px solid rgba(224,168,76,.3);}
+  .gmail-link{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--muted);text-decoration:none;transition:color .2s;margin-top:4px;}
+  .gmail-link:hover{color:var(--gold);}
+  .sig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+  .sig-card{background:var(--navy-mid);border:1px solid rgba(201,168,76,.12);border-radius:12px;overflow:hidden;animation:fadeUp .4s ease both;}
+  .sig-header{padding:16px 20px;background:rgba(201,168,76,.06);border-bottom:1px solid rgba(201,168,76,.12);display:flex;align-items:center;justify-content:space-between;}
+  .sig-title{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:var(--gold);}
+  .sig-body{padding:18px 20px;font-size:12px;line-height:1.8;color:var(--text);white-space:pre-line;}
+  .copy-btn{background:none;border:1px solid rgba(201,168,76,.25);color:var(--gold);font-size:11px;padding:5px 12px;border-radius:5px;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;}
+  .copy-btn:hover{background:rgba(201,168,76,.15);}
+  .copy-btn.copied{background:rgba(76,175,130,.15);color:var(--green);border-color:rgba(76,175,130,.3);}
+  .workflow-section{background:var(--navy-mid);border:1px solid rgba(201,168,76,.12);border-radius:12px;margin-bottom:16px;overflow:hidden;}
+  .workflow-header{padding:16px 22px;background:rgba(201,168,76,.05);border-bottom:1px solid rgba(201,168,76,.1);display:flex;align-items:center;gap:12px;}
+  .workflow-icon{font-size:20px;}
+  .workflow-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--white);}
+  .workflow-brand{font-size:11px;color:var(--gold);font-weight:500;}
+  .workflow-email{font-size:11px;color:var(--muted);margin-top:1px;}
+  .workflow-body{padding:20px 22px;}
+  .rule-row{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;align-items:center;}
+  .rule-row:last-child{border-bottom:none;}
+  .rule-action{color:var(--gold-light);}
+  .rule-label{font-size:10px;padding:3px 8px;border-radius:10px;background:rgba(201,168,76,.1);color:var(--gold);white-space:nowrap;text-align:center;}
+  .col-headers{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;padding:0 0 10px;border-bottom:1px solid rgba(255,255,255,.08);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy-light);border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:12px 24px;border-radius:30px;font-size:13px;transition:transform .3s ease;z-index:999;white-space:nowrap;}
+  .toast.show{transform:translateX(-50%) translateY(0);}
+  @media(max-width:600px){header{padding:18px 16px;}.tabs{padding:16px 16px 0;}main{padding:20px 16px;}.rule-row{grid-template-columns:1fr;}.col-headers{display:none;}}
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo">TRoy<span> Group™</span></div>
   <div class="header-badge">Email Management Hub</div>
 </header>
-
 <div class="tabs">
-  <button class="tab active" onclick="showTab('accounts', this)">Accounts</button>
-  <button class="tab" onclick="showTab('security', this)">Security</button>
-  <button class="tab" onclick="showTab('signatures', this)">Signatures</button>
-  <button class="tab" onclick="showTab('workflows', this)">Workflows</button>
+  <button class="tab active" onclick="showTab('accounts',this)">Accounts</button>
+  <button class="tab" onclick="showTab('security',this)">Security</button>
+  <button class="tab" onclick="showTab('signatures',this)">Signatures</button>
+  <button class="tab" onclick="showTab('workflows',this)">Workflows</button>
 </div>
-
 <main>
 
   <!-- ACCOUNTS -->
   <div class="section active" id="accounts">
     <div class="section-title">Email Accounts</div>
-    <div class="section-sub">All 6 TRoy Group™ accounts — click to open Gmail</div>
+    <div class="section-sub">All 7 TRoy Group™ accounts — tap to open Gmail</div>
     <div class="accounts-grid">
 
       <div class="account-card">
-        <div class="card-top">
-          <div class="card-icon">👤</div>
-          <div class="status-dot"></div>
-        </div>
+        <div class="card-top"><div class="card-icon">👤</div><div class="status-dot"></div></div>
+        <div class="card-brand">Ertan Govdeli</div>
         <div class="card-division">Personal · Founder & CEO</div>
-        <div class="card-name">Ertan Govdeli</div>
         <div class="card-email">ertangovdeli@gmail.com</div>
         <div class="card-actions">
           <a class="btn btn-gold" href="https://mail.google.com/mail/u/0/?authuser=ertangovdeli@gmail.com" target="_blank">📬 Open Gmail</a>
@@ -442,12 +110,9 @@
       </div>
 
       <div class="account-card">
-        <div class="card-top">
-          <div class="card-icon">🏛️</div>
-          <div class="status-dot"></div>
-        </div>
+        <div class="card-top"><div class="card-icon">🏛️</div><div class="status-dot"></div></div>
+        <div class="card-brand">TRoy Group™</div>
         <div class="card-division">Corporate · Umbrella</div>
-        <div class="card-name">TRoy Group™</div>
         <div class="card-email">groupoftroy@gmail.com</div>
         <div class="card-actions">
           <a class="btn btn-gold" href="https://mail.google.com/mail/u/0/?authuser=groupoftroy@gmail.com" target="_blank">📬 Open Gmail</a>
@@ -455,27 +120,34 @@
         </div>
       </div>
 
-      <div class="account-card">
-        <div class="card-top">
-          <div class="card-icon">⚓</div>
-          <div class="status-dot"></div>
-        </div>
+      <div class="account-card featured">
+        <div class="card-top"><div class="card-icon">⚓</div><div class="status-dot"></div></div>
+        <div class="card-brand">TRoyMAR™</div>
         <div class="card-division">TRoy Maritime Agency™</div>
-        <div class="card-name">Maritime Operations</div>
         <div class="card-email">troymaritimeagency@gmail.com</div>
+        <div class="card-tagline">Port Agency · Husbandry · Crew · Bunkers · Cargo · Turkish Straits Specialist · 58+ Ports · 24/7</div>
         <div class="card-actions">
           <a class="btn btn-gold" href="https://mail.google.com/mail/u/0/?authuser=troymaritimeagency@gmail.com" target="_blank">📬 Open Gmail</a>
           <a class="btn btn-outline" href="https://myaccount.google.com/security?authuser=troymaritimeagency@gmail.com" target="_blank">🔐 Security</a>
         </div>
       </div>
 
-      <div class="account-card">
-        <div class="card-top">
-          <div class="card-icon">✈️</div>
-          <div class="status-dot"></div>
+      <div class="account-card featured">
+        <div class="card-top"><div class="card-icon">🌍</div><div class="status-dot"></div></div>
+        <div class="card-brand">TRoyTR™</div>
+        <div class="card-division">TRoy Trading Agency™</div>
+        <div class="card-email">troytradingagency@gmail.com</div>
+        <div class="card-tagline">Global Trade Intermediary · Logistics · Compliance · Market Entry · Trade Finance · Import/Export</div>
+        <div class="card-actions">
+          <a class="btn btn-gold" href="https://mail.google.com/mail/u/0/?authuser=troytradingagency@gmail.com" target="_blank">📬 Open Gmail</a>
+          <a class="btn btn-outline" href="https://myaccount.google.com/security?authuser=troytradingagency@gmail.com" target="_blank">🔐 Security</a>
         </div>
-        <div class="card-division">TRoyGo™ · Travel Agency</div>
-        <div class="card-name">TRoy Travel Agency™</div>
+      </div>
+
+      <div class="account-card">
+        <div class="card-top"><div class="card-icon">✈️</div><div class="status-dot"></div></div>
+        <div class="card-brand">TRoyGo™</div>
+        <div class="card-division">TRoy Travel Agency™</div>
         <div class="card-email">troytravelagency@gmail.com</div>
         <div class="card-actions">
           <a class="btn btn-gold" href="https://mail.google.com/mail/u/0/?authuser=troytravelagency@gmail.com" target="_blank">📬 Open Gmail</a>
@@ -484,12 +156,9 @@
       </div>
 
       <div class="account-card">
-        <div class="card-top">
-          <div class="card-icon">🎬</div>
-          <div class="status-dot"></div>
-        </div>
-        <div class="card-division">TRoy Media Agency™</div>
-        <div class="card-name">Media & Creative</div>
+        <div class="card-top"><div class="card-icon">🎬</div><div class="status-dot"></div></div>
+        <div class="card-brand">TRoy Media Agency™</div>
+        <div class="card-division">Media & Creative</div>
         <div class="card-email">troymediagency@gmail.com</div>
         <div class="card-actions">
           <a class="btn btn-gold" href="https://mail.google.com/mail/u/0/?authuser=troymediagency@gmail.com" target="_blank">📬 Open Gmail</a>
@@ -498,12 +167,9 @@
       </div>
 
       <div class="account-card">
-        <div class="card-top">
-          <div class="card-icon">🔧</div>
-          <div class="status-dot"></div>
-        </div>
-        <div class="card-division">The TRoy Garage™</div>
-        <div class="card-name">Creative Lab</div>
+        <div class="card-top"><div class="card-icon">🔧</div><div class="status-dot"></div></div>
+        <div class="card-brand">The TRoy Garage™</div>
+        <div class="card-division">Creative Lab</div>
         <div class="card-email">thetroygarage@gmail.com</div>
         <div class="card-actions">
           <a class="btn btn-gold" href="https://mail.google.com/mail/u/0/?authuser=thetroygarage@gmail.com" target="_blank">📬 Open Gmail</a>
@@ -517,283 +183,161 @@
   <!-- SECURITY -->
   <div class="section" id="security">
     <div class="section-title">Security Status</div>
-    <div class="section-sub">Click any badge to toggle status — track 2FA activation progress</div>
-    <div style="background:var(--navy-mid);border:1px solid rgba(201,168,76,0.12);border-radius:12px;overflow:auto;">
+    <div class="section-sub">Click any badge to toggle — track 2FA progress</div>
+    <div style="background:var(--navy-mid);border:1px solid rgba(201,168,76,.12);border-radius:12px;overflow:auto;">
       <table class="security-table">
-        <thead>
-          <tr>
-            <th>Account</th>
-            <th>2FA</th>
-            <th>Recovery Email</th>
-            <th>Password Manager</th>
-            <th>Action</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Email</th><th>Brand</th><th>2FA</th><th>Recovery</th><th>Pwd Manager</th><th>Action</th></tr></thead>
         <tbody id="security-body"></tbody>
       </table>
-    </div>
-    <div style="margin-top:20px;padding:16px 20px;background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.12);border-radius:10px;font-size:12px;color:var(--muted);line-height:1.8;">
-      💡 <strong style="color:var(--gold)">Recommended 2FA:</strong> Use Google Authenticator (TOTP app) — more secure than SMS.<br>
-      🔑 <strong style="color:var(--gold)">Recovery convention:</strong> All division accounts → recovery to <code style="color:var(--gold-light)">groupoftroy@gmail.com</code> · Corporate → <code style="color:var(--gold-light)">ertangovdeli@gmail.com</code>
     </div>
   </div>
 
   <!-- SIGNATURES -->
   <div class="section" id="signatures">
     <div class="section-title">Email Signatures</div>
-    <div class="section-sub">Tap "Copy" then paste into Gmail → Settings → General → Signature</div>
+    <div class="section-sub">Tap "Copy" → paste into Gmail → Settings → General → Signature</div>
     <div class="sig-grid" id="sig-grid"></div>
   </div>
 
   <!-- WORKFLOWS -->
   <div class="section" id="workflows">
     <div class="section-title">Email Workflows</div>
-    <div class="section-sub">Routing rules, filters & forwarding per account</div>
+    <div class="section-sub">Routing rules & filters per account</div>
     <div id="workflow-list"></div>
   </div>
 
 </main>
-
-<div class="toast" id="toast">✓ Copied to clipboard</div>
+<div class="toast" id="toast"></div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────────────
-
-const accounts = [
-  { email: 'ertangovdeli@gmail.com',       label: 'Personal · CEO',            recovery: 'self' },
-  { email: 'groupoftroy@gmail.com',         label: 'TRoy Group™ Corporate',     recovery: 'ertangovdeli@gmail.com' },
-  { email: 'troymaritimeagency@gmail.com',  label: 'TRoy Maritime Agency™',     recovery: 'groupoftroy@gmail.com' },
-  { email: 'troytravelagency@gmail.com',    label: 'TRoyGo™ / Travel Agency™',  recovery: 'groupoftroy@gmail.com' },
-  { email: 'troymediagency@gmail.com',      label: 'TRoy Media Agency™',        recovery: 'groupoftroy@gmail.com' },
-  { email: 'thetroygarage@gmail.com',       label: 'The TRoy Garage™',          recovery: 'groupoftroy@gmail.com' },
+const accounts=[
+  {email:'ertangovdeli@gmail.com',brand:'Personal/CEO',recovery:'ertangovdeli@gmail.com'},
+  {email:'groupoftroy@gmail.com',brand:'TRoy Group™',recovery:'ertangovdeli@gmail.com'},
+  {email:'troymaritimeagency@gmail.com',brand:'TRoyMAR™',recovery:'groupoftroy@gmail.com'},
+  {email:'troytradingagency@gmail.com',brand:'TRoyTR™',recovery:'groupoftroy@gmail.com'},
+  {email:'troytravelagency@gmail.com',brand:'TRoyGo™',recovery:'groupoftroy@gmail.com'},
+  {email:'troymediagency@gmail.com',brand:'TRoy Media™',recovery:'groupoftroy@gmail.com'},
+  {email:'thetroygarage@gmail.com',brand:'The TRoy Garage™',recovery:'groupoftroy@gmail.com'},
 ];
 
-const signatures = [
-  {
-    title: 'Personal — Ertan Govdeli',
-    body: `Ertan Govdeli
-Founder & CEO | TRoy Group™
-
-📍 Darwin, Northern Territory, Australia
-📧 ertangovdeli@gmail.com
-🌐 [TRoy Group website URL]
-
-TRoy Group™ | TRoy Maritime Agency™ | TRoyGo™ | TRoy Media Agency™`
-  },
-  {
-    title: 'TRoy Group™ Corporate',
-    body: `TRoy Group™
-International Business Group
-
-📧 groupoftroy@gmail.com
-🌐 [TRoy Group website URL]
-📍 Darwin, NT, Australia
-
-Divisions: TRoy Maritime Agency™ | TRoyGo™ | TRoy Media Agency™`
-  },
-  {
-    title: 'TRoy Maritime Agency™',
-    body: `TRoy Maritime Agency™
-Ship Agency & Port Services | Turkish Straits Specialist
-
-📧 troymaritimeagency@gmail.com
-🌐 [TRoy Maritime website URL]
-📍 Darwin, NT, Australia | 58+ Global Ports
-
-For urgent vessel matters: [phone number]`
-  },
-  {
-    title: 'TRoyGo™ / TRoy Travel Agency™',
-    body: `TRoyGo™ — TRoy Travel Agency™
-AI-Powered Online Travel | Your World. Your Way.™
-
-📧 troytravelagency@gmail.com
-🌐 [TRoyGo website URL]
-🤖 AI Trip Creator: [URL]
-
-📘 Facebook | 📸 Instagram | 📌 Pinterest
-@TRoyTravelAgency`
-  },
-  {
-    title: 'TRoy Media Agency™',
-    body: `TRoy Media Agency™
-Creative Content & Media Production
-
-📧 troymediagency@gmail.com
-▶️ youtube.com/@TRoyGARTM
-🌐 [TRoy Media website URL]
-
-Where Ideas Come to Life™`
-  },
-  {
-    title: 'The TRoy Garage™',
-    body: `The TRoy Garage™
-Creative Lab | TRoy Group™
-
-📧 thetroygarage@gmail.com
-▶️ youtube.com/@TRoyGARTM
-
-Where Ideas Come to Life™`
-  },
+const signatures=[
+  {title:'Ertan Govdeli — CEO',body:`Ertan Govdeli\nFounder & CEO | TRoy Group™\n\n📍 Darwin, Northern Territory, Australia\n📧 ertangovdeli@gmail.com\n🌐 [TRoy Group website URL]\n\nTRoy Group™ | TRoyMAR™ | TRoyTR™ | TRoyGo™ | TRoy Media Agency™`},
+  {title:'TRoy Group™ Corporate',body:`TRoy Group™\nInternational Business Group\n\n📧 groupoftroy@gmail.com\n🌐 [TRoy Group website URL]\n📍 Darwin, NT, Australia\n\nDivisions: TRoyMAR™ | TRoyTR™ | TRoyGo™ | TRoy Media Agency™`},
+  {title:'TRoyMAR™ — TRoy Maritime Agency™',body:`TRoyMAR™ — TRoy Maritime Agency™\nFull-Service Ship Agency | Turkish Straits Specialist\n\n📧 troymaritimeagency@gmail.com\n🌐 [TRoyMAR website URL]\n📍 Darwin, NT, Australia | 58+ Global Ports\n\nPort Agency | Husbandry | Crew | Bunkers | Cargo | Documentation\nAvailable 24/7 for urgent vessel matters: [phone]\n30+ Years Maritime Experience`},
+  {title:'TRoyTR™ — TRoy Trading Agency™',body:`TRoyTR™ — TRoy Trading Agency™\nGlobal Trade Intermediary | Worldwide Commerce Solutions\n\n📧 troytradingagency@gmail.com\n🌐 [TRoyTR website URL]\n📍 Darwin, NT, Australia\n\nLogistics | Compliance | Market Entry | Trade Finance | Import/Export`},
+  {title:'TRoyGo™ — TRoy Travel Agency™',body:`TRoyGo™ — TRoy Travel Agency™\nAI-Powered Online Travel | Your World. Your Way.™\n\n📧 troytravelagency@gmail.com\n🌐 [TRoyGo website URL]\n🤖 AI Trip Creator: [URL]\n\n📘 Facebook | 📸 Instagram | 📌 Pinterest\n@TRoyTravelAgency`},
+  {title:'TRoy Media Agency™',body:`TRoy Media Agency™\nCreative Content & Media Production\n\n📧 troymediagency@gmail.com\n▶️ youtube.com/@TRoyGARTM\n\nWhere Ideas Come to Life™`},
+  {title:'The TRoy Garage™',body:`The TRoy Garage™\nCreative Lab | TRoy Group™\n\n📧 thetroygarage@gmail.com\n▶️ youtube.com/@TRoyGARTM\n\nWhere Ideas Come to Life™`},
 ];
 
-const workflows = [
-  {
-    icon: '👤', title: 'Ertan Govdeli', email: 'ertangovdeli@gmail.com',
-    rules: [
-      { trigger: 'GitHub notifications',     action: 'Archive + Label',   label: 'dev/github' },
-      { trigger: 'TradingView alerts',        action: 'Archive + Label',   label: 'trading/tv' },
-      { trigger: 'Bank / Financial',          action: 'Star + Label',      label: 'finance' },
-      { trigger: 'Government / ABN / ATO',    action: 'Star + Label',      label: 'legal-gov' },
-    ]
-  },
-  {
-    icon: '🏛️', title: 'TRoy Group™ Corporate', email: 'groupoftroy@gmail.com',
-    rules: [
-      { trigger: 'Partner / B2B inquiries',   action: 'Star + Reply 24h',  label: 'partners' },
-      { trigger: 'Legal / compliance',        action: 'Star + Label',      label: 'legal' },
-      { trigger: 'Inter-division memos',      action: 'Label',             label: 'internal' },
-    ]
-  },
-  {
-    icon: '⚓', title: 'TRoy Maritime Agency™', email: 'troymaritimeagency@gmail.com',
-    rules: [
-      { trigger: 'Vessel name / IMO number',  action: 'Star + Label',      label: 'vessels' },
-      { trigger: 'Port authority / agent',    action: 'Label',             label: 'port-ops' },
-      { trigger: 'GAC / ISS / Sub-agents',    action: 'Star + Label',      label: 'agents' },
-      { trigger: 'Turkish Straits related',   action: 'Star + Label',      label: 'straits' },
-    ]
-  },
-  {
-    icon: '✈️', title: 'TRoyGo™ / Travel Agency™', email: 'troytravelagency@gmail.com',
-    rules: [
-      { trigger: 'Booking.com',               action: 'Label',             label: 'booking-com' },
-      { trigger: 'CJ Affiliate',              action: 'Label',             label: 'affiliates' },
-      { trigger: 'Travel inquiry / booking',  action: 'Star + Reply 12h',  label: 'bookings' },
-      { trigger: 'AI Trip Creator feedback',  action: 'Label',             label: 'ai-product' },
-    ]
-  },
-  {
-    icon: '🎬', title: 'TRoy Media Agency™', email: 'troymediagency@gmail.com',
-    rules: [
-      { trigger: 'YouTube / Google notices',  action: 'Archive + Label',   label: 'youtube' },
-      { trigger: 'Client creative briefs',    action: 'Star + Label',      label: 'clients' },
-      { trigger: 'Content collaboration',     action: 'Label',             label: 'collabs' },
-    ]
-  },
-  {
-    icon: '🔧', title: 'The TRoy Garage™', email: 'thetroygarage@gmail.com',
-    rules: [
-      { trigger: 'Project proposals',         action: 'Star + Label',      label: 'projects' },
-      { trigger: 'Experimental / R&D',        action: 'Label',             label: 'rnd' },
-    ]
-  },
+const workflows=[
+  {icon:'👤',brand:'Personal/CEO',title:'Ertan Govdeli',email:'ertangovdeli@gmail.com',rules:[
+    {t:'GitHub notifications',a:'Archive + Label',l:'dev/github'},
+    {t:'TradingView alerts',a:'Archive + Label',l:'trading/tv'},
+    {t:'PayPal / Financial',a:'Star + Label',l:'finances'},
+    {t:'ATO / Government',a:'Star + Label',l:'legal-gov'},
+  ]},
+  {icon:'🏛️',brand:'TRoy Group™',title:'TRoy Group™',email:'groupoftroy@gmail.com',rules:[
+    {t:'Partner / B2B',a:'Star + Reply 24h',l:'partners'},
+    {t:'Legal / compliance',a:'Star + Label',l:'legal'},
+    {t:'Inter-division',a:'Label',l:'internal'},
+  ]},
+  {icon:'⚓',brand:'TRoyMAR™',title:'TRoy Maritime Agency™',email:'troymaritimeagency@gmail.com',rules:[
+    {t:'Vessel / IMO / ETA',a:'Star + Label',l:'vessels'},
+    {t:'PDA / FDA',a:'Star + Label',l:'disbursements'},
+    {t:'Crew change / Husbandry',a:'Star + Label',l:'crew'},
+    {t:'Bunker / IFO / MGO',a:'Star + Label',l:'bunkering'},
+    {t:'Bill of Lading / NOR / SoF',a:'Star + Label',l:'documents'},
+    {t:'Bosphorus / Dardanelles',a:'Star + Label',l:'straits'},
+    {t:'🔴 Emergency / Urgent',a:'Forward to CEO',l:'urgent'},
+  ]},
+  {icon:'🌍',brand:'TRoyTR™',title:'TRoy Trading Agency™',email:'troytradingagency@gmail.com',rules:[
+    {t:'Import / Export inquiry',a:'Star + Label',l:'trade'},
+    {t:'Logistics / Freight / Customs',a:'Star + Label',l:'logistics'},
+    {t:'Compliance / Tariff',a:'Star + Label',l:'compliance'},
+    {t:'Market entry / Distribution',a:'Star + Label',l:'market-entry'},
+    {t:'Trade finance / Letter of credit',a:'Star + Label',l:'finance'},
+    {t:'Buyer inquiry',a:'Star + Reply 24h',l:'buyers'},
+    {t:'Supplier / Manufacturer',a:'Star + Label',l:'suppliers'},
+  ]},
+  {icon:'✈️',brand:'TRoyGo™',title:'TRoy Travel Agency™',email:'troytravelagency@gmail.com',rules:[
+    {t:'Booking.com',a:'Label',l:'booking-com'},
+    {t:'CJ Affiliate',a:'Label',l:'affiliates'},
+    {t:'Travel / Booking inquiry',a:'Star + Reply 12h',l:'bookings'},
+    {t:'AI Trip Creator',a:'Label',l:'ai-product'},
+  ]},
+  {icon:'🎬',brand:'TRoy Media™',title:'TRoy Media Agency™',email:'troymediagency@gmail.com',rules:[
+    {t:'YouTube / Google',a:'Archive + Label',l:'youtube'},
+    {t:'Client briefs',a:'Star + Label',l:'clients'},
+    {t:'Collaboration',a:'Label',l:'collabs'},
+  ]},
+  {icon:'🔧',brand:'The TRoy Garage™',title:'The TRoy Garage™',email:'thetroygarage@gmail.com',rules:[
+    {t:'Project proposals',a:'Star + Label',l:'projects'},
+    {t:'Experimental / R&D',a:'Label',l:'rnd'},
+  ]},
 ];
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
-const state = JSON.parse(localStorage.getItem('troy-email-security') || '{}');
-accounts.forEach(a => {
-  if (!state[a.email]) state[a.email] = { twofa: false, recovery: false, pwm: false };
-});
-function saveState() { localStorage.setItem('troy-email-security', JSON.stringify(state)); }
+const state=JSON.parse(localStorage.getItem('troy-email-v3')||'{}');
+accounts.forEach(a=>{if(!state[a.email])state[a.email]={twofa:false,recovery:false,pwm:false};});
+state['ertangovdeli@gmail.com']={twofa:true,recovery:true,pwm:false};
+function saveState(){localStorage.setItem('troy-email-v3',JSON.stringify(state));}
 
-// ── SECURITY TABLE ────────────────────────────────────────────────────────────
-function renderSecurity() {
-  const tbody = document.getElementById('security-body');
-  tbody.innerHTML = accounts.map(a => {
-    const s = state[a.email];
-    return `<tr>
-      <td>
-        <div class="email-cell">${a.email}</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:3px;">${a.label}</div>
-        <a href="https://myaccount.google.com/security?authuser=${a.email}" target="_blank" class="gmail-link">⚙️ Open Settings</a>
-      </td>
-      <td><span class="badge ${s.twofa ? 'badge-green' : 'badge-red'}" onclick="toggle('${a.email}','twofa')">${s.twofa ? '✓ Enabled' : '✗ Off'}</span></td>
-      <td><span class="badge ${s.recovery ? 'badge-green' : 'badge-amber'}" onclick="toggle('${a.email}','recovery')">${s.recovery ? '✓ Set' : '○ Pending'}</span></td>
-      <td><span class="badge ${s.pwm ? 'badge-green' : 'badge-amber'}" onclick="toggle('${a.email}','pwm')">${s.pwm ? '✓ Saved' : '○ Pending'}</span></td>
-      <td><a href="https://myaccount.google.com/two-step-verification?authuser=${a.email}" target="_blank" class="btn btn-gold btn" style="font-size:10px;padding:6px 10px;">Enable 2FA →</a></td>
+function renderSecurity(){
+  document.getElementById('security-body').innerHTML=accounts.map(a=>{
+    const s=state[a.email];
+    return`<tr>
+      <td><div class="email-cell">${a.email}</div><a href="https://myaccount.google.com/security?authuser=${a.email}" target="_blank" class="gmail-link">⚙️ Open Settings</a></td>
+      <td><div class="brand-cell">${a.brand}</div></td>
+      <td><span class="badge ${s.twofa?'badge-green':'badge-red'}" onclick="toggle('${a.email}','twofa')">${s.twofa?'✓ On':'✗ Off'}</span></td>
+      <td><span class="badge ${s.recovery?'badge-green':'badge-amber'}" onclick="toggle('${a.email}','recovery')">${s.recovery?'✓ Set':'○ Pending'}</span></td>
+      <td><span class="badge ${s.pwm?'badge-green':'badge-amber'}" onclick="toggle('${a.email}','pwm')">${s.pwm?'✓ Saved':'○ Pending'}</span></td>
+      <td><a href="https://myaccount.google.com/two-step-verification?authuser=${a.email}" target="_blank" class="btn btn-gold" style="font-size:10px;padding:6px 10px;">2FA →</a></td>
     </tr>`;
   }).join('');
 }
 
-function toggle(email, field) {
-  state[email][field] = !state[email][field];
-  saveState();
-  renderSecurity();
-  showToast(state[email][field] ? '✓ Marked as done' : '○ Marked as pending');
-}
+function toggle(email,field){state[email][field]=!state[email][field];saveState();renderSecurity();showToast(state[email][field]?'✓ Marked done':'○ Marked pending');}
 
-// ── SIGNATURES ────────────────────────────────────────────────────────────────
-function renderSignatures() {
-  document.getElementById('sig-grid').innerHTML = signatures.map((s, i) => `
-    <div class="sig-card" style="animation-delay:${i*0.05}s">
-      <div class="sig-header">
-        <div class="sig-title">${s.title}</div>
-        <button class="copy-btn" id="copy-${i}" onclick="copySig(${i})">Copy</button>
-      </div>
+function renderSignatures(){
+  document.getElementById('sig-grid').innerHTML=signatures.map((s,i)=>`
+    <div class="sig-card" style="animation-delay:${i*.05}s">
+      <div class="sig-header"><div class="sig-title">${s.title}</div><button class="copy-btn" id="copy-${i}" onclick="copySig(${i})">Copy</button></div>
       <div class="sig-body" id="sig-body-${i}">${s.body}</div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
 
-function copySig(i) {
-  const text = document.getElementById(`sig-body-${i}`).innerText;
-  navigator.clipboard.writeText(text).then(() => {
-    const btn = document.getElementById(`copy-${i}`);
-    btn.textContent = '✓ Copied!';
-    btn.classList.add('copied');
+function copySig(i){
+  navigator.clipboard.writeText(document.getElementById(`sig-body-${i}`).innerText).then(()=>{
+    const b=document.getElementById(`copy-${i}`);b.textContent='✓ Copied!';b.classList.add('copied');
     showToast('✓ Signature copied — paste into Gmail');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2500);
+    setTimeout(()=>{b.textContent='Copy';b.classList.remove('copied');},2500);
   });
 }
 
-// ── WORKFLOWS ─────────────────────────────────────────────────────────────────
-function renderWorkflows() {
-  document.getElementById('workflow-list').innerHTML = workflows.map((w, i) => `
-    <div class="workflow-section" style="animation-delay:${i*0.05}s">
+function renderWorkflows(){
+  document.getElementById('workflow-list').innerHTML=workflows.map((w,i)=>`
+    <div class="workflow-section" style="animation-delay:${i*.05}s">
       <div class="workflow-header">
         <div class="workflow-icon">${w.icon}</div>
-        <div>
-          <div class="workflow-title">${w.title}</div>
-          <div class="workflow-email">${w.email}</div>
-        </div>
-        <a href="https://mail.google.com/mail/u/0/?authuser=${w.email}#create-filter" target="_blank"
-           class="btn btn-gold" style="margin-left:auto;font-size:10px;">⚙️ Set Filters</a>
+        <div><div class="workflow-brand">${w.brand}</div><div class="workflow-title">${w.title}</div><div class="workflow-email">${w.email}</div></div>
+        <a href="https://mail.google.com/mail/u/0/?authuser=${w.email}#create-filter" target="_blank" class="btn btn-gold" style="margin-left:auto;font-size:10px;">⚙️ Filters</a>
       </div>
       <div class="workflow-body">
         <div class="col-headers"><span>Trigger</span><span>Action</span><span>Label</span></div>
-        ${w.rules.map(r => `
-          <div class="rule-row">
-            <span class="rule-trigger">${r.trigger}</span>
-            <span class="rule-action">${r.action}</span>
-            <span class="rule-label">${r.label}</span>
-          </div>
-        `).join('')}
+        ${w.rules.map(r=>`<div class="rule-row"><span>${r.t}</span><span class="rule-action">${r.a}</span><span class="rule-label">${r.l}</span></div>`).join('')}
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
 
-// ── TABS ──────────────────────────────────────────────────────────────────────
-function showTab(id, el) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  el.classList.add('active');
+function showTab(id,el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');el.classList.add('active');
 }
 
-// ── TOAST ─────────────────────────────────────────────────────────────────────
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
-renderSecurity();
-renderSignatures();
-renderWorkflows();
+renderSecurity();renderSignatures();renderWorkflows();
 </script>
 </body>
 </html>
