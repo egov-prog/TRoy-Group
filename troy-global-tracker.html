@@ -800,7 +800,7 @@ function selectLoc(id) {
 
   // Map
   document.getElementById('mapFrame').src =
-    `https://www.marinetraffic.com/en/ais/embed/zoom:${l.zoom}/centery:${l.lat}/centerx:${l.lon}/maptype:4/shownames:true/mmsi:0/shipid:0/fleet:/fleet_id:/vtypes:/showmenu:/remember:false`;
+    `https://www.marinetraffic.com/en/ais/home/centerx:-12.0/centery:25.0/zoom:4`;
 
   // HUD
   document.getElementById('hudTitle').textContent  = l.name;
@@ -878,4 +878,4 @@ document.getElementById('tickInner').innerHTML = msgs.map(m =>
   `<span class="tick-item"><span class="dot"></span>${m}</span>`
 ).join('');
 
-// ═════════════════�
+// ═════════════════�
