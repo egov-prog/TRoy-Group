@@ -5,8 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TRoy Group™ — AI Email Agent</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
-<script src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 <style>
 :root{--navy:#0a1628;--navy-mid:#112240;--navy-light:#1a3356;--gold:#c9a84c;--gold-light:#e8c97a;
   --white:#f8f5ef;--text:#d4cfc6;--muted:#7a8899;--green:#4caf82;--red:#e05c5c;--amber:#e0a84c;--blue:#4c8faf;}
@@ -27,28 +25,20 @@ header{border-bottom:1px solid rgba(201,168,76,.2);padding:20px 28px;display:fle
   padding:9px 20px;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;
   letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
 .btn-primary:hover{opacity:.9;transform:translateY(-1px);}
-.btn-primary:disabled{opacity:.4;cursor:not-allowed;transform:none;}
 main{padding:24px 28px;max-width:1300px;margin:0 auto;}
-
-/* ACCOUNT BAR */
 .acct-bar{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
 .acct-bar::-webkit-scrollbar{display:none;}
 .acct{display:flex;align-items:center;gap:7px;padding:7px 14px;border-radius:8px;
-  border:1px solid rgba(201,168,76,.1);background:var(--navy-mid);cursor:pointer;white-space:nowrap;
-  transition:all .2s;font-family:'DM Sans',sans-serif;}
+  border:1px solid rgba(201,168,76,.1);background:var(--navy-mid);cursor:pointer;white-space:nowrap;transition:all .2s;}
 .acct:hover{border-color:rgba(201,168,76,.3);}
 .acct.active{border-color:var(--gold);background:rgba(201,168,76,.07);}
 .acct-icon{font-size:15px;}
 .acct-name{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);}
 .acct-addr{font-size:10px;color:var(--muted);}
-
-/* STATS */
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:20px;}
 .stat{background:var(--navy-mid);border:1px solid rgba(201,168,76,.1);border-radius:10px;padding:14px 16px;}
 .stat-n{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--white);}
 .stat-l{font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:2px;}
-
-/* CONTROLS */
 .controls{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;align-items:center;}
 .btn-sec{background:rgba(201,168,76,.08);color:var(--gold);border:1px solid rgba(201,168,76,.2);
   padding:7px 16px;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:11px;
@@ -59,10 +49,6 @@ main{padding:24px 28px;max-width:1300px;margin:0 auto;}
 .btn-green:hover{background:rgba(76,175,130,.2);}
 .sel{background:var(--navy-mid);color:var(--text);border:1px solid rgba(201,168,76,.12);
   padding:7px 12px;border-radius:7px;font-family:'DM Sans',sans-serif;font-size:11px;cursor:pointer;}
-.spin{animation:spin 1s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* EMAILS */
 .email-list{display:flex;flex-direction:column;gap:7px;}
 .ecard{background:var(--navy-mid);border:1px solid rgba(201,168,76,.1);border-radius:10px;
   padding:14px 18px;cursor:pointer;transition:all .2s;animation:fadeUp .3s ease both;}
@@ -70,12 +56,11 @@ main{padding:24px 28px;max-width:1300px;margin:0 auto;}
 .ecard.urgent-card{border-left:3px solid var(--red);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .ecard-top{display:flex;align-items:center;gap:10px;}
-.efrom{font-size:13px;font-weight:500;color:var(--white);min-width:140px;max-width:180px;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.efrom{font-size:13px;font-weight:500;color:var(--white);min-width:140px;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .esubj{font-size:12px;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .etime{font-size:11px;color:var(--muted);white-space:nowrap;margin-left:8px;}
 .emeta{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap;}
-.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:500;letter-spacing:.04em;}
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:500;}
 .b-urgent{background:rgba(224,92,92,.15);color:var(--red);border:1px solid rgba(224,92,92,.2);}
 .b-high{background:rgba(224,168,76,.15);color:var(--amber);border:1px solid rgba(224,168,76,.2);}
 .b-normal{background:rgba(76,143,175,.12);color:var(--blue);border:1px solid rgba(76,143,175,.2);}
@@ -88,9 +73,8 @@ main{padding:24px 28px;max-width:1300px;margin:0 auto;}
 .ai-box{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.1);border-radius:8px;padding:12px 14px;margin-top:8px;}
 .ai-box-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
 .ai-box-text{font-size:12px;color:var(--text);line-height:1.7;}
-.draft-box{background:var(--navy);border-radius:6px;padding:10px 12px;margin-top:10px;font-size:12px;
-  color:var(--text);line-height:1.7;white-space:pre-wrap;font-family:'DM Sans',sans-serif;}
-.draft-label{font-size:10px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;}
+.draft-box{background:var(--navy);border-radius:6px;padding:10px 12px;margin-top:10px;font-size:12px;color:var(--text);line-height:1.7;white-space:pre-wrap;}
+.draft-label{font-size:10px;color:var(--green);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;margin-top:10px;}
 .copy-btn{background:rgba(76,175,130,.1);color:var(--green);border:1px solid rgba(76,175,130,.2);
   padding:4px 10px;border-radius:5px;font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif;
   letter-spacing:.07em;text-transform:uppercase;margin-top:6px;transition:all .2s;}
@@ -99,28 +83,22 @@ main{padding:24px 28px;max-width:1300px;margin:0 auto;}
   padding:5px 12px;border-radius:5px;font-size:10px;cursor:pointer;font-family:'DM Sans',sans-serif;
   letter-spacing:.07em;text-transform:uppercase;transition:all .2s;}
 .analyse-one:hover{background:rgba(201,168,76,.16);}
-.analysing-text{font-size:11px;color:var(--muted);font-style:italic;}
-
-/* EMPTY / LOADING */
 .empty{text-align:center;padding:60px 20px;}
 .empty-icon{font-size:40px;margin-bottom:12px;}
 .empty-title{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--white);margin-bottom:6px;}
 .empty-sub{font-size:13px;color:var(--muted);}
 .loading-wrap{text-align:center;padding:50px 20px;}
-.spinner{width:30px;height:30px;border:2px solid rgba(201,168,76,.15);border-top-color:var(--gold);
-  border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px;}
+.spinner{width:30px;height:30px;border:2px solid rgba(201,168,76,.15);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 14px;}
+@keyframes spin{to{transform:rotate(360deg)}}
 .loading-txt{font-size:13px;color:var(--muted);}
-
-/* TOAST */
 .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);
   background:var(--navy-light);border:1px solid rgba(201,168,76,.3);color:var(--gold);
   padding:9px 20px;border-radius:22px;font-size:12px;transition:transform .3s;z-index:999;white-space:nowrap;}
 .toast.show{transform:translateX(-50%) translateY(0);}
-@media(max-width:600px){main{padding:14px;}.efrom{min-width:100px;max-width:120px;}}
+@media(max-width:600px){main{padding:14px;}.efrom{min-width:80px;max-width:110px;}}
 </style>
 </head>
 <body>
-
 <header>
   <div>
     <div class="logo">TRoy<span> Group™</span></div>
@@ -128,49 +106,25 @@ main{padding:24px 28px;max-width:1300px;margin:0 auto;}
   </div>
   <div class="hdr-right">
     <div id="conn-pill" class="pill pill-off">● Disconnected</div>
-    <button class="btn-primary" id="conn-btn" onclick="connectGmail()" disabled>Connect Gmail</button>
+    <button class="btn-primary" id="conn-btn" onclick="connectGmail()">Connect Gmail</button>
   </div>
 </header>
-
 <main>
   <div class="acct-bar">
-    <div class="acct active" data-acct="me" onclick="selAcct('me',this)">
-      <span class="acct-icon">📬</span>
-      <div><div class="acct-name">Current Inbox</div><div class="acct-addr">signed-in account</div></div>
-    </div>
-    <div class="acct" data-acct="troymaritimeagency@gmail.com" onclick="selAcct('troymaritimeagency@gmail.com',this)">
-      <span class="acct-icon">⚓</span>
-      <div><div class="acct-name">TRoyMAR™</div><div class="acct-addr">troymaritimeagency</div></div>
-    </div>
-    <div class="acct" data-acct="troytradingagency@gmail.com" onclick="selAcct('troytradingagency@gmail.com',this)">
-      <span class="acct-icon">🌍</span>
-      <div><div class="acct-name">TRoyTR™</div><div class="acct-addr">troytradingagency</div></div>
-    </div>
-    <div class="acct" data-acct="troytravelagency@gmail.com" onclick="selAcct('troytravelagency@gmail.com',this)">
-      <span class="acct-icon">✈️</span>
-      <div><div class="acct-name">TRoyGo™</div><div class="acct-addr">troytravelagency</div></div>
-    </div>
-    <div class="acct" data-acct="groupoftroy@gmail.com" onclick="selAcct('groupoftroy@gmail.com',this)">
-      <span class="acct-icon">🏛️</span>
-      <div><div class="acct-name">Corporate</div><div class="acct-addr">groupoftroy</div></div>
-    </div>
-    <div class="acct" data-acct="troymediagency@gmail.com" onclick="selAcct('troymediagency@gmail.com',this)">
-      <span class="acct-icon">🎬</span>
-      <div><div class="acct-name">Media</div><div class="acct-addr">troymediagency</div></div>
-    </div>
-    <div class="acct" data-acct="thetroygarage@gmail.com" onclick="selAcct('thetroygarage@gmail.com',this)">
-      <span class="acct-icon">🔧</span>
-      <div><div class="acct-name">Garage</div><div class="acct-addr">thetroygarage</div></div>
-    </div>
+    <div class="acct active" onclick="selAcct(this,'Current Inbox')"><span class="acct-icon">📬</span><div><div class="acct-name">Current Inbox</div><div class="acct-addr">signed-in account</div></div></div>
+    <div class="acct" onclick="selAcct(this,'TRoyMAR™')"><span class="acct-icon">⚓</span><div><div class="acct-name">TRoyMAR™</div><div class="acct-addr">troymaritimeagency</div></div></div>
+    <div class="acct" onclick="selAcct(this,'TRoyTR™')"><span class="acct-icon">🌍</span><div><div class="acct-name">TRoyTR™</div><div class="acct-addr">troytradingagency</div></div></div>
+    <div class="acct" onclick="selAcct(this,'TRoyGo™')"><span class="acct-icon">✈️</span><div><div class="acct-name">TRoyGo™</div><div class="acct-addr">troytravelagency</div></div></div>
+    <div class="acct" onclick="selAcct(this,'Corporate')"><span class="acct-icon">🏛️</span><div><div class="acct-name">Corporate</div><div class="acct-addr">groupoftroy</div></div></div>
+    <div class="acct" onclick="selAcct(this,'Media')"><span class="acct-icon">🎬</span><div><div class="acct-name">Media</div><div class="acct-addr">troymediagency</div></div></div>
+    <div class="acct" onclick="selAcct(this,'Garage')"><span class="acct-icon">🔧</span><div><div class="acct-name">Garage</div><div class="acct-addr">thetroygarage</div></div></div>
   </div>
-
   <div class="stats">
     <div class="stat"><div class="stat-n" id="s-total">—</div><div class="stat-l">Total Loaded</div></div>
     <div class="stat"><div class="stat-n" id="s-urgent" style="color:var(--red)">—</div><div class="stat-l">🔴 Urgent</div></div>
     <div class="stat"><div class="stat-n" id="s-high" style="color:var(--amber)">—</div><div class="stat-l">🟡 High</div></div>
     <div class="stat"><div class="stat-n" id="s-analysed" style="color:var(--green)">—</div><div class="stat-l">✅ Analysed</div></div>
   </div>
-
   <div class="controls">
     <button class="btn-sec" id="fetch-btn" onclick="fetchEmails()" disabled>📬 Fetch Emails</button>
     <button class="btn-sec btn-green" id="analyse-btn" onclick="analyseAll()" disabled>🤖 Analyse All</button>
@@ -192,282 +146,149 @@ main{padding:24px 28px;max-width:1300px;margin:0 auto;}
       <option value="Personal">Personal</option>
     </select>
   </div>
-
   <div id="email-container">
     <div class="empty">
       <div class="empty-icon">🤖</div>
       <div class="empty-title">TRoy AI Email Agent</div>
-      <div class="empty-sub">Connect Gmail to fetch and analyse your emails with AI</div>
+      <div class="empty-sub">Click "Connect Gmail" to sign in and fetch your emails</div>
     </div>
   </div>
 </main>
-
 <div class="toast" id="toast"></div>
-
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
-// ─── CONFIG ───────────────────────────────────────────────────────────────────
-const CLIENT_ID = '203293400563-iqb0p545j34to583i2kmhueu49ondgeo.apps.googleusercontent.com';
-const SCOPES = 'https://www.googleapis.com/auth/gmail.readonly';
-const DISC = 'https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest';
+const CLIENT_ID='203293400563-iqb0p545j34to583i2kmhueu49ondgeo.apps.googleusercontent.com';
+const SCOPES='https://www.googleapis.com/auth/gmail.readonly';
+let accessToken=null,emails=[],filtered=[],analysed=0;
 
-// ─── STATE ────────────────────────────────────────────────────────────────────
-let tokenClient, gapiReady=false, gisReady=false;
-let emails=[], filtered=[], analysed=0;
-
-// ─── GAPI ─────────────────────────────────────────────────────────────────────
-function gapiLoaded(){
-  gapi.load('client',async()=>{
-    await gapi.client.init({discoveryDocs:[DISC]});
-    gapiReady=true; tryEnable();
-  });
-}
-function gisLoaded(){
-  tokenClient=google.accounts.oauth2.initTokenClient({
-    client_id:CLIENT_ID, scope:SCOPES,
-    callback:(r)=>{ if(r.error){toast('❌ '+r.error);return;} onAuth(); }
-  });
-  gisReady=true; tryEnable();
-}
-function tryEnable(){ if(gapiReady&&gisReady) document.getElementById('conn-btn').disabled=false; }
-
-function connectGmail(){ tokenClient.requestAccessToken({prompt:'consent'}); }
-
-function onAuth(){
-  document.getElementById('conn-pill').textContent='● Connected';
-  document.getElementById('conn-pill').className='pill pill-on';
-  document.getElementById('conn-btn').textContent='Reconnect';
-  document.getElementById('fetch-btn').disabled=false;
-  toast('✅ Gmail connected!');
-  fetchEmails();
-}
-
-// ─── FETCH ────────────────────────────────────────────────────────────────────
-async function fetchEmails(){
-  const fb=document.getElementById('fetch-btn');
-  fb.textContent='⏳ Loading...'; fb.disabled=true;
-  showLoading('Fetching emails from Gmail...');
-  emails=[]; analysed=0;
-
-  try{
-    const r=await gapi.client.gmail.users.messages.list({userId:'me',maxResults:20,q:'in:inbox'});
-    const msgs=r.result.messages||[];
-    showLoading(`Reading ${msgs.length} emails...`);
-
-    for(let i=0;i<Math.min(msgs.length,15);i++){
-      const m=await gapi.client.gmail.users.messages.get({
-        userId:'me', id:msgs[i].id, format:'metadata',
-        metadataHeaders:['From','Subject','Date']
-      });
-      const h=m.result.payload.headers;
-      const gh=n=>h.find(x=>x.name===n)?.value||'';
-      emails.push({
-        id:msgs[i].id,
-        from:parseName(gh('From')),
-        fromAddr:parseAddr(gh('From')),
-        subject:gh('Subject')||'(no subject)',
-        date:fmtDate(gh('Date')),
-        snippet:m.result.snippet||'',
-        priority:null, division:null, type:null,
-        analysis:null, draft:null, open:false
-      });
+function connectGmail(){
+  if(typeof google==='undefined'){toast('⏳ Google scripts still loading, please wait a moment and try again');return;}
+  const client=google.accounts.oauth2.initTokenClient({
+    client_id:CLIENT_ID,scope:SCOPES,
+    callback:(r)=>{
+      if(r.error){toast('❌ Auth error: '+r.error);return;}
+      accessToken=r.access_token;
+      document.getElementById('conn-pill').textContent='● Connected';
+      document.getElementById('conn-pill').className='pill pill-on';
+      document.getElementById('conn-btn').textContent='Reconnect';
+      document.getElementById('fetch-btn').disabled=false;
+      toast('✅ Gmail connected!');
+      fetchEmails();
     }
-
-    filtered=[...emails];
-    render(); updateStats();
-    document.getElementById('analyse-btn').disabled=false;
-    toast(`✅ Loaded ${emails.length} emails`);
-  }catch(e){
-    toast('❌ '+e.message);
-    showEmpty();
-  }
-  fb.textContent='📬 Refresh'; fb.disabled=false;
+  });
+  client.requestAccessToken({prompt:'select_account'});
 }
 
-// ─── ANALYSE ALL ─────────────────────────────────────────────────────────────
+async function gmailGet(path){
+  const r=await fetch('https://gmail.googleapis.com'+path,{headers:{'Authorization':'Bearer '+accessToken}});
+  if(!r.ok)throw new Error('Gmail API '+r.status);
+  return r.json();
+}
+
+async function fetchEmails(){
+  if(!accessToken){toast('⚠️ Connect Gmail first');return;}
+  const btn=document.getElementById('fetch-btn');
+  btn.textContent='⏳ Loading...';btn.disabled=true;
+  showLoading('Fetching emails...');
+  emails=[];analysed=0;
+  try{
+    const list=await gmailGet('/gmail/v1/users/me/messages?maxResults=20&q=in:inbox');
+    const msgs=list.messages||[];
+    showLoading('Reading '+msgs.length+' emails...');
+    for(let i=0;i<Math.min(msgs.length,15);i++){
+      const m=await gmailGet('/gmail/v1/users/me/messages/'+msgs[i].id+'?format=metadata&metadataHeaders=From&metadataHeaders=Subject&metadataHeaders=Date');
+      const h=m.payload.headers;
+      const gh=n=>h.find(x=>x.name===n)?.value||'';
+      emails.push({id:msgs[i].id,from:parseName(gh('From')),fromAddr:parseAddr(gh('From')),
+        subject:gh('Subject')||'(no subject)',date:fmtDate(gh('Date')),snippet:m.snippet||'',
+        priority:null,division:null,type:null,analysis:null,draft:null,open:false});
+    }
+    filtered=[...emails];render();updateStats();
+    document.getElementById('analyse-btn').disabled=false;
+    toast('✅ Loaded '+emails.length+' emails');
+  }catch(e){
+    toast('❌ '+e.message);showEmpty();
+    if(e.message.includes('401')){accessToken=null;document.getElementById('conn-pill').textContent='● Expired';document.getElementById('conn-pill').className='pill pill-off';}
+  }
+  btn.textContent='📬 Refresh';btn.disabled=false;
+}
+
 async function analyseAll(){
   const btn=document.getElementById('analyse-btn');
-  btn.textContent='🤖 Analysing...'; btn.disabled=true;
-  for(let i=0;i<emails.length;i++){
-    if(!emails[i].analysis){
-      await analyseEmail(emails[i]);
-      render(); updateStats();
-    }
-  }
-  btn.textContent='✅ All Analysed'; toast('✅ All emails analysed!');
+  btn.textContent='⏳ Analysing...';btn.disabled=true;
+  for(let i=0;i<emails.length;i++){if(!emails[i].analysis){await analyseEmail(emails[i]);render();updateStats();}}
+  btn.textContent='✅ Done';toast('✅ All analysed!');
 }
 
-async function analyseEmail(email){
+async function analyseEmail(e){
   try{
-    const prompt=`You are the AI email assistant for TRoy Group™ — an international business group with divisions:
-- TRoyMAR™ (troymaritimeagency@gmail.com) — Ship agency, port services, Turkish Straits specialist
-- TRoyTR™ (troytradingagency@gmail.com) — Global trade intermediary, logistics, compliance
-- TRoyGo™ (troytravelagency@gmail.com) — AI-powered online travel agency
-- TRoy Media Agency™ (troymediagency@gmail.com) — Creative content & media
-- The TRoy Garage™ (thetroygarage@gmail.com) — Creative lab & R&D
-- TRoy Group™ Corporate (groupoftroy@gmail.com) — Corporate umbrella
-- Personal/CEO (ertangovdeli@gmail.com) — Ertan Govdeli, Founder & CEO
-
-Analyse this email and respond ONLY with valid JSON (no markdown, no backticks):
-
-From: ${email.from} <${email.fromAddr}>
-Subject: ${email.subject}
-Snippet: ${email.snippet}
-
-Return JSON with these exact fields:
-{
-  "priority": "urgent|high|normal|low",
-  "division": "TRoyMAR™|TRoyTR™|TRoyGo™|Corporate|Media|Garage|Personal",
-  "type": "vessel_inquiry|trade_inquiry|booking|partnership|legal|financial|marketing|spam|notification|other",
-  "summary": "2 sentence summary of what this email is about",
-  "action": "What action should be taken",
-  "draft": "A professional draft reply in the correct TRoy brand voice (3-5 sentences). Start with Dear [Name],"
-}`;
-
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[{role:'user',content:prompt}]
-      })
-    });
-
+    const prompt=`You are the AI assistant for TRoy Group™. Divisions: TRoyMAR™(ship agency,port services,Turkish Straits), TRoyTR™(global trade,logistics,compliance), TRoyGo™(online travel,AI Trip Creator), Corporate(partnerships,B2B), Media(creative content,YouTube), Garage(creative lab), Personal(CEO Ertan Govdeli).
+Email - From: ${e.from} <${e.fromAddr}> Subject: ${e.subject} Preview: ${e.snippet}
+Reply ONLY with JSON (no markdown): {"priority":"urgent|high|normal|low","division":"TRoyMAR™|TRoyTR™|TRoyGo™|Corporate|Media|Garage|Personal","type":"vessel_inquiry|trade_inquiry|booking|partnership|legal|financial|marketing|spam|notification|other","summary":"2 sentence summary","action":"recommended action","draft":"professional reply 3-4 sentences starting Dear [Name],"}`;
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,messages:[{role:'user',content:prompt}]})});
     const data=await resp.json();
-    const text=data.content?.[0]?.text||'{}';
-    const clean=text.replace(/```json|```/g,'').trim();
-    const result=JSON.parse(clean);
-
-    email.priority=result.priority||'normal';
-    email.division=result.division||'Personal';
-    email.type=result.type||'other';
-    email.analysis=result.summary+'\n\n📌 Action: '+result.action;
-    email.draft=result.draft||'';
-    analysed++;
-  }catch(e){
-    email.priority='normal';
-    email.division='Personal';
-    email.type='other';
-    email.analysis='Could not analyse this email.';
-    email.draft='';
-  }
+    const result=JSON.parse((data.content?.[0]?.text||'{}').replace(/```json|```/g,'').trim());
+    e.priority=result.priority||'normal';e.division=result.division||'Personal';
+    e.type=result.type||'other';e.analysis=result.summary+'\n\n📌 '+result.action;
+    e.draft=result.draft||'';analysed++;
+  }catch(err){e.priority='normal';e.division='Personal';e.type='other';e.analysis='Analysis failed.';e.draft='';}
 }
 
-// ─── RENDER ───────────────────────────────────────────────────────────────────
 function render(){
   const c=document.getElementById('email-container');
   if(!filtered.length){showEmpty();return;}
-  c.innerHTML='<div class="email-list">'+filtered.map((e,i)=>emailCard(e,i)).join('')+'</div>';
+  c.innerHTML='<div class="email-list">'+filtered.map(e=>card(e)).join('')+'</div>';
 }
 
-function emailCard(e,i){
-  const pBadge=e.priority?`<span class="badge b-${e.priority}">${priIcon(e.priority)} ${e.priority}</span>`:'';
-  const dBadge=e.division?`<span class="badge b-div">${e.division}</span>`:'';
-  const tBadge=e.type?`<span class="badge b-type">${e.type.replace(/_/g,' ')}</span>`:'';
-  const urgent=e.priority==='urgent'?' urgent-card':'';
-  const open=e.open?' open':'';
-
-  return `<div class="ecard${urgent}${open}" id="ec-${e.id}">
-    <div onclick="toggleEmail('${e.id}')">
-      <div class="ecard-top">
-        <div class="efrom">${esc(e.from)}</div>
-        <div class="esubj">${esc(e.subject)}</div>
-        <div class="etime">${e.date}</div>
-      </div>
-      ${e.priority?`<div class="emeta">${pBadge}${dBadge}${tBadge}</div>`:''}
+function card(e){
+  const pi={urgent:'🔴',high:'🟡',normal:'🔵',low:'⚪'};
+  const pB=e.priority?`<span class="badge b-${e.priority}">${pi[e.priority]||''} ${e.priority}</span>`:'';
+  const dB=e.division?`<span class="badge b-div">${e.division}</span>`:'';
+  const tB=e.type?`<span class="badge b-type">${e.type.replace(/_/g,' ')}</span>`:'';
+  return `<div class="ecard${e.priority==='urgent'?' urgent-card':''}${e.open?' open':''}" id="ec-${e.id}">
+  <div onclick="tog('${e.id}')">
+    <div class="ecard-top">
+      <div class="efrom">${esc(e.from)}</div>
+      <div class="esubj">${esc(e.subject)}</div>
+      <div class="etime">${e.date}</div>
     </div>
-    <div class="ebody">
-      <div class="esnippet">${esc(e.snippet)}</div>
-      ${!e.analysis?`<button class="analyse-one" onclick="analyseOne('${e.id}')">🤖 Analyse with AI</button>`:''}
-      <span class="analysing-text" id="analysing-${e.id}"></span>
-      ${e.analysis?`
-      <div class="ai-box">
-        <div class="ai-box-label">🤖 AI Analysis</div>
-        <div class="ai-box-text">${esc(e.analysis)}</div>
-        ${e.draft?`
-        <div style="margin-top:10px">
-          <div class="draft-label">✉️ Draft Reply</div>
-          <div class="draft-box" id="draft-${e.id}">${esc(e.draft)}</div>
-          <button class="copy-btn" onclick="copyDraft('${e.id}')">Copy Draft</button>
-        </div>`:''}
-      </div>`:''}
-    </div>
-  </div>`;
+    ${e.priority?`<div class="emeta">${pB}${dB}${tB}</div>`:''}
+  </div>
+  <div class="ebody">
+    <div class="esnippet">${esc(e.snippet)}</div>
+    ${!e.analysis?`<button class="analyse-one" onclick="event.stopPropagation();anlzOne('${e.id}')">🤖 Analyse with AI</button>`:''}
+    <span id="sp-${e.id}" style="font-size:11px;color:var(--muted);font-style:italic;"></span>
+    ${e.analysis?`<div class="ai-box"><div class="ai-box-label">🤖 AI Analysis</div><div class="ai-box-text">${esc(e.analysis)}</div>${e.draft?`<div class="draft-label">✉️ Draft Reply</div><div class="draft-box" id="dr-${e.id}">${esc(e.draft)}</div><button class="copy-btn" onclick="event.stopPropagation();cpDraft('${e.id}')">📋 Copy Draft</button>`:''}
+    </div>`:''}
+  </div></div>`;
 }
 
-function toggleEmail(id){
-  const e=emails.find(x=>x.id===id);
-  if(e){e.open=!e.open; applyFilter();}
+function tog(id){const e=emails.find(x=>x.id===id);if(e){e.open=!e.open;applyFilter();}}
+async function anlzOne(id){
+  const e=emails.find(x=>x.id===id);if(!e)return;
+  const sp=document.getElementById('sp-'+id);if(sp)sp.textContent='⏳ Analysing...';
+  await analyseEmail(e);applyFilter();updateStats();toast('✅ Analysed!');
 }
-
-async function analyseOne(id){
-  const e=emails.find(x=>x.id===id);
-  if(!e)return;
-  const span=document.getElementById(`analysing-${id}`);
-  if(span)span.textContent='Analysing...';
-  await analyseEmail(e);
-  applyFilter(); updateStats();
-  toast('✅ Email analysed!');
-}
-
-function copyDraft(id){
-  const el=document.getElementById('draft-'+id);
-  if(el){navigator.clipboard.writeText(el.textContent); toast('✅ Draft copied!');}
-}
-
-// ─── FILTER ───────────────────────────────────────────────────────────────────
+function cpDraft(id){const el=document.getElementById('dr-'+id);if(el){navigator.clipboard.writeText(el.textContent);toast('✅ Draft copied!');}}
 function applyFilter(){
-  const p=document.getElementById('pri-filter').value;
-  const d=document.getElementById('div-filter').value;
-  filtered=emails.filter(e=>{
-    const pm=p==='all'||e.priority===p;
-    const dm=d==='all'||e.division===d;
-    return pm&&dm;
-  });
-  render();
+  const p=document.getElementById('pri-filter').value,d=document.getElementById('div-filter').value;
+  filtered=emails.filter(e=>(p==='all'||e.priority===p)&&(d==='all'||e.division===d));render();
 }
-
-function selAcct(acct,el){
-  document.querySelectorAll('.acct').forEach(x=>x.classList.remove('active'));
-  el.classList.add('active');
-  toast(`ℹ️ To read ${acct==='me'?'your inbox':acct}, sign in to that Gmail account and return here.`);
-}
-
-// ─── STATS ────────────────────────────────────────────────────────────────────
 function updateStats(){
   document.getElementById('s-total').textContent=emails.length||'—';
   document.getElementById('s-urgent').textContent=emails.filter(e=>e.priority==='urgent').length||'—';
   document.getElementById('s-high').textContent=emails.filter(e=>e.priority==='high').length||'—';
   document.getElementById('s-analysed').textContent=analysed||'—';
 }
-
-// ─── HELPERS ──────────────────────────────────────────────────────────────────
-function showLoading(msg){
-  document.getElementById('email-container').innerHTML=
-    `<div class="loading-wrap"><div class="spinner"></div><div class="loading-txt">${msg}</div></div>`;
-}
-function showEmpty(){
-  document.getElementById('email-container').innerHTML=
-    `<div class="empty"><div class="empty-icon">📭</div>
-    <div class="empty-title">No emails found</div>
-    <div class="empty-sub">Connect Gmail or adjust your filters</div></div>`;
-}
+function selAcct(el,name){document.querySelectorAll('.acct').forEach(x=>x.classList.remove('active'));el.classList.add('active');toast('ℹ️ Sign into '+name+' and reconnect to read that inbox');}
+function showLoading(msg){document.getElementById('email-container').innerHTML=`<div class="loading-wrap"><div class="spinner"></div><div class="loading-txt">${msg}</div></div>`;}
+function showEmpty(){document.getElementById('email-container').innerHTML=`<div class="empty"><div class="empty-icon">📭</div><div class="empty-title">No emails</div><div class="empty-sub">Connect Gmail or adjust filters</div></div>`;}
 function parseName(s){return s.replace(/<.*>/,'').replace(/"/g,'').trim()||s.split('@')[0];}
 function parseAddr(s){const m=s.match(/<(.+)>/);return m?m[1]:s;}
-function fmtDate(s){
-  if(!s)return '';
-  const d=new Date(s);
-  const now=new Date();
-  if(d.toDateString()===now.toDateString())return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-  return d.toLocaleDateString([],{month:'short',day:'numeric'});
-}
-function priIcon(p){return{urgent:'🔴',high:'🟡',normal:'🔵',low:'⚪'}[p]||'';}
+function fmtDate(s){if(!s)return'';try{const d=new Date(s),n=new Date();return d.toDateString()===n.toDateString()?d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}):d.toLocaleDateString([],{month:'short',day:'numeric'});}catch{return'';}}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function toast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3000);
-}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3500);}
 </script>
 </body>
 </html>
