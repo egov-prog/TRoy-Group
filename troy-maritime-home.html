@@ -1,546 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TRoyMAR™ — TRoy Maritime Agency™ | Ship Agency & Port Services Worldwide</title>
-<meta name="description" content="TRoyMAR™ — Full-service ship agency, port services and maritime operations. Turkish Straits specialist. 58+ global ports. 30+ years experience. Darwin, Australia.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --navy:#0d1b2e;--navy2:#112240;--navy3:#1a3356;
-  --gold:#c9a84c;--gold2:#e8c97a;--gold3:#f5e6b8;
-  --white:#f8f5ef;--text:#c8c4bc;--muted:#7a8899;
-  --green:#4caf82;--red:#e05c5c;--amber:#e0a84c;
-}
-*{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--navy);color:var(--text);font-family:'Barlow',sans-serif;font-weight:300;}
-a{color:inherit;text-decoration:none;}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRoy Maritime Agency™ | TRoyMAR™</title>
+  <meta name="description" content="TRoy Maritime Agency™ (TRoyMAR™) provides integrated maritime, port agency and logistics solutions worldwide.">
+  <style>
+    :root {
+      --primary: #004b7f;
+      --primary-light: #0b6fb5;
+      --accent: #00a3c4;
+      --bg-alt: #f4f7fb;
+      --text: #1f2933;
+      --muted: #6b7280;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #ffffffee;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .nav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .brand-text span:first-child {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .brand-text span:last-child {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .menu {
+      display: flex;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+    }
+    .menu a {
+      padding-bottom: 0.2rem;
+      border-bottom: 2px solid transparent;
+      color: var(--muted);
+    }
+    .menu a:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    .hero {
+      background: radial-gradient(circle at top left, #e0f2fe, transparent 55%),
+                  radial-gradient(circle at bottom right, #e0f7fa, transparent 55%);
+      padding: 4rem 1.5rem 3.5rem;
+    }
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 3vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      color: var(--muted);
+      max-width: 540px;
+    }
+    .hero-actions {
+      margin-top: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
+    }
+    .btn-primary:hover { background: var(--primary-light); }
+    .btn-secondary {
+      background: #fff;
+      color: var(--primary);
+      border-color: #d1d5db;
+    }
+    .btn-secondary:hover { border-color: var(--primary); }
+    .hero-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.75rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      max-width: 320px;
+      margin-left: auto;
+    }
+    .hero-card h2 { margin-bottom: 0.5rem; font-size: 1.25rem; }
+    .hero-card p { color: var(--muted); font-size: 0.9rem; }
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 40px;height:68px;display:flex;align-items:center;
-  justify-content:space-between;background:rgba(13,27,46,.95);backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(201,168,76,.15);}
-.nav-brand{display:flex;align-items:center;gap:10px;}
-.nav-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--gold);}
-.nav-logo span{color:var(--white);}
-.nav-tagline{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);}
-.nav-links{display:flex;align-items:center;gap:28px;}
-.nav-links a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text);transition:color .2s;}
-.nav-links a:hover{color:var(--gold);}
-.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);
-  padding:8px 18px;border-radius:6px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;}
-.nav-cta:hover{opacity:.9;}
-.nav-mobile{display:none;}
+    .section {
+      padding: 3.5rem 1.5rem;
+    }
+    .section-alt { background: var(--bg-alt); }
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .section-intro {
+      max-width: 640px;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+    .highlight-box {
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 1.5rem 1.75rem;
+    }
+    .highlight-box h3 { margin-bottom: 0.5rem; }
+    .highlight-box ul {
+      margin-left: 1.1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 1.5rem;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+    }
+    .card h3 { margin-bottom: 0.5rem; }
+    .card p { color: var(--muted); font-size: 0.9rem; }
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;
-  background:linear-gradient(135deg,var(--navy) 0%,#0a1f3d 50%,#091829 100%);padding:0 40px;padding-top:68px;}
-.hero-bg{position:absolute;inset:0;opacity:.06;
-  background-image:repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(201,168,76,.3) 60px,rgba(201,168,76,.3) 61px),
-  repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(201,168,76,.3) 60px,rgba(201,168,76,.3) 61px);}
-.hero-glow{position:absolute;top:-20%;left:-10%;width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,168,76,.08) 0%,transparent 70%);pointer-events:none;}
-.hero-content{max-width:720px;position:relative;z-index:1;}
-.hero-eyebrow{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;
-  display:flex;align-items:center;gap:10px;}
-.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold);}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,64px);font-weight:700;
-  color:var(--white);line-height:1.1;margin-bottom:24px;}
-.hero-title em{color:var(--gold);font-style:normal;}
-.hero-desc{font-size:16px;color:var(--text);line-height:1.8;max-width:540px;margin-bottom:36px;}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
-.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);
-  padding:13px 28px;border-radius:8px;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;}
-.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.3);}
-.btn-outline{border:1px solid rgba(201,168,76,.4);color:var(--gold);
-  padding:13px 28px;border-radius:8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;}
-.btn-outline:hover{background:rgba(201,168,76,.08);}
-.hero-stats{display:flex;gap:40px;margin-top:52px;padding-top:40px;border-top:1px solid rgba(201,168,76,.15);}
-.hstat{text-align:center;}
-.hstat-n{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold);}
-.hstat-l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+    .regions {
+      columns: 2;
+      margin-left: 1.1rem;
+      color: var(--text);
+    }
+    .note {
+      margin-top: 1.5rem;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 1.25rem 1.5rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
 
-/* SECTIONS */
-section{padding:80px 40px;}
-.sec-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,42px);font-weight:600;color:var(--white);margin-bottom:16px;}
-.sec-sub{font-size:15px;color:var(--muted);line-height:1.7;max-width:540px;}
-.sec-header{margin-bottom:48px;}
-.inner{max-width:1200px;margin:0 auto;}
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 2.5rem;
+    }
+    .contact-box {
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 1.5rem 1.75rem;
+      font-size: 0.9rem;
+    }
+    .contact-box p { margin-bottom: 0.75rem; }
 
-/* SERVICES */
-.services-bg{background:var(--navy2);}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
-.svc-card{background:rgba(10,22,40,.6);border:1px solid rgba(201,168,76,.1);border-radius:12px;padding:28px;
-  transition:all .3s;}
-.svc-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-3px);}
-.svc-icon{font-size:28px;margin-bottom:16px;}
-.svc-title{font-family:'Playfair Display',serif;font-size:17px;color:var(--white);margin-bottom:8px;}
-.svc-desc{font-size:13px;color:var(--muted);line-height:1.7;}
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 1.5rem 1.5rem 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
 
-/* FULL SERVICES LIST */
-.full-services{columns:2;gap:32px;}
-.fs-category{break-inside:avoid;margin-bottom:32px;}
-.fs-cat-title{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
-  margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.15);}
-.fs-item{font-size:13px;color:var(--text);padding:5px 0;border-bottom:1px solid rgba(255,255,255,.04);
-  display:flex;align-items:center;gap:8px;}
-.fs-item::before{content:'→';color:var(--gold);font-size:11px;flex-shrink:0;}
-
-/* SECTORS */
-.sectors-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;}
-.sector-card{background:var(--navy2);border:1px solid rgba(201,168,76,.1);border-radius:10px;
-  padding:20px;text-align:center;transition:all .2s;}
-.sector-card:hover{border-color:rgba(201,168,76,.3);}
-.sector-icon{font-size:26px;margin-bottom:8px;}
-.sector-name{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text);}
-
-/* NEWS */
-.news-bg{background:var(--navy2);}
-.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
-.news-card{background:rgba(10,22,40,.7);border:1px solid rgba(201,168,76,.1);border-radius:12px;
-  padding:24px;transition:all .2s;}
-.news-card:hover{border-color:rgba(201,168,76,.25);}
-.news-badge{display:inline-block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-  padding:3px 10px;border-radius:10px;margin-bottom:12px;}
-.badge-advisory{background:rgba(224,168,76,.15);color:var(--amber);border:1px solid rgba(224,168,76,.2);}
-.badge-ops{background:rgba(76,143,175,.15);color:#4c8faf;border:1px solid rgba(76,143,175,.2);}
-.badge-port{background:rgba(76,175,130,.12);color:var(--green);border:1px solid rgba(76,175,130,.2);}
-.news-title{font-family:'Playfair Display',serif;font-size:16px;color:var(--white);margin-bottom:8px;line-height:1.4;}
-.news-date{font-size:11px;color:var(--muted);}
-.news-snippet{font-size:12px;color:var(--muted);line-height:1.6;margin-top:8px;}
-
-/* TRACKER */
-.tracker-wrap{background:rgba(10,22,40,.8);border:1px solid rgba(201,168,76,.15);border-radius:14px;overflow:hidden;}
-.tracker-header{padding:16px 24px;background:rgba(201,168,76,.06);border-bottom:1px solid rgba(201,168,76,.12);
-  display:flex;align-items:center;gap:12px;}
-.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(76,175,130,.6);
-  animation:blink 2s infinite;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-.tracker-label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);}
-.tracker-frame{width:100%;height:500px;border:none;display:block;}
-.tracker-link{display:block;padding:14px 24px;background:rgba(201,168,76,.05);border-top:1px solid rgba(201,168,76,.1);
-  font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);text-align:center;transition:background .2s;}
-.tracker-link:hover{background:rgba(201,168,76,.1);}
-
-/* CTA */
-.cta-sec{background:linear-gradient(135deg,#0a1f3d,var(--navy2));border-top:1px solid rgba(201,168,76,.1);}
-.cta-inner{text-align:center;max-width:600px;margin:0 auto;}
-.cta-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,40px);color:var(--white);margin-bottom:16px;}
-.cta-sub{font-size:15px;color:var(--muted);margin-bottom:32px;line-height:1.7;}
-.cta-contact{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
-.contact-item{font-size:13px;color:var(--muted);}
-.contact-item a{color:var(--gold);}
-
-/* FOOTER */
-footer{background:#080f1a;border-top:1px solid rgba(201,168,76,.1);padding:60px 40px 30px;}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto 40px;}
-.footer-brand-name{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);margin-bottom:4px;}
-.footer-brand-name span{color:var(--white);}
-.footer-brand-tagline{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
-.footer-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;}
-.footer-contact{font-size:12px;color:var(--muted);line-height:2;}
-.footer-contact a{color:var(--gold);}
-.footer-col-title{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-.footer-links{list-style:none;}
-.footer-links li{margin-bottom:8px;}
-.footer-links a{font-size:13px;color:var(--muted);transition:color .2s;}
-.footer-links a:hover{color:var(--white);}
-.footer-bottom{max-width:1200px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);
-  display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);}
-.footer-badges{display:flex;gap:16px;flex-wrap:wrap;}
-.fbadge{font-size:10px;padding:4px 10px;border-radius:10px;background:rgba(201,168,76,.08);color:var(--gold);
-  border:1px solid rgba(201,168,76,.15);}
-
-/* STANDARDS BAR */
-.standards{padding:20px 40px;background:rgba(201,168,76,.04);border-bottom:1px solid rgba(201,168,76,.1);}
-.standards-inner{max-width:1200px;margin:0 auto;display:flex;gap:28px;flex-wrap:wrap;justify-content:center;}
-.std-item{font-size:11px;letter-spacing:.08em;color:var(--muted);display:flex;align-items:center;gap:6px;}
-.std-item::before{content:'✓';color:var(--gold);}
-
-@media(max-width:900px){
-  .footer-grid{grid-template-columns:1fr 1fr;}
-  .full-services{columns:1;}
-  nav{padding:0 20px;}
-  .nav-links{display:none;}
-  .nav-mobile{display:block;}
-  section{padding:60px 20px;}
-  .hero{padding:100px 20px 60px;}
-  .hero-stats{gap:20px;flex-wrap:wrap;}
-  .footer-bottom{flex-direction:column;gap:12px;text-align:center;}
-}
-</style>
+    @media (max-width: 900px) {
+      .hero-inner,
+      .two-col,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-card { margin: 2rem 0 0; }
+      .regions { columns: 1; }
+    }
+  </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav id="top">
-  <div class="nav-brand">
-    <div>
-      <div class="nav-logo">TRoyMAR™ <span>— TRoy Maritime Agency™</span></div>
-      <div class="nav-tagline">Darwin, Australia · Worldwide Operations</div>
-    </div>
-  </div>
-  <div class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#sectors">Sectors</a>
-    <a href="#network">Network</a>
-    <a href="#news">News</a>
-    <a href="#tracker">Live Tracker</a>
-    <a href="#contact">Contact</a>
-    <a href="mailto:troymaritimeagency@gmail.com" class="nav-cta">Request PDA</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">TRoyMAR™ — Turkish Straits Specialist</div>
-    <h1 class="hero-title">We handle everything<br>for your vessel — <em>worldwide.</em></h1>
-    <p class="hero-desc">Full-service ship agency, port services and maritime operations for all vessel types. Fast, transparent and available around the clock at 58+ global ports.</p>
-    <div class="hero-btns">
-      <a href="mailto:troymaritimeagency@gmail.com" class="btn-gold">✉️ Request a PDA</a>
-      <a href="#services" class="btn-outline">Our Services</a>
-    </div>
-    <div class="hero-stats">
-      <div class="hstat"><div class="hstat-n">30+</div><div class="hstat-l">Years Experience</div></div>
-      <div class="hstat"><div class="hstat-n">58+</div><div class="hstat-l">Ports Covered</div></div>
-      <div class="hstat"><div class="hstat-n">All</div><div class="hstat-l">Vessel Types</div></div>
-      <div class="hstat"><div class="hstat-n">24/7</div><div class="hstat-l">Always Available</div></div>
-      <div class="hstat"><div class="hstat-n">2hr</div><div class="hstat-l">PDA Response</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- STANDARDS BAR -->
-<div class="standards">
-  <div class="standards-inner">
-    <div class="std-item">FONASBA Standards</div>
-    <div class="std-item">IMO Compliant</div>
-    <div class="std-item">BIMCO Agreements</div>
-    <div class="std-item">Transparent Pricing</div>
-    <div class="std-item">Pre-payment Policy</div>
-    <div class="std-item">Global Sub-Agent Network</div>
-  </div>
-</div>
-
-<!-- SERVICES -->
-<section id="services" class="services-bg">
-  <div class="inner">
-    <div class="sec-header">
-      <div class="sec-eyebrow">What We Do</div>
-      <h2 class="sec-title">Our Services</h2>
-      <p class="sec-sub">Everything your vessel needs in port — handled professionally, transparently, and on time.</p>
-    </div>
-    <div class="services-grid">
-      <div class="svc-card"><div class="svc-icon">🛂</div><div class="svc-title">Port Clearance & Customs</div><div class="svc-desc">Full arrival and departure clearance. We handle customs, immigration and all port authority paperwork for any vessel at any port.</div></div>
-      <div class="svc-card"><div class="svc-icon">🤝</div><div class="svc-title">Husbandry Services</div><div class="svc-desc">Everything your vessel needs while in port — fresh water, provisions, medical, mail and all crew requirements, coordinated and delivered.</div></div>
-      <div class="svc-card"><div class="svc-icon">👥</div><div class="svc-title">Crew Change & Shore Passes</div><div class="svc-desc">End-to-end crew change management. Immigration, shore passes, transport, hotels and all documentation handled smoothly.</div></div>
-      <div class="svc-card"><div class="svc-icon">🛒</div><div class="svc-title">Provisions & Ship Supplies</div><div class="svc-desc">Sourcing and delivery of food, stores and all vessel supplies. Payment received first — we procure, you receive.</div></div>
-      <div class="svc-card"><div class="svc-icon">🔧</div><div class="svc-title">Repairs Coordination</div><div class="svc-desc">Finding and coordinating qualified technicians and workshops for any repair or maintenance at any port worldwide.</div></div>
-      <div class="svc-card"><div class="svc-icon">⚓</div><div class="svc-title">Pilotage & Tugboat</div><div class="svc-desc">Coordinating pilots, tugs, anchoring and all navigation assistance for safe and compliant port entry and departure.</div></div>
-      <div class="svc-card"><div class="svc-icon">⛵</div><div class="svc-title">Launch & Agent Boat</div><div class="svc-desc">Professional agent boat service for crew transfers, document delivery, pilot boarding and anchorage-to-shore requirements.</div></div>
-      <div class="svc-card"><div class="svc-icon">📋</div><div class="svc-title">PDA / FDA Accounts</div><div class="svc-desc">Clear proforma and final disbursement accounts. Every cost itemised before your vessel arrives. Full transparency, no surprises.</div></div>
-    </div>
-
-    <!-- FULL SERVICE LIST -->
-    <div style="margin-top:52px;">
-      <div class="sec-eyebrow" style="margin-bottom:24px;">Complete Services Portfolio</div>
-      <div class="full-services">
-        <div class="fs-category">
-          <div class="fs-cat-title">🚢 Port Agency & Transit</div>
-          <div class="fs-item">Port agency (owners, charterers, ship managers)</div>
-          <div class="fs-item">Canal & strait transit (Bosphorus, Dardanelles, Suez, Panama)</div>
-          <div class="fs-item">Pre-arrival & post-departure documentation</div>
-          <div class="fs-item">Berth coordination & scheduling</div>
-          <div class="fs-item">Pilotage & tugboat arrangement</div>
-          <div class="fs-item">Mooring & unmooring services</div>
-          <div class="fs-item">Statement of Facts (SoF) preparation</div>
-        </div>
-        <div class="fs-category">
-          <div class="fs-cat-title">📄 Documentation & Legal</div>
-          <div class="fs-item">Ship registration & flag state documentation</div>
-          <div class="fs-item">Bills of Lading & cargo manifests</div>
-          <div class="fs-item">Customs & immigration documentation</div>
-          <div class="fs-item">Preliminary & Final Disbursement Accounts (PDA/FDA)</div>
-          <div class="fs-item">Certificates of Entry/Clearance</div>
-          <div class="fs-item">Notices of Readiness (NOR)</div>
-          <div class="fs-item">Protest letters & surveys</div>
-        </div>
-        <div class="fs-category">
-          <div class="fs-cat-title">👨‍✈️ Crew Services</div>
-          <div class="fs-item">Crew changes coordination</div>
-          <div class="fs-item">Crew repatriation & travel arrangements</div>
-          <div class="fs-item">Visa & immigration assistance</div>
-          <div class="fs-item">Medical assistance & hospital coordination</div>
-          <div class="fs-item">Crew cash advances</div>
-          <div class="fs-item">Crew welfare services</div>
-        </div>
-        <div class="fs-category">
-          <div class="fs-cat-title">⚓ Vessel & Technical</div>
-          <div class="fs-item">Ship chandling (provisions, stores, spare parts)</div>
-          <div class="fs-item">Bunkering (IFO, MGO, MDO, lubricants)</div>
-          <div class="fs-item">Fresh water supply</div>
-          <div class="fs-item">Ship repairs & maintenance coordination</div>
-          <div class="fs-item">Underwater hull cleaning</div>
-          <div class="fs-item">Waste disposal & MARPOL compliance</div>
-          <div class="fs-item">Dry dock coordination</div>
-        </div>
-        <div class="fs-category">
-          <div class="fs-cat-title">📦 Cargo Operations</div>
-          <div class="fs-item">Cargo loading/discharging supervision</div>
-          <div class="fs-item">Stevedore coordination</div>
-          <div class="fs-item">Cargo surveys & damage reporting</div>
-          <div class="fs-item">Freight forwarding</div>
-          <div class="fs-item">Container operations</div>
-        </div>
-        <div class="fs-category">
-          <div class="fs-cat-title">🛡️ Protecting Agency</div>
-          <div class="fs-item">Owner's protective agent services</div>
-          <div class="fs-item">P&I Club liaison & coordination</div>
-          <div class="fs-item">Salvage & emergency response</div>
-          <div class="fs-item">24/7 vessel tracking & daily reports</div>
-          <div class="fs-item">ETA/ETD monitoring & reporting</div>
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="brand-logo">TM</div>
+        <div class="brand-text">
+          <span>TRoy Maritime Agency™</span>
+          <span>TRoyMAR™</span>
         </div>
       </div>
+      <nav class="menu">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#network">Global Network</a>
+        <a href="#sustainability">Sustainability</a>
+        <a href="#contact">Contact</a>
+        <a href="troy-group-main.html">TRoy Group™</a>
+      </nav>
     </div>
-  </div>
-</section>
+  </header>
 
-<!-- SECTORS -->
-<section id="sectors">
-  <div class="inner">
-    <div class="sec-header">
-      <div class="sec-eyebrow">Who We Serve</div>
-      <h2 class="sec-title">All Vessel Types</h2>
-      <p class="sec-sub">From supertankers to superyachts — we serve every type of vessel and operation, worldwide.</p>
-    </div>
-    <div class="sectors-grid">
-      <div class="sector-card"><div class="sector-icon">🛢️</div><div class="sector-name">Tanker</div></div>
-      <div class="sector-card"><div class="sector-icon">⚓</div><div class="sector-name">Dry Bulk</div></div>
-      <div class="sector-card"><div class="sector-icon">📦</div><div class="sector-name">Container / Liner</div></div>
-      <div class="sector-card"><div class="sector-icon">🚢</div><div class="sector-name">Cruise</div></div>
-      <div class="sector-card"><div class="sector-icon">🔥</div><div class="sector-name">LNG / Gas</div></div>
-      <div class="sector-card"><div class="sector-icon">🛳️</div><div class="sector-name">Offshore & Energy</div></div>
-      <div class="sector-card"><div class="sector-icon">⛵</div><div class="sector-name">Yacht & Leisure</div></div>
-      <div class="sector-card"><div class="sector-icon">🎖️</div><div class="sector-name">Government / Navy</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- NEWS -->
-<section id="news" class="news-bg">
-  <div class="inner">
-    <div class="sec-header">
-      <div class="sec-eyebrow">Stay Informed</div>
-      <h2 class="sec-title">News & Advisories</h2>
-      <p class="sec-sub">Port updates, strait conditions and maritime alerts that affect your operations.</p>
-    </div>
-    <div class="news-grid">
-      <div class="news-card">
-        <span class="news-badge badge-advisory">🌊 Port Advisory</span>
-        <div class="news-title">Çanakkale Strait — Spring Traffic Management Update</div>
-        <div class="news-date">April 2026</div>
-        <div class="news-snippet">Seasonal traffic management measures in effect at the Dardanelles. TRoyMAR™ monitoring all transit windows closely. Contact us for latest conditions.</div>
-      </div>
-      <div class="news-card">
-        <span class="news-badge badge-ops">🛢️ Operations</span>
-        <div class="news-title">Bosphorus — Northbound Traffic Advisory April 2026</div>
-        <div class="news-date">April 2026</div>
-        <div class="news-snippet">Increased tanker traffic northbound through the Bosphorus. Average transit times slightly elevated. Early booking of pilots recommended.</div>
-      </div>
-      <div class="news-card">
-        <span class="news-badge badge-port">🦘 Darwin Port</span>
-        <div class="news-title">Darwin Port — New Berth Allocation System Live</div>
-        <div class="news-date">April 2026</div>
-        <div class="news-snippet">Darwin Port has launched its updated berth allocation system. TRoyMAR™ is fully integrated. PDA requests for Darwin Port can be processed faster than ever.</div>
-      </div>
-      <div class="news-card">
-        <span class="news-badge badge-advisory">🇪🇬 Suez Canal</span>
-        <div class="news-title">Suez Canal — April 2026 Convoy Schedule Issued</div>
-        <div class="news-date">April 2026</div>
-        <div class="news-snippet">The Suez Canal Authority has issued updated convoy scheduling for April. Contact TRoyMAR™ for transit coordination and up-to-date PDA estimates.</div>
-      </div>
-      <div class="news-card">
-        <span class="news-badge badge-ops">🌍 Middle East</span>
-        <div class="news-title">Strait of Hormuz — LNG Transit Activity Elevated</div>
-        <div class="news-date">April 2026</div>
-        <div class="news-snippet">LNG transit activity through the Strait of Hormuz remains elevated. Our sub-agent network ensures full coverage and fast turnaround times for all vessel types.</div>
-      </div>
-      <div class="news-card">
-        <span class="news-badge badge-port">🇲🇾 Malacca Strait</span>
-        <div class="news-title">Malacca Strait — Traffic Management Update</div>
-        <div class="news-date">April 2026</div>
-        <div class="news-snippet">Updated traffic separation schemes in the Malacca Strait. TRoyMAR™ sub-agents at all Malaysian and Singaporean ports are fully briefed on the new procedures.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- NETWORK -->
-<section id="network">
-  <div class="inner">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+  <section class="hero">
+    <div class="hero-inner">
       <div>
-        <div class="sec-eyebrow">Global Reach</div>
-        <h2 class="sec-title">Our Network</h2>
-        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:24px;">
-          TRoyMAR™ is a Darwin-based ship agency with over 30 years of hands-on maritime experience, 
-          specialising in the Turkish Straits region. We operate digitally — keeping our costs low 
-          and our response times fast.
+        <h1>Integrated Maritime & Port Agency Solutions</h1>
+        <p>
+          TRoy Maritime Agency™ (TRoyMAR™) supports ship owners, operators and cargo interests
+          with reliable, compliant and efficient services at key ports worldwide.
         </p>
-        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:32px;">
-          Our global sub-agent network means your vessel is covered at 58+ ports worldwide — 
-          with professional local knowledge at every port call.
-        </p>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-          <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.1);border-radius:10px;padding:20px;text-align:center;">
-            <div style="font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);">30+</div>
-            <div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;">Years Experience</div>
-          </div>
-          <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.1);border-radius:10px;padding:20px;text-align:center;">
-            <div style="font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);">58+</div>
-            <div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;">Ports in Network</div>
-          </div>
-          <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.1);border-radius:10px;padding:20px;text-align:center;">
-            <div style="font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);">24/7</div>
-            <div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;">Always Reachable</div>
-          </div>
-          <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.1);border-radius:10px;padding:20px;text-align:center;">
-            <div style="font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);">2hr</div>
-            <div style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px;">PDA Turnaround</div>
-          </div>
+        <div class="hero-actions">
+          <a href="#services" class="btn btn-primary">Explore services</a>
+          <a href="#contact" class="btn btn-secondary">Operations contact</a>
         </div>
       </div>
+      <div class="hero-card">
+        <h2>24/7 Port Call Management</h2>
+        <p>
+          Real-time coordination, transparent reporting and on-time vessel turnaround for liner,
+          tramp and project calls.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="section-inner two-col">
       <div>
-        <div style="background:var(--navy2);border:1px solid rgba(201,168,76,.1);border-radius:14px;padding:32px;">
-          <div style="font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Key Regions</div>
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);">
-              <span style="font-size:14px;color:var(--white);">🇹🇷 Turkish Straits</span><span style="font-size:12px;color:var(--gold);">Specialist</span></div>
-            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);">
-              <span style="font-size:14px;color:var(--white);">🇦🇺 Australia / Darwin</span><span style="font-size:12px;color:var(--gold);">HQ Port</span></div>
-            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);">
-              <span style="font-size:14px;color:var(--white);">🇸🇬 Asia Pacific</span><span style="font-size:12px;color:var(--gold);">Sub-agents</span></div>
-            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);">
-              <span style="font-size:14px;color:var(--white);">🇪🇬 Suez Canal</span><span style="font-size:12px;color:var(--gold);">Sub-agents</span></div>
-            <div style="display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05);">
-              <span style="font-size:14px;color:var(--white);">🌍 Middle East / Gulf</span><span style="font-size:12px;color:var(--gold);">Sub-agents</span></div>
-            <div style="display:flex;justify-content:space-between;padding:12px 0;">
-              <span style="font-size:14px;color:var(--white);">🌎 Americas & Europe</span><span style="font-size:12px;color:var(--gold);">Sub-agents</span></div>
-          </div>
+        <h2>About TRoyMAR™</h2>
+        <p>
+          TRoy Maritime Agency™ focuses on operational excellence, safety and compliance across
+          every port call. We act as your local partner on the ground, coordinating with
+          authorities, terminals and service providers.
+        </p>
+        <p>
+          From pre-arrival planning to post-departure documentation, our team ensures your
+          vessels and cargo move smoothly, with clear communication at every step.
+        </p>
+      </div>
+      <div class="highlight-box">
+        <h3>Why work with TRoyMAR™</h3>
+        <ul>
+          <li>Local expertise with a global mindset</li>
+          <li>Transparent, timely operational updates</li>
+          <li>Compliance-driven processes and documentation</li>
+          <li>24/7 availability for critical operations</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section section-alt">
+    <div class="section-inner">
+      <h2>Services</h2>
+      <p class="section-intro">
+        Comprehensive maritime and logistics solutions tailored to your fleet, cargo and trade lanes.
+      </p>
+      <div class="cards">
+        <article class="card">
+          <h3>Port Agency</h3>
+          <p>Full port call coordination, documentation, husbandry and liaison with port authorities and terminals.</p>
+        </article>
+        <article class="card">
+          <h3>Owner’s Protective Agency</h3>
+          <p>Independent representation to safeguard owners’ and charterers’ interests during port calls.</p>
+        </article>
+        <article class="card">
+          <h3>Crew & Husbandry Services</h3>
+          <p>Crew changes, visas, transport, provisions, CTM and medical assistance arranged with care.</p>
+        </article>
+        <article class="card">
+          <h3>Marine Logistics</h3>
+          <p>Coordination of spares, stores and project cargo with integrated sea, air and land logistics.</p>
+        </article>
+        <article class="card">
+          <h3>Regulatory & Documentation</h3>
+          <p>Support with port documentation, regulatory requirements and reporting to ensure compliance.</p>
+        </article>
+        <article class="card">
+          <h3>Custom Maritime Solutions</h3>
+          <p>Bespoke support for offshore, energy, bulk, tanker and specialized operations.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="network" class="section">
+    <div class="section-inner">
+      <h2>Global Network</h2>
+      <p class="section-intro">
+        TRoyMAR™ operates through a network of trusted partners and representatives in strategic ports and maritime hubs.
+      </p>
+      <ul class="regions">
+        <li>Asia-Pacific</li>
+        <li>Middle East</li>
+        <li>Europe</li>
+        <li>Africa</li>
+        <li>Americas</li>
+      </ul>
+      <div class="note">
+        Share your vessel schedule or project scope and we will confirm local coverage, timelines and cost estimates
+        for each port on your route.
+      </div>
+    </div>
+  </section>
+
+  <section id="sustainability" class="section section-alt">
+    <div class="section-inner two-col">
+      <div>
+        <h2>Sustainability & Compliance</h2>
+        <p>
+          TRoy Maritime Agency™ supports clients’ ESG goals by promoting safe, efficient and responsible operations.
+          We work to minimize delays, optimize port stays and reduce operational risk.
+        </p>
+        <p>
+          Our processes are built around transparency, ethical business practices and continuous improvement.
+        </p>
+      </div>
+      <div class="highlight-box">
+        <h3>Focus areas</h3>
+        <ul>
+          <li>Safety-first culture</li>
+          <li>Regulatory compliance and documentation</li>
+          <li>Ethical and transparent operations</li>
+          <li>Training and continuous improvement</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="section-inner">
+      <h2>Contact operations</h2>
+      <p class="section-intro">
+        For port calls, projects or general enquiries, contact our team with your vessel and port details.
+      </p>
+      <div class="contact-grid">
+        <div class="contact-box">
+          <p><strong>Email:</strong> troymaritimeagency@gmail.com</p>
+          <p><strong>Founder &amp; CEO:</strong> Ertan Govdeli</p>
+          <p><strong>Location:</strong> Darwin, Northern Territory, Australia</p>
+          <p>
+            When contacting us, please include:<br>
+            – Vessel name &amp; IMO<br>
+            – Port &amp; ETA<br>
+            – Required services
+          </p>
+        </div>
+        <div class="contact-box">
+          <p><strong>TRoy Group™ divisions</strong></p>
+          <p><a href="troy-group-main.html">View all TRoy Group™ divisions</a></p>
+          <p><a href="troygo-website.html">TRoyGo™ / TRoy Travel Agency™</a></p>
+          <p><a href="troygar-website.html">TRoy Media Agency™ / TRoyGAR™</a></p>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- LIVE TRACKER -->
-<section id="tracker" style="background:var(--navy2);">
-  <div class="inner">
-    <div class="sec-header">
-      <div class="sec-eyebrow">Live AIS Data</div>
-      <h2 class="sec-title">Global Vessel Tracker</h2>
-      <p class="sec-sub">Live vessel traffic at the world's most important straits and ports — in real time, 24/7.</p>
-    </div>
-    <div class="tracker-wrap">
-      <div class="tracker-header">
-        <div class="live-dot"></div>
-        <div class="tracker-label">Live · Turkish Straits & Global Ports</div>
-      </div>
-      <iframe class="tracker-frame" src="https://www.marinetraffic.com/en/ais/embed/zoom:7/centery:41/centerx:29/maptype:4/shownames:false/mmsi:0/shipid:0/fleet:/fleet_id:/vtypes:/showmenu:/remember:false" loading="lazy" title="Live Vessel Tracker"></iframe>
-      <a href="https://egov-prog.github.io/TRoy-Group/troy-global-tracker.html" class="tracker-link">
-        → Open Full Global Tracker — 58+ Ports
-      </a>
-    </div>
-  </div>
-</section>
+  <footer>
+    © <span id="year"></span> TRoy Maritime Agency™ (TRoyMAR™). All rights reserved.
+  </footer>
 
-<!-- CTA / CONTACT -->
-<section id="contact" class="cta-sec">
-  <div class="inner">
-    <div class="cta-inner">
-      <div class="sec-eyebrow" style="justify-content:center;display:flex;">Make an Enquiry</div>
-      <h2 class="cta-title">Ready to handle your vessel?</h2>
-      <p class="cta-sub">Tell us your vessel and port — we will handle everything from there. PDA response within 2 hours.</p>
-      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-        <a href="mailto:troymaritimeagency@gmail.com" class="btn-gold">✉️ Send an Enquiry</a>
-        <a href="https://wa.me/61476496693" class="btn-outline">💬 WhatsApp Us</a>
-      </div>
-      <div class="cta-contact" style="margin-top:28px;">
-        <span class="contact-item">✉️ <a href="mailto:troymaritimeagency@gmail.com">troymaritimeagency@gmail.com</a></span>
-        <span class="contact-item">📍 Darwin, NT, Australia</span>
-        <span class="contact-item">🕐 Available 24/7</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand-name">TRoyMAR™ <span>— TRoy Maritime Agency™</span></div>
-      <div class="footer-brand-tagline">Darwin, Australia · Worldwide Operations</div>
-      <p class="footer-desc">Full-service ship agency and port services for all vessel types. Turkish Straits specialist with 30+ years of maritime experience. Operating 100% online, serving 58+ ports worldwide through direct operations and a trusted sub-agent network.</p>
-      <div class="footer-contact">
-        <div>✉️ <a href="mailto:troymaritimeagency@gmail.com">troymaritimeagency@gmail.com</a></div>
-        <div>💬 <a href="https://wa.me/61476496693">WhatsApp — 24/7</a></div>
-        <div>📍 Darwin, Northern Territory, Australia</div>
-      </div>
-    </div>
-    <div>
-      <div class="footer-col-title">Services</div>
-      <ul class="footer-links">
-        <li><a href="#services">Port Clearance</a></li>
-        <li><a href="#services">Husbandry</a></li>
-        <li><a href="#services">Crew Change</a></li>
-        <li><a href="#services">Provisions</a></li>
-        <li><a href="#services">Repairs</a></li>
-        <li><a href="#services">PDA / FDA</a></li>
-        <li><a href="#services">Bunkering</a></li>
-        <li><a href="#services">Canal Transit</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">Sectors</div>
-      <ul class="footer-links">
-        <li><a href="#sectors">Tanker</a></li>
-        <li><a href="#sectors">Dry Bulk</a></li>
-        <li><a href="#sectors">Container</a></li>
-        <li><a href="#sectors">Cruise</a></li>
-        <li><a href="#sectors">LNG / Gas</a></li>
-        <li><a href="#sectors">Offshore</a></li>
-        <li><a href="#sectors">Yacht</a></li>
-        <li><a href="#sectors">Government</a></li>
-      </ul>
-    </div>
-    <div>
-      <div class="footer-col-title">TRoy Group™</div>
-      <ul class="footer-links">
-        <li><a href="https://egov-prog.github.io/TRoy-Group/troy-group-main.html">🏛️ TRoy Group™ Main</a></li>
-        <li><a href="https://egov-prog.github.io/TRoy-Group/troygo-website.html">✈️ TRoyGo™ Travel</a></li>
-        <li><a href="https://egov-prog.github.io/TRoy-Group/troy-trading-agency.html">🌍 TRoyTR™ Trading</a></li>
-        <li><a href="https://egov-prog.github.io/TRoy-Group/troy-global-tracker.html">🗺️ Global Tracker</a></li>
-        <li><a href="https://egov-prog.github.io/TRoy-Group/troy-gmail-agent.html">🤖 AI Email Agent</a></li>
-        <li><a href="#contact">📞 Contact</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div>© 2026 TRoyMAR™ — TRoy Maritime Agency™. All rights reserved. Part of <a href="https://egov-prog.github.io/TRoy-Group/troy-group-main.html" style="color:var(--gold)">TRoy Group™</a></div>
-    <div class="footer-badges">
-      <span class="fbadge">FONASBA</span>
-      <span class="fbadge">IMO</span>
-      <span class="fbadge">BIMCO</span>
-      <span class="fbadge">24/7</span>
-    </div>
-  </div>
-</footer>
-
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
