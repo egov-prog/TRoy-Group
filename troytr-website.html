@@ -24,34 +24,66 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* NAV */
-    header {
-      background: #fff;
+    /* UNIFIED TRoy Group™ NAV BAR */
+    .troy-nav {
+      background: #ffffff;
       border-bottom: 1px solid #e5e7eb;
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 999;
     }
-    .nav-inner {
+    .troy-nav-inner {
       max-width: 1200px;
       margin: auto;
-      padding: 1rem 1.5rem;
+      padding: 0.9rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .brand {
-      font-size: 1.3rem;
+    .troy-brand-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .troy-brand-logo {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: 700;
-      letter-spacing: -0.5px;
+    }
+    .troy-brand-text {
+      font-size: 1.1rem;
+      font-weight: 700;
       color: var(--primary);
     }
-    .menu {
+    .troy-menu {
       display: flex;
-      gap: 1.5rem;
-      font-size: 0.95rem;
+      gap: 1.4rem;
     }
-    .menu a:hover { color: var(--primary-light); }
+    .troy-menu a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+    .troy-menu a:hover {
+      color: var(--primary-light);
+    }
+    @media (max-width: 700px) {
+      .troy-nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .troy-menu {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+    }
 
     /* HERO */
     .hero {
@@ -66,7 +98,6 @@
       font-size: clamp(2.2rem, 4vw, 3rem);
       font-weight: 800;
       margin-bottom: 1rem;
-      max-width: 800px;
       color: var(--primary);
     }
     .hero p {
@@ -151,7 +182,6 @@
       display: inline-block;
     }
 
-    /* FOOTER */
     footer {
       margin-top: 3rem;
       padding: 1.5rem;
@@ -165,19 +195,25 @@
 </head>
 <body>
 
-<header>
-  <div class="nav-inner">
-    <div class="brand">TRoyTR™</div>
-    <nav class="menu">
-      <a href="#services">Services</a>
-      <a href="#solutions">Solutions</a>
-      <a href="#industries">Industries</a>
-      <a href="#contact">Contact</a>
-      <a href="troy-group-main.html">TRoy Group™</a>
+<!-- UNIFIED TRoy Group™ NAV BAR -->
+<header class="troy-nav">
+  <div class="troy-nav-inner">
+    <a href="troy-group-main.html" class="troy-brand-link">
+      <span class="troy-brand-logo">TG</span>
+      <span class="troy-brand-text">TRoy Group™</span>
+    </a>
+    <nav class="troy-menu">
+      <a href="troy-maritime-home.html">Maritime</a>
+      <a href="troygo-website.html">Travel</a>
+      <a href="troytr-website.html">Trading</a>
+      <a href="troymedia-website.html">Media</a>
+      <a href="troygar-website.html">Garage</a>
+      <a href="troy-gmail-agent.html">Gmail Agent</a>
     </nav>
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <h1>Global trading, procurement and currency solutions for modern business</h1>
@@ -186,6 +222,7 @@
   </div>
 </section>
 
+<!-- SERVICES -->
 <section id="services" class="section">
   <h2>Trading Services</h2>
   <p class="section-sub">End‑to‑end support for cross‑border commerce.</p>
@@ -210,6 +247,7 @@
   </div>
 </section>
 
+<!-- SOLUTIONS -->
 <section id="solutions" class="section">
   <h2>Business Solutions</h2>
   <p class="section-sub">Tools and services that help companies operate globally.</p>
@@ -234,6 +272,7 @@
   </div>
 </section>
 
+<!-- INDUSTRIES -->
 <section id="industries" class="section">
   <h2>Industries We Serve</h2>
   <p class="section-sub">Supporting diverse sectors across global markets.</p>
@@ -241,37 +280,4 @@
   <div class="grid">
     <div class="card"><h3>Manufacturing</h3><p>Raw materials, components and finished goods.</p></div>
     <div class="card"><h3>Energy & Resources</h3><p>Equipment, parts and industrial supply.</p></div>
-    <div class="card"><h3>Retail & Distribution</h3><p>Consumer goods, electronics and apparel.</p></div>
-    <div class="card"><h3>Maritime & Logistics</h3><p>Support for TRoyMAR™ and global shipping partners.</p></div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="cta">
-    <h3>Ready to trade globally with confidence?</h3>
-    <p>TRoyTR™ helps you move goods, manage suppliers and navigate global markets.</p>
-    <a href="#contact" class="cta-btn">Contact TRoyTR™</a>
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <h2>Contact TRoyTR™</h2>
-  <p class="section-sub">For trading, procurement or supply chain enquiries.</p>
-
-  <div class="card">
-    <p><strong>Email:</strong> troytradingagency@gmail.com</p>
-    <p><strong>Founder & CEO:</strong> Ertan Govdeli</p>
-    <p><strong>Location:</strong> Darwin, Northern Territory, Australia</p>
-  </div>
-</section>
-
-<footer>
-  © <span id="year"></span> TRoyTR™ — TRoy Trading Agency™. All rights reserved.
-</footer>
-
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
-</body>
-</html>
+    <div class="card"><h3>Retail & Distribution
