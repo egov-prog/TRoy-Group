@@ -23,7 +23,7 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* UNIFIED TRoy Group™ NAV BAR */
+    /* UNIFIED NAV BAR */
     .troy-nav {
       background: #ffffff;
       border-bottom: 1px solid #e5e7eb;
@@ -72,6 +72,7 @@
     .troy-menu a:hover {
       color: #0059d6;
     }
+
     @media (max-width: 700px) {
       .troy-nav-inner {
         flex-direction: column;
@@ -131,4 +132,211 @@
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap
+      gap: 1.2rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      border: 1px solid #e5e7eb;
+    }
+    .card h3 {
+      margin-bottom: 0.4rem;
+      font-size: 1.1rem;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* ROADMAP */
+    .roadmap {
+      border-left: 4px solid var(--primary);
+      padding-left: 1.2rem;
+      margin-left: 0.5rem;
+    }
+    .roadmap-item {
+      margin-bottom: 1.5rem;
+    }
+    .roadmap-item h4 {
+      font-size: 1.05rem;
+      margin-bottom: 0.2rem;
+      color: var(--primary-dark);
+    }
+    .roadmap-item p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: #fff;
+      border-top: 1px solid #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+
+<!-- UNIFIED NAV BAR -->
+<header class="troy-nav">
+  <div class="troy-nav-inner">
+    <a href="troy-group-main.html" class="troy-brand-link">
+      <span class="troy-brand-logo">TG</span>
+      <span class="troy-brand-text">TRoy Group™</span>
+    </a>
+    <nav class="troy-menu">
+      <a href="troy-maritime-home.html">Maritime</a>
+      <a href="troygo-website.html">Travel</a>
+      <a href="troytr-website.html">Trading</a>
+      <a href="troymedia-website.html">Media</a>
+      <a href="troygar-website.html">Garage</a>
+      <a href="troy-gmail-agent.html">Gmail Agent</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Experiment. Build. Innovate.</h1>
+    <p>The TRoy Garage™ is the innovation lab of TRoy Group™, creating experimental tools, AI prototypes and future technologies.</p>
+    <a href="#gallery" class="hero-btn">Explore prototypes</a>
+  </div>
+</section>
+
+<!-- AI PROTOTYPE GALLERY -->
+<section id="gallery" class="section">
+  <h2>AI Prototype Gallery</h2>
+  <p class="section-sub">Early‑stage tools and experimental concepts built inside TRoyGAR™.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>AI Email Agent</h3>
+      <p>Automates routing, signatures and inbox workflows across TRoy Group™.</p>
+    </div>
+    <div class="card">
+      <h3>AI Trip Planner</h3>
+      <p>Smart itinerary builder for TRoyGo™ using predictive travel logic.</p>
+    </div>
+    <div class="card">
+      <h3>Maritime ETA Predictor</h3>
+      <p>Machine‑learning model estimating vessel arrival times using port data.</p>
+    </div>
+    <div class="card">
+      <h3>Global Trade Analyzer</h3>
+      <p>Prototype tool forecasting supply chain risks and currency exposure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INNOVATION ROADMAP -->
+<section id="roadmap" class="section">
+  <h2>Innovation Roadmap</h2>
+  <p class="section-sub">A transparent look at what TRoyGAR™ is building next.</p>
+
+  <div class="roadmap">
+    <div class="roadmap-item">
+      <h4>Q2 2026 — AI Maritime Dashboard</h4>
+      <p>Unified dashboard combining port calls, ETA predictions and cargo data.</p>
+    </div>
+    <div class="roadmap-item">
+      <h4>Q3 2026 — TRoyGo™ Smart Pricing Engine</h4>
+      <p>Dynamic travel pricing model using demand, seasonality and route data.</p>
+    </div>
+    <div class="roadmap-item">
+      <h4>Q4 2026 — TRoy Group™ API Hub</h4>
+      <p>Developer‑ready API endpoints for travel, maritime and trading systems.</p>
+    </div>
+    <div class="roadmap-item">
+      <h4>2027 — Autonomous Operations Assistant</h4>
+      <p>Long‑term research project exploring automated decision support.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXISTING SECTIONS (Projects, Programs, News, Contact) -->
+<section id="projects" class="section">
+  <h2>Featured Projects</h2>
+  <p class="section-sub">Experimental ideas built by TRoy GAR™ engineers and creators.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>AI Email Agent</h3>
+      <p>Automated email routing, signatures and smart inbox tools.</p>
+    </div>
+    <div class="card">
+      <h3>TRoy Global Tracker</h3>
+      <p>Real‑time tracking dashboard for TRoy Group™ operations.</p>
+    </div>
+    <div class="card">
+      <h3>AI Trip Planner</h3>
+      <p>Smart travel planning engine for TRoyGo™.</p>
+    </div>
+    <div class="card">
+      <h3>Prototype UI Kit</h3>
+      <p>Design system for rapid prototyping across TRoy Group™.</p>
+    </div>
+  </div>
+</section>
+
+<section id="programs" class="section">
+  <h2>Innovation Programs</h2>
+  <p class="section-sub">Where ideas become prototypes.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Hack Studio</h3>
+      <p>Rapid prototyping sessions for new TRoy Group™ ideas.</p>
+    </div>
+    <div class="card">
+      <h3>AI Lab</h3>
+      <p>Exploring machine learning and automation tools.</p>
+    </div>
+    <div class="card">
+      <h3>Garage Fellows</h3>
+      <p>Internal creators building passion projects.</p>
+    </div>
+  </div>
+</section>
+
+<section id="news" class="section">
+  <h2>News & Updates</h2>
+  <p class="section-sub">Latest from the TRoy Garage™.</p>
+
+  <div class="grid">
+    <div class="card">
+      <h3>New AI prototypes launched</h3>
+      <p>Three new experimental tools released for internal testing.</p>
+    </div>
+    <div class="card">
+      <h3>Garage expands</h3>
+      <p>New innovation programs added for 2026.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <h2>Contact TRoy GAR™</h2>
+  <p class="section-sub">For collaboration or project ideas.</p>
+
+  <div class="card">
+    <p><strong>Email:</strong> troymediagency@gmail.com</p>
+    <p><strong>Founder & CEO:</strong> Ertan Govdeli</p>
+    <p><strong>Location:</strong> Darwin, Northern Territory, Australia</p>
+  </div>
+</section>
+
+<footer>
+  © <span id="year"></span> TRoy GAR™ — The TRoy Garage™. All rights reserved.
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
