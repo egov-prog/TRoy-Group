@@ -23,44 +23,66 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* NAV */
-    header {
-      background: #fff;
+    /* UNIFIED TRoy Group™ NAV BAR */
+    .troy-nav {
+      background: #ffffff;
       border-bottom: 1px solid #e5e7eb;
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 999;
     }
-    .nav-inner {
-      max-width: 1120px;
+    .troy-nav-inner {
+      max-width: 1200px;
       margin: auto;
       padding: 0.9rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .brand {
+    .troy-brand-link {
       display: flex;
       align-items: center;
       gap: 0.6rem;
     }
-    .brand-logo {
-      width: 38px;
-      height: 38px;
-      border-radius: 6px;
-      background: var(--primary);
+    .troy-brand-logo {
+      width: 36px;
+      height: 36px;
+      background: #003b95;
       color: #fff;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
     }
-    .menu {
-      display: flex;
-      gap: 1.2rem;
-      font-size: 0.9rem;
+    .troy-brand-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #003b95;
     }
-    .menu a:hover { color: var(--primary-dark); }
+    .troy-menu {
+      display: flex;
+      gap: 1.4rem;
+    }
+    .troy-menu a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+    .troy-menu a:hover {
+      color: #0059d6;
+    }
+    @media (max-width: 700px) {
+      .troy-nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .troy-menu {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+    }
 
     /* HERO */
     .hero {
@@ -105,146 +127,8 @@
       margin-bottom: 1.5rem;
     }
 
-    /* CARDS */
+    /* GRID */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.2rem;
-    }
-    .card {
-      background: #fff;
-      border-radius: var(--radius);
-      padding: 1.2rem;
-      border: 1px solid #e5e7eb;
-    }
-    .card h3 {
-      margin-bottom: 0.4rem;
-      font-size: 1.1rem;
-    }
-    .card p {
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-
-    /* FOOTER */
-    footer {
-      margin-top: 3rem;
-      padding: 1.5rem;
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--muted);
-      background: #fff;
-      border-top: 1px solid #e5e7eb;
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <div class="nav-inner">
-    <div class="brand">
-      <div class="brand-logo">TG</div>
-      <div>
-        <strong>TRoy GAR™</strong><br>
-        <small>The TRoy Garage™</small>
-      </div>
-    </div>
-    <nav class="menu">
-      <a href="#projects">Projects</a>
-      <a href="#programs">Programs</a>
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
-      <a href="troy-group-main.html">TRoy Group™</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="hero-inner">
-    <h1>Experiment. Build. Innovate.</h1>
-    <p>The TRoy Garage™ is the innovation lab of TRoy Group™, creating experimental tools, AI prototypes and future technologies.</p>
-    <a href="#projects" class="hero-btn">Explore projects</a>
-  </div>
-</section>
-
-<section id="projects" class="section">
-  <h2>Featured Projects</h2>
-  <p class="section-sub">Experimental ideas built by TRoy GAR™ engineers and creators.</p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>AI Email Agent</h3>
-      <p>Automated email routing, signatures and smart inbox tools.</p>
-    </div>
-    <div class="card">
-      <h3>TRoy Global Tracker</h3>
-      <p>Real‑time tracking dashboard for TRoy Group™ operations.</p>
-    </div>
-    <div class="card">
-      <h3>AI Trip Planner</h3>
-      <p>Smart travel planning engine for TRoyGo™.</p>
-    </div>
-    <div class="card">
-      <h3>Prototype UI Kit</h3>
-      <p>Design system for rapid prototyping across TRoy Group™.</p>
-    </div>
-  </div>
-</section>
-
-<section id="programs" class="section">
-  <h2>Innovation Programs</h2>
-  <p class="section-sub">Where ideas become prototypes.</p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Hack Studio</h3>
-      <p>Rapid prototyping sessions for new TRoy Group™ ideas.</p>
-    </div>
-    <div class="card">
-      <h3>AI Lab</h3>
-      <p>Exploring machine learning and automation tools.</p>
-    </div>
-    <div class="card">
-      <h3>Garage Fellows</h3>
-      <p>Internal creators building passion projects.</p>
-    </div>
-  </div>
-</section>
-
-<section id="news" class="section">
-  <h2>News & Updates</h2>
-  <p class="section-sub">Latest from the TRoy Garage™.</p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>New AI prototypes launched</h3>
-      <p>Three new experimental tools released for internal testing.</p>
-    </div>
-    <div class="card">
-      <h3>Garage expands</h3>
-      <p>New innovation programs added for 2026.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <h2>Contact TRoy GAR™</h2>
-  <p class="section-sub">For collaboration or project ideas.</p>
-
-  <div class="card">
-    <p><strong>Email:</strong> troymediagency@gmail.com</p>
-    <p><strong>Founder & CEO:</strong> Ertan Govdeli</p>
-    <p><strong>Location:</strong> Darwin, Northern Territory, Australia</p>
-  </div>
-</section>
-
-<footer>
-  © <span id="year"></span> TRoy GAR™ — The TRoy Garage™. All rights reserved.
-</footer>
-
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
-</body>
-</html>
+      gap
