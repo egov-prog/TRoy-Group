@@ -23,33 +23,66 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* NAV */
-    header {
-      background: #fff;
+    /* UNIFIED TRoy Group™ NAV BAR */
+    .troy-nav {
+      background: #ffffff;
       border-bottom: 1px solid #e5e7eb;
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 999;
     }
-    .nav-inner {
+    .troy-nav-inner {
       max-width: 1200px;
       margin: auto;
-      padding: 1rem 1.5rem;
+      padding: 0.9rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .brand {
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
-    .menu {
+    .troy-brand-link {
       display: flex;
-      gap: 1.5rem;
-      font-size: 0.95rem;
+      align-items: center;
+      gap: 0.6rem;
     }
-    .menu a:hover { color: var(--accent); }
+    .troy-brand-logo {
+      width: 36px;
+      height: 36px;
+      background: #003b95;
+      color: #fff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    .troy-brand-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #003b95;
+    }
+    .troy-menu {
+      display: flex;
+      gap: 1.4rem;
+    }
+    .troy-menu a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+    .troy-menu a:hover {
+      color: #0059d6;
+    }
+    @media (max-width: 700px) {
+      .troy-nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .troy-menu {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+    }
 
     /* HERO */
     .hero {
@@ -105,38 +138,21 @@
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 1.5rem;
     }
-    .card {
+    .card, .case {
       background: #fff;
       border-radius: var(--radius);
       padding: 1.5rem;
       border: 1px solid #e5e7eb;
     }
-    .card h3 {
+    .card h3, .case h3 {
       font-size: 1.2rem;
       margin-bottom: 0.4rem;
     }
-    .card p {
+    .card p, .case p {
       color: var(--muted);
       font-size: 0.9rem;
     }
 
-    /* CASE STUDIES */
-    .case {
-      background: #fff;
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      border: 1px solid #e5e7eb;
-    }
-    .case h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.4rem;
-    }
-    .case p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    /* FOOTER */
     footer {
       margin-top: 3rem;
       padding: 1.5rem;
@@ -150,123 +166,26 @@
 </head>
 <body>
 
-<header>
-  <div class="nav-inner">
-    <div class="brand">TRoyMEDIA™</div>
-    <nav class="menu">
-      <a href="#capabilities">Capabilities</a>
-      <a href="#cases">Case Studies</a>
-      <a href="#clients">Clients</a>
-      <a href="#insights">Insights</a>
-      <a href="#contact">Contact</a>
-      <a href="troy-group-main.html">TRoy Group™</a>
+<!-- UNIFIED TRoy Group™ NAV BAR -->
+<header class="troy-nav">
+  <div class="troy-nav-inner">
+    <a href="troy-group-main.html" class="troy-brand-link">
+      <span class="troy-brand-logo">TG</span>
+      <span class="troy-brand-text">TRoy Group™</span>
+    </a>
+    <nav class="troy-menu">
+      <a href="troy-maritime-home.html">Maritime</a>
+      <a href="troygo-website.html">Travel</a>
+      <a href="troytr-website.html">Trading</a>
+      <a href="troymedia-website.html">Media</a>
+      <a href="troygar-website.html">Garage</a>
+      <a href="troy-gmail-agent.html">Gmail Agent</a>
     </nav>
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-inner">
     <h1>Creative strategy, digital media and brand storytelling for a connected world</h1>
-    <p>TRoy Media Agency™ helps brands grow through insight‑driven creativity, digital content, and AI‑powered media solutions.</p>
-    <a href="#capabilities" class="hero-btn">Explore capabilities</a>
-  </div>
-</section>
-
-<section id="capabilities" class="section">
-  <h2>Capabilities</h2>
-  <p class="section-sub">What TRoyMEDIA™ delivers for brands and organisations.</p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Brand Strategy</h3>
-      <p>Positioning, messaging and identity systems for modern brands.</p>
-    </div>
-    <div class="card">
-      <h3>Creative Production</h3>
-      <p>Video, digital content, campaigns and storytelling.</p>
-    </div>
-    <div class="card">
-      <h3>Digital Media</h3>
-      <p>Paid media, social strategy, analytics and optimisation.</p>
-    </div>
-    <div class="card">
-      <h3>AI‑Powered Content</h3>
-      <p>Generative content, automation and intelligent creative workflows.</p>
-    </div>
-  </div>
-</section>
-
-<section id="cases" class="section">
-  <h2>Case Studies</h2>
-  <p class="section-sub">Selected work and impact stories.</p>
-
-  <div class="grid">
-    <div class="case">
-      <h3>TRoyGo™ Travel Launch</h3>
-      <p>Brand identity, digital campaign and launch content for TRoyGo™.</p>
-    </div>
-    <div class="case">
-      <h3>TRoy Maritime Brand Refresh</h3>
-      <p>Modernised identity and communication system for TRoyMAR™.</p>
-    </div>
-    <div class="case">
-      <h3>AI Email Agent Branding</h3>
-      <p>Visual identity and messaging for TRoy Group’s AI automation suite.</p>
-    </div>
-  </div>
-</section>
-
-<section id="clients" class="section">
-  <h2>Clients & Partners</h2>
-  <p class="section-sub">Organisations we collaborate with.</p>
-
-  <div class="grid">
-    <div class="card"><h3>TRoy Group™</h3></div>
-    <div class="card"><h3>TRoyGo™</h3></div>
-    <div class="card"><h3>TRoy Maritime Agency™</h3></div>
-    <div class="card"><h3>TRoy GAR™</h3></div>
-  </div>
-</section>
-
-<section id="insights" class="section">
-  <h2>Insights</h2>
-  <p class="section-sub">Perspectives on creativity, media and technology.</p>
-
-  <div class="grid">
-    <div class="card">
-      <h3>The future of AI‑assisted creativity</h3>
-      <p>How generative tools are reshaping content production.</p>
-    </div>
-    <div class="card">
-      <h3>Brand storytelling in 2026</h3>
-      <p>Why narrative‑driven brands outperform in digital environments.</p>
-    </div>
-    <div class="card">
-      <h3>Media strategy for global audiences</h3>
-      <p>Reaching diverse markets with precision and cultural insight.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <h2>Contact TRoyMEDIA™</h2>
-  <p class="section-sub">For collaborations, projects or media enquiries.</p>
-
-  <div class="card">
-    <p><strong>Email:</strong> troymediagency@gmail.com</p>
-    <p><strong>Founder & CEO:</strong> Ertan Govdeli</p>
-    <p><strong>Location:</strong> Darwin, Northern Territory, Australia</p>
-  </div>
-</section>
-
-<footer>
-  © <span id="year"></span> TRoyMEDIA™ — TRoy Media Agency™. All rights reserved.
-</footer>
-
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
-
-</body>
-</html>
-
+    <p>TRoy Media Agency™ helps brands grow through insight‑driven creativity, digital content
