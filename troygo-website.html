@@ -17,68 +17,75 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
     }
     a { text-decoration: none; color: inherit; }
 
-    /* Top bar */
-    .topbar {
-      background: var(--primary);
-      color: #fff;
+    /* UNIFIED TRoy Group™ NAV BAR */
+    .troy-nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 999;
     }
-    .topbar-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0.75rem 1.5rem;
+    .troy-nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.9rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
     }
-    .brand {
+    .troy-brand-link {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
-    .brand-logo {
-      width: 32px;
-      height: 32px;
+    .troy-brand-logo {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      color: #fff;
       border-radius: 6px;
-      background: #fff;
-      color: var(--primary);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
-      font-size: 0.9rem;
     }
-    .brand-text {
+    .troy-brand-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .troy-menu {
       display: flex;
-      flex-direction: column;
-      font-size: 0.85rem;
+      gap: 1.4rem;
     }
-    .brand-text span:first-child { font-weight: 600; }
-    .brand-text span:last-child { opacity: 0.85; }
+    .troy-menu a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+    .troy-menu a:hover {
+      color: var(--primary-light);
+    }
+    @media (max-width: 700px) {
+      .troy-nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .troy-menu {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+    }
 
-    .top-links {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.85rem;
-      align-items: center;
-    }
-    .top-links a { color: #fff; opacity: 0.9; }
-    .top-links a:hover { opacity: 1; }
-    .top-btn {
-      padding: 0.35rem 0.8rem;
-      border-radius: 999px;
-      border: 1px solid #fff;
-      font-size: 0.8rem;
-    }
-
-    /* Hero area */
+    /* HERO */
     .hero {
       background: var(--primary);
       color: #fff;
@@ -97,7 +104,7 @@
       opacity: 0.9;
     }
 
-    /* Search tabs */
+    /* SEARCH BOX */
     .search-box {
       margin-top: 1.5rem;
       background: #f5f7fb;
@@ -116,14 +123,7 @@
       border-radius: 999px;
       background: transparent;
       border: 1px solid transparent;
-      color: #1b1b1b;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-    }
-    .tab span.icon {
-      font-size: 0.9rem;
     }
     .tab.active {
       background: #fff;
@@ -135,7 +135,6 @@
       display: grid;
       grid-template-columns: 2.2fr 1.4fr 1.4fr 1.2fr auto;
       gap: 0.5rem;
-      margin-top: 0.75rem;
     }
     .field {
       background: #fff;
@@ -151,16 +150,12 @@
       font-size: 0.7rem;
       color: #6b7280;
     }
-    .field-input {
-      font-size: 0.85rem;
-      color: #111827;
-    }
     .field-input input {
       border: none;
       outline: none;
       width: 100%;
-      font: inherit;
       background: transparent;
+      font-size: 0.85rem;
     }
     .search-btn {
       background: var(--accent);
@@ -168,331 +163,4 @@
       border: none;
       padding: 0 1.4rem;
       font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      color: #1b1b1b;
-      white-space: nowrap;
-    }
-    .search-btn:hover { filter: brightness(1.05); }
-
-    .helper-text {
-      margin-top: 0.6rem;
-      font-size: 0.8rem;
-      color: #e5e7eb;
-    }
-
-    /* Content sections */
-    .content {
-      max-width: 1120px;
-      margin: 1.5rem auto 2.5rem;
-      padding: 0 1.5rem;
-    }
-    .section-title {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    .section-sub {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 1rem;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1rem;
-    }
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 0.9rem;
-      border: 1px solid #e5e7eb;
-      font-size: 0.85rem;
-    }
-    .card h3 {
-      font-size: 0.95rem;
-      margin-bottom: 0.25rem;
-    }
-    .card p {
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.4rem;
-    }
-    .pill {
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      border: 1px solid #e5e7eb;
-      font-size: 0.75rem;
-      background: #fff;
-      color: #4b5563;
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid #e5e7eb;
-      padding: 1.5rem 1.5rem 2rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      text-align: center;
-      background: #fff;
-    }
-
-    @media (max-width: 900px) {
-      .search-form {
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: auto;
-      }
-      .search-btn {
-        grid-column: 1 / -1;
-        margin-top: 0.2rem;
-        padding: 0.6rem 1.2rem;
-      }
-    }
-    @media (max-width: 640px) {
-      .topbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .search-form {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- TOP BAR -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <div class="brand-logo">TG</div>
-        <div class="brand-text">
-          <span>TRoyGo™</span>
-          <span>TRoy Travel Agency™</span>
-        </div>
-      </div>
-      <div class="top-links">
-        <a href="troy-group-main.html">TRoy Group™</a>
-        <a href="troy-maritime-home.html">TRoy Maritime Agency™</a>
-        <a href="troygar-website.html">TRoy Media / TRoyGAR™</a>
-        <span class="top-btn">Sign in</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- HERO + SEARCH -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Find your next stay, flight, car or cruise with TRoyGo™</h1>
-      <p>Plan smarter trips with one place for stays, flights, car rentals, cruises and more.</p>
-
-      <div class="search-box">
-        <!-- Tabs -->
-        <div class="tabs" id="tabs">
-          <button class="tab active" data-tab="stays"><span class="icon">🏨</span>Stays</button>
-          <button class="tab" data-tab="flights"><span class="icon">✈️</span>Flights</button>
-          <button class="tab" data-tab="flight-hotel"><span class="icon">🧳</span>Flight + Hotel</button>
-          <button class="tab" data-tab="cars"><span class="icon">🚗</span>Car rental</button>
-          <button class="tab" data-tab="cruises"><span class="icon">🛳️</span>Cruises</button>
-          <button class="tab" data-tab="attractions"><span class="icon">🎟️</span>Attractions</button>
-          <button class="tab" data-tab="taxis"><span class="icon">🚕</span>Airport taxis</button>
-        </div>
-
-        <!-- Search form (same layout, label text changes per tab) -->
-        <form class="search-form" id="search-form">
-          <div class="field">
-            <div class="field-label" id="field-main-label">Where are you going?</div>
-            <div class="field-input">
-              <input type="text" id="destination" placeholder="City, region, landmark or cruise route" required />
-            </div>
-          </div>
-          <div class="field">
-            <div class="field-label">Check-in / Departure</div>
-            <div class="field-input">
-              <input type="date" id="date-start" />
-            </div>
-          </div>
-          <div class="field">
-            <div class="field-label">Check-out / Return</div>
-            <div class="field-input">
-              <input type="date" id="date-end" />
-            </div>
-          </div>
-          <div class="field">
-            <div class="field-label" id="field-guests-label">Guests & rooms</div>
-            <div class="field-input">
-              <input type="text" id="guests" value="2 adults · 0 children · 1 room" />
-            </div>
-          </div>
-          <button type="submit" class="search-btn" id="search-btn">Search</button>
-        </form>
-
-        <div class="helper-text" id="helper-text">
-          Tip: choose “Cruises” to search by route or region.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTENT -->
-  <main class="content">
-    <!-- Popular destinations -->
-    <section>
-      <h2 class="section-title">Popular destinations</h2>
-      <p class="section-sub">Places TRoyGo™ travellers search for again and again.</p>
-      <div class="cards-grid">
-        <article class="card">
-          <h3>City breaks</h3>
-          <p>Short stays in major cities with easy access to culture, food and nightlife.</p>
-          <div class="pill-row">
-            <span class="pill">Sydney</span>
-            <span class="pill">Melbourne</span>
-            <span class="pill">Singapore</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Beach & islands</h3>
-          <p>Relaxed stays near the water, from family resorts to quiet escapes.</p>
-          <div class="pill-row">
-            <span class="pill">Bali</span>
-            <span class="pill">Gold Coast</span>
-            <span class="pill">Phuket</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Cruise gateways</h3>
-          <p>Ports that connect you to regional and international cruise routes.</p>
-          <div class="pill-row">
-            <span class="pill">Sydney</span>
-            <span class="pill">Brisbane</span>
-            <span class="pill">Singapore</span>
-          </div>
-        </article>
-        <article class="card">
-          <h3>Work & remote stays</h3>
-          <p>Longer stays with good Wi‑Fi, workspace and nearby services.</p>
-          <div class="pill-row">
-            <span class="pill">Darwin</span>
-            <span class="pill">Perth</span>
-            <span class="pill">Auckland</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Travel types -->
-    <section style="margin-top:2rem;">
-      <h2 class="section-title">Travel your way</h2>
-      <p class="section-sub">TRoyGo™ supports different types of trips and travellers.</p>
-      <div class="cards-grid">
-        <article class="card">
-          <h3>Solo & couples</h3>
-          <p>Flexible options for short breaks, long weekends and spontaneous trips.</p>
-        </article>
-        <article class="card">
-          <h3>Families & groups</h3>
-          <p>Multi-room stays, apartments and villas with space to share.</p>
-        </article>
-        <article class="card">
-          <h3>Business & project travel</h3>
-          <p>Coordinated itineraries for teams, events and on-site projects.</p>
-        </article>
-        <article class="card">
-          <h3>Cruises & combinations</h3>
-          <p>Combine stays, flights and cruises into one connected journey.</p>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © <span id="year"></span> TRoyGo™ / TRoy Travel Agency™. All rights reserved.
-  </footer>
-
-  <script>
-    // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Tabs behavior
-    const tabs = document.querySelectorAll(".tab");
-    const mainLabel = document.getElementById("field-main-label");
-    const guestsLabel = document.getElementById("field-guests-label");
-    const helper = document.getElementById("helper-text");
-    const searchBtn = document.getElementById("search-btn");
-    const form = document.getElementById("search-form");
-
-    const tabConfig = {
-      "stays": {
-        main: "Where are you going?",
-        guests: "Guests & rooms",
-        helper: "Search stays by city, region or landmark.",
-        button: "Search stays"
-      },
-      "flights": {
-        main: "From / To",
-        guests: "Travellers",
-        helper: "Search one-way or return flights.",
-        button: "Search flights"
-      },
-      "flight-hotel": {
-        main: "Where are you flying?",
-        guests: "Travellers & rooms",
-        helper: "Search packages that combine flights and stays.",
-        button: "Search packages"
-      },
-      "cars": {
-        main: "Pick-up location",
-        guests: "Driver details",
-        helper: "Search rental cars by city, airport or address.",
-        button: "Search cars"
-      },
-      "cruises": {
-        main: "Cruise route or region",
-        guests: "Guests & cabins",
-        helper: "Search cruises by route, region or departure port.",
-        button: "Search cruises"
-      },
-      "attractions": {
-        main: "City or attraction",
-        guests: "Visitors",
-        helper: "Search tickets, tours and activities.",
-        button: "Search attractions"
-      },
-      "taxis": {
-        main: "Pick-up & drop-off",
-        guests: "Passengers",
-        helper: "Search airport taxis and transfers.",
-        button: "Search taxis"
-      }
-    };
-
-    tabs.forEach(tab => {
-      tab.addEventListener("click", () => {
-        tabs.forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
-        const key = tab.dataset.tab;
-        const cfg = tabConfig[key];
-        if (cfg) {
-          mainLabel.textContent = cfg.main;
-          guestsLabel.textContent = cfg.guests;
-          helper.textContent = cfg.helper;
-          searchBtn.textContent = cfg.button;
-        }
-      });
-    });
-
-    // Fake search handler (front-end only)
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const activeTab = document.querySelector(".tab.active")?.dataset.tab || "stays";
-      const dest = document.getElementById("destination").value || "(no destination entered)";
-      alert(`TRoyGo™ demo search:\n\nMode: ${activeTab}\nDestination: ${dest}\n\nOn GitHub Pages this is a front-end demo only.`);
-    });
-  </script>
-</body>
-</html>
+      font-size
