@@ -1,170 +1,490 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRoy Group™ | Maritime · Travel · Trading · Media</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0a2a 0%, #1a1a4e 100%);
-            color: white;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        header {
-            text-align: center;
-            padding: 3rem 0;
-            border-bottom: 2px solid #ff6b6b;
-        }
-        h1 {
-            font-size: 3rem;
-            letter-spacing: 2px;
-        }
-        .tagline {
-            font-size: 1.2rem;
-            color: #ff6b6b;
-            margin-top: 0.5rem;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            background: rgba(255,255,255,0.1);
-            transition: 0.3s;
-        }
-        nav a:hover {
-            background: #ff6b6b;
-            transform: scale(1.05);
-        }
-        .divisions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        .card {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            transition: 0.3s;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.15);
-        }
-        .card h2 {
-            color: #ff6b6b;
-            margin-bottom: 1rem;
-        }
-        .card p {
-            margin-bottom: 1.5rem;
-        }
-        .btn {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 30px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .btn:hover {
-            background: #ff4757;
-        }
-        .ai-badge {
-            background: rgba(0,0,0,0.5);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            margin: 2rem 0;
-            border: 1px solid #ff6b6b;
-        }
-        .ai-badge h3 {
-            color: #ff6b6b;
-        }
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 3rem;
-            border-top: 1px solid #333;
-            color: #888;
-        }
-        @media (max-width: 768px) {
-            .container { padding: 1rem; }
-            h1 { font-size: 2rem; }
-            nav { gap: 0.8rem; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRoy Group™ | Maritime · Travel · Trading · Media</title>
+<meta name="description" content="TRoy Group™ — International business group operating 100% online. TRoyMAR™ ship agency, TRoyGo™ AI travel, TRoyTR™ global trade, TRoy Media Agency™. Founded by Ertan Govdeli, Darwin, Australia.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0a1628;--navy2:#112240;--navy3:#1a3356;
+  --gold:#c9a84c;--gold2:#e8c97a;--gold3:#f5e6b8;
+  --white:#f8f5ef;--text:#c8c4bc;--muted:#7a8899;
+  --green:#4caf82;--red:#e05c5c;--amber:#e0a84c;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--navy);color:var(--text);font-family:'Barlow',sans-serif;font-weight:300;}
+a{text-decoration:none;color:inherit;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 48px;height:70px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,22,40,.95);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(201,168,76,.15);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);}
+.nav-logo span{color:var(--white);}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text);transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy)!important;
+  padding:8px 20px;border-radius:7px;font-weight:600!important;}
+.nav-cta:hover{opacity:.9!important;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:0 48px;padding-top:70px;position:relative;overflow:hidden;
+  background:linear-gradient(145deg,#080f1e 0%,#0d1f3c 50%,#081626 100%);}
+.hero-grid-bg{position:absolute;inset:0;opacity:.04;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 70px,var(--gold) 70px,var(--gold) 71px),
+  repeating-linear-gradient(90deg,transparent,transparent 70px,var(--gold) 70px,var(--gold) 71px);}
+.hero-glow1{position:absolute;top:-15%;left:-5%;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,.07) 0%,transparent 65%);pointer-events:none;}
+.hero-glow2{position:absolute;bottom:-20%;right:-5%;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(76,143,175,.05) 0%,transparent 65%);pointer-events:none;}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.hero-left{position:relative;z-index:1;}
+.hero-eyebrow{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--gold);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(40px,4.5vw,68px);font-weight:700;
+  color:var(--white);line-height:1.08;margin-bottom:24px;}
+.hero-title em{color:var(--gold);font-style:italic;}
+.hero-desc{font-size:16px;color:var(--text);line-height:1.8;margin-bottom:36px;max-width:480px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);
+  padding:13px 28px;border-radius:8px;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.3);}
+.btn-outline{border:1px solid rgba(201,168,76,.4);color:var(--gold);
+  padding:13px 28px;border-radius:8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;}
+.btn-outline:hover{background:rgba(201,168,76,.08);}
+.hero-right{position:relative;z-index:1;}
+.division-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.div-card{background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.12);border-radius:12px;
+  padding:22px;transition:all .3s;cursor:pointer;}
+.div-card:hover{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.05);transform:translateY(-2px);}
+.div-card-icon{font-size:24px;margin-bottom:10px;}
+.div-card-brand{font-family:'Playfair Display',serif;font-size:16px;color:var(--gold);margin-bottom:3px;}
+.div-card-name{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.div-card-desc{font-size:12px;color:var(--text);line-height:1.5;}
+
+/* STATS BAR */
+.stats-bar{padding:28px 48px;background:rgba(201,168,76,.04);border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1);}
+.stats-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-around;align-items:center;gap:20px;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-n{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--gold);}
+.stat-l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+
+/* SECTION BASE */
+section{padding:88px 48px;}
+.inner{max-width:1200px;margin:0 auto;}
+.sec-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,44px);font-weight:600;color:var(--white);margin-bottom:16px;}
+.sec-sub{font-size:15px;color:var(--muted);line-height:1.7;max-width:560px;}
+.sec-header{margin-bottom:52px;}
+
+/* DIVISIONS SECTION */
+.divs-bg{background:var(--navy2);}
+.divs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;}
+.div-full-card{background:rgba(10,22,40,.7);border:1px solid rgba(201,168,76,.12);border-radius:14px;overflow:hidden;transition:all .3s;}
+.div-full-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-3px);}
+.div-card-header{padding:28px 28px 20px;border-bottom:1px solid rgba(255,255,255,.05);}
+.div-big-icon{font-size:32px;margin-bottom:14px;}
+.div-brand{font-family:'Playfair Display',serif;font-size:22px;color:var(--gold);margin-bottom:4px;}
+.div-fullname{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.div-card-body{padding:20px 28px;}
+.div-desc{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:18px;}
+.div-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;}
+.div-tag{font-size:10px;padding:3px 9px;border-radius:10px;background:rgba(201,168,76,.08);color:var(--gold);border:1px solid rgba(201,168,76,.15);}
+.div-card-link{display:flex;align-items:center;justify-content:space-between;padding:12px 0;
+  border-top:1px solid rgba(255,255,255,.05);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--gold);transition:color .2s;}
+.div-card-link:hover{color:var(--gold2);}
+
+/* AI AGENT SECTION */
+.ai-sec{background:linear-gradient(135deg,#080f1e,var(--navy2));}
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;}
+.ai-card{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.1);border-radius:12px;padding:24px;transition:all .2s;}
+.ai-card:hover{border-color:rgba(201,168,76,.3);}
+.ai-card-icon{font-size:24px;margin-bottom:12px;}
+.ai-card-brand{font-family:'Playfair Display',serif;font-size:16px;color:var(--white);margin-bottom:6px;}
+.ai-card-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px;}
+.ai-card-btn{display:inline-block;background:rgba(201,168,76,.1);color:var(--gold);
+  border:1px solid rgba(201,168,76,.2);padding:7px 16px;border-radius:7px;font-size:11px;
+  letter-spacing:.06em;text-transform:uppercase;transition:all .2s;}
+.ai-card-btn:hover{background:rgba(201,168,76,.2);}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-img-box{background:var(--navy2);border:1px solid rgba(201,168,76,.12);border-radius:16px;padding:40px;text-align:center;}
+.founder-initial{font-family:'Playfair Display',serif;font-size:80px;color:var(--gold);opacity:.3;line-height:1;}
+.founder-name{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);margin-top:16px;}
+.founder-title{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-top:6px;}
+.founder-bio{font-size:13px;color:var(--muted);line-height:1.7;margin-top:16px;}
+.about-values{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px;}
+.val-item{background:var(--navy2);border:1px solid rgba(201,168,76,.1);border-radius:10px;padding:18px;}
+.val-icon{font-size:20px;margin-bottom:8px;}
+.val-title{font-size:13px;color:var(--white);margin-bottom:4px;}
+.val-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+
+/* FOOTER */
+footer{background:#060d18;border-top:1px solid rgba(201,168,76,.1);padding:64px 48px 32px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto 48px;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);margin-bottom:4px;}
+.footer-brand span{color:var(--white);}
+.footer-tagline{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
+.footer-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px;}
+.footer-contact{font-size:12px;color:var(--muted);line-height:2.2;}
+.footer-contact a{color:var(--gold);}
+.footer-col-title{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.footer-links{list-style:none;}
+.footer-links li{margin-bottom:9px;}
+.footer-links a{font-size:13px;color:var(--muted);transition:color .2s;}
+.footer-links a:hover{color:var(--white);}
+.footer-bottom{max-width:1200px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.05);
+  display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);flex-wrap:wrap;gap:12px;}
+.footer-badges{display:flex;gap:10px;flex-wrap:wrap;}
+.fbadge{font-size:10px;padding:4px 10px;border-radius:10px;background:rgba(201,168,76,.07);color:var(--gold);border:1px solid rgba(201,168,76,.12);}
+
+@media(max-width:1000px){
+  nav{padding:0 20px;}.nav-links{display:none;}
+  .hero{padding:100px 20px 60px;}.hero-inner{grid-template-columns:1fr;gap:40px;}
+  .hero-right{display:none;}
+  section{padding:60px 20px;}
+  .stats-bar{padding:24px 20px;}
+  .about-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .footer-bottom{flex-direction:column;text-align:center;}
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>⚓ TRoy Group™</h1>
-            <p class="tagline">TRoyMAR™ · TRoyGo™ · TRoyTR™ · TRoyGAR™</p>
-            <p>Global Business Solutions — 100% Online</p>
-        </header>
 
-        <nav>
-            <a href="#trometry">⚓ TRoyMAR™</a>
-            <a href="#troygo">✈️ TRoyGo™</a>
-            <a href="#troyt">📊 TRoyTR™</a>
-            <a href="troygar-website.html">🎬 TRoyGAR™</a>
-        </nav>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">TRoy<span> Group™</span></div>
+  <div class="nav-links">
+    <a href="#divisions">Divisions</a>
+    <a href="#ai-agents">AI Agents</a>
+    <a href="#about">About</a>
+    <a href="https://egov-prog.github.io/TRoy-Group/troy-gmail-agent.html">Email Agent</a>
+    <a href="mailto:groupoftroy@gmail.com" class="nav-cta">Contact Us</a>
+  </div>
+</nav>
 
-        <div class="ai-badge">
-            <h3>🤖 AI Agents Live</h3>
-            <p>Each division now has a dedicated AI assistant. Click the buttons below to try them.</p>
-        </div>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">International Business Group</div>
+      <h1 class="hero-title">Building the future<br>of global business — <em>online.</em></h1>
+      <p class="hero-desc">TRoy Group™ is a 100% online international business group operating across maritime, travel, trading and media — powered by AI and backed by 30+ years of expertise.</p>
+      <div class="hero-btns">
+        <a href="#divisions" class="btn-gold">Explore Divisions</a>
+        <a href="mailto:groupoftroy@gmail.com" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="division-cards">
+        <a href="https://egov-prog.github.io/TRoy-Group/troy-maritime-home.html" class="div-card">
+          <div class="div-card-icon">⚓</div>
+          <div class="div-card-brand">TRoyMAR™</div>
+          <div class="div-card-name">Maritime Agency</div>
+          <div class="div-card-desc">Ship agency & port services worldwide</div>
+        </a>
+        <a href="https://egov-prog.github.io/TRoy-Group/troygo-website.html" class="div-card">
+          <div class="div-card-icon">✈️</div>
+          <div class="div-card-brand">TRoyGo™</div>
+          <div class="div-card-name">Travel Agency</div>
+          <div class="div-card-desc">AI-powered online travel planning</div>
+        </a>
+        <a href="https://egov-prog.github.io/TRoy-Group/troy-trading-agency.html" class="div-card">
+          <div class="div-card-icon">🌍</div>
+          <div class="div-card-brand">TRoyTR™</div>
+          <div class="div-card-name">Trading Agency</div>
+          <div class="div-card-desc">Global trade intermediary worldwide</div>
+        </a>
+        <a href="#divisions" class="div-card">
+          <div class="div-card-icon">🎬</div>
+          <div class="div-card-brand">TRoy Media™</div>
+          <div class="div-card-name">Media Agency</div>
+          <div class="div-card-desc">Creative content & media production</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="card" id="trometry">
-    <h2>⚓ TRoyMAR™</h2>
-    <p>Maritime logistics, port husbandry, and vessel tracking with 30+ years of expertise.</p>
-    <a href="https://troy-group-ai-agents.onrender.com/trometry" target="_blank" class="btn">🤖 Ask TRoyMAR AI</a>
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-n">30+</div><div class="stat-l">Years Experience</div></div>
+    <div class="stat"><div class="stat-n">4</div><div class="stat-l">Divisions</div></div>
+    <div class="stat"><div class="stat-n">58+</div><div class="stat-l">Global Ports</div></div>
+    <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Online Operations</div></div>
+    <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">AI Powered</div></div>
+    <div class="stat"><div class="stat-n">50+</div><div class="stat-l">Countries Served</div></div>
+  </div>
 </div>
 
-            <div class="card" id="troygo">
-                <h2>✈️ TRoyGo™</h2>
-                <p>AI-powered travel agency — flights, hotels, cruises, and personalized trip planning.</p>
-                <a href="https://troy-group-ai-agents.onrender.com/troygo" target="_blank" class="btn">🤖 Ask TRoyGo AI</a>
-            </div>
-
-            <div class="card" id="troyt">
-                <h2>📊 TRoyTR™</h2>
-                <p>Commodities trading, live rates, and AI-assisted trade inquiries worldwide.</p>
-                <a href="https://troy-group-ai-agents.onrender.com/troyt" target="_blank" class="btn">🤖 Ask TRoyTR AI</a>
-            </div>
-
-            <div class="card">
-                <h2>🎬 TRoyGAR™</h2>
-                <p>Creative media solutions — video, design, copywriting, and social media campaigns.</p>
-                <a href="troygar-website.html" class="btn">🎨 Visit TRoyGAR</a>
-            </div>
-        </div>
-
-        <footer>
-            <p>TRoy Group™ — Founded by Ertan Göçer | 30+ Years of Excellence</p>
-            <p>© 2026 TRoy Group. All rights reserved.</p>
-        </footer>
+<!-- DIVISIONS -->
+<section id="divisions" class="divs-bg">
+  <div class="inner">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Our Divisions</div>
+      <h2 class="sec-title">Four Divisions. One Group.</h2>
+      <p class="sec-sub">Each division operates independently online, serving clients worldwide with deep expertise and AI-powered tools.</p>
     </div>
+    <div class="divs-grid">
+
+      <div class="div-full-card">
+        <div class="div-card-header">
+          <div class="div-big-icon">⚓</div>
+          <div class="div-brand">TRoyMAR™</div>
+          <div class="div-fullname">TRoy Maritime Agency™</div>
+        </div>
+        <div class="div-card-body">
+          <p class="div-desc">Full-service ship agency and port services for all vessel types worldwide. Turkish Straits specialist with 30+ years of maritime experience. 58+ global ports covered through direct operations and a trusted sub-agent network.</p>
+          <div class="div-tags">
+            <span class="div-tag">Port Agency</span>
+            <span class="div-tag">Husbandry</span>
+            <span class="div-tag">Crew Services</span>
+            <span class="div-tag">Bunkering</span>
+            <span class="div-tag">Turkish Straits</span>
+            <span class="div-tag">PDA/FDA</span>
+          </div>
+          <a href="https://egov-prog.github.io/TRoy-Group/troy-maritime-home.html" class="div-card-link">
+            Visit TRoyMAR™ → 
+          </a>
+        </div>
+      </div>
+
+      <div class="div-full-card">
+        <div class="div-card-header">
+          <div class="div-big-icon">✈️</div>
+          <div class="div-brand">TRoyGo™</div>
+          <div class="div-fullname">TRoy Travel Agency™</div>
+        </div>
+        <div class="div-card-body">
+          <p class="div-desc">AI-powered online travel agency offering flights, hotels, cruises, tours and personalised itinerary planning. Featuring the TRoyGo™ AI Trip Creator — powered by Claude AI. Your World. Your Way.™</p>
+          <div class="div-tags">
+            <span class="div-tag">AI Trip Creator</span>
+            <span class="div-tag">Flights</span>
+            <span class="div-tag">Hotels</span>
+            <span class="div-tag">Cruises</span>
+            <span class="div-tag">Tours</span>
+            <span class="div-tag">Booking.com</span>
+          </div>
+          <a href="https://egov-prog.github.io/TRoy-Group/troygo-website.html" class="div-card-link">
+            Visit TRoyGo™ →
+          </a>
+        </div>
+      </div>
+
+      <div class="div-full-card">
+        <div class="div-card-header">
+          <div class="div-big-icon">🌍</div>
+          <div class="div-brand">TRoyTR™</div>
+          <div class="div-fullname">TRoy Trading Agency™</div>
+        </div>
+        <div class="div-card-body">
+          <p class="div-desc">Global trade intermediary connecting manufacturers and buyers worldwide. Managing logistics, regulatory compliance, market entry, trade financing and documentation for seamless cross-border commerce.</p>
+          <div class="div-tags">
+            <span class="div-tag">Import/Export</span>
+            <span class="div-tag">Logistics</span>
+            <span class="div-tag">Compliance</span>
+            <span class="div-tag">Trade Finance</span>
+            <span class="div-tag">Market Entry</span>
+          </div>
+          <a href="https://egov-prog.github.io/TRoy-Group/troy-trading-agency.html" class="div-card-link">
+            Visit TRoyTR™ →
+          </a>
+        </div>
+      </div>
+
+      <div class="div-full-card">
+        <div class="div-card-header">
+          <div class="div-big-icon">🎬</div>
+          <div class="div-brand">TRoy Media Agency™</div>
+          <div class="div-fullname">TRoyGAR™ Creative Lab</div>
+        </div>
+        <div class="div-card-body">
+          <p class="div-desc">Creative content production, media campaigns, YouTube content and digital media solutions. Home of TRoyGAR™ — "Where Ideas Come to Life™". Supporting all TRoy Group™ divisions with world-class creative.</p>
+          <div class="div-tags">
+            <span class="div-tag">Video Production</span>
+            <span class="div-tag">YouTube</span>
+            <span class="div-tag">Brand Content</span>
+            <span class="div-tag">TRoyGAR™</span>
+          </div>
+          <a href="https://www.youtube.com/@TRoyGARTM" target="_blank" class="div-card-link">
+            Visit YouTube Channel →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AI AGENTS -->
+<section id="ai-agents">
+  <div class="inner">
+    <div class="sec-header">
+      <div class="sec-eyebrow">AI-Powered</div>
+      <h2 class="sec-title">Live AI Tools</h2>
+      <p class="sec-sub">Every TRoy Group™ division is powered by AI — from email management to travel planning and maritime operations.</p>
+    </div>
+    <div class="ai-grid">
+      <div class="ai-card">
+        <div class="ai-card-icon">🤖</div>
+        <div class="ai-card-brand">AI Email Agent</div>
+        <div class="ai-card-desc">Reads, categorises and drafts replies for all 7 TRoy Group™ email accounts. Powered by Claude AI with Gmail integration.</div>
+        <a href="https://egov-prog.github.io/TRoy-Group/troy-gmail-agent.html" class="ai-card-btn">Open Email Agent →</a>
+      </div>
+      <div class="ai-card">
+        <div class="ai-card-icon">✨</div>
+        <div class="ai-card-brand">AI Trip Creator</div>
+        <div class="ai-card-desc">TRoyGo™'s AI travel planner — describe your dream trip and get a personalised day-by-day itinerary instantly. Powered by Claude AI.</div>
+        <a href="https://egov-prog.github.io/TRoy-Group/troygo-website.html#ai-trip" class="ai-card-btn">Plan a Trip →</a>
+      </div>
+      <div class="ai-card">
+        <div class="ai-card-icon">🗺️</div>
+        <div class="ai-card-brand">Global Vessel Tracker</div>
+        <div class="ai-card-desc">Live AIS vessel tracking at 58+ global ports, straits and canals — updated in real time 24/7 via MarineTraffic integration.</div>
+        <a href="https://egov-prog.github.io/TRoy-Group/troy-global-tracker.html" class="ai-card-btn">Open Tracker →</a>
+      </div>
+      <div class="ai-card">
+        <div class="ai-card-icon">⚓</div>
+        <div class="ai-card-brand">Maritime PDA Request</div>
+        <div class="ai-card-desc">Send your vessel details and port — TRoyMAR™ responds with a full Preliminary Disbursement Account within 2 hours.</div>
+        <a href="mailto:troymaritimeagency@gmail.com" class="ai-card-btn">Request PDA →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:var(--navy2);">
+  <div class="inner">
+    <div class="about-grid">
+      <div>
+        <div class="sec-eyebrow">About TRoy Group™</div>
+        <h2 class="sec-title">30+ Years of Expertise.<br>Built for the Digital Age.</h2>
+        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:20px;">
+          TRoy Group™ is an international business umbrella founded by <strong style="color:var(--white)">Ertan Govdeli</strong>, 
+          operating 100% online from Darwin, Northern Territory, Australia.
+        </p>
+        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:20px;">
+          The group brings together four specialist divisions — maritime, travel, trading and media — 
+          each operating independently online with a shared commitment to digital innovation, 
+          transparency and world-class service.
+        </p>
+        <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:32px;">
+          With roots in the Turkish Straits region (Çanakkale/Dardanelles), TRoy Group™ is built 
+          on deep maritime expertise and a 30+ year career spanning ship agency, travel and international trade.
+        </p>
+        <div class="about-values">
+          <div class="val-item"><div class="val-icon">🌐</div><div class="val-title">100% Online</div><div class="val-desc">Operating worldwide with no physical location constraints</div></div>
+          <div class="val-item"><div class="val-icon">🤖</div><div class="val-title">AI-Powered</div><div class="val-desc">Every division enhanced with Claude AI technology</div></div>
+          <div class="val-item"><div class="val-icon">🔒</div><div class="val-title">Transparent</div><div class="val-desc">Clear pricing, pre-payment policy, no hidden costs</div></div>
+          <div class="val-item"><div class="val-icon">⚡</div><div class="val-title">Fast Response</div><div class="val-desc">24/7 availability, 2-hour PDA turnaround</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="about-img-box">
+          <div class="founder-initial">EG</div>
+          <div class="founder-name">Ertan Govdeli</div>
+          <div class="founder-title">Founder & CEO · TRoy Group™</div>
+          <p class="founder-bio">
+            With 30+ years in the maritime industry, Ertan Govdeli founded TRoy Group™ as a vision 
+            for a fully digital international business group. Starting with ship agency in the Turkish 
+            Straits region, the group has expanded into travel, trading and media — all operating 
+            100% online from Darwin, Australia.
+          </p>
+          <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
+            <a href="mailto:ertangovdeli@gmail.com" style="font-size:12px;color:var(--gold);">✉️ ertangovdeli@gmail.com</a>
+            <a href="https://github.com/egov-prog" target="_blank" style="font-size:12px;color:var(--muted);">🐙 @egov-prog</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(135deg,#080f1e,var(--navy2));border-top:1px solid rgba(201,168,76,.1);">
+  <div class="inner" style="text-align:center;max-width:640px;margin:0 auto;">
+    <div class="sec-eyebrow" style="justify-content:center;display:flex;">Get in Touch</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,42px);color:var(--white);margin-bottom:16px;">Ready to work with TRoy Group™?</h2>
+    <p style="font-size:15px;color:var(--muted);margin-bottom:32px;line-height:1.7;">Whether you need a ship agent, travel planning, trade services or media production — we're here 24/7.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="mailto:groupoftroy@gmail.com" class="btn-gold">✉️ Contact TRoy Group™</a>
+      <a href="https://wa.me/61476496693" class="btn-outline">💬 WhatsApp</a>
+    </div>
+    <div style="display:flex;gap:24px;justify-content:center;margin-top:28px;flex-wrap:wrap;font-size:13px;color:var(--muted);">
+      <span>📍 Darwin, NT, Australia</span>
+      <span>🕐 24/7 Available</span>
+      <span>🌐 100% Online · Worldwide</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">TRoy<span> Group™</span></div>
+      <div class="footer-tagline">Maritime · Travel · Trading · Media</div>
+      <p class="footer-desc">International business group operating 100% online worldwide. Four specialist divisions powered by AI and backed by 30+ years of expertise. Founded by Ertan Govdeli, Darwin, NT, Australia.</p>
+      <div class="footer-contact">
+        <div>✉️ <a href="mailto:groupoftroy@gmail.com">groupoftroy@gmail.com</a></div>
+        <div>💬 <a href="https://wa.me/61476496693">WhatsApp — 24/7</a></div>
+        <div>📍 Darwin, Northern Territory, Australia</div>
+        <div>🐙 <a href="https://github.com/egov-prog" target="_blank">github.com/egov-prog</a></div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Divisions</div>
+      <ul class="footer-links">
+        <li><a href="https://egov-prog.github.io/TRoy-Group/troy-maritime-home.html">⚓ TRoyMAR™</a></li>
+        <li><a href="https://egov-prog.github.io/TRoy-Group/troygo-website.html">✈️ TRoyGo™</a></li>
+        <li><a href="https://egov-prog.github.io/TRoy-Group/troy-trading-agency.html">🌍 TRoyTR™</a></li>
+        <li><a href="https://www.youtube.com/@TRoyGARTM" target="_blank">🎬 TRoyGAR™</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">AI Tools</div>
+      <ul class="footer-links">
+        <li><a href="https://egov-prog.github.io/TRoy-Group/troy-gmail-agent.html">🤖 AI Email Agent</a></li>
+        <li><a href="https://egov-prog.github.io/TRoy-Group/troygo-website.html#ai-trip">✨ AI Trip Creator</a></li>
+        <li><a href="https://egov-prog.github.io/TRoy-Group/troy-global-tracker.html">🗺️ Vessel Tracker</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="mailto:groupoftroy@gmail.com">Corporate</a></li>
+        <li><a href="mailto:troymaritimeagency@gmail.com">Maritime</a></li>
+        <li><a href="mailto:troytravelagency@gmail.com">Travel</a></li>
+        <li><a href="mailto:troytradingagency@gmail.com">Trading</a></li>
+        <li><a href="mailto:troymediagency@gmail.com">Media</a></li>
+        <li><a href="https://wa.me/61476496693">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 TRoy Group™. All rights reserved. Founded by Ertan Govdeli.</div>
+    <div class="footer-badges">
+      <span class="fbadge">100% Online</span>
+      <span class="fbadge">AI-Powered</span>
+      <span class="fbadge">Darwin, Australia</span>
+      <span class="fbadge">Worldwide</span>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
