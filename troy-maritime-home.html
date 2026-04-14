@@ -24,91 +24,68 @@
     }
     a { text-decoration: none; color: inherit; }
 
-    /* Header / Nav */
-    header {
+    /* UNIFIED TRoy Group™ NAV BAR */
+    .troy-nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: #ffffffee;
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #e5e7eb;
+      z-index: 999;
     }
-    .nav-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0.75rem 1.5rem;
+    .troy-nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.9rem 1.5rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      align-items: center;
     }
-    .brand {
+    .troy-brand-link {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.6rem;
     }
-    .brand-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
+    .troy-brand-logo {
+      width: 36px;
+      height: 36px;
+      background: #003b95;
+      color: #fff;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
       font-weight: 700;
-      font-size: 0.9rem;
     }
-    .brand-text span:first-child {
-      font-weight: 600;
-      font-size: 0.95rem;
+    .troy-brand-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #003b95;
     }
-    .brand-text span:last-child {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-    .menu {
+    .troy-menu {
       display: flex;
-      gap: 1.25rem;
-      font-size: 0.9rem;
-      flex-wrap: wrap;
+      gap: 1.4rem;
     }
-    .menu a {
-      padding-bottom: 0.2rem;
-      border-bottom: 2px solid transparent;
-      color: var(--muted);
+    .troy-menu a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1a1a1a;
     }
-    .menu a:hover {
-      color: var(--primary);
-      border-color: var(--primary);
+    .troy-menu a:hover {
+      color: #0059d6;
     }
-
-    /* Layout helpers */
-    .section {
-      padding: 3.5rem 1.5rem;
-    }
-    .section-alt { background: var(--bg-alt); }
-    .section-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-    .section h2 {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
-    }
-    .section-intro {
-      max-width: 640px;
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
-    .two-col {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-      gap: 2.5rem;
-      align-items: flex-start;
+    @media (max-width: 700px) {
+      .troy-nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .troy-menu {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
     }
 
-    /* Hero */
+    /* PAGE-SPECIFIC STYLES (TRoyMAR™) */
     .hero {
       background: radial-gradient(circle at top left, #e0f2fe, transparent 55%),
                   radial-gradient(circle at bottom right, #e0f7fa, transparent 55%);
@@ -159,6 +136,7 @@
       border-color: #d1d5db;
     }
     .btn-secondary:hover { border-color: var(--primary); }
+
     .hero-card {
       background: #fff;
       border-radius: 16px;
@@ -168,24 +146,39 @@
       max-width: 320px;
       margin-left: auto;
     }
-    .hero-card h2 { margin-bottom: 0.5rem; font-size: 1.25rem; }
-    .hero-card p { color: var(--muted); font-size: 0.9rem; }
 
-    /* Highlight box */
+    .section {
+      padding: 3.5rem 1.5rem;
+    }
+    .section-alt { background: var(--bg-alt); }
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .section-intro {
+      max-width: 640px;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
     .highlight-box {
       background: #fff;
       border-radius: var(--radius);
       border: 1px solid #e5e7eb;
       padding: 1.5rem 1.75rem;
     }
-    .highlight-box h3 { margin-bottom: 0.5rem; }
-    .highlight-box ul {
-      margin-left: 1.1rem;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
 
-    /* Cards */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -198,55 +191,17 @@
       padding: 1.5rem;
       box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
     }
-    .card h3 { margin-bottom: 0.5rem; }
-    .card p { color: var(--muted); font-size: 0.9rem; }
 
-    /* Regions / sectors */
     .columns-list {
       columns: 2;
       margin-left: 1.1rem;
-      color: var(--text);
-    }
-    .note {
-      margin-top: 1.5rem;
-      background: #fff;
-      border-radius: var(--radius);
-      border: 1px solid #e5e7eb;
-      padding: 1.25rem 1.5rem;
-      color: var(--muted);
-      font-size: 0.9rem;
     }
 
-    /* News */
-    .news-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-    .news-item h3 {
-      font-size: 1rem;
-      margin-bottom: 0.4rem;
-    }
-    .news-meta {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
-    }
-
-    /* Contact */
     .contact-grid {
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
       gap: 2.5rem;
     }
-    .contact-box {
-      background: #fff;
-      border-radius: var(--radius);
-      border: 1px solid #e5e7eb;
-      padding: 1.5rem 1.75rem;
-      font-size: 0.9rem;
-    }
-    .contact-box p { margin-bottom: 0.75rem; }
 
     footer {
       border-top: 1px solid #e5e7eb;
@@ -262,254 +217,150 @@
       .contact-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-      .hero-card { margin: 2rem 0 0; }
       .columns-list { columns: 1; }
     }
   </style>
 </head>
 <body>
-  <!-- NAV -->
-  <header>
-    <div class="nav-inner">
-      <div class="brand">
-        <div class="brand-logo">TM</div>
-        <div class="brand-text">
-          <span>TRoy Maritime Agency™</span>
-          <span>TRoyMAR™</span>
-        </div>
-      </div>
-      <nav class="menu">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#sectors">Sectors</a>
-        <a href="#network">Global Network</a>
-        <a href="#sustainability">Sustainability</a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="troy-group-main.html">TRoy Group™</a>
-      </nav>
-    </div>
-  </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-inner">
-      <div>
-        <h1>Integrated Maritime & Port Agency Solutions</h1>
-        <p>
-          TRoy Maritime Agency™ (TRoyMAR™) supports ship owners, operators and cargo interests
-          with reliable, compliant and efficient services at key ports worldwide.
-        </p>
-        <div class="hero-actions">
-          <a href="#services" class="btn btn-primary">Explore services</a>
-          <a href="#contact" class="btn btn-secondary">Operations contact</a>
-        </div>
-      </div>
-      <div class="hero-card">
-        <h2>24/7 Port Call Management</h2>
-        <p>
-          Real-time coordination, transparent reporting and on-time vessel turnaround for liner,
-          tramp and project calls.
-        </p>
+<!-- UNIFIED TRoy Group™ NAV BAR -->
+<header class="troy-nav">
+  <div class="troy-nav-inner">
+    <a href="troy-group-main.html" class="troy-brand-link">
+      <span class="troy-brand-logo">TG</span>
+      <span class="troy-brand-text">TRoy Group™</span>
+    </a>
+    <nav class="troy-menu">
+      <a href="troy-maritime-home.html">Maritime</a>
+      <a href="troygo-website.html">Travel</a>
+      <a href="troytr-website.html">Trading</a>
+      <a href="troymedia-website.html">Media</a>
+      <a href="troygar-website.html">Garage</a>
+      <a href="troy-gmail-agent.html">Gmail Agent</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Integrated Maritime & Port Agency Solutions</h1>
+      <p>TRoy Maritime Agency™ (TRoyMAR™) supports ship owners, operators and cargo interests with reliable, compliant and efficient services at key ports worldwide.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn btn-primary">Explore services</a>
+        <a href="#contact" class="btn btn-secondary">Operations contact</a>
       </div>
     </div>
-  </section>
+    <div class="hero-card">
+      <h2>24/7 Port Call Management</h2>
+      <p>Real-time coordination, transparent reporting and on-time vessel turnaround for liner, tramp and project calls.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- ABOUT -->
-  <section id="about" class="section">
-    <div class="section-inner two-col">
-      <div>
-        <h2>About TRoyMAR™</h2>
-        <p>
-          TRoy Maritime Agency™ focuses on operational excellence, safety and compliance across
-          every port call. We act as your local partner on the ground, coordinating with
-          authorities, terminals and service providers.
-        </p>
-        <p>
-          From pre-arrival planning to post-departure documentation, our team ensures your
-          vessels and cargo move smoothly, with clear communication at every step.
-        </p>
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="section-inner two-col">
+    <div>
+      <h2>About TRoyMAR™</h2>
+      <p>TRoy Maritime Agency™ focuses on operational excellence, safety and compliance across every port call. We act as your local partner on the ground, coordinating with authorities, terminals and service providers.</p>
+      <p>From pre-arrival planning to post-departure documentation, our team ensures your vessels and cargo move smoothly, with clear communication at every step.</p>
+    </div>
+    <div class="highlight-box">
+      <h3>Why work with TRoyMAR™</h3>
+      <ul>
+        <li>Local expertise with a global mindset</li>
+        <li>Transparent, timely operational updates</li>
+        <li>Compliance-driven processes and documentation</li>
+        <li>24/7 availability for critical operations</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section section-alt">
+  <div class="section-inner">
+    <h2>Services</h2>
+    <p class="section-intro">Comprehensive maritime and logistics solutions tailored to your fleet, cargo and trade lanes.</p>
+
+    <div class="cards">
+      <div class="card"><h3>Port Agency</h3><p>Full port call coordination, documentation, husbandry and liaison with port authorities and terminals.</p></div>
+      <div class="card"><h3>Owner’s Protective Agency</h3><p>Independent representation to safeguard owners’ and charterers’ interests during port calls.</p></div>
+      <div class="card"><h3>Crew & Husbandry Services</h3><p>Crew changes, visas, transport, provisions, CTM and medical assistance arranged with care.</p></div>
+      <div class="card"><h3>Marine Logistics</h3><p>Coordination of spares, stores and project cargo with integrated sea, air and land logistics.</p></div>
+      <div class="card"><h3>Regulatory & Documentation</h3><p>Support with port documentation, regulatory requirements and reporting to ensure compliance.</p></div>
+      <div class="card"><h3>Custom Maritime Solutions</h3><p>Bespoke support for offshore, energy, bulk, tanker and specialized operations.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTORS -->
+<section id="sectors" class="section">
+  <div class="section-inner">
+    <h2>Sectors we serve</h2>
+    <p class="section-intro">TRoyMAR™ supports a wide range of vessel types and trades across global shipping.</p>
+
+    <ul class="columns-list">
+      <li>Container & liner services</li>
+      <li>Dry bulk & breakbulk</li>
+      <li>Tanker & chemical</li>
+      <li>Project cargo & heavy lift</li>
+      <li>Offshore & energy</li>
+      <li>Ro-ro & car carriers</li>
+      <li>Cruise & passenger</li>
+      <li>Coastal & regional trades</li>
+    </ul>
+  </div>
+</section>
+
+<!-- NETWORK -->
+<section id="network" class="section section-alt">
+  <div class="section-inner">
+    <h2>Global network</h2>
+    <p class="section-intro">TRoyMAR™ operates through a network of trusted partners and representatives in strategic ports and maritime hubs.</p>
+
+    <ul class="columns-list">
+      <li>Asia-Pacific</li>
+      <li>Middle East</li>
+      <li>Europe</li>
+      <li>Africa</li>
+      <li>Americas</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="section-inner">
+    <h2>Contact operations</h2>
+    <p class="section-intro">For port calls, projects or general enquiries, contact our team with your vessel and port details.</p>
+
+    <div class="contact-grid">
+      <div class="highlight-box">
+        <p><strong>Email:</strong> troymaritimeagency@gmail.com</p>
+        <p><strong>Founder & CEO:</strong> Ertan Govdeli</p>
+        <p><strong>Location:</strong> Darwin, Northern Territory, Australia</p>
+        <p>Include:<br>– Vessel name & IMO<br>– Port & ETA<br>– Required services</p>
       </div>
       <div class="highlight-box">
-        <h3>Why work with TRoyMAR™</h3>
-        <ul>
-          <li>Local expertise with a global mindset</li>
-          <li>Transparent, timely operational updates</li>
-          <li>Compliance-driven processes and documentation</li>
-          <li>24/7 availability for critical operations</li>
-        </ul>
+        <p><strong>TRoy Group™ divisions</strong></p>
+        <p><a href="troy-group-main.html">TRoy Group™ main site</a></p>
+        <p><a href="troygo-website.html">TRoyGo™ Travel Agency</a></p>
+        <p><a href="troymedia-website.html">TRoy Media Agency™</a></p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SERVICES -->
-  <section id="services" class="section section-alt">
-    <div class="section-inner">
-      <h2>Services</h2>
-      <p class="section-intro">
-        Comprehensive maritime and logistics solutions tailored to your fleet, cargo and trade lanes.
-      </p>
-      <div class="cards">
-        <article class="card">
-          <h3>Port Agency</h3>
-          <p>Full port call coordination, documentation, husbandry and liaison with port authorities and terminals.</p>
-        </article>
-        <article class="card">
-          <h3>Owner’s Protective Agency</h3>
-          <p>Independent representation to safeguard owners’ and charterers’ interests during port calls.</p>
-        </article>
-        <article class="card">
-          <h3>Crew & Husbandry Services</h3>
-          <p>Crew changes, visas, transport, provisions, CTM and medical assistance arranged with care.</p>
-        </article>
-        <article class="card">
-          <h3>Marine Logistics</h3>
-          <p>Coordination of spares, stores and project cargo with integrated sea, air and land logistics.</p>
-        </article>
-        <article class="card">
-          <h3>Regulatory & Documentation</h3>
-          <p>Support with port documentation, regulatory requirements and reporting to ensure compliance.</p>
-        </article>
-        <article class="card">
-          <h3>Custom Maritime Solutions</h3>
-          <p>Bespoke support for offshore, energy, bulk, tanker and specialized operations.</p>
-        </article>
-      </div>
-    </div>
-  </section>
+<footer>
+  © <span id="year"></span> TRoy Maritime Agency™ (TRoyMAR™). All rights reserved.
+</footer>
 
-  <!-- SECTORS -->
-  <section id="sectors" class="section">
-    <div class="section-inner">
-      <h2>Sectors we serve</h2>
-      <p class="section-intro">
-        TRoyMAR™ supports a wide range of vessel types and trades across global shipping.
-      </p>
-      <ul class="columns-list">
-        <li>Container & liner services</li>
-        <li>Dry bulk & breakbulk</li>
-        <li>Tanker & chemical</li>
-        <li>Project cargo & heavy lift</li>
-        <li>Offshore & energy</li>
-        <li>Ro-ro & car carriers</li>
-        <li>Cruise & passenger</li>
-        <li>Coastal & regional trades</li>
-      </ul>
-      <div class="note">
-        Share your vessel type, trade and port rotation and we will confirm coverage, capabilities and
-        tailored solutions for your operations.
-      </div>
-    </div>
-  </section>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
 
-  <!-- GLOBAL NETWORK -->
-  <section id="network" class="section section-alt">
-    <div class="section-inner">
-      <h2>Global network</h2>
-      <p class="section-intro">
-        TRoyMAR™ operates through a network of trusted partners and representatives in strategic ports and maritime hubs.
-      </p>
-      <ul class="columns-list">
-        <li>Asia-Pacific</li>
-        <li>Middle East</li>
-        <li>Europe</li>
-        <li>Africa</li>
-        <li>Americas</li>
-      </ul>
-      <div class="note">
-        Send us your vessel schedule or project scope and we will confirm local coverage, timelines and
-        cost estimates for each port on your route.
-      </div>
-    </div>
-  </section>
-
-  <!-- SUSTAINABILITY -->
-  <section id="sustainability" class="section">
-    <div class="section-inner two-col">
-      <div>
-        <h2>Sustainability & compliance</h2>
-        <p>
-          TRoy Maritime Agency™ supports clients’ ESG goals by promoting safe, efficient and responsible operations.
-          We work to minimize delays, optimize port stays and reduce operational risk.
-        </p>
-        <p>
-          Our processes are built around transparency, ethical business practices and continuous improvement.
-        </p>
-      </div>
-      <div class="highlight-box">
-        <h3>Focus areas</h3>
-        <ul>
-          <li>Safety-first culture</li>
-          <li>Regulatory compliance and documentation</li>
-          <li>Ethical and transparent operations</li>
-          <li>Training and continuous improvement</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- NEWS -->
-  <section id="news" class="section section-alt">
-    <div class="section-inner">
-      <h2>News & insights</h2>
-      <p class="section-intro">
-        Sample updates to show how TRoyMAR™ can share operational insights and company news.
-      </p>
-      <div class="news-list">
-        <article class="news-item">
-          <div class="news-meta">Update · Operations</div>
-          <h3>TRoyMAR™ expands coverage in Asia-Pacific</h3>
-          <p>New partner ports added across key regional hubs to support container, bulk and project calls.</p>
-        </article>
-        <article class="news-item">
-          <div class="news-meta">Insight · Compliance</div>
-          <h3>Preparing for efficient port calls</h3>
-          <p>How early documentation, clear instructions and local coordination reduce delays and costs.</p>
-        </article>
-        <article class="news-item">
-          <div class="news-meta">Update · Services</div>
-          <h3>Enhanced crew change support</h3>
-          <p>Improved processes for visas, transport and welfare in selected ports.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section">
-    <div class="section-inner">
-      <h2>Contact operations</h2>
-      <p class="section-intro">
-        For port calls, projects or general enquiries, contact our team with your vessel and port details.
-      </p>
-      <div class="contact-grid">
-        <div class="contact-box">
-          <p><strong>Email:</strong> troymaritimeagency@gmail.com</p>
-          <p><strong>Founder &amp; CEO:</strong> Ertan Govdeli</p>
-          <p><strong>Location:</strong> Darwin, Northern Territory, Australia</p>
-          <p>
-            When contacting us, please include:<br>
-            – Vessel name &amp; IMO<br>
-            – Port &amp; ETA<br>
-            – Required services
-          </p>
-        </div>
-        <div class="contact-box">
-          <p><strong>TRoy Group™ divisions</strong></p>
-          <p><a href="troy-group-main.html">TRoy Group™ main site</a></p>
-          <p><a href="troygo-website.html">TRoyGo™ / TRoy Travel Agency™</a></p>
-          <p><a href="troygar-website.html">TRoy Media Agency™ / TRoyGAR™</a></p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © <span id="year"></span> TRoy Maritime Agency™ (TRoyMAR™). All rights reserved.
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
