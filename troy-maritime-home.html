@@ -13,6 +13,7 @@
       --bg-alt: #f4f7fb;
       --text: #1f2933;
       --muted: #6b7280;
+      --radius: 8px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -22,10 +23,12 @@
       line-height: 1.6;
     }
     a { text-decoration: none; color: inherit; }
+
+    /* Header / Nav */
     header {
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
       background: #ffffffee;
       backdrop-filter: blur(10px);
       border-bottom: 1px solid #e5e7eb;
@@ -79,6 +82,33 @@
       color: var(--primary);
       border-color: var(--primary);
     }
+
+    /* Layout helpers */
+    .section {
+      padding: 3.5rem 1.5rem;
+    }
+    .section-alt { background: var(--bg-alt); }
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 0.75rem;
+    }
+    .section-intro {
+      max-width: 640px;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    /* Hero */
     .hero {
       background: radial-gradient(circle at top left, #e0f2fe, transparent 55%),
                   radial-gradient(circle at bottom right, #e0f7fa, transparent 55%);
@@ -141,32 +171,10 @@
     .hero-card h2 { margin-bottom: 0.5rem; font-size: 1.25rem; }
     .hero-card p { color: var(--muted); font-size: 0.9rem; }
 
-    .section {
-      padding: 3.5rem 1.5rem;
-    }
-    .section-alt { background: var(--bg-alt); }
-    .section-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-    }
-    .section h2 {
-      font-size: 2rem;
-      margin-bottom: 0.75rem;
-    }
-    .section-intro {
-      max-width: 640px;
-      color: var(--muted);
-      margin-bottom: 2rem;
-    }
-    .two-col {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
-      gap: 2.5rem;
-      align-items: flex-start;
-    }
+    /* Highlight box */
     .highlight-box {
       background: #fff;
-      border-radius: 8px;
+      border-radius: var(--radius);
       border: 1px solid #e5e7eb;
       padding: 1.5rem 1.75rem;
     }
@@ -176,6 +184,8 @@
       color: var(--muted);
       font-size: 0.9rem;
     }
+
+    /* Cards */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -183,7 +193,7 @@
     }
     .card {
       background: #fff;
-      border-radius: 8px;
+      border-radius: var(--radius);
       border: 1px solid #e5e7eb;
       padding: 1.5rem;
       box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
@@ -191,7 +201,8 @@
     .card h3 { margin-bottom: 0.5rem; }
     .card p { color: var(--muted); font-size: 0.9rem; }
 
-    .regions {
+    /* Regions / sectors */
+    .columns-list {
       columns: 2;
       margin-left: 1.1rem;
       color: var(--text);
@@ -199,13 +210,30 @@
     .note {
       margin-top: 1.5rem;
       background: #fff;
-      border-radius: 8px;
+      border-radius: var(--radius);
       border: 1px solid #e5e7eb;
       padding: 1.25rem 1.5rem;
       color: var(--muted);
       font-size: 0.9rem;
     }
 
+    /* News */
+    .news-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .news-item h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+    .news-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Contact */
     .contact-grid {
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
@@ -213,7 +241,7 @@
     }
     .contact-box {
       background: #fff;
-      border-radius: 8px;
+      border-radius: var(--radius);
       border: 1px solid #e5e7eb;
       padding: 1.5rem 1.75rem;
       font-size: 0.9rem;
@@ -235,11 +263,12 @@
         grid-template-columns: minmax(0, 1fr);
       }
       .hero-card { margin: 2rem 0 0; }
-      .regions { columns: 1; }
+      .columns-list { columns: 1; }
     }
   </style>
 </head>
 <body>
+  <!-- NAV -->
   <header>
     <div class="nav-inner">
       <div class="brand">
@@ -252,14 +281,17 @@
       <nav class="menu">
         <a href="#about">About</a>
         <a href="#services">Services</a>
+        <a href="#sectors">Sectors</a>
         <a href="#network">Global Network</a>
         <a href="#sustainability">Sustainability</a>
+        <a href="#news">News</a>
         <a href="#contact">Contact</a>
         <a href="troy-group-main.html">TRoy Group™</a>
       </nav>
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-inner">
       <div>
@@ -283,6 +315,7 @@
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about" class="section">
     <div class="section-inner two-col">
       <div>
@@ -309,6 +342,7 @@
     </div>
   </section>
 
+  <!-- SERVICES -->
   <section id="services" class="section section-alt">
     <div class="section-inner">
       <h2>Services</h2>
@@ -344,13 +378,38 @@
     </div>
   </section>
 
-  <section id="network" class="section">
+  <!-- SECTORS -->
+  <section id="sectors" class="section">
     <div class="section-inner">
-      <h2>Global Network</h2>
+      <h2>Sectors we serve</h2>
+      <p class="section-intro">
+        TRoyMAR™ supports a wide range of vessel types and trades across global shipping.
+      </p>
+      <ul class="columns-list">
+        <li>Container & liner services</li>
+        <li>Dry bulk & breakbulk</li>
+        <li>Tanker & chemical</li>
+        <li>Project cargo & heavy lift</li>
+        <li>Offshore & energy</li>
+        <li>Ro-ro & car carriers</li>
+        <li>Cruise & passenger</li>
+        <li>Coastal & regional trades</li>
+      </ul>
+      <div class="note">
+        Share your vessel type, trade and port rotation and we will confirm coverage, capabilities and
+        tailored solutions for your operations.
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOBAL NETWORK -->
+  <section id="network" class="section section-alt">
+    <div class="section-inner">
+      <h2>Global network</h2>
       <p class="section-intro">
         TRoyMAR™ operates through a network of trusted partners and representatives in strategic ports and maritime hubs.
       </p>
-      <ul class="regions">
+      <ul class="columns-list">
         <li>Asia-Pacific</li>
         <li>Middle East</li>
         <li>Europe</li>
@@ -358,16 +417,17 @@
         <li>Americas</li>
       </ul>
       <div class="note">
-        Share your vessel schedule or project scope and we will confirm local coverage, timelines and cost estimates
-        for each port on your route.
+        Send us your vessel schedule or project scope and we will confirm local coverage, timelines and
+        cost estimates for each port on your route.
       </div>
     </div>
   </section>
 
-  <section id="sustainability" class="section section-alt">
+  <!-- SUSTAINABILITY -->
+  <section id="sustainability" class="section">
     <div class="section-inner two-col">
       <div>
-        <h2>Sustainability & Compliance</h2>
+        <h2>Sustainability & compliance</h2>
         <p>
           TRoy Maritime Agency™ supports clients’ ESG goals by promoting safe, efficient and responsible operations.
           We work to minimize delays, optimize port stays and reduce operational risk.
@@ -388,6 +448,34 @@
     </div>
   </section>
 
+  <!-- NEWS -->
+  <section id="news" class="section section-alt">
+    <div class="section-inner">
+      <h2>News & insights</h2>
+      <p class="section-intro">
+        Sample updates to show how TRoyMAR™ can share operational insights and company news.
+      </p>
+      <div class="news-list">
+        <article class="news-item">
+          <div class="news-meta">Update · Operations</div>
+          <h3>TRoyMAR™ expands coverage in Asia-Pacific</h3>
+          <p>New partner ports added across key regional hubs to support container, bulk and project calls.</p>
+        </article>
+        <article class="news-item">
+          <div class="news-meta">Insight · Compliance</div>
+          <h3>Preparing for efficient port calls</h3>
+          <p>How early documentation, clear instructions and local coordination reduce delays and costs.</p>
+        </article>
+        <article class="news-item">
+          <div class="news-meta">Update · Services</div>
+          <h3>Enhanced crew change support</h3>
+          <p>Improved processes for visas, transport and welfare in selected ports.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
   <section id="contact" class="section">
     <div class="section-inner">
       <h2>Contact operations</h2>
@@ -408,7 +496,7 @@
         </div>
         <div class="contact-box">
           <p><strong>TRoy Group™ divisions</strong></p>
-          <p><a href="troy-group-main.html">View all TRoy Group™ divisions</a></p>
+          <p><a href="troy-group-main.html">TRoy Group™ main site</a></p>
           <p><a href="troygo-website.html">TRoyGo™ / TRoy Travel Agency™</a></p>
           <p><a href="troygar-website.html">TRoy Media Agency™ / TRoyGAR™</a></p>
         </div>
