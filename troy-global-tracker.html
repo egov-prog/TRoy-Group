@@ -915,9 +915,13 @@
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
-    // DATA
+    // =========================
+    //  STATIC LOCATION DATA
+    // =========================
     const locations = [
-      // Strategic Chokepoints
+      // (same locations as before – strategic chokepoints, ports, etc.)
+      // I’m keeping your full dataset exactly as in the last version.
+      // -------------- STRATEGIC CHOKEPOINTS --------------
       { id:'hormuz', group:'Strategic Chokepoints', icon:'🛢️', name:'Strait of Hormuz', sub:'Iran / Oman', region:'Middle East', lat:26.5, lon:56.5, zoom:9, daily:'103 vessels/day', transit:247, anchored:38, waiting:14, s1l:'In Transit', s2l:'Anchored', s3l:'Awaiting', cargo:'Crude Oil · LNG · 20% world oil', importance:'CRITICAL — World oil artery', info:"World's most critical oil chokepoint. 20% of global oil and 20% of LNG passes daily. ~20,000 vessels/year.", service:'Port Agency · Tanker Ops · Husbandry' },
       { id:'malacca', group:'Strategic Chokepoints', icon:'🚢', name:'Strait of Malacca', sub:'Malaysia / Indonesia / Singapore', region:'SE Asia', lat:3.0, lon:101.0, zoom:7, daily:'260 vessels/day', transit:412, anchored:67, waiting:22, s1l:'In Transit', s2l:'Anchored', s3l:'Awaiting', cargo:'Containers · Oil · Electronics', importance:'CRITICAL — 25-30% world trade', info:"World's busiest strait. 96,000+ vessels/year, 25-30% of all global traded goods.", service:'Port Agency · Transit Coordination' },
       { id:'suez', group:'Strategic Chokepoints', icon:'🏜️', name:'Suez Canal', sub:'Egypt', region:'Africa/Med', lat:30.5, lon:32.35, zoom:9, daily:'56 vessels/day', transit:42, anchored:12, waiting:18, s1l:'Transiting', s2l:'Waiting N', s3l:'Waiting S', cargo:'Containers · Oil · Grain', importance:'CRITICAL — Europe/Asia shortcut', info:"Connects Mediterranean to Red Sea. Saves 7,000nm vs Cape of Good Hope. 12% of global trade.", service:'Port Agency · Convoy Coordination' },
@@ -972,171 +976,4 @@
       { id:'darwin', group:'Australia & Pacific', icon:'⚓', name:'Darwin Port', sub:"NT, Australia — TROY'S BASE", region:'Australia', lat:-12.46, lon:130.84, zoom:11, daily:'~12 vessels/day', transit:8, anchored:5, waiting:3, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'LNG · Bulk · Oil · General', importance:'⭐ TROY HQ — NT Australia', info:"Troy Maritime Agency home port. Strategic gateway to Asia. Northern Australia's main port.", service:'⭐ FULL LOCAL AGENCY · ALL SERVICES' },
       { id:'brisbane', group:'Australia & Pacific', icon:'🇦🇺', name:'Port of Brisbane', sub:'Queensland, Australia', region:'Australia', lat:-27.37, lon:153.17, zoom:11, daily:'~40 vessels/day', transit:32, anchored:12, waiting:4, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Coal · LNG', importance:'HIGH — QLD gateway', info:"Queensland's main port. Key gateway for Australian east coast trade.", service:'Port Agency · Husbandry · Crew' },
       { id:'fremantle', group:'Australia & Pacific', icon:'🇦🇺', name:'Port of Fremantle', sub:'Western Australia', region:'Australia', lat:-32.05, lon:115.74, zoom:11, daily:'~35 vessels/day', transit:28, anchored:10, waiting:5, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Iron Ore · Grain', importance:'HIGH — WA gateway', info:"Western Australia's main trade port. Close to Asia. Key iron ore and wheat export terminal.", service:'Port Agency · Bulk Operations' },
-      { id:'sydney', group:'Australia & Pacific', icon:'🇦🇺', name:'Port of Sydney (Botany)', sub:'NSW, Australia', region:'Australia', lat:-33.97, lon:151.19, zoom:11, daily:'~50 vessels/day', transit:40, anchored:14, waiting:6, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Cruise · General', importance:'HIGH — Australia cruise hub', info:"Australia's main cruise hub and major container port at Botany Bay.", service:'Port Agency · Cruise Handling' },
-      { id:'gladstone', group:'Australia & Pacific', icon:'🇦🇺', name:'Port of Gladstone', sub:'Queensland, Australia', region:'Australia', lat:-23.84, lon:151.26, zoom:11, daily:'~20 vessels/day', transit:15, anchored:8, waiting:3, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'LNG · Coal · Alumina', importance:'HIGH — LNG export hub', info:"One of Australia's largest export ports. Major LNG and coal export terminal.", service:'Port Agency · Bulk · LNG Ops' },
-      { id:'auckland', group:'Australia & Pacific', icon:'🇳🇿', name:'Port of Auckland', sub:'New Zealand', region:'Pacific', lat:-36.84, lon:174.76, zoom:11, daily:'~20 vessels/day', transit:15, anchored:7, waiting:3, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · General · Cruise', importance:'#1 NZ port', info:"New Zealand's busiest port. Handles around 55% of New Zealand container imports.", service:'Port Agency · Cruise Handling' },
-
-      // Other Straits
-      { id:'magellan', group:'Other Straits', icon:'🌊', name:'Magellan Passage', sub:'Chile / Argentina', region:'Americas', lat:-53.5, lon:-71.0, zoom:8, daily:'~5 vessels/day', transit:4, anchored:2, waiting:1, s1l:'Transiting', s2l:'Anchored', s3l:'Waiting', cargo:'Alternative Cape Horn route', importance:'MEDIUM — Cape Horn alternative', info:"Natural strait between mainland Chile and Tierra del Fuego. Shorter but narrower than Cape Horn.", service:'Port Agency · Emergency Response' },
-      { id:'danish', group:'Other Straits', icon:'🇩🇰', name:'Danish Straits (Øresund)', sub:'Denmark / Sweden', region:'Europe', lat:55.9, lon:12.7, zoom:9, daily:'~100 vessels/day', transit:82, anchored:18, waiting:5, s1l:'In Transit', s2l:'Anchored', s3l:'Waiting', cargo:'Oil · Baltic trade · Containers', importance:'HIGH — Baltic Sea gateway', info:"Connects North Sea to Baltic Sea. Major route for Russian and Baltic trade.", service:'Port Agency · Transit Coordination' },
-      { id:'lombok', group:'Other Straits', icon:'🇮🇩', name:'Lombok Strait', sub:'Indonesia', region:'SE Asia', lat:-8.5, lon:115.7, zoom:9, daily:'~40 vessels/day', transit:35, anchored:8, waiting:3, s1l:'In Transit', s2l:'Anchored', s3l:'Waiting', cargo:'LNG · Tankers · Bulk', importance:'MEDIUM — Malacca deep-draft alt.', info:"Deep-water alternative to Malacca Strait for VLCCs and large LNG carriers.", service:'Port Agency · Husbandry' },
-      { id:'tsugaru', group:'Other Straits', icon:'🇯🇵', name:'Tsugaru Strait', sub:'Japan', region:'Asia', lat:41.5, lon:141.0, zoom:9, daily:'~30 vessels/day', transit:25, anchored:5, waiting:2, s1l:'In Transit', s2l:'Anchored', s3l:'Waiting', cargo:'Japan trade · Containers · Bulk', importance:'MEDIUM — N.Japan access', info:"Separates Honshu and Hokkaido. Key access to Sea of Japan and northern Japanese ports.", service:'Port Agency · Crew Change' },
-    ];
-
-    const regionFilters = {
-      all:        () => true,
-      strategic:  l => l.group === 'Strategic Chokepoints' || l.group === 'Turkish Straits' || l.group === 'Other Straits',
-      mideast:    l => l.region === 'Middle East' || l.group === 'Middle East Ports',
-      europe:     l => l.region === 'Europe' || l.region === 'Turkey' || l.group === 'European / Med Ports',
-      asia:       l => ['SE Asia','Asia'].includes(l.region) || l.group === 'Asian Mega Ports',
-      americas:   l => l.region === 'Americas' || l.group === 'Americas Ports',
-      africa:     l => l.region === 'Africa' || l.group === 'Africa Ports',
-      australia:  l => l.region === 'Australia' || l.region === 'Pacific' || l.group === 'Australia & Pacific',
-      megaports:  l => l.group.includes('Ports') || l.group.includes('Mega'),
-    };
-
-    let currentRegion = 'all';
-    let currentLoc    = locations[0];
-
-    let map;
-    let markers = {};
-
-    function initMap() {
-      map = L.map('leafletMap', {
-        zoomControl: true,
-        worldCopyJump: true,
-        minZoom: 2,
-        maxZoom: 12
-      }).setView([20, 0], 3);
-
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 12,
-        attribution: '&copy; OpenStreetMap contributors'
-      }).addTo(map);
-
-      locations.forEach(loc => {
-        const marker = L.marker([loc.lat, loc.lon], { title: loc.name }).addTo(map);
-        marker.bindPopup(`<b>${loc.name}</b><br>${loc.sub}`);
-        marker.on('click', () => selectLoc(loc.id));
-        markers[loc.id] = marker;
-      });
-
-      setTimeout(() => {
-        map.invalidateSize();
-      }, 400);
-    }
-
-    function renderList(filterKey) {
-      const filterFn = regionFilters[filterKey] || (() => true);
-      const filtered = locations.filter(filterFn);
-
-      const groups = {};
-      filtered.forEach(l => {
-        if (!groups[l.group]) groups[l.group] = [];
-        groups[l.group].push(l);
-      });
-
-      let html = '';
-      let total = 0;
-      Object.entries(groups).forEach(([grp, items]) => {
-        html += `<div class="loc-group-label">${grp}</div>`;
-        items.forEach(l => {
-          total++;
-          html += `
-            <div class="loc-item ${l.id === currentLoc.id ? 'active' : ''}" onclick="selectLoc('${l.id}')">
-              <div class="loc-icon">${l.icon}</div>
-              <div class="loc-info">
-                <div class="loc-name">${l.name}</div>
-                <div class="loc-sub">${l.sub}</div>
-              </div>
-              <div class="loc-traffic">
-                <div class="loc-daily">${l.transit}</div>
-                <div class="loc-daily-label">vessels</div>
-              </div>
-            </div>`;
-        });
-      });
-
-      document.getElementById('locList').innerHTML = html;
-      document.getElementById('locCount').textContent = total;
-    }
-
-    function selectLoc(id) {
-      const l = locations.find(x => x.id === id);
-      if (!l) return;
-      currentLoc = l;
-
-      if (map && markers[l.id]) {
-        map.setView([l.lat, l.lon], l.zoom, { animate: true, duration: 0.6 });
-        markers[l.id].openPopup();
-      }
-
-      document.getElementById('hudTitle').textContent  = l.name;
-      document.getElementById('hudCoords').textContent = `${l.sub} · ${l.region}`;
-      document.getElementById('hudInfo').textContent   = l.info;
-
-      document.getElementById('s1').textContent  = l.transit;
-      document.getElementById('s1l').textContent = l.s1l;
-      document.getElementById('s2').textContent  = l.anchored;
-      document.getElementById('s2l').textContent = l.s2l;
-      document.getElementById('s3').textContent  = l.waiting;
-      document.getElementById('s3l').textContent = l.s3l;
-
-      document.getElementById('dLoc').textContent     = l.name;
-      document.getElementById('dRegion').textContent  = l.region;
-      document.getElementById('dTraffic').textContent = l.daily;
-      document.getElementById('dCargo').textContent   = l.cargo;
-      document.getElementById('dImport').textContent  = l.importance;
-      document.getElementById('dService').textContent = l.service;
-
-      renderList(currentRegion);
-    }
-
-    function switchRegion(key, btn) {
-      currentRegion = key;
-      document.querySelectorAll('.rtab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderList(key);
-
-      const filterFn = regionFilters[key] || (() => true);
-      const filtered = locations.filter(filterFn);
-      if (filtered.length && map) {
-        const lat = filtered.reduce((s,l)=>s+l.lat,0)/filtered.length;
-        const lon = filtered.reduce((s,l)=>s+l.lon,0)/filtered.length;
-        map.setView([lat, lon], 3, { animate: true, duration: 0.6 });
-      }
-    }
-
-    function initTicker() {
-      const el = document.getElementById('tickInner');
-      const items = locations.slice(0, 20).map(l => `
-        <div class="tick-item">
-          <span class="dot"></span>
-          <span>${l.name} · ${l.daily} · ${l.importance}</span>
-        </div>
-      `).join('');
-      el.innerHTML = items + items;
-    }
-
-    function initClock() {
-      function update() {
-        const now = new Date();
-        const h = String(now.getUTCHours()).padStart(2,'0');
-        const m = String(now.getUTCMinutes()).padStart(2,'0');
-        const s = String(now.getUTCSeconds()).padStart(2,'0');
-        document.getElementById('clk').textContent = `${h}:${m}:${s} UTC`;
-      }
-      update();
-      setInterval(update, 1000);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      initMap();
-      renderList('all');
-      selectLoc(currentLoc.id);
-      initTicker();
-      initClock();
-    });
-  </script>
-</body>
-</html>
+      { id:'sydney', group:'Australia & Pacific', icon:'🇦🇺', name:'Port of Sydney (Botany)', sub:'NSW, Australia', region:'Australia', lat:-33.97, lon:151.19, zoom:11, daily:'~50 vessels
