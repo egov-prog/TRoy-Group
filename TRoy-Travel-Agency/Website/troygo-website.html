@@ -1,1 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRoyGo™ / TRoy Travel Agency™</title>
+  <meta name="description" content="TRoyGo™ / TRoy Travel Agency™ offers smart trip planning, stays, flights, car rentals, cruises and more.">
+  <style>
+    :root {
+      --primary: #003b95;
+      --primary-light: #0059d6;
+      --accent: #febb02;
+      --bg: #f5f5f5;
+      --text: #1b1b1b;
+      --muted: #6b7280;
+      --radius: 8px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { text-decoration: none; color: inherit; }
 
+    /* UNIFIED TRoy Group™ NAV BAR */
+    .troy-nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .troy-nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .troy-brand-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .troy-brand-logo {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    .troy-brand-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .troy-menu {
+      display: flex;
+      gap: 1.4rem;
+    }
+    .troy-menu a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+    .troy-menu a:hover {
+      color: var(--primary-light);
+    }
+    @media (max-width: 700px) {
+      .troy-nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .troy-menu {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--primary);
+      color: #fff;
+      padding: 2.5rem 1.5rem 3rem;
+    }
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      margin-bottom: 0.4rem;
+    }
+    .hero p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    /* SEARCH BOX */
+    .search-box {
+      margin-top: 1.5rem;
+      background: #f5f7fb;
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+    .tab {
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .tab.active {
+      background: #fff;
+      border-color: #d1d5db;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.15);
+    }
+
+    .search-form {
+      display: grid;
+      grid-template-columns: 2.2fr 1.4fr 1.4fr 1.2fr auto;
+      gap: 0.5rem;
+    }
+    .field {
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.5rem 0.7rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .field-label {
+      font-size: 0.7rem;
+      color: #6b7280;
+    }
+    .field-input input {
+      border: none;
+      outline: none;
+      width: 100%;
+      background: transparent;
+      font-size: 0.85rem;
+    }
+    .search-btn {
+      background: var(--accent);
+      border-radius: 8px;
+      border: none;
+      padding: 0 1.4rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: #1b1b1b;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 1120px;
+      margin: 1.5rem auto 2.5rem;
+      padding: 0 1.5rem;
+    }
+    .section-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.9rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.85rem;
+    }
+    .card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<!-- UNIFIED TRoy Group™ NAV BAR -->
+<header class="troy-nav">
+  <div class="troy-nav-inner">
+    <a href="index.html" class="troy-brand-link">
+      <span class="troy-brand-logo">TG</span>
+      <span class="troy-brand-text">TRoy Group™</span>
+    </a>
+    <nav class="troy-menu">
+      <a href="troy-maritime-home.html">Maritime</a>
+      <a href="troygo-website.html">Travel</a>
+      <a href="troytr-website.html">Trading</a>
+      <a href="troymedia-website.html">Media</a>
+      <a href="troygar-website.html">Garage</a>
+      <a href="troy-gmail-agent.html">Gmail Agent</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Find your next stay, flight, car or cruise with TRoyGo™</h1>
+    <p>Plan smarter trips with one place for stays, flights, car rentals, cruises and more.</p>
+
+    <div class="search-box">
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-tab="stays">🏨 Stays</button>
+        <button class="tab" data-tab="flights">✈️ Flights</button>
+        <button class="tab" data-tab="flight-hotel">🧳 Flight + Hotel</button>
+        <button class="tab" data-tab="cars">🚗 Car rental</button>
+        <button class="tab" data-tab="cruises">🛳️ Cruises</button>
+        <button class="tab" data-tab="attractions">🎟️ Attractions</button>
+        <button class="tab" data-tab="taxis">🚕 Airport taxis</button>
+      </div>
+
+      <form class="search-form" id="search-form">
+        <div class="field">
+          <div class="field-label" id="field-main-label">Where are you going?</div>
+          <div class="field-input">
+            <input type="text" id="destination" placeholder="City, region, landmark or cruise route" required />
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">Check-in / Departure</div>
+          <div class="field-input"><input type="date" id="date-start" /></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Check-out / Return</div>
+          <div class="field-input"><input type="date" id="date-end" /></div>
+        </div>
+        <div class="field">
+          <div class="field-label" id="field-guests-label">Guests & rooms</div>
+          <div class="field-input"><input type="text" id="guests" value="2 adults · 0 children · 1 room" /></div>
+        </div>
+        <button type="submit" class="search-btn" id="search-btn">Search</button>
+      </form><!-- TRoyGo™ Trip Planner Output -->
+<div id="trip-planner-box" style="
+  margin-top:1rem;
+  background:#ffffff;
+  border-radius:10px;
+  padding:1rem;
+  border:1px solid #e5e7eb;
+  display:none;
+">
+  <h3 style="margin-bottom:0.5rem; font-size:1rem; color:#003b95;">
+    TRoyGo™ Trip Planner
+  </h3>
+  <div id="trip-results" style="font-size:0.9rem; color:#1b1b1b;"></div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<main class="content">
+  <section>
+    <h2 class="section-title">Popular destinations</h2>
+    <p class="section-sub">Places TRoyGo™ travellers search for again and again.</p>
+
+    <div class="cards-grid">
+      <article class="card">
+        <h3>City breaks</h3>
+        <p>Short stays in major cities with culture, food and nightlife.</p>
+      </article>
+      <article class="card">
+        <h3>Beach & islands</h3>
+        <p>Relaxed stays near the water, from resorts to quiet escapes.</p>
+      </article>
+      <article class="card">
+        <h3>Cruise gateways</h3>
+        <p>Ports that connect you to regional and international cruise routes.</p>
+      </article>
+      <article class="card">
+        <h3>Work & remote stays</h3>
+        <p>Longer stays with workspace and strong Wi‑Fi.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> TRoyGo™ / TRoy Travel Agency™. All rights reserved.
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const tabs = document.querySelectorAll(".tab");
+  const mainLabel = document.getElementById("field-main-label");
+  const guestsLabel = document.getElementById("field-guests-label");
+  const searchBtn = document.getElementById("search-btn");
+
+  const tabConfig = {
+    "stays": { main: "Where are you going?", guests: "Guests & rooms", button: "Search stays" },
+    "flights": { main: "From / To", guests: "Travellers", button: "Search flights" },
+    "flight-hotel": { main: "Where are you flying?", guests: "Travellers & rooms", button: "Search packages" },
+    "cars": { main: "Pick-up location", guests: "Driver details", button: "Search cars" },
+    "cruises": { main: "Cruise route or region", guests: "Guests & cabins", button: "Search cruises" },
+    "attractions": { main: "City or attraction", guests: "Visitors", button: "Search attractions" },
+    "taxis": { main: "Pick-up & drop-off", guests: "Passengers", button: "Search taxis" }
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      const cfg = tabConfig[tab.dataset.tab];
+      mainLabel.textContent = cfg.main;
+      guestsLabel.textContent = cfg.guests;
+      searchBtn.textContent = cfg.button;
+    });
+  });
+
+  document.getElementById("search-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    document.getElementById("search-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const destination = document.getElementById("destination").value;
+  const start = document.getElementById("date-start").value;
+  const end = document.getElementById("date-end").value;
+  const guests = document.getElementById("guests").value;
+  const activeTab = document.querySelector(".tab.active").dataset.tab;
+
+  const box = document.getElementById("trip-planner-box");
+  const results = document.getElementById("trip-results");
+
+  box.style.display = "block";
+
+  results.innerHTML = `
+    <p><strong>Trip type:</strong> ${activeTab.replace("-", " ")}</p>
+    <p><strong>Destination:</strong> ${destination}</p>
+    <p><strong>Dates:</strong> ${start || "—"} to ${end || "—"}</p>
+    <p><strong>Guests:</strong> ${guests}</p>
+    <hr style="margin:0.8rem 0;">
+    <p><strong>Suggested options:</strong></p>
+    <ul style="margin-left:1rem; margin-top:0.4rem;">
+      <li>Top-rated stays near ${destination}</li>
+      <li>Best flight routes for your dates</li>
+      <li>Car rentals available at your arrival location</li>
+      <li>Popular attractions in ${destination}</li>
+      <li>Cruise routes departing near your region</li>
+    </ul>
+    <p style="margin-top:0.8rem; color:#6b7280;">
+      (This is a smart front‑end Trip Planner — works fully on GitHub Pages.)
+    </p>
+  `;
+});
+
+  });
+</script>
+
+</body>
+</html>
