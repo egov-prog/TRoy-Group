@@ -163,4 +163,185 @@
       border: none;
       padding: 0 1.4rem;
       font-weight: 600;
-      font-size
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: #1b1b1b;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 1120px;
+      margin: 1.5rem auto 2.5rem;
+      padding: 0 1.5rem;
+    }
+    .section-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.9rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.85rem;
+    }
+    .card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<!-- UNIFIED TRoy Group™ NAV BAR -->
+<header class="troy-nav">
+  <div class="troy-nav-inner">
+    <a href="index.html" class="troy-brand-link">
+      <span class="troy-brand-logo">TG</span>
+      <span class="troy-brand-text">TRoy Group™</span>
+    </a>
+    <nav class="troy-menu">
+      <a href="troy-maritime-home.html">Maritime</a>
+      <a href="troygo-website.html">Travel</a>
+      <a href="troytr-website.html">Trading</a>
+      <a href="troymedia-website.html">Media</a>
+      <a href="troygar-website.html">Garage</a>
+      <a href="troy-gmail-agent.html">Gmail Agent</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Find your next stay, flight, car or cruise with TRoyGo™</h1>
+    <p>Plan smarter trips with one place for stays, flights, car rentals, cruises and more.</p>
+
+    <div class="search-box">
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-tab="stays">🏨 Stays</button>
+        <button class="tab" data-tab="flights">✈️ Flights</button>
+        <button class="tab" data-tab="flight-hotel">🧳 Flight + Hotel</button>
+        <button class="tab" data-tab="cars">🚗 Car rental</button>
+        <button class="tab" data-tab="cruises">🛳️ Cruises</button>
+        <button class="tab" data-tab="attractions">🎟️ Attractions</button>
+        <button class="tab" data-tab="taxis">🚕 Airport taxis</button>
+      </div>
+
+      <form class="search-form" id="search-form">
+        <div class="field">
+          <div class="field-label" id="field-main-label">Where are you going?</div>
+          <div class="field-input">
+            <input type="text" id="destination" placeholder="City, region, landmark or cruise route" required />
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">Check-in / Departure</div>
+          <div class="field-input"><input type="date" id="date-start" /></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Check-out / Return</div>
+          <div class="field-input"><input type="date" id="date-end" /></div>
+        </div>
+        <div class="field">
+          <div class="field-label" id="field-guests-label">Guests & rooms</div>
+          <div class="field-input"><input type="text" id="guests" value="2 adults · 0 children · 1 room" /></div>
+        </div>
+        <button type="submit" class="search-btn" id="search-btn">Search</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<main class="content">
+  <section>
+    <h2 class="section-title">Popular destinations</h2>
+    <p class="section-sub">Places TRoyGo™ travellers search for again and again.</p>
+
+    <div class="cards-grid">
+      <article class="card">
+        <h3>City breaks</h3>
+        <p>Short stays in major cities with culture, food and nightlife.</p>
+      </article>
+      <article class="card">
+        <h3>Beach & islands</h3>
+        <p>Relaxed stays near the water, from resorts to quiet escapes.</p>
+      </article>
+      <article class="card">
+        <h3>Cruise gateways</h3>
+        <p>Ports that connect you to regional and international cruise routes.</p>
+      </article>
+      <article class="card">
+        <h3>Work & remote stays</h3>
+        <p>Longer stays with workspace and strong Wi‑Fi.</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © <span id="year"></span> TRoyGo™ / TRoy Travel Agency™. All rights reserved.
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const tabs = document.querySelectorAll(".tab");
+  const mainLabel = document.getElementById("field-main-label");
+  const guestsLabel = document.getElementById("field-guests-label");
+  const searchBtn = document.getElementById("search-btn");
+
+  const tabConfig = {
+    "stays": { main: "Where are you going?", guests: "Guests & rooms", button: "Search stays" },
+    "flights": { main: "From / To", guests: "Travellers", button: "Search flights" },
+    "flight-hotel": { main: "Where are you flying?", guests: "Travellers & rooms", button: "Search packages" },
+    "cars": { main: "Pick-up location", guests: "Driver details", button: "Search cars" },
+    "cruises": { main: "Cruise route or region", guests: "Guests & cabins", button: "Search cruises" },
+    "attractions": { main: "City or attraction", guests: "Visitors", button: "Search attractions" },
+    "taxis": { main: "Pick-up & drop-off", guests: "Passengers", button: "Search taxis" }
+  };
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      const cfg = tabConfig[tab.dataset.tab];
+      mainLabel.textContent = cfg.main;
+      guestsLabel.textContent = cfg.guests;
+      searchBtn.textContent = cfg.button;
+    });
+  });
+
+  document.getElementById("search-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("TRoyGo™ demo search — GitHub Pages front‑end only.");
+  });
+</script>
+
+</body>
+</html>
