@@ -272,7 +272,21 @@
           <div class="field-input"><input type="text" id="guests" value="2 adults · 0 children · 1 room" /></div>
         </div>
         <button type="submit" class="search-btn" id="search-btn">Search</button>
-      </form>
+      </form><!-- TRoyGo™ Trip Planner Output -->
+<div id="trip-planner-box" style="
+  margin-top:1rem;
+  background:#ffffff;
+  border-radius:10px;
+  padding:1rem;
+  border:1px solid #e5e7eb;
+  display:none;
+">
+  <h3 style="margin-bottom:0.5rem; font-size:1rem; color:#003b95;">
+    TRoyGo™ Trip Planner
+  </h3>
+  <div id="trip-results" style="font-size:0.9rem; color:#1b1b1b;"></div>
+</div>
+
     </div>
   </div>
 </section>
@@ -339,7 +353,40 @@
 
   document.getElementById("search-form").addEventListener("submit", (e) => {
     e.preventDefault();
-    alert("TRoyGo™ demo search — GitHub Pages front‑end only.");
+    document.getElementById("search-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const destination = document.getElementById("destination").value;
+  const start = document.getElementById("date-start").value;
+  const end = document.getElementById("date-end").value;
+  const guests = document.getElementById("guests").value;
+  const activeTab = document.querySelector(".tab.active").dataset.tab;
+
+  const box = document.getElementById("trip-planner-box");
+  const results = document.getElementById("trip-results");
+
+  box.style.display = "block";
+
+  results.innerHTML = `
+    <p><strong>Trip type:</strong> ${activeTab.replace("-", " ")}</p>
+    <p><strong>Destination:</strong> ${destination}</p>
+    <p><strong>Dates:</strong> ${start || "—"} to ${end || "—"}</p>
+    <p><strong>Guests:</strong> ${guests}</p>
+    <hr style="margin:0.8rem 0;">
+    <p><strong>Suggested options:</strong></p>
+    <ul style="margin-left:1rem; margin-top:0.4rem;">
+      <li>Top-rated stays near ${destination}</li>
+      <li>Best flight routes for your dates</li>
+      <li>Car rentals available at your arrival location</li>
+      <li>Popular attractions in ${destination}</li>
+      <li>Cruise routes departing near your region</li>
+    </ul>
+    <p style="margin-top:0.8rem; color:#6b7280;">
+      (This is a smart front‑end Trip Planner — works fully on GitHub Pages.)
+    </p>
+  `;
+});
+
   });
 </script>
 
