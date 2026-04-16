@@ -213,6 +213,175 @@
       color: var(--muted);
       background: #fff;
     }
+
+    /* TRoyGo™ AI Trip Planner */
+    .planner-container {
+      margin-top: 1rem;
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1rem;
+      border: 1px solid #e5e7eb;
+      display: none;
+    }
+    .planner-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .planner-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .planner-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .planner-modes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .planner-mode-btn {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      cursor: pointer;
+    }
+    .planner-mode-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .planner-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr);
+      gap: 1rem;
+    }
+    @media (max-width: 900px) {
+      .planner-body {
+        grid-template-columns: 1fr;
+      }
+    }
+    .planner-chat {
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 0.7rem;
+      background: #f9fafb;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .planner-chat-log {
+      max-height: 220px;
+      overflow-y: auto;
+      padding-right: 0.3rem;
+    }
+    .chat-msg {
+      margin-bottom: 0.4rem;
+    }
+    .chat-msg-label {
+      font-weight: 600;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+    .chat-msg-bubble {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 0.4rem 0.5rem;
+      border: 1px solid #e5e7eb;
+    }
+    .chat-msg-bubble.user {
+      background: #e0edff;
+      border-color: #bfdbfe;
+    }
+    .planner-chat-input {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+    .planner-chat-input textarea {
+      flex: 1;
+      resize: vertical;
+      min-height: 40px;
+      max-height: 80px;
+      font-size: 0.8rem;
+      padding: 0.4rem;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      outline: none;
+    }
+    .planner-chat-input button {
+      font-size: 0.8rem;
+      padding: 0 0.8rem;
+      border-radius: 6px;
+      border: none;
+      background: var(--primary-light);
+      color: #fff;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .planner-itinerary {
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 0.7rem;
+      background: #ffffff;
+      font-size: 0.85rem;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+    .itinerary-summary {
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.4rem;
+    }
+    .itinerary-summary h4 {
+      font-size: 0.9rem;
+      margin-bottom: 0.15rem;
+    }
+    .itinerary-summary p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .itinerary-day {
+      margin-top: 0.5rem;
+      padding-top: 0.4rem;
+      border-top: 1px dashed #e5e7eb;
+    }
+    .itinerary-day-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+    }
+    .itinerary-block {
+      margin-left: 0.4rem;
+      margin-bottom: 0.25rem;
+    }
+    .itinerary-block-time {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .itinerary-block-title {
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+    .itinerary-block-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .planner-footnote {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -271,20 +440,44 @@
           <div class="field-input"><input type="text" id="guests" value="2 adults · 0 children · 1 room" /></div>
         </div>
         <button type="submit" class="search-btn" id="search-btn">Search</button>
-      </form><!-- TRoyGo™ Trip Planner Output -->
-<div id="trip-planner-box" style="
-  margin-top:1rem;
-  background:#ffffff;
-  border-radius:10px;
-  padding:1rem;
-  border:1px solid #e5e7eb;
-  display:none;
-">
-  <h3 style="margin-bottom:0.5rem; font-size:1rem; color:#003b95;">
-    TRoyGo™ Trip Planner
-  </h3>
-  <div id="trip-results" style="font-size:0.9rem; color:#1b1b1b;"></div>
-</div>
+      </form>
+
+      <!-- TRoyGo™ AI Trip Planner -->
+      <div id="troygo-planner" class="planner-container">
+        <div class="planner-header">
+          <div>
+            <div class="planner-title">TRoyGo™ AI Trip Planner</div>
+            <div class="planner-subtitle">
+              Tell me where, when and how you like to travel — I’ll design the trip.
+            </div>
+          </div>
+          <div class="planner-modes">
+            <button class="planner-mode-btn active" data-mode="plan">Plan full trip</button>
+            <button class="planner-mode-btn" data-mode="inspire">Inspire me</button>
+            <button class="planner-mode-btn" data-mode="roadtrip">Road trip</button>
+            <button class="planner-mode-btn" data-mode="escape">Last‑minute escape</button>
+          </div>
+        </div>
+
+        <div class="planner-body">
+          <div class="planner-chat">
+            <div class="planner-chat-log" id="planner-chat-log"></div>
+            <div class="planner-chat-input">
+              <textarea id="planner-refine" placeholder="Add notes or changes (e.g. ‘make it more relaxed, add beaches, keep budget low’)"></textarea>
+              <button type="button" id="planner-refine-btn">Refine</button>
+            </div>
+          </div>
+          <div class="planner-itinerary" id="planner-itinerary">
+            <div class="itinerary-summary">
+              <h4>Your itinerary will appear here</h4>
+              <p>Search above to generate a trip, then refine it with your notes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="planner-footnote">
+          Generated by a smart front‑end planner. Prices and availability are estimates — always check live options before booking.
+        </div>
+      </div>
 
     </div>
   </div>
@@ -322,8 +515,10 @@
 </footer>
 
 <script>
+  // Year
   document.getElementById("year").textContent = new Date().getFullYear();
 
+  // Tabs behaviour
   const tabs = document.querySelectorAll(".tab");
   const mainLabel = document.getElementById("field-main-label");
   const guestsLabel = document.getElementById("field-guests-label");
@@ -350,43 +545,275 @@
     });
   });
 
-  document.getElementById("search-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    document.getElementById("search-form").addEventListener("submit", (e) => {
-  e.preventDefault();
+  // Planner elements
+  const planner = document.getElementById("troygo-planner");
+  const chatLog = document.getElementById("planner-chat-log");
+  const refineInput = document.getElementById("planner-refine");
+  const refineBtn = document.getElementById("planner-refine-btn");
+  const itineraryEl = document.getElementById("planner-itinerary");
+  const modeButtons = document.querySelectorAll(".planner-mode-btn");
 
-  const destination = document.getElementById("destination").value;
-  const start = document.getElementById("date-start").value;
-  const end = document.getElementById("date-end").value;
-  const guests = document.getElementById("guests").value;
-  const activeTab = document.querySelector(".tab.active").dataset.tab;
+  let currentMode = "plan";
+  let lastSearchContext = null;
 
-  const box = document.getElementById("trip-planner-box");
-  const results = document.getElementById("trip-results");
-
-  box.style.display = "block";
-
-  results.innerHTML = `
-    <p><strong>Trip type:</strong> ${activeTab.replace("-", " ")}</p>
-    <p><strong>Destination:</strong> ${destination}</p>
-    <p><strong>Dates:</strong> ${start || "—"} to ${end || "—"}</p>
-    <p><strong>Guests:</strong> ${guests}</p>
-    <hr style="margin:0.8rem 0;">
-    <p><strong>Suggested options:</strong></p>
-    <ul style="margin-left:1rem; margin-top:0.4rem;">
-      <li>Top-rated stays near ${destination}</li>
-      <li>Best flight routes for your dates</li>
-      <li>Car rentals available at your arrival location</li>
-      <li>Popular attractions in ${destination}</li>
-      <li>Cruise routes departing near your region</li>
-    </ul>
-    <p style="margin-top:0.8rem; color:#6b7280;">
-      (This is a smart front‑end Trip Planner — works fully on GitHub Pages.)
-    </p>
-  `;
-});
-
+  modeButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      modeButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentMode = btn.dataset.mode;
+      if (lastSearchContext) {
+        addSystemMessage("Switched mode to: " + modeLabel(currentMode) + ". Regenerating your trip.");
+        renderItinerary(generateItinerary(lastSearchContext, currentMode, ""));
+      }
+    });
   });
+
+  function modeLabel(mode) {
+    switch (mode) {
+      case "plan": return "Plan full trip";
+      case "inspire": return "Inspire me";
+      case "roadtrip": return "Road trip";
+      case "escape": return "Last‑minute escape";
+      default: return mode;
+    }
+  }
+
+  function addMessage(role, text) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "chat-msg";
+    const label = document.createElement("div");
+    label.className = "chat-msg-label";
+    label.textContent = role === "user" ? "You" : "TRoyGo™";
+    const bubble = document.createElement("div");
+    bubble.className = "chat-msg-bubble" + (role === "user" ? " user" : "");
+    bubble.textContent = text;
+    wrapper.appendChild(label);
+    wrapper.appendChild(bubble);
+    chatLog.appendChild(wrapper);
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  function addSystemMessage(text) {
+    addMessage("assistant", text);
+  }
+
+  // Search form → open planner + generate first itinerary
+  const searchForm = document.getElementById("search-form");
+  searchForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const destination = document.getElementById("destination").value.trim();
+    const start = document.getElementById("date-start").value;
+    const end = document.getElementById("date-end").value;
+    const guests = document.getElementById("guests").value.trim();
+    const activeTab = document.querySelector(".tab.active").dataset.tab;
+
+    if (!destination) return;
+
+    planner.style.display = "block";
+
+    lastSearchContext = {
+      destination,
+      start,
+      end,
+      guests,
+      tab: activeTab
+    };
+
+    chatLog.innerHTML = "";
+    addMessage("user", `Plan a ${activeTab.replace("-", " ")} trip to ${destination} from ${start || "flexible"} to ${end || "flexible"} for ${guests}.`);
+    addSystemMessage("Got it. I’ll design a realistic, balanced itinerary for you. You can refine it below.");
+
+    const itinerary = generateItinerary(lastSearchContext, currentMode, "");
+    renderItinerary(itinerary);
+  });
+
+  // Refine button
+  refineBtn.addEventListener("click", () => {
+    const notes = refineInput.value.trim();
+    if (!notes || !lastSearchContext) return;
+    addMessage("user", notes);
+    addSystemMessage("Updating your trip based on your notes.");
+    const itinerary = generateItinerary(lastSearchContext, currentMode, notes);
+    renderItinerary(itinerary);
+    refineInput.value = "";
+  });
+
+  // Simple heuristic itinerary generator (client-side, no backend)
+  function generateItinerary(ctx, mode, notes) {
+    const today = new Date();
+    const startDate = ctx.start ? new Date(ctx.start) : today;
+    const endDate = ctx.end ? new Date(ctx.end) : new Date(startDate.getTime() + 2 * 24 * 60 * 60 * 1000);
+    const msPerDay = 24 * 60 * 60 * 1000;
+    let daysCount = Math.max(1, Math.round((endDate - startDate) / msPerDay) + 1);
+
+    if (mode === "escape") {
+      daysCount = Math.min(4, Math.max(2, daysCount || 3));
+    } else if (!ctx.start || !ctx.end) {
+      daysCount = 3;
+    }
+
+    const baseCity = ctx.destination || "your destination";
+    const summaryTitle = (() => {
+      switch (mode) {
+        case "inspire": return "Ideas for your next trip";
+        case "roadtrip": return "Road trip plan around " + baseCity;
+        case "escape": return "Last‑minute escape near " + baseCity;
+        default: return "Trip to " + baseCity;
+      }
+    })();
+
+    const styleHints = notes.toLowerCase();
+    const isRelaxed = styleHints.includes("relax") || styleHints.includes("slow");
+    const isBudget = styleHints.includes("budget") || styleHints.includes("cheap");
+    const isFood = styleHints.includes("food") || styleHints.includes("restaurant");
+    const isNature = styleHints.includes("nature") || styleHints.includes("hike") || styleHints.includes("beach");
+
+    const days = [];
+    for (let i = 0; i < daysCount; i++) {
+      const dayDate = new Date(startDate.getTime() + i * msPerDay);
+      const label = ctx.start ? dayDate.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" }) : "Day " + (i + 1);
+
+      const blocks = [];
+
+      if (mode === "inspire") {
+        // For inspire mode, we’ll use days as "ideas"
+        blocks.push({
+          time: "Idea",
+          title: `Explore a different side of ${baseCity}`,
+          desc: `Walk a local neighbourhood, try a small café and visit a lesser-known viewpoint.`
+        });
+      } else if (mode === "roadtrip") {
+        blocks.push({
+          time: "Morning drive",
+          title: "Scenic drive segment",
+          desc: `Drive 2–3 hours along a scenic route near ${baseCity}, stopping at viewpoints and small towns.`
+        });
+        blocks.push({
+          time: "Afternoon",
+          title: "Local town & lunch",
+          desc: `Explore a regional town, have lunch at a local spot and walk the main street.`
+        });
+        blocks.push({
+          time: "Evening",
+          title: "Overnight stay",
+          desc: `Check into a roadside hotel or guesthouse and have a relaxed dinner nearby.`
+        });
+      } else {
+        // Normal / escape trip
+        if (!isRelaxed) {
+          blocks.push({
+            time: "Morning",
+            title: "City highlights tour",
+            desc: `Visit 2–3 key landmarks in ${baseCity}, starting early to avoid crowds.`
+          });
+        } else {
+          blocks.push({
+            time: "Morning",
+            title: "Slow start & local café",
+            desc: `Sleep in, then have coffee and breakfast at a neighbourhood café in ${baseCity}.`
+          });
+        }
+
+        if (isNature) {
+          blocks.push({
+            time: "Afternoon",
+            title: "Nature or waterfront time",
+            desc: `Head to a nearby park, beach or lookout for a few hours outdoors.`
+          });
+        } else if (isFood) {
+          blocks.push({
+            time: "Afternoon",
+            title: "Food crawl",
+            desc: `Try 2–3 different spots — a bakery, a casual lunch place and a dessert bar.`
+          });
+        } else {
+          blocks.push({
+            time: "Afternoon",
+            title: "Neighbourhood exploration",
+            desc: `Walk a different neighbourhood, browse small shops and find a local snack.`
+          });
+        }
+
+        blocks.push({
+          time: "Evening",
+          title: isBudget ? "Casual dinner & walk" : "Dinner & drinks",
+          desc: isBudget
+            ? `Pick a well-rated but affordable restaurant, then take an evening walk through a safe, lively area.`
+            : `Book a popular restaurant, then have a drink at a rooftop bar or cosy lounge.`
+        });
+      }
+
+      days.push({
+        label,
+        city: baseCity,
+        blocks
+      });
+    }
+
+    if (mode === "inspire") {
+      // For inspire mode, treat each "day" as a different angle / mini-idea
+      return {
+        title: summaryTitle,
+        subtitle: `Based on your inputs, here are a few ways you could experience ${baseCity}.`,
+        days
+      };
+    }
+
+    return {
+      title: summaryTitle,
+      subtitle: `Approx. ${daysCount} days in ${baseCity} for ${ctx.guests || "your group"}. Mode: ${modeLabel(mode)}.`,
+      days
+    };
+  }
+
+  function renderItinerary(it) {
+    itineraryEl.innerHTML = "";
+
+    const summary = document.createElement("div");
+    summary.className = "itinerary-summary";
+    const h4 = document.createElement("h4");
+    h4.textContent = it.title;
+    const p = document.createElement("p");
+    p.textContent = it.subtitle;
+    summary.appendChild(h4);
+    summary.appendChild(p);
+    itineraryEl.appendChild(summary);
+
+    it.days.forEach(day => {
+      const dayEl = document.createElement("div");
+      dayEl.className = "itinerary-day";
+
+      const title = document.createElement("div");
+      title.className = "itinerary-day-title";
+      title.textContent = day.label + " — " + day.city;
+      dayEl.appendChild(title);
+
+      day.blocks.forEach(block => {
+        const blockEl = document.createElement("div");
+        blockEl.className = "itinerary-block";
+
+        const time = document.createElement("div");
+        time.className = "itinerary-block-time";
+        time.textContent = block.time;
+
+        const bTitle = document.createElement("div");
+        bTitle.className = "itinerary-block-title";
+        bTitle.textContent = block.title;
+
+        const desc = document.createElement("div");
+        desc.className = "itinerary-block-desc";
+        desc.textContent = block.desc;
+
+        blockEl.appendChild(time);
+        blockEl.appendChild(bTitle);
+        blockEl.appendChild(desc);
+        dayEl.appendChild(blockEl);
+      });
+
+      itineraryEl.appendChild(dayEl);
+    });
+  }
 </script>
 
 </body>
