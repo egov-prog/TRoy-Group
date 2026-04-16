@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TRoyGo™ / TRoy Travel Agency™</title>
   <meta name="description" content="TRoyGo™ / TRoy Travel Agency™ offers smart trip planning, stays, flights, car rentals, cruises and more.">
+
   <style>
     :root {
       --primary: #003b95;
@@ -15,16 +16,22 @@
       --muted: #6b7280;
       --radius: 8px;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
+      transition: overflow 0.2s ease;
     }
+
     a { text-decoration: none; color: inherit; }
 
-    /* UNIFIED TRoy Group™ NAV BAR */
+    /* ============================
+       UNIFIED TRoy Group™ NAV BAR
+       ============================ */
     .troy-nav {
       background: #ffffff;
       border-bottom: 1px solid #e5e7eb;
@@ -73,6 +80,7 @@
     .troy-menu a:hover {
       color: var(--primary-light);
     }
+
     @media (max-width: 700px) {
       .troy-nav-inner {
         flex-direction: column;
@@ -85,7 +93,9 @@
       }
     }
 
-    /* HERO */
+    /* ================
+       HERO
+       ================ */
     .hero {
       background: var(--primary);
       color: #fff;
@@ -104,7 +114,9 @@
       opacity: 0.9;
     }
 
-    /* SEARCH BOX */
+    /* ============================
+       SEARCH BOX
+       ============================ */
     .search-box {
       margin-top: 1.5rem;
       background: #f5f7fb;
@@ -168,7 +180,9 @@
       color: #1b1b1b;
     }
 
-    /* CONTENT */
+    /* ============================
+       CONTENT
+       ============================ */
     .content {
       max-width: 1120px;
       margin: 1.5rem auto 2.5rem;
@@ -183,7 +197,6 @@
       color: var(--muted);
       margin-bottom: 1rem;
     }
-
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -205,6 +218,9 @@
       font-size: 0.8rem;
     }
 
+    /* ============================
+       FOOTER
+       ============================ */
     footer {
       border-top: 1px solid #e5e7eb;
       padding: 1.5rem;
@@ -214,15 +230,99 @@
       background: #fff;
     }
 
-    /* TRoyGo™ AI Trip Planner */
+    /* ============================
+       TRoyGo™ AI DRAWER (TripAdvisor-style)
+       ============================ */
+    .troygo-ai-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 420px;
+      max-width: 100%;
+      background: #ffffff;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.18);
+      transform: translateX(-100%);
+      transition: transform 0.28s ease-out;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .troygo-ai-drawer.open {
+      transform: translateX(0);
+    }
+    @media (max-width: 768px) {
+      .troygo-ai-drawer {
+        width: 100%;
+      }
+    }
+
+    .troygo-ai-drawer-header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .troygo-ai-drawer-close {
+      background: transparent;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #444;
+      line-height: 1;
+    }
+
+    .troygo-ai-drawer-body {
+      padding: 1rem;
+    }
+
+    body.troygo-ai-drawer-open {
+      overflow: hidden;
+    }
+
+    /* ============================
+       Floating Button – TRoyGO™ AI Assistant
+       ============================ */
+    .troygo-ai-fab {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.25s ease;
+    }
+    .troygo-ai-fab:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+    .troygo-ai-fab-icon {
+      font-size: 1.1rem;
+    }
+
+    /* ============================
+       TRoyGo™ Planner (moved into drawer)
+       ============================ */
     .planner-container {
-      margin-top: 1rem;
       background: #ffffff;
       border-radius: 10px;
       padding: 1rem;
       border: 1px solid #e5e7eb;
-      display: none;
+      display: block !important;
+      margin-top: 0;
     }
+
     .planner-header {
       display: flex;
       justify-content: space-between;
@@ -258,6 +358,7 @@
       color: #fff;
       border-color: var(--primary);
     }
+
     .planner-body {
       display: grid;
       grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr);
@@ -268,6 +369,7 @@
         grid-template-columns: 1fr;
       }
     }
+
     .planner-chat {
       border-radius: 8px;
       border: 1px solid #e5e7eb;
@@ -302,6 +404,7 @@
       background: #e0edff;
       border-color: #bfdbfe;
     }
+
     .planner-chat-input {
       display: flex;
       gap: 0.4rem;
@@ -328,6 +431,7 @@
       cursor: pointer;
       white-space: nowrap;
     }
+
     .planner-itinerary {
       border-radius: 8px;
       border: 1px solid #e5e7eb;
@@ -350,6 +454,7 @@
       font-size: 0.8rem;
       color: var(--muted);
     }
+
     .itinerary-day {
       margin-top: 0.5rem;
       padding-top: 0.4rem;
@@ -377,38 +482,20 @@
       font-size: 0.8rem;
       color: var(--muted);
     }
+
     .planner-footnote {
       margin-top: 0.5rem;
       font-size: 0.75rem;
       color: var(--muted);
     }
-
-    /* Floating "Plan with TRoyGO™" button (bottom-right) */
-    .troygo-ai-fab {
-      position: fixed;
-      bottom: 22px;
-      right: 22px;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      padding: 0.9rem 1.4rem;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
-      z-index: 9999;
-      transition: all 0.25s ease;
-    }
-    .troygo-ai-fab:hover {
-      background: var(--primary-light);
-      transform: translateY(-2px);
-    }
   </style>
 </head>
+
 <body>
 
-<!-- UNIFIED TRoy Group™ NAV BAR -->
+<!-- ============================
+     NAV BAR
+     ============================ -->
 <header class="troy-nav">
   <div class="troy-nav-inner">
     <a href="index.html" class="troy-brand-link">
@@ -425,7 +512,9 @@
   </div>
 </header>
 
-<!-- HERO -->
+<!-- ============================
+     HERO + SEARCH
+     ============================ -->
 <section class="hero">
   <div class="hero-inner">
     <h1>Find your next stay, flight, car or cruise with TRoyGo™</h1>
@@ -440,417 +529,3 @@
         <button class="tab" data-tab="cruises">🛳️ Cruises</button>
         <button class="tab" data-tab="attractions">🎟️ Attractions</button>
         <button class="tab" data-tab="taxis">🚕 Airport taxis</button>
-      </div>
-
-      <form class="search-form" id="search-form">
-        <div class="field">
-          <div class="field-label" id="field-main-label">Where are you going?</div>
-          <div class="field-input">
-            <input type="text" id="destination" placeholder="City, region, landmark or cruise route" required />
-          </div>
-        </div>
-        <div class="field">
-          <div class="field-label">Check-in / Departure</div>
-          <div class="field-input"><input type="date" id="date-start" /></div>
-        </div>
-        <div class="field">
-          <div class="field-label">Check-out / Return</div>
-          <div class="field-input"><input type="date" id="date-end" /></div>
-        </div>
-        <div class="field">
-          <div class="field-label" id="field-guests-label">Guests & rooms</div>
-          <div class="field-input"><input type="text" id="guests" value="2 adults · 0 children · 1 room" /></div>
-        </div>
-        <button type="submit" class="search-btn" id="search-btn">Search</button>
-      </form>
-
-      <!-- TRoyGo™ AI Trip Planner -->
-      <div id="troygo-planner" class="planner-container">
-        <div class="planner-header">
-          <div>
-            <div class="planner-title">TRoyGo™ AI Trip Planner</div>
-            <div class="planner-subtitle">
-              Tell me where, when and how you like to travel — I’ll design the trip.
-            </div>
-          </div>
-          <div class="planner-modes">
-            <button class="planner-mode-btn active" data-mode="plan">Plan full trip</button>
-            <button class="planner-mode-btn" data-mode="inspire">Inspire me</button>
-            <button class="planner-mode-btn" data-mode="roadtrip">Road trip</button>
-            <button class="planner-mode-btn" data-mode="escape">Last‑minute escape</button>
-          </div>
-        </div>
-
-        <div class="planner-body">
-          <div class="planner-chat">
-            <div class="planner-chat-log" id="planner-chat-log"></div>
-            <div class="planner-chat-input">
-              <textarea id="planner-refine" placeholder="Add notes or changes (e.g. ‘make it more relaxed, add beaches, keep budget low’)"></textarea>
-              <button type="button" id="planner-refine-btn">Refine</button>
-            </div>
-          </div>
-          <div class="planner-itinerary" id="planner-itinerary">
-            <div class="itinerary-summary">
-              <h4>Your itinerary will appear here</h4>
-              <p>Search above to generate a trip, then refine it with your notes.</p>
-            </div>
-          </div>
-        </div>
-        <div class="planner-footnote">
-          Generated by a smart front‑end planner. Prices and availability are estimates — always check live options before booking.
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- CONTENT -->
-<main class="content">
-  <section>
-    <h2 class="section-title">Popular destinations</h2>
-    <p class="section-sub">Places TRoyGo™ travellers search for again and again.</p>
-
-    <div class="cards-grid">
-      <article class="card">
-        <h3>City breaks</h3>
-        <p>Short stays in major cities with culture, food and nightlife.</p>
-      </article>
-      <article class="card">
-        <h3>Beach & islands</h3>
-        <p>Relaxed stays near the water, from resorts to quiet escapes.</p>
-      </article>
-      <article class="card">
-        <h3>Cruise gateways</h3>
-        <p>Ports that connect you to regional and international cruise routes.</p>
-      </article>
-      <article class="card">
-        <h3>Work & remote stays</h3>
-        <p>Longer stays with workspace and strong Wi‑Fi.</p>
-      </article>
-    </div>
-  </section>
-</main>
-
-<footer>
-  © <span id="year"></span> TRoyGo™ / TRoy Travel Agency™. All rights reserved.
-</footer>
-
-<!-- Floating "Plan with TRoyGO™" button -->
-<button id="troygo-ai-fab" class="troygo-ai-fab">
-  🚀 Plan with TRoyGO™
-</button>
-
-<script>
-  // Year
-  document.getElementById("year").textContent = new Date().getFullYear();
-
-  // Tabs behaviour
-  const tabs = document.querySelectorAll(".tab");
-  const mainLabel = document.getElementById("field-main-label");
-  const guestsLabel = document.getElementById("field-guests-label");
-  const searchBtn = document.getElementById("search-btn");
-
-  const tabConfig = {
-    "stays": { main: "Where are you going?", guests: "Guests & rooms", button: "Search stays" },
-    "flights": { main: "From / To", guests: "Travellers", button: "Search flights" },
-    "flight-hotel": { main: "Where are you flying?", guests: "Travellers & rooms", button: "Search packages" },
-    "cars": { main: "Pick-up location", guests: "Driver details", button: "Search cars" },
-    "cruises": { main: "Cruise route or region", guests: "Guests & cabins", button: "Search cruises" },
-    "attractions": { main: "City or attraction", guests: "Visitors", button: "Search attractions" },
-    "taxis": { main: "Pick-up & drop-off", guests: "Passengers", button: "Search taxis" }
-  };
-
-  tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-      tabs.forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
-      const cfg = tabConfig[tab.dataset.tab];
-      mainLabel.textContent = cfg.main;
-      guestsLabel.textContent = cfg.guests;
-      searchBtn.textContent = cfg.button;
-    });
-  });
-
-  // Planner elements
-  const planner = document.getElementById("troygo-planner");
-  const chatLog = document.getElementById("planner-chat-log");
-  const refineInput = document.getElementById("planner-refine");
-  const refineBtn = document.getElementById("planner-refine-btn");
-  const itineraryEl = document.getElementById("planner-itinerary");
-  const modeButtons = document.querySelectorAll(".planner-mode-btn");
-
-  let currentMode = "plan";
-  let lastSearchContext = null;
-
-  modeButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      modeButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      currentMode = btn.dataset.mode;
-      if (lastSearchContext) {
-        addSystemMessage("Switched mode to: " + modeLabel(currentMode) + ". Regenerating your trip.");
-        renderItinerary(generateItinerary(lastSearchContext, currentMode, ""));
-      }
-    });
-  });
-
-  function modeLabel(mode) {
-    switch (mode) {
-      case "plan": return "Plan full trip";
-      case "inspire": return "Inspire me";
-      case "roadtrip": return "Road trip";
-      case "escape": return "Last‑minute escape";
-      default: return mode;
-    }
-  }
-
-  function addMessage(role, text) {
-    const wrapper = document.createElement("div");
-    wrapper.className = "chat-msg";
-    const label = document.createElement("div");
-    label.className = "chat-msg-label";
-    label.textContent = role === "user" ? "You" : "TRoyGo™";
-    const bubble = document.createElement("div");
-    bubble.className = "chat-msg-bubble" + (role === "user" ? " user" : "");
-    bubble.textContent = text;
-    wrapper.appendChild(label);
-    wrapper.appendChild(bubble);
-    chatLog.appendChild(wrapper);
-    chatLog.scrollTop = chatLog.scrollHeight;
-  }
-
-  function addSystemMessage(text) {
-    addMessage("assistant", text);
-  }
-
-  // Search form → open planner + generate first itinerary
-  const searchForm = document.getElementById("search-form");
-  searchForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const destination = document.getElementById("destination").value.trim();
-    const start = document.getElementById("date-start").value;
-    const end = document.getElementById("date-end").value;
-    const guests = document.getElementById("guests").value.trim();
-    const activeTab = document.querySelector(".tab.active").dataset.tab;
-
-    if (!destination) return;
-
-    planner.style.display = "block";
-
-    lastSearchContext = {
-      destination,
-      start,
-      end,
-      guests,
-      tab: activeTab
-    };
-
-    chatLog.innerHTML = "";
-    addMessage("user", `Plan a ${activeTab.replace("-", " ")} trip to ${destination} from ${start || "flexible"} to ${end || "flexible"} for ${guests}.`);
-    addSystemMessage("Got it. I’ll design a realistic, balanced itinerary for you. You can refine it below.");
-
-    const itinerary = generateItinerary(lastSearchContext, currentMode, "");
-    renderItinerary(itinerary);
-  });
-
-  // Refine button
-  refineBtn.addEventListener("click", () => {
-    const notes = refineInput.value.trim();
-    if (!notes || !lastSearchContext) return;
-    addMessage("user", notes);
-    addSystemMessage("Updating your trip based on your notes.");
-    const itinerary = generateItinerary(lastSearchContext, currentMode, notes);
-    renderItinerary(itinerary);
-    refineInput.value = "";
-  });
-
-  // Simple heuristic itinerary generator (client-side, no backend)
-  function generateItinerary(ctx, mode, notes) {
-    const today = new Date();
-    const startDate = ctx.start ? new Date(ctx.start) : today;
-    const endDate = ctx.end ? new Date(ctx.end) : new Date(startDate.getTime() + 2 * 24 * 60 * 60 * 1000);
-    const msPerDay = 24 * 60 * 60 * 1000;
-    let daysCount = Math.max(1, Math.round((endDate - startDate) / msPerDay) + 1);
-
-    if (mode === "escape") {
-      daysCount = Math.min(4, Math.max(2, daysCount || 3));
-    } else if (!ctx.start || !ctx.end) {
-      daysCount = 3;
-    }
-
-    const baseCity = ctx.destination || "your destination";
-    const summaryTitle = (() => {
-      switch (mode) {
-        case "inspire": return "Ideas for your next trip";
-        case "roadtrip": return "Road trip plan around " + baseCity;
-        case "escape": return "Last‑minute escape near " + baseCity;
-        default: return "Trip to " + baseCity;
-      }
-    })();
-
-    const styleHints = notes.toLowerCase();
-    const isRelaxed = styleHints.includes("relax") || styleHints.includes("slow");
-    const isBudget = styleHints.includes("budget") || styleHints.includes("cheap");
-    const isFood = styleHints.includes("food") || styleHints.includes("restaurant");
-    const isNature = styleHints.includes("nature") || styleHints.includes("hike") || styleHints.includes("beach");
-
-    const days = [];
-    for (let i = 0; i < daysCount; i++) {
-      const dayDate = new Date(startDate.getTime() + i * msPerDay);
-      const label = ctx.start ? dayDate.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" }) : "Day " + (i + 1);
-
-      const blocks = [];
-
-      if (mode === "inspire") {
-        // For inspire mode, we’ll use days as "ideas"
-        blocks.push({
-          time: "Idea",
-          title: `Explore a different side of ${baseCity}`,
-          desc: `Walk a local neighbourhood, try a small café and visit a lesser-known viewpoint.`
-        });
-      } else if (mode === "roadtrip") {
-        blocks.push({
-          time: "Morning drive",
-          title: "Scenic drive segment",
-          desc: `Drive 2–3 hours along a scenic route near ${baseCity}, stopping at viewpoints and small towns.`
-        });
-        blocks.push({
-          time: "Afternoon",
-          title: "Local town & lunch",
-          desc: `Explore a regional town, have lunch at a local spot and walk the main street.`
-        });
-        blocks.push({
-          time: "Evening",
-          title: "Overnight stay",
-          desc: `Check into a roadside hotel or guesthouse and have a relaxed dinner nearby.`
-        });
-      } else {
-        // Normal / escape trip
-        if (!isRelaxed) {
-          blocks.push({
-            time: "Morning",
-            title: "City highlights tour",
-            desc: `Visit 2–3 key landmarks in ${baseCity}, starting early to avoid crowds.`
-          });
-        } else {
-          blocks.push({
-            time: "Morning",
-            title: "Slow start & local café",
-            desc: `Sleep in, then have coffee and breakfast at a neighbourhood café in ${baseCity}.`
-          });
-        }
-
-        if (isNature) {
-          blocks.push({
-            time: "Afternoon",
-            title: "Nature or waterfront time",
-            desc: `Head to a nearby park, beach or lookout for a few hours outdoors.`
-          });
-        } else if (isFood) {
-          blocks.push({
-            time: "Afternoon",
-            title: "Food crawl",
-            desc: `Try 2–3 different spots — a bakery, a casual lunch place and a dessert bar.`
-          });
-        } else {
-          blocks.push({
-            time: "Afternoon",
-            title: "Neighbourhood exploration",
-            desc: `Walk a different neighbourhood, browse small shops and find a local snack.`
-          });
-        }
-
-        blocks.push({
-          time: "Evening",
-          title: isBudget ? "Casual dinner & walk" : "Dinner & drinks",
-          desc: isBudget
-            ? `Pick a well-rated but affordable restaurant, then take an evening walk through a safe, lively area.`
-            : `Book a popular restaurant, then have a drink at a rooftop bar or cosy lounge.`
-        });
-      }
-
-      days.push({
-        label,
-        city: baseCity,
-        blocks
-      });
-    }
-
-    if (mode === "inspire") {
-      // For inspire mode, treat each "day" as a different angle / mini-idea
-      return {
-        title: summaryTitle,
-        subtitle: `Based on your inputs, here are a few ways you could experience ${baseCity}.`,
-        days
-      };
-    }
-
-    return {
-      title: summaryTitle,
-      subtitle: `Approx. ${daysCount} days in ${baseCity} for ${ctx.guests || "your group"}. Mode: ${modeLabel(mode)}.`,
-      days
-    };
-  }
-
-  function renderItinerary(it) {
-    itineraryEl.innerHTML = "";
-
-    const summary = document.createElement("div");
-    summary.className = "itinerary-summary";
-    const h4 = document.createElement("h4");
-    h4.textContent = it.title;
-    const p = document.createElement("p");
-    p.textContent = it.subtitle;
-    summary.appendChild(h4);
-    summary.appendChild(p);
-    itineraryEl.appendChild(summary);
-
-    it.days.forEach(day => {
-      const dayEl = document.createElement("div");
-      dayEl.className = "itinerary-day";
-
-      const title = document.createElement("div");
-      title.className = "itinerary-day-title";
-      title.textContent = day.label + " — " + day.city;
-      dayEl.appendChild(title);
-
-      day.blocks.forEach(block => {
-        const blockEl = document.createElement("div");
-        blockEl.className = "itinerary-block";
-
-        const time = document.createElement("div");
-        time.className = "itinerary-block-time";
-        time.textContent = block.time;
-
-        const bTitle = document.createElement("div");
-        bTitle.className = "itinerary-block-title";
-        bTitle.textContent = block.title;
-
-        const desc = document.createElement("div");
-        desc.className = "itinerary-block-desc";
-        desc.textContent = block.desc;
-
-        blockEl.appendChild(time);
-        blockEl.appendChild(bTitle);
-        blockEl.appendChild(desc);
-        dayEl.appendChild(blockEl);
-      });
-
-      itineraryEl.appendChild(dayEl);
-    });
-  }
-
-  // Floating "Plan with TRoyGO™" button → open planner instantly
-  const fab = document.getElementById("troygo-ai-fab");
-  fab.addEventListener("click", () => {
-    planner.style.display = "block";
-    if (!chatLog.hasChildNodes()) {
-      addSystemMessage("Tell me your destination, dates and travel style — I’ll design the trip.");
-    }
-  });
-</script>
-
-</body>
-</html>
