@@ -660,7 +660,7 @@ body::after {
   <div class="tick-inner" id="tickInner"></div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ══════════════════════════════════
 // DATA — All world straits & ports
 // ══════════════════════════════════
@@ -878,4 +878,10 @@ document.getElementById('tickInner').innerHTML = msgs.map(m =>
   `<span class="tick-item"><span class="dot"></span>${m}</span>`
 ).join('');
 
-// ═════════════════�
+  // ── Init ──────────────────────────────────────────
+  renderList(currentRegion);
+  updateHUD(currentLoc);
+
+</script>
+</body>
+</html>
