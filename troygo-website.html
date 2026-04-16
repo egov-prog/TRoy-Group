@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRoyGo™ / TRoy Travel Agency™</title>
+  <meta name="description" content="TRoyGo™ / TRoy Travel Agency™ offers smart trip planning, stays, flights, car rentals, cruises and more.">
+
+  <style>
+    :root {
+      --primary: #003b95;
+      --primary-light: #0059d6;
+      --accent: #febb02;
+      --bg: #f5f5f5;
+      --text: #1b1b1b;
+      --muted: #6b7280;
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      transition: overflow 0.2s ease;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ============================
+       UNIFIED TRoy Group™ NAV BAR
+       ============================ */
+    .troy-nav {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .troy-nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .troy-brand-link {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .troy-brand-logo {
+      width: 36px;
+      height: 36px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    .troy-brand-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .troy-menu {
+      display: flex;
+      gap: 1.4rem;
+    }
+    .troy-menu a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+    .troy-menu a:hover {
+      color: var(--primary-light);
+    }
+
+    @media (max-width: 700px) {
+      .troy-nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .troy-menu {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+    }
+
+    /* ================
+       HERO
+       ================ */
+    .hero {
+      background: var(--primary);
+      color: #fff;
+      padding: 2.5rem 1.5rem 3rem;
+    }
+    .hero-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      margin-bottom: 0.4rem;
+    }
+    .hero p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    /* ============================
+       SEARCH BOX
+       ============================ */
+    .search-box {
+      margin-top: 1.5rem;
+      background: #f5f7fb;
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+    .tab {
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .tab.active {
+      background: #fff;
+      border-color: #d1d5db;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.15);
+    }
+
+    .search-form {
+      display: grid;
+      grid-template-columns: 2.2fr 1.4fr 1.4fr 1.2fr auto;
+      gap: 0.5rem;
+    }
+    .field {
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.5rem 0.7rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    .field-label {
+      font-size: 0.7rem;
+      color: #6b7280;
+    }
+    .field-input input {
+      border: none;
+      outline: none;
+      width: 100%;
+      background: transparent;
+      font-size: 0.85rem;
+    }
+    .search-btn {
+      background: var(--accent);
+      border-radius: 8px;
+      border: none;
+      padding: 0 1.4rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: #1b1b1b;
+    }
+
+    /* ============================
+       CONTENT
+       ============================ */
+    .content {
+      max-width: 1120px;
+      margin: 1.5rem auto 2.5rem;
+      padding: 0 1.5rem;
+    }
+    .section-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.9rem;
+      border: 1px solid #e5e7eb;
+      font-size: 0.85rem;
+    }
+    .card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* ============================
+       FOOTER
+       ============================ */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      background: #fff;
+    }
+
+    /* ============================
+       TRoyGo™ AI DRAWER (TripAdvisor-style)
+       ============================ */
+    .troygo-ai-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 420px;
+      max-width: 100%;
+      background: #ffffff;
+      box-shadow: 2px 0 12px rgba(0,0,0,0.18);
+      transform: translateX(-100%);
+      transition: transform 0.28s ease-out;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+    .troygo-ai-drawer.open {
+      transform: translateX(0);
+    }
+    @media (max-width: 768px) {
+      .troygo-ai-drawer {
+        width: 100%;
+      }
+    }
+
+    .troygo-ai-drawer-header {
+      display: flex;
+      justify-content: flex-end;
+      padding: 12px 16px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .troygo-ai-drawer-close {
+      background: transparent;
+      border: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #444;
+      line-height: 1;
+    }
+
+    .troygo-ai-drawer-body {
+      padding: 1rem;
+    }
+
+    body.troygo-ai-drawer-open {
+      overflow: hidden;
+    }
+
+    /* ============================
+       Floating Button – TRoyGO™ AI Assistant
+       ============================ */
+    .troygo-ai-fab {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.25s ease;
+    }
+    .troygo-ai-fab:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+    .troygo-ai-fab-icon {
+      font-size: 1.1rem;
+    }
+
+    /* ============================
+       TRoyGo™ Planner (moved into drawer)
+       ============================ */
+    .planner-container {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 1rem;
+      border: 1px solid #e5e7eb;
+      display: block !important;
+      margin-top: 0;
+    }
+
+    .planner-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .planner-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .planner-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .planner-modes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .planner-mode-btn {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      cursor: pointer;
+    }
+    .planner-mode-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .planner-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr);
+      gap: 1rem;
+    }
+    @media (max-width: 900px) {
+      .planner-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .planner-chat {
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 0.7rem;
+      background: #f9fafb;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .planner-chat-log {
+      max-height: 220px;
+      overflow-y: auto;
+      padding-right: 0.3rem;
+    }
+    .chat-msg {
+      margin-bottom: 0.4rem;
+    }
+    .chat-msg-label {
+      font-weight: 600;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+    .chat-msg-bubble {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 0.4rem 0.5rem;
+      border: 1px solid #e5e7eb;
+    }
+    .chat-msg-bubble.user {
+      background: #e0edff;
+      border-color: #bfdbfe;
+    }
+
+    .planner-chat-input {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+    .planner-chat-input textarea {
+      flex: 1;
+      resize: vertical;
+      min-height: 40px;
+      max-height: 80px;
+      font-size: 0.8rem;
+      padding: 0.4rem;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      outline: none;
+    }
+    .planner-chat-input button {
+      font-size: 0.8rem;
+      padding: 0 0.8rem;
+      border-radius: 6px;
+      border: none;
+      background: var(--primary-light);
+      color: #fff;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .planner-itinerary {
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 0.7rem;
+      background: #ffffff;
+      font-size: 0.85rem;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+    .itinerary-summary {
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.4rem;
+    }
+    .itinerary-summary h4 {
+      font-size: 0.9rem;
+      margin-bottom: 0.15rem;
+    }
+    .itinerary-summary p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .itinerary-day {
+      margin-top: 0.5rem;
+      padding-top: 0.4rem;
+      border-top: 1px dashed #e5e7eb;
+    }
+    .itinerary-day-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.2rem;
+    }
+    .itinerary-block {
+      margin-left: 0.4rem;
+      margin-bottom: 0.25rem;
+    }
+    .itinerary-block-time {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .itinerary-block-title {
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+    .itinerary-block-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .planner-footnote {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ============================
+     NAV BAR
+     ============================ -->
+<header class="troy-nav">
+  <div class="troy-nav-inner">
+    <a href="index.html" class="troy-brand-link">
+      <span class="troy-brand-logo">TG</span>
+      <span class="troy-brand-text">TRoy Group™</span>
+    </a>
+    <nav class="troy-menu">
+      <a href="troy-maritime-home.html">Maritime</a>
+      <a href="troygo-website.html">Travel</a>
+      <a href="troytr-website.html">Trading</a>
+      <a href="troymedia-website.html">Media</a>
+      <a href="troygar-website.html">Garage</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================
+     HERO + SEARCH
+     ============================ -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Find your next stay, flight, car or cruise with TRoyGo™</h1>
+    <p>Plan smarter trips with one place for stays, flights, car rentals, cruises and more.</p>
+
+    <div class="search-box">
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-tab="stays">🏨 Stays</button>
+        <button class="tab" data-tab="flights">✈️ Flights</button>
+        <button class="tab" data-tab="flight-hotel">🧳 Flight + Hotel</button>
+        <button class="tab" data-tab="cars">🚗 Car rental</button>
+        <button class="tab" data-tab="cruises">🛳️ Cruises</button>
+        <button class="tab" data-tab="attractions">🎟️ Attractions</button>
+        <button class="tab" data-tab="taxis">🚕 Airport taxis</button>
+      </div>
+
+      <form class="search-form" id="search-form">
+        <div class="field">
+          <div class="field-label" id="field-main-label">Where are you going?</div>
+          <div class="field-input">
+            <input type="text" id="destination" placeholder="City, region, landmark or cruise route" required />
+          </div>
+        </div>
+        <div class="field">
+          <div class="field-label">Check-in / Departure</div>
+          <div class="field-input"><input type="date" id="date-start" /></div>
+        </div>
+        <div class="field">
+          <div class="field-label">Check-out / Return</div>
+          <div class="field-input"><input type="date" id="date-end" /></
