@@ -339,6 +339,68 @@ body::after {
   z-index: 1;
 }
 
+/* Fallback overlay */
+#mapFallback {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: radial-gradient(circle at 40% 40%, #071428 0%, #02040a 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+#mapFallback.hidden { opacity: 0; pointer-events: none; }
+.mf-inner {
+  text-align: center;
+  padding: 2rem;
+  pointer-events: auto;
+}
+.mf-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+.mf-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+}
+.mf-sub {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.mf-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  font-family: 'Barlow', sans-serif;
+  padding: 0.75rem 1.8rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 20px rgba(0,224,255,0.5);
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 1rem;
+}
+.mf-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0,224,255,0.8);
+}
+.mf-note {
+  font-size: 0.78rem;
+  color: var(--dim);
+  line-height: 1.6;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
 /* Map HUD overlays */
 .hud-topleft {
   position: absolute;
@@ -591,7 +653,20 @@ body::after {
 
   <!-- RIGHT: Map -->
   <div id="mapArea">
-    <iframe id="mapFrame" src="" allowfullscreen loading="lazy"></iframe>
+    <!-- MarineTraffic Live Map -->
+    <iframe id="mapFrame" src="" allowfullscreen loading="lazy"
+      sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+
+    <!-- Fallback overlay — shown if iframe fails to load -->
+    <div id="mapFallback">
+      <div class="mf-inner">
+        <div class="mf-icon">🌊</div>
+        <div class="mf-title">Live AIS Map</div>
+        <div class="mf-sub">MarineTraffic · Real-time vessel positions</div>
+        <a id="mfOpenBtn" href="#" target="_blank" class="mf-btn">🗺️ Open Live Map in New Tab</a>
+        <div class="mf-note">GitHub Pages does not allow external map embedding.<br>Click above to open MarineTraffic directly.</div>
+      </div>
+    </div>
 
     <!-- HUD top-left -->
     <div class="hud-topleft">
@@ -798,9 +873,28 @@ function selectLoc(id) {
   if (!l) return;
   currentLoc = l;
 
-  // Map
-  document.getElementById('mapFrame').src =
-    `https://www.marinetraffic.com/en/ais/embed/zoom:${l.zoom}/centery:${l.lat}/centerx:${l.lon}/maptype:4/shownames:true/mmsi:0/shipid:0/fleet:/fleet_id:/vtypes:/showmenu:/remember:false`;
+  // Map — embed + fallback open link
+  const embedUrl = `https://www.marinetraffic.com/en/ais/embed/zoom:${l.zoom}/centery:${l.lat}/centerx:${l.lon}/maptype:4/shownames:true/mmsi:0/shipid:0/fleet:/fleet_id:/vtypes:/showmenu:/remember:false`;
+  const liveUrl  = `https://www.marinetraffic.com/en/ais/home/centerx:${l.lon}/centery:${l.lat}/zoom:${l.zoom}`;
+  const frame = document.getElementById('mapFrame');
+  frame.src = embedUrl;
+  document.getElementById('mfOpenBtn').href = liveUrl;
+  // Try to detect if iframe loaded — hide fallback after 3s on success
+  frame.onload = () => {
+    try {
+      // If we can access contentDocument it loaded same-origin (unlikely)
+      // Otherwise assume it worked and hide fallback
+      document.getElementById('mapFallback').classList.add('hidden');
+    } catch(e) {}
+  };
+  // Show fallback by default, hide after successful embed load
+  document.getElementById('mapFallback').classList.remove('hidden');
+  setTimeout(() => {
+    // If iframe has a src and hasn't errored, tentatively hide fallback
+    if (frame.src && frame.src !== window.location.href) {
+      document.getElementById('mapFallback').classList.add('hidden');
+    }
+  }, 3000);
 
   // HUD
   document.getElementById('hudTitle').textContent  = l.name;
@@ -880,7 +974,7 @@ document.getElementById('tickInner').innerHTML = msgs.map(m =>
 
   // ── Init ──────────────────────────────────────────
   renderList(currentRegion);
-  updateHUD(currentLoc);
+  selectLoc(currentLoc.id);
 
 </script>
 </body>
