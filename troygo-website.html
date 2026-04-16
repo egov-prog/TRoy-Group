@@ -382,6 +382,28 @@
       font-size: 0.75rem;
       color: var(--muted);
     }
+
+    /* Floating "Plan with TRoyGO™" button (bottom-right) */
+    .troygo-ai-fab {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+      z-index: 9999;
+      transition: all 0.25s ease;
+    }
+    .troygo-ai-fab:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 <body>
@@ -513,6 +535,11 @@
 <footer>
   © <span id="year"></span> TRoyGo™ / TRoy Travel Agency™. All rights reserved.
 </footer>
+
+<!-- Floating "Plan with TRoyGO™" button -->
+<button id="troygo-ai-fab" class="troygo-ai-fab">
+  🚀 Plan with TRoyGO™
+</button>
 
 <script>
   // Year
@@ -814,6 +841,15 @@
       itineraryEl.appendChild(dayEl);
     });
   }
+
+  // Floating "Plan with TRoyGO™" button → open planner instantly
+  const fab = document.getElementById("troygo-ai-fab");
+  fab.addEventListener("click", () => {
+    planner.style.display = "block";
+    if (!chatLog.hasChildNodes()) {
+      addSystemMessage("Tell me your destination, dates and travel style — I’ll design the trip.");
+    }
+  });
 </script>
 
 </body>
