@@ -1,79 +1,881 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TRoyMAR™ Global Vessel Tracker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troy Maritime Agency — Global Vessel Tracking Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #060a12;
+  --surface:  #0b1220;
+  --panel:    #0f1929;
+  --border:   #162030;
+  --border2:  #1e3050;
+  --accent:   #00d4ff;
+  --green:    #00ff9d;
+  --amber:    #ffb800;
+  --red:      #ff4560;
+  --purple:   #b070ff;
+  --text:     #b8ccd8;
+  --dim:      #4a6a80;
+  --white:    #e0f0ff;
+  --mono:     'Share Tech Mono', monospace;
+  --sans:     'Barlow', sans-serif;
+  --display:  'Bebas Neue', sans-serif;
+}
 
-    <style>
-        body {
-            margin: 0;
-            background: #000;
-            font-family: Arial, sans-serif;
-            color: #e6e6e6;
-        }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Header */
-        header {
-            width: 100%;
-            padding: 20px 40px;
-            background: #000;
-            border-bottom: 1px solid #222;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        header .logo {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #00aaff;
-        }
-        header a {
-            color: #e6e6e6;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-        header a:hover {
-            color: #00aaff;
-        }
+html, body { height: 100%; overflow: hidden; }
 
-        /* Map container */
-        #tracker-container {
-            width: 100%;
-            height: calc(100vh - 80px);
-            background: #000;
-        }
-    </style>
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 13px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* scan-line effect */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════
+   TOP BAR
+══════════════════════════════════ */
+#topbar {
+  flex-shrink: 0;
+  height: 56px;
+  background: linear-gradient(90deg, #040810 0%, #080f1c 100%);
+  border-bottom: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 20px;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo-anchor {
+  font-size: 26px;
+  filter: drop-shadow(0 0 8px var(--accent));
+  animation: anchorGlow 3s ease-in-out infinite;
+}
+@keyframes anchorGlow {
+  0%,100% { filter: drop-shadow(0 0 6px var(--accent)); }
+  50%      { filter: drop-shadow(0 0 14px var(--accent)); }
+}
+
+.logo-name {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 3px;
+  color: var(--white);
+  line-height: 1;
+}
+.logo-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  margin-top: 2px;
+}
+
+.topbar-sep { width: 1px; height: 32px; background: var(--border2); flex-shrink: 0; }
+
+/* Global stats row */
+.global-stats {
+  display: flex;
+  gap: 2px;
+  flex: 1;
+  overflow-x: auto;
+}
+.gstat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 12px;
+  border-right: 1px solid var(--border);
+  min-width: 70px;
+}
+.gstat-num {
+  font-family: var(--display);
+  font-size: 20px;
+  line-height: 1;
+}
+.gstat-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.c-cyan   { color: var(--accent); }
+.c-green  { color: var(--green); }
+.c-amber  { color: var(--amber); }
+.c-red    { color: var(--red); }
+.c-purple { color: var(--purple); }
+
+/* Live badge + clock */
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.live-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0,255,157,0.07);
+  border: 1px solid rgba(0,255,157,0.25);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--green);
+  letter-spacing: 1.5px;
+}
+.blink {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+  animation: blink 1.2s infinite;
+}
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.2; }
+}
+
+.utc-clock {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--dim);
+  letter-spacing: 1px;
+}
+
+/* ══════════════════════════════════
+   REGION TABS
+══════════════════════════════════ */
+#regionbar {
+  flex-shrink: 0;
+  height: 36px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  scrollbar-width: none;
+  z-index: 99;
+}
+#regionbar::-webkit-scrollbar { display: none; }
+
+.rtab {
+  padding: 0 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--dim);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rtab:hover { color: var(--text); background: rgba(255,255,255,0.02); }
+.rtab.active { color: var(--accent); border-bottom-color: var(--accent); background: rgba(0,212,255,0.04); }
+
+/* ══════════════════════════════════
+   BODY: LEFT PANEL + MAP
+══════════════════════════════════ */
+#body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ── LEFT PANEL ── */
+#left {
+  width: 280px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel-head {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.panel-head-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.badge-count {
+  background: rgba(0,212,255,0.12);
+  border: 1px solid rgba(0,212,255,0.3);
+  border-radius: 10px;
+  padding: 1px 9px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+}
+
+/* Location list */
+#locList {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+
+.loc-group-label {
+  padding: 8px 14px 4px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--dim);
+  text-transform: uppercase;
+  background: rgba(0,0,0,0.2);
+  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.loc-item {
+  padding: 9px 14px;
+  border-bottom: 1px solid rgba(22,32,48,0.6);
+  cursor: pointer;
+  transition: background 0.12s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.loc-item:hover { background: rgba(0,212,255,0.04); }
+.loc-item.active {
+  background: rgba(0,212,255,0.08);
+  border-left: 2px solid var(--accent);
+}
+
+.loc-icon { font-size: 16px; flex-shrink: 0; }
+
+.loc-info { flex: 1; min-width: 0; }
+.loc-name {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--white);
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.loc-sub {
+  font-size: 10px;
+  color: var(--dim);
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.loc-traffic {
+  text-align: right;
+  flex-shrink: 0;
+}
+.loc-daily {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--green);
+}
+.loc-daily-label {
+  font-size: 9px;
+  color: var(--dim);
+}
+
+/* ── MAP AREA ── */
+#mapArea {
+  flex: 1;
+  position: relative;
+  background: #080e18;
+  overflow: hidden;
+}
+
+#mapFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: 1;
+}
+
+/* Map HUD overlays */
+.hud-topleft {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.hud-card {
+  background: rgba(6,10,18,0.88);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 10px 14px;
+  pointer-events: auto;
+}
+
+.hud-title {
+  font-family: var(--display);
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--white);
+  line-height: 1;
+}
+.hud-coords {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--dim);
+  margin-top: 3px;
+  letter-spacing: 0.5px;
+}
+.hud-importance {
+  margin-top: 6px;
+  font-size: 10px;
+  color: var(--text);
+  line-height: 1.4;
+  max-width: 260px;
+}
+
+.hud-topright {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mini-stat {
+  background: rgba(6,10,18,0.88);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 6px 14px;
+  text-align: center;
+  min-width: 84px;
+}
+.mini-num {
+  font-family: var(--display);
+  font-size: 24px;
+  line-height: 1;
+}
+.mini-label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Bottom detail bar */
+#detailBar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 10;
+  background: rgba(6,10,18,0.94);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border2);
+  padding: 10px 16px;
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.detail-col { flex: 1; min-width: 0; }
+.detail-col label {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--dim);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 3px;
+}
+.detail-col .val {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── CONTACT FLOAT ── */
+.contact-float {
+  position: absolute;
+  bottom: 58px;
+  right: 12px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cf-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 6px;
+  border: 1px solid;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.cf-wa {
+  background: rgba(37,211,102,0.1);
+  border-color: rgba(37,211,102,0.35);
+  color: #25d366;
+}
+.cf-wa:hover { background: rgba(37,211,102,0.2); }
+.cf-mail {
+  background: rgba(0,212,255,0.08);
+  border-color: rgba(0,212,255,0.3);
+  color: var(--accent);
+}
+.cf-mail:hover { background: rgba(0,212,255,0.15); }
+.cf-pda {
+  background: rgba(255,184,0,0.08);
+  border-color: rgba(255,184,0,0.3);
+  color: var(--amber);
+}
+.cf-pda:hover { background: rgba(255,184,0,0.15); }
+
+/* ══════════════════════════════════
+   TICKER
+══════════════════════════════════ */
+#ticker {
+  flex-shrink: 0;
+  height: 30px;
+  background: rgba(0,212,255,0.04);
+  border-top: 1px solid var(--border2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+}
+.tick-inner {
+  display: flex;
+  animation: scroll 60s linear infinite;
+  white-space: nowrap;
+}
+.tick-item {
+  padding: 0 28px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--dim);
+  border-right: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 30px;
+}
+.tick-item .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+::-webkit-scrollbar-track { background: transparent; }
+</style>
 </head>
-
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <div class="logo">TRoyMAR™ Global Tracker</div>
-        <nav>
-            <a href="troy-maritime-home.html">Home</a>
-            <a href="#tracker">Tracker</a>
-        </nav>
-    </header>
+<!-- ══ TOP BAR ══ -->
+<div id="topbar">
+  <div class="logo">
+    <div class="logo-anchor">⚓</div>
+    <div>
+      <div class="logo-name">TROY MARITIME AGENCY</div>
+      <div class="logo-tag">GLOBAL VESSEL TRACKING HUB · DARWIN, AUSTRALIA · 24/7</div>
+    </div>
+  </div>
 
-    <!-- MARINETRAFFIC AIS MAP -->
-    <div id="tracker-container"></div>
+  <div class="topbar-sep"></div>
 
-    <script type="text/javascript">
-        width = "100%";
-        height = "100%";
-        border = "0";
-        shownames = "true";
-        latitude = "25.0";
-        longitude = "-12.1";
-        zoom = "4";
-        maptype = "0";
-        trackvessel = "0";
-        fleet = ""; // Add your MarineTraffic registered email if needed
-    </script>
+  <div class="global-stats">
+    <div class="gstat"><span class="gstat-num c-cyan" id="gTotal">99,400+</span><span class="gstat-label">Vessels Tracked</span></div>
+    <div class="gstat"><span class="gstat-num c-amber">20</span><span class="gstat-label">Straits / Canals</span></div>
+    <div class="gstat"><span class="gstat-num c-green">38</span><span class="gstat-label">Major Ports</span></div>
+    <div class="gstat"><span class="gstat-num c-red">500+</span><span class="gstat-label">Dover / Day</span></div>
+    <div class="gstat"><span class="gstat-num c-purple">96,000+</span><span class="gstat-label">Malacca / Year</span></div>
+    <div class="gstat"><span class="gstat-num c-cyan">20,000+</span><span class="gstat-label">Hormuz / Year</span></div>
+    <div class="gstat"><span class="gstat-num c-amber">14,000+</span><span class="gstat-label">Panama / Year</span></div>
+    <div class="gstat"><span class="gstat-num c-green">20,600+</span><span class="gstat-label">Suez / Year</span></div>
+  </div>
 
-    <script type="text/javascript" src="https://www.marinetraffic.com/js/embed.js"></script>
+  <div class="topbar-right">
+    <div class="live-badge"><div class="blink"></div>AIS LIVE</div>
+    <div class="utc-clock" id="clk">00:00:00 UTC</div>
+  </div>
+</div>
 
-</body>
-</html>
+<!-- ══ REGION TABS ══ -->
+<div id="regionbar">
+  <button class="rtab active" onclick="switchRegion('all',this)">🌍 All Regions</button>
+  <button class="rtab" onclick="switchRegion('strategic',this)">⚠️ Strategic Chokepoints</button>
+  <button class="rtab" onclick="switchRegion('mideast',this)">🛢️ Middle East</button>
+  <button class="rtab" onclick="switchRegion('europe',this)">🇪🇺 Europe / Med</button>
+  <button class="rtab" onclick="switchRegion('asia',this)">🌏 Asia / Pacific</button>
+  <button class="rtab" onclick="switchRegion('americas',this)">🌎 Americas</button>
+  <button class="rtab" onclick="switchRegion('africa',this)">🌍 Africa</button>
+  <button class="rtab" onclick="switchRegion('australia',this)">🦘 Australia / Pacific</button>
+  <button class="rtab" onclick="switchRegion('megaports',this)">🏗️ Mega Ports</button>
+</div>
+
+<!-- ══ BODY ══ -->
+<div id="body">
+
+  <!-- LEFT: Location list -->
+  <div id="left">
+    <div class="panel-head">
+      <span class="panel-head-title">Locations</span>
+      <span class="badge-count" id="locCount">58</span>
+    </div>
+    <div id="locList"></div>
+  </div>
+
+  <!-- RIGHT: Map -->
+  <div id="mapArea">
+    <iframe id="mapFrame" src="" allowfullscreen loading="lazy"></iframe>
+
+    <!-- HUD top-left -->
+    <div class="hud-topleft">
+      <div class="hud-card">
+        <div class="hud-title" id="hudTitle">STRAIT OF HORMUZ</div>
+        <div class="hud-coords" id="hudCoords">26°30'N · 56°30'E · Persian Gulf</div>
+        <div class="hud-importance" id="hudInfo">World's most critical oil artery. 20% of global oil supply passes daily.</div>
+      </div>
+    </div>
+
+    <!-- HUD top-right stats -->
+    <div class="hud-topright">
+      <div class="mini-stat">
+        <div class="mini-num c-cyan" id="s1">247</div>
+        <div class="mini-label" id="s1l">In Transit</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-num c-green" id="s2">38</div>
+        <div class="mini-label" id="s2l">Anchored</div>
+      </div>
+      <div class="mini-stat">
+        <div class="mini-num c-amber" id="s3">14</div>
+        <div class="mini-label" id="s3l">Awaiting</div>
+      </div>
+    </div>
+
+    <!-- Contact floats -->
+    <div class="contact-float">
+      <a class="cf-btn cf-pda" href="/cdn-cgi/l/email-protection#5d292f3224303c2f34293430383c3a38333e241d3a303c3431733e3230622e283f37383e29600d191c7d0f382c28382e29" target="_blank">📋 REQUEST PDA</a>
+      <a class="cf-btn cf-wa" href="https://wa.me/?text=Hello Troy Maritime Agency" target="_blank">💬 WHATSAPP 24/7</a>
+      <a class="cf-btn cf-mail" href="/cdn-cgi/l/email-protection#cfbbbda0b6a2aebda6bba6a2aaaea8aaa1acb68fa8a2aea6a3e1aca0a2" target="_blank">✉️ EMAIL US</a>
+    </div>
+
+    <!-- Bottom detail bar -->
+    <div id="detailBar">
+      <div class="detail-col">
+        <label>Selected Location</label>
+        <div class="val c-cyan" id="dLoc">Click any location →</div>
+      </div>
+      <div class="detail-col">
+        <label>Region</label>
+        <div class="val" id="dRegion">—</div>
+      </div>
+      <div class="detail-col">
+        <label>Daily Traffic</label>
+        <div class="val c-green" id="dTraffic">—</div>
+      </div>
+      <div class="detail-col">
+        <label>Key Cargo</label>
+        <div class="val" id="dCargo">—</div>
+      </div>
+      <div class="detail-col">
+        <label>Strategic Importance</label>
+        <div class="val c-amber" id="dImport">—</div>
+      </div>
+      <div class="detail-col">
+        <label>Troy Agency Services</label>
+        <div class="val c-purple" id="dService">Port Agency · Husbandry · Crew Change</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TICKER ══ -->
+<div id="ticker">
+  <div class="tick-inner" id="tickInner"></div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ══════════════════════════════════
+// DATA — All world straits & ports
+// ══════════════════════════════════
+const locations = [
+  // ─── STRATEGIC CHOKEPOINTS ───
+  { id:'hormuz',     group:'Strategic Chokepoints', icon:'🛢️', name:'Strait of Hormuz',       sub:'Iran / Oman',                    region:'Middle East',   lat:26.5,    lon:56.5,    zoom:9,  daily:'103 vessels/day',  transit:247, anchored:38, waiting:14, s1l:'In Transit', s2l:'Anchored', s3l:'Awaiting', cargo:'Crude Oil · LNG · 20% world oil', importance:'CRITICAL — World oil artery', info:"World's most critical oil chokepoint. 20% of global oil and 20% of LNG passes daily. ~20,000 vessels/year.", service:'Port Agency · Tanker Ops · Husbandry' },
+  { id:'malacca',    group:'Strategic Chokepoints', icon:'🚢', name:'Strait of Malacca',       sub:'Malaysia / Indonesia / Singapore',region:'SE Asia',       lat:3.0,     lon:101.0,   zoom:7,  daily:'260 vessels/day',  transit:412, anchored:67, waiting:22, s1l:'In Transit', s2l:'Anchored', s3l:'Awaiting', cargo:'Containers · Oil · Electronics',  importance:'CRITICAL — 25-30% world trade', info:"World's busiest strait. 96,000+ vessels/year, 25-30% of all global traded goods.", service:'Port Agency · Transit Coordination' },
+  { id:'suez',       group:'Strategic Chokepoints', icon:'🏜️', name:'Suez Canal',              sub:'Egypt',                          region:'Africa/Med',    lat:30.5,    lon:32.35,   zoom:9,  daily:'56 vessels/day',   transit:42,  anchored:12, waiting:18, s1l:'Transiting', s2l:'Waiting N', s3l:'Waiting S', cargo:'Containers · Oil · Grain',        importance:'CRITICAL — Europe/Asia shortcut', info:"Connects Mediterranean to Red Sea. Saves 7,000nm vs Cape of Good Hope. 12% of global trade.", service:'Port Agency · Convoy Coordination' },
+  { id:'panama',     group:'Strategic Chokepoints', icon:'🌊', name:'Panama Canal',             sub:'Panama',                         region:'Americas',      lat:9.08,    lon:-79.68,  zoom:10, daily:'34 vessels/day',   transit:28,  anchored:6,  waiting:42, s1l:'Transiting', s2l:'Anchored', s3l:'Queue', cargo:'Containers · LNG · Grain',        importance:'CRITICAL — Pacific/Atlantic link', info:"Connects Pacific & Atlantic. Saves 8,000nm vs Cape Horn. 14,000 vessels/year.", service:'Port Agency · Canal Transit Assist' },
+  { id:'dover',      group:'Strategic Chokepoints', icon:'🇬🇧', name:'Strait of Dover',          sub:'UK / France',                    region:'Europe',        lat:51.0,    lon:1.5,     zoom:9,  daily:'500 vessels/day',  transit:380, anchored:45, waiting:0,  s1l:'In Transit', s2l:'Anchored', s3l:'Delayed', cargo:'All types — Busiest lane on Earth', importance:'#1 BUSIEST — English Channel', info:"World's busiest shipping lane. 500+ vessels/day. Connects Atlantic to North Sea.", service:'Port Agency · Emergency Response' },
+  { id:'bab',        group:'Strategic Chokepoints', icon:'🌍', name:"Bab el-Mandeb",             sub:'Yemen / Djibouti',               region:'Africa',        lat:12.5,    lon:43.3,    zoom:9,  daily:'48 vessels/day',   transit:55,  anchored:8,  waiting:20, s1l:'In Transit', s2l:'Anchored', s3l:'Diverted', cargo:'Oil · LNG · Containers',          importance:'CRITICAL — Red Sea gateway', info:"Gateway between Red Sea & Indian Ocean. Links Suez Canal to global routes. Piracy risk zone.", service:'Security Advisory · Port Agency' },
+  { id:'gibraltar',  group:'Strategic Chokepoints', icon:'🇬🇮', name:'Strait of Gibraltar',      sub:'Spain / Morocco',                region:'Europe/Africa', lat:36.0,    lon:-5.4,    zoom:9,  daily:'110 vessels/day',  transit:95,  anchored:22, waiting:5,  s1l:'In Transit', s2l:'Anchored', s3l:'Waiting', cargo:'All cargo · Mediterranean access', importance:'HIGH — Med/Atlantic gateway', info:"Gateway between Atlantic Ocean and Mediterranean Sea. Major bunkering hub.", service:'Husbandry · Bunkering Coordination' },
+  { id:'taiwan',     group:'Strategic Chokepoints', icon:'🇹🇼', name:'Taiwan Strait',             sub:'China / Taiwan',                 region:'Asia',          lat:24.5,    lon:119.5,   zoom:8,  daily:'180 vessels/day',  transit:160, anchored:28, waiting:8,  s1l:'In Transit', s2l:'Anchored', s3l:'Monitoring', cargo:'Electronics · Containers',        importance:'HIGH — Geopolitical flashpoint', info:"One of Asia's busiest sea lanes. Strategically significant for tech supply chains.", service:'Port Agency · Transit Coordination' },
+  { id:'sunda',      group:'Strategic Chokepoints', icon:'🇮🇩', name:'Sunda Strait',              sub:'Indonesia',                      region:'SE Asia',       lat:-5.9,    lon:105.8,   zoom:9,  daily:'60 vessels/day',   transit:52,  anchored:10, waiting:4,  s1l:'In Transit', s2l:'Anchored', s3l:'Waiting', cargo:'Oil · LNG · Containers',          importance:'MEDIUM — Malacca alternative', info:"Alternative to Malacca Strait. Separates Java and Sumatra.", service:'Port Agency · Husbandry' },
+
+  // ─── TURKISH STRAITS ───
+  { id:'canakkale',  group:'Turkish Straits', icon:'⚓', name:'Çanakkale (Dardanelles)',  sub:'Turkey — Troy\'s Home Waters',  region:'Turkey',        lat:40.15,   lon:26.4,    zoom:10, daily:'45 vessels/day',   transit:89,  anchored:22, waiting:18, s1l:'Northbound', s2l:'Southbound', s3l:'Awaiting', cargo:'Black Sea commodities · Grain · Oil', importance:'CRITICAL — Black Sea gateway', info:"One of the world's most strategic straits. Troy's home waters. Connects Black Sea to Mediterranean.", service:'⭐ SPECIALIST — Full Agency · Clearance' },
+  { id:'istanbul',   group:'Turkish Straits', icon:'🕌', name:'Istanbul (Bosphorus)',      sub:'Turkey',                         region:'Turkey',        lat:41.1,    lon:29.07,   zoom:11, daily:'48 vessels/day',   transit:112, anchored:15, waiting:31, s1l:'Northbound', s2l:'Southbound', s3l:'Awaiting', cargo:'Oil · Grain · Black Sea trade',   importance:'CRITICAL — Istanbul Strait', info:"Runs through Istanbul city. Connects Black Sea to Sea of Marmara. Key for Russian/Ukrainian exports.", service:'⭐ SPECIALIST — Full Agency · Pilotage' },
+
+  // ─── MIDDLE EAST PORTS ───
+  { id:'jebel',      group:'Middle East Ports', icon:'🏗️', name:'Jebel Ali (Dubai)',        sub:'UAE',                            region:'Middle East',   lat:24.98,   lon:55.07,   zoom:11, daily:'~100 vessels/day', transit:85,  anchored:30, waiting:15, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · General Cargo',      importance:'#1 Port in Middle East', info:"World's 9th largest port and largest man-made harbour. UAE's economic gateway.", service:'Port Agency · Husbandry · Repairs' },
+  { id:'fujairah',   group:'Middle East Ports', icon:'⛽', name:'Port of Fujairah',          sub:'UAE',                            region:'Middle East',   lat:25.12,   lon:56.35,   zoom:11, daily:'70 vessels/day',   transit:60,  anchored:45, waiting:10, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Bunkering · Oil · Tankers',       importance:'World\'s #2 bunkering hub', info:"One of the world's most important bunkering ports. Just outside Strait of Hormuz.", service:'Port Agency · Bunkering · Husbandry' },
+  { id:'khalifa',    group:'Middle East Ports', icon:'🇦🇪', name:'Khalifa Port Abu Dhabi',   sub:'UAE',                            region:'Middle East',   lat:24.8,    lon:54.63,   zoom:11, daily:'45 vessels/day',   transit:40,  anchored:18, waiting:5,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · LNG · Oil',          importance:'HIGH — UAE hub', info:"Abu Dhabi's flagship deep-water port. One of the most technologically advanced ports globally.", service:'Port Agency · Crew Change' },
+  { id:'dammam',     group:'Middle East Ports', icon:'🇸🇦', name:'King Abdulaziz Port',      sub:'Saudi Arabia',                   region:'Middle East',   lat:26.46,   lon:50.18,   zoom:11, daily:'50 vessels/day',   transit:42,  anchored:25, waiting:8,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Oil · Containers · General',     importance:'HIGH — Saudi main Gulf port', info:"Saudi Arabia's main Gulf seaport. Key hub for Arabian Peninsula cargo.", service:'Port Agency · Tanker Operations' },
+  { id:'sohar',      group:'Middle East Ports', icon:'🇴🇲', name:'Port of Sohar',             sub:'Oman',                           region:'Middle East',   lat:24.35,   lon:56.62,   zoom:11, daily:'25 vessels/day',   transit:22,  anchored:8,  waiting:3,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Bulk · Oil',         importance:'GROWING — Oman industrial hub', info:"Strategically located near Strait of Hormuz. Fast-growing industrial port.", service:'Port Agency · Husbandry' },
+
+  // ─── EUROPEAN / MED PORTS ───
+  { id:'rotterdam',  group:'European / Med Ports', icon:'🇳🇱', name:'Port of Rotterdam',       sub:'Netherlands',                    region:'Europe',        lat:51.95,   lon:4.15,    zoom:11, daily:'~400 vessels/day', transit:290, anchored:80, waiting:30, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Oil · Bulk',         importance:'#1 Largest European port', info:"Europe's largest and busiest port. Gateway for European continental trade.", service:'Port Agency · Husbandry · Crew Change' },
+  { id:'antwerp',    group:'European / Med Ports', icon:'🇧🇪', name:'Port of Antwerp-Bruges',   sub:'Belgium',                        region:'Europe',        lat:51.26,   lon:4.38,    zoom:11, daily:'~350 vessels/day', transit:260, anchored:65, waiting:25, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Chemicals · Bulk',   importance:'#2 European port', info:"Europe's second largest port. Major container and chemical hub.", service:'Port Agency · Husbandry' },
+  { id:'piraeus',    group:'European / Med Ports', icon:'🇬🇷', name:'Port of Piraeus',          sub:'Greece',                         region:'Europe',        lat:37.93,   lon:23.63,   zoom:11, daily:'~150 vessels/day', transit:95,  anchored:40, waiting:12, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Passenger · Ro-Ro',  importance:'#1 Med container port', info:"Largest port in Greece and Mediterranean container hub. Gateway between Europe and Asia.", service:'Port Agency · Cruise Handling · Crew' },
+  { id:'istanbul_p', group:'European / Med Ports', icon:'🕌', name:'Port of Istanbul (Haydarp.)',sub:'Turkey',                        region:'Turkey',        lat:41.0,    lon:28.97,   zoom:12, daily:'~80 vessels/day',  transit:55,  anchored:20, waiting:8,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Ro-Ro · Passenger · General',    importance:'HIGH — Major Turkish port', info:"Istanbul's major commercial and passenger port on the European side.", service:'⭐ SPECIALIST — Full Agency Services' },
+  { id:'aliaga',     group:'European / Med Ports', icon:'⚓', name:'Port of Aliağa',            sub:'Turkey (Izmir)',                 region:'Turkey',        lat:38.8,    lon:26.97,   zoom:11, daily:'~40 vessels/day',  transit:32,  anchored:15, waiting:5,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Tankers · LNG · Bulk',           importance:'HIGH — Turkish oil terminal', info:"Major petroleum and LNG terminal near Izmir. Key tanker destination.", service:'⭐ SPECIALIST — Tanker · LNG Agency' },
+  { id:'marsaxlokk', group:'European / Med Ports', icon:'🇲🇹', name:'Marsaxlokk (Malta)',        sub:'Malta',                          region:'Europe',        lat:35.83,   lon:14.55,   zoom:11, daily:'~80 vessels/day',  transit:55,  anchored:35, waiting:10, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Bunkering · Transship',importance:'HIGH — Med hub and bunkering', info:"Malta's main commercial port. Key Mediterranean transshipment and bunkering hub.", service:'Port Agency · Bunkering Coordination' },
+  { id:'barcelona',  group:'European / Med Ports', icon:'🇪🇸', name:'Port of Barcelona',         sub:'Spain',                          region:'Europe',        lat:41.34,   lon:2.16,    zoom:11, daily:'~100 vessels/day', transit:75,  anchored:20, waiting:8,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Cruise · Ro-Ro',    importance:'HIGH — Med cruise hub', info:"Spain's most important cruise and container port in the Mediterranean.", service:'Port Agency · Cruise Handling' },
+
+  // ─── ASIAN MEGA PORTS ───
+  { id:'singapore',  group:'Asian Mega Ports', icon:'🇸🇬', name:'Port of Singapore',         sub:'Singapore',                      region:'SE Asia',       lat:1.26,    lon:103.82,  zoom:10, daily:'~1000 vessels/day',transit:820, anchored:180,waiting:30, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Oil · All types',   importance:'#2 Busiest world port', info:"World's 2nd busiest port and premier maritime hub. 130,000+ vessels per year call Singapore.", service:'Port Agency · Husbandry · Crew Change' },
+  { id:'shanghai',   group:'Asian Mega Ports', icon:'🇨🇳', name:'Port of Shanghai',           sub:'China',                          region:'Asia',          lat:31.23,   lon:121.47,  zoom:10, daily:'~1200 vessels/day',transit:900, anchored:200,waiting:50, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers — #1 World',          importance:'#1 BUSIEST world port', info:"World's busiest container port. Handles over 47 million TEUs annually.", service:'Port Agency · Coordination' },
+  { id:'busan',      group:'Asian Mega Ports', icon:'🇰🇷', name:'Port of Busan',               sub:'South Korea',                    region:'Asia',          lat:35.1,    lon:129.04,  zoom:11, daily:'~400 vessels/day', transit:290, anchored:90, waiting:20, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Ro-Ro · Bulk',      importance:'#1 Korea — #6 World', info:"World's 6th busiest container port. Major transshipment hub for NE Asia.", service:'Port Agency · Crew Change' },
+  { id:'klang',      group:'Asian Mega Ports', icon:'🇲🇾', name:'Port Klang',                  sub:'Malaysia',                       region:'SE Asia',       lat:2.99,    lon:101.38,  zoom:11, daily:'~250 vessels/day', transit:180, anchored:55, waiting:15, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Palm Oil · Bulk',   importance:'#1 Malaysia — #12 World', info:"Malaysia's largest and busiest port. Key transshipment hub in SE Asia.", service:'Port Agency · Husbandry' },
+  { id:'hongkong',   group:'Asian Mega Ports', icon:'🇭🇰', name:'Port of Hong Kong',           sub:'China SAR',                      region:'Asia',          lat:22.28,   lon:114.17,  zoom:11, daily:'~400 vessels/day', transit:320, anchored:95, waiting:18, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · General · Cruise',  importance:'#4 World container port', info:"One of the world's busiest ports. Major gateway for South China trade.", service:'Port Agency · Crew Change · Husbandry' },
+  { id:'colombo',    group:'Asian Mega Ports', icon:'🇱🇰', name:'Port of Colombo',             sub:'Sri Lanka',                      region:'Asia',          lat:6.93,    lon:79.85,   zoom:11, daily:'~80 vessels/day',  transit:65,  anchored:28, waiting:8,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Transshipment',    importance:'HIGH — Indian Ocean hub', info:"Major transshipment hub in the Indian Ocean. Strategically located on Asia-Europe routes.", service:'Port Agency · Husbandry · Crew' },
+
+  // ─── AMERICAS ───
+  { id:'losangeles', group:'Americas Ports', icon:'🇺🇸', name:'Port of LA / Long Beach',   sub:'USA — California',               region:'Americas',      lat:33.73,   lon:-118.27, zoom:11, daily:'~200 vessels/day', transit:160, anchored:80, waiting:35, s1l:'In Port', s2l:'Anchored', s3l:'Queue', cargo:'Containers — USA #1',            importance:'#1 US port complex', info:"America's busiest port complex. Gateway for US-Asia trade. 9+ million TEUs annually.", service:'Port Agency · Coordination' },
+  { id:'houston',    group:'Americas Ports', icon:'🛢️', name:'Port of Houston',             sub:'USA — Texas',                    region:'Americas',      lat:29.73,   lon:-95.28,  zoom:11, daily:'~150 vessels/day', transit:120, anchored:40, waiting:15, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Oil · LNG · Petrochemicals',    importance:'#1 US energy port', info:"America's top energy port. Handles more foreign tonnage than any US port.", service:'Port Agency · Tanker Operations' },
+  { id:'santos',     group:'Americas Ports', icon:'🇧🇷', name:'Port of Santos',              sub:'Brazil',                         region:'Americas',      lat:-23.96,  lon:-46.33,  zoom:11, daily:'~100 vessels/day', transit:85,  anchored:30, waiting:12, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Soybeans · Containers · Sugar',  importance:'#1 South America port', info:"Latin America's busiest port. Brazil's economic lifeline for agri-exports.", service:'Port Agency · Bulk Operations' },
+  { id:'colon',      group:'Americas Ports', icon:'🇵🇦', name:'Colón (Panama Canal Entry)', sub:'Panama — Atlantic side',         region:'Americas',      lat:9.36,    lon:-79.9,   zoom:11, daily:'~50 vessels/day',  transit:35,  anchored:25, waiting:45, s1l:'Transiting', s2l:'Anchored', s3l:'Queue', cargo:'Containers · All types',         importance:'Canal Atlantic entrance', info:"Atlantic entrance to the Panama Canal. Major free trade zone nearby.", service:'Port Agency · Canal Transit' },
+
+  // ─── AFRICA ───
+  { id:'durban',     group:'Africa Ports', icon:'🇿🇦', name:'Port of Durban',               sub:'South Africa',                   region:'Africa',        lat:-29.86,  lon:31.02,   zoom:11, daily:'~90 vessels/day',  transit:70,  anchored:25, waiting:8,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Bulk · Vehicles',   importance:'#1 Africa port by volume', info:"Africa's busiest container port. Gateway for southern African trade.", service:'Port Agency · Husbandry · Crew' },
+  { id:'tangier',    group:'Africa Ports', icon:'🇲🇦', name:'Tanger Med',                    sub:'Morocco',                        region:'Africa',        lat:35.88,   lon:-5.5,    zoom:11, daily:'~120 vessels/day', transit:90,  anchored:35, waiting:10, s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Transshipment',    importance:'#1 Africa container port', info:"Africa's largest container port. Located at Strait of Gibraltar. Major transshipment hub.", service:'Port Agency · Bunkering' },
+  { id:'djibouti',   group:'Africa Ports', icon:'🇩🇯', name:'Port of Djibouti',              sub:'Djibouti',                       region:'Africa',        lat:11.59,   lon:43.14,   zoom:11, daily:'~30 vessels/day',  transit:25,  anchored:15, waiting:8,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'General · Containers · Transit', importance:'HIGH — Bab el-Mandeb gateway', info:"Strategic port at Bab el-Mandeb. Gateway to Red Sea. Key military and commercial hub.", service:'Port Agency · Security Advisory' },
+  { id:'mombasa',    group:'Africa Ports', icon:'🇰🇪', name:'Port of Mombasa',               sub:'Kenya',                          region:'Africa',        lat:-4.05,   lon:39.67,   zoom:11, daily:'~25 vessels/day',  transit:20,  anchored:12, waiting:5,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Bulk · Oil',        importance:'HIGH — E. Africa gateway', info:"East Africa's main port. Gateway for Kenya, Uganda, Rwanda and beyond.", service:'Port Agency · Husbandry' },
+
+  // ─── AUSTRALIA & PACIFIC ───
+  { id:'darwin',     group:'Australia & Pacific', icon:'⚓', name:'Darwin Port',               sub:'NT, Australia — TROY\'S BASE', region:'Australia',     lat:-12.46,  lon:130.84,  zoom:11, daily:'~12 vessels/day',  transit:8,   anchored:5,  waiting:3,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'LNG · Bulk · Oil · General',    importance:'⭐ TROY HQ — NT Australia', info:"Troy Maritime Agency home port. Strategic gateway to Asia. Northern Australia's main port.", service:'⭐ FULL LOCAL AGENCY · ALL SERVICES' },
+  { id:'brisbane',   group:'Australia & Pacific', icon:'🇦🇺', name:'Port of Brisbane',          sub:'Queensland, Australia',         region:'Australia',     lat:-27.37,  lon:153.17,  zoom:11, daily:'~40 vessels/day',  transit:32,  anchored:12, waiting:4,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Coal · LNG',        importance:'HIGH — QLD gateway', info:"Queensland's main port. Key gateway for Australian east coast trade.", service:'Port Agency · Husbandry · Crew' },
+  { id:'fremantle',  group:'Australia & Pacific', icon:'🇦🇺', name:'Port of Fremantle',         sub:'Western Australia',             region:'Australia',     lat:-32.05,  lon:115.74,  zoom:11, daily:'~35 vessels/day',  transit:28,  anchored:10, waiting:5,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Iron Ore · Grain',  importance:'HIGH — WA gateway', info:"Western Australia's main trade port. Close to Asia. Key iron ore and wheat export terminal.", service:'Port Agency · Bulk Operations' },
+  { id:'sydney',     group:'Australia & Pacific', icon:'🇦🇺', name:'Port of Sydney (Botany)',    sub:'NSW, Australia',                region:'Australia',     lat:-33.97,  lon:151.19,  zoom:11, daily:'~50 vessels/day',  transit:40,  anchored:14, waiting:6,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · Cruise · General',  importance:'HIGH — Australia cruise hub', info:"Australia's main cruise hub and major container port at Botany Bay.", service:'Port Agency · Cruise Handling' },
+  { id:'gladstone',  group:'Australia & Pacific', icon:'🇦🇺', name:'Port of Gladstone',          sub:'Queensland, Australia',         region:'Australia',     lat:-23.84,  lon:151.26,  zoom:11, daily:'~20 vessels/day',  transit:15,  anchored:8,  waiting:3,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'LNG · Coal · Alumina',          importance:'HIGH — LNG export hub', info:"One of Australia's largest export ports. Major LNG and coal export terminal.", service:'Port Agency · Bulk · LNG Ops' },
+  { id:'auckland',   group:'Australia & Pacific', icon:'🇳🇿', name:'Port of Auckland',           sub:'New Zealand',                   region:'Pacific',       lat:-36.84,  lon:174.76,  zoom:11, daily:'~20 vessels/day',  transit:15,  anchored:7,  waiting:3,  s1l:'In Port', s2l:'Anchored', s3l:'Waiting', cargo:'Containers · General · Cruise',  importance:'#1 NZ port', info:"New Zealand's busiest port. Handles around 55% of New Zealand container imports.", service:'Port Agency · Cruise Handling' },
+
+  // ─── OTHER MAJOR STRAITS ───
+  { id:'magellan',   group:'Other Straits', icon:'🌊', name:'Magellan Passage',              sub:'Chile / Argentina',              region:'Americas',      lat:-53.5,   lon:-71.0,   zoom:8,  daily:'~5 vessels/day',   transit:4,   anchored:2,  waiting:1,  s1l:'Transiting', s2l:'Anchored', s3l:'Waiting', cargo:'Alternative Cape Horn route',   importance:'MEDIUM — Cape Horn alternative', info:"Natural strait between mainland Chile and Tierra del Fuego. Shorter but narrower than Cape Horn.", service:'Port Agency · Emergency Response' },
+  { id:'danish',     group:'Other Straits', icon:'🇩🇰', name:'Danish Straits (Øresund)',      sub:'Denmark / Sweden',               region:'Europe',        lat:55.9,    lon:12.7,    zoom:9,  daily:'~100 vessels/day', transit:82,  anchored:18, waiting:5,  s1l:'In Transit', s2l:'Anchored', s3l:'Waiting', cargo:'Oil · Baltic trade · Containers', importance:'HIGH — Baltic Sea gateway', info:"Connects North Sea to Baltic Sea. Major route for Russian and Baltic trade.", service:'Port Agency · Transit Coordination' },
+  { id:'lombok',     group:'Other Straits', icon:'🇮🇩', name:'Lombok Strait',                 sub:'Indonesia',                      region:'SE Asia',       lat:-8.5,    lon:115.7,   zoom:9,  daily:'~40 vessels/day',  transit:35,  anchored:8,  waiting:3,  s1l:'In Transit', s2l:'Anchored', s3l:'Waiting', cargo:'LNG · Tankers · Bulk',          importance:'MEDIUM — Malacca deep-draft alt.', info:"Deep-water alternative to Malacca Strait for VLCCs and large LNG carriers.", service:'Port Agency · Husbandry' },
+  { id:'tsugaru',    group:'Other Straits', icon:'🇯🇵', name:'Tsugaru Strait',                sub:'Japan',                          region:'Asia',          lat:41.5,    lon:141.0,   zoom:9,  daily:'~30 vessels/day',  transit:25,  anchored:5,  waiting:2,  s1l:'In Transit', s2l:'Anchored', s3l:'Waiting', cargo:'Japan trade · Containers · Bulk', importance:'MEDIUM — N.Japan access', info:"Separates Honshu and Hokkaido. Key access to Sea of Japan and northern Japanese ports.", service:'Port Agency · Crew Change' },
+];
+
+// ══════════════════════════════════
+// REGION FILTER MAP
+// ══════════════════════════════════
+const regionFilters = {
+  all:        () => true,
+  strategic:  l => l.group === 'Strategic Chokepoints' || l.group === 'Turkish Straits' || l.group === 'Other Straits',
+  mideast:    l => l.region === 'Middle East' || l.group === 'Middle East Ports',
+  europe:     l => l.region === 'Europe' || l.region === 'Turkey' || l.group === 'European / Med Ports',
+  asia:       l => ['SE Asia','Asia'].includes(l.region) || l.group === 'Asian Mega Ports',
+  americas:   l => l.region === 'Americas' || l.group === 'Americas Ports',
+  africa:     l => l.region === 'Africa' || l.group === 'Africa Ports',
+  australia:  l => l.region === 'Australia' || l.region === 'Pacific' || l.group === 'Australia & Pacific',
+  megaports:  l => l.group.includes('Ports') || l.group.includes('Mega'),
+};
+
+// ══════════════════════════════════
+// STATE
+// ══════════════════════════════════
+let currentRegion = 'all';
+let currentLoc    = locations[0];
+
+// ══════════════════════════════════
+// RENDER LIST
+// ══════════════════════════════════
+function renderList(filter) {
+  const filtered = locations.filter(regionFilters[filter] || (() => true));
+  document.getElementById('locCount').textContent = filtered;
+
+  // Group
+  const groups = {};
+  filtered.forEach(l => {
+    if (!groups[l.group]) groups[l.group] = [];
+    groups[l.group].push(l);
+  });
+
+  let html = '';
+  let total = 0;
+  Object.entries(groups).forEach(([grp, items]) => {
+    html += `<div class="loc-group-label">${grp}</div>`;
+    items.forEach(l => {
+      total++;
+      html += `
+        <div class="loc-item ${l.id === currentLoc.id ? 'active' : ''}" onclick="selectLoc('${l.id}')">
+          <div class="loc-icon">${l.icon}</div>
+          <div class="loc-info">
+            <div class="loc-name">${l.name}</div>
+            <div class="loc-sub">${l.sub}</div>
+          </div>
+          <div class="loc-traffic">
+            <div class="loc-daily">${l.transit}</div>
+            <div class="loc-daily-label">vessels</div>
+          </div>
+        </div>`;
+    });
+  });
+  document.getElementById('locList').innerHTML = html;
+  document.getElementById('locCount').textContent = total;
+}
+
+// ══════════════════════════════════
+// SELECT LOCATION
+// ══════════════════════════════════
+function selectLoc(id) {
+  const l = locations.find(x => x.id === id);
+  if (!l) return;
+  currentLoc = l;
+
+  // Map
+  document.getElementById('mapFrame').src =
+    `https://www.marinetraffic.com/en/ais/embed/zoom:${l.zoom}/centery:${l.lat}/centerx:${l.lon}/maptype:4/shownames:true/mmsi:0/shipid:0/fleet:/fleet_id:/vtypes:/showmenu:/remember:false`;
+
+  // HUD
+  document.getElementById('hudTitle').textContent  = l.name;
+  document.getElementById('hudCoords').textContent = l.sub + ' · ' + l.region;
+  document.getElementById('hudInfo').textContent   = l.info;
+
+  // Stats
+  document.getElementById('s1').textContent  = l.transit;
+  document.getElementById('s1l').textContent = l.s1l;
+  document.getElementById('s2').textContent  = l.anchored;
+  document.getElementById('s2l').textContent = l.s2l;
+  document.getElementById('s3').textContent  = l.waiting;
+  document.getElementById('s3l').textContent = l.s3l;
+
+  // Detail bar
+  document.getElementById('dLoc').textContent     = l.name;
+  document.getElementById('dRegion').textContent  = l.region;
+  document.getElementById('dTraffic').textContent = l.daily;
+  document.getElementById('dCargo').textContent   = l.cargo;
+  document.getElementById('dImport').textContent  = l.importance;
+  document.getElementById('dService').textContent = l.service;
+
+  renderList(currentRegion);
+}
+
+// ══════════════════════════════════
+// SWITCH REGION
+// ══════════════════════════════════
+function switchRegion(key, btn) {
+  currentRegion = key;
+  document.querySelectorAll('.rtab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList(key);
+}
+
+// ══════════════════════════════════
+// CLOCK
+// ══════════════════════════════════
+function tick() {
+  const t = new Date().toUTCString().match(/(\d{2}:\d{2}:\d{2})/)[1];
+  document.getElementById('clk').textContent = t + ' UTC';
+}
+setInterval(tick, 1000); tick();
+
+// ══════════════════════════════════
+// TICKER
+// ══════════════════════════════════
+const msgs = [
+  'TROY MARITIME AGENCY — Darwin NT Australia — troymaritimeagency@gmail.com',
+  'Global Port Agency Coverage — 58 Straits, Canals & Major Ports',
+  'Specialist: Çanakkale Dardanelles · Istanbul Bosphorus · Turkish Straits',
+  'Husbandry · Crew Change · Customs Clearance · Provisions · Ship Repairs',
+  'Transparent PDA/FDA within 2 hours · 100% funds required before vessel arrival',
+  'Sub-agent network: Mediterranean · Persian Gulf · SE Asia · Australia · Pacific',
+  'Cruise Ships · Tankers · Bulk Carriers · LNG · Container · Yachts · All vessel types',
+  'Former Düzgit Group Specialist — 30+ years maritime experience',
+  'FONASBA Standard Agreements · International Agency Tariffs',
+  'Darwin Port — Gateway to Asia · Indonesian Archipelago coverage',
+  'WhatsApp 24/7 · Request PDA · troymaritimeagency@gmail.com',
+  'Strait of Hormuz: 20% world oil · Malacca: 30% world trade · Dover: 500 vessels/day',
+  'TROY MARITIME AGENCY — Darwin NT Australia — troymaritimeagency@gmail.com',
+  'Global Port Agency Coverage — 58 Straits, Canals & Major Ports',
+  'Specialist: Çanakkale Dardanelles · Istanbul Bosphorus · Turkish Straits',
+  'Husbandry · Crew Change · Customs Clearance · Provisions · Ship Repairs',
+  'Transparent PDA/FDA within 2 hours · 100% funds required before vessel arrival',
+  'Sub-agent network: Mediterranean · Persian Gulf · SE Asia · Australia · Pacific',
+  'Cruise Ships · Tankers · Bulk Carriers · LNG · Container · Yachts · All vessel types',
+  'Former Düzgit Group Specialist — 30+ years maritime experience',
+  'FONASBA Standard Agreements · International Agency Tariffs',
+  'Darwin Port — Gateway to Asia · Indonesian Archipelago coverage',
+  'WhatsApp 24/7 · Request PDA · troymaritimeagency@gmail.com',
+  'Strait of Hormuz: 20% world oil · Malacca: 30% world trade · Dover: 500 vessels/day',
+];
+document.getElementById('tickInner').innerHTML = msgs.map(m =>
+  `<span class="tick-item"><span class="dot"></span>${m}</span>`
+).join('');
+
+// ═════════════════�
