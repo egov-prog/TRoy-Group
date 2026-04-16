@@ -544,4 +544,124 @@
         </div>
         <div class="field">
           <div class="field-label">Check-out / Return</div>
-          <div class="field-input"><input type="date" id="date-end" /></
+          <div class="field-input"><input type="date" id="date-end" /></div>
+        </div>
+        <div class="field">
+          <div class="field-label" id="field-guests-label">2 adults · 0 children · 1 room</div>
+          <div class="field-input"><input type="text" id="guests" placeholder="2 adults · 1 room" /></div>
+        </div>
+        <button type="submit" class="search-btn" id="search-btn">Search</button>
+      </form>
+    </div>
+
+    <!-- AI Trip Planner Box -->
+    <div id="trip-planner-box" style="max-width:900px;margin:1.5rem auto 0;background:#fff;border-radius:10px;padding:1.2rem 1.5rem;box-shadow:0 2px 8px rgba(0,0,0,0.08);">
+      <div style="font-weight:700;margin-bottom:0.6rem;color:#003b95;">✨ AI Trip Creator — Ask TRoyGo™</div>
+      <div style="display:flex;gap:0.6rem;">
+        <input id="trip-input" type="text" placeholder="e.g. 7 days in Japan, budget trip, beaches in Thailand..." style="flex:1;padding:0.6rem 0.9rem;border:1px solid #ddd;border-radius:6px;font-size:0.9rem;" />
+        <button onclick="askTripAI()" style="background:#003b95;color:#fff;border:none;padding:0.6rem 1.2rem;border-radius:6px;cursor:pointer;font-weight:600;">Plan →</button>
+      </div>
+      <div id="trip-results" style="font-size:0.9rem;color:#1b1b1b;margin-top:0.8rem;line-height:1.6;"></div>
+    </div>
+  </section>
+
+  <!-- DESTINATIONS -->
+  <section style="max-width:1200px;margin:2.5rem auto;padding:0 1.5rem;">
+    <h2 style="font-size:1.6rem;margin-bottom:0.4rem;">Popular destinations</h2>
+    <p class="section-sub">Places TRoyGo™ travellers search for again and again.</p>
+    <div class="dest-grid">
+      <div class="dest-card" onclick="setDest('Bali, Indonesia')"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=400&q=80" alt="Bali"><div class="dest-label">Bali, Indonesia</div></div>
+      <div class="dest-card" onclick="setDest('Tokyo, Japan')"><img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=400&q=80" alt="Tokyo"><div class="dest-label">Tokyo, Japan</div></div>
+      <div class="dest-card" onclick="setDest('Paris, France')"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&q=80" alt="Paris"><div class="dest-label">Paris, France</div></div>
+      <div class="dest-card" onclick="setDest('New York, USA')"><img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=400&q=80" alt="New York"><div class="dest-label">New York, USA</div></div>
+      <div class="dest-card" onclick="setDest('Istanbul, Turkey')"><img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400&q=80" alt="Istanbul"><div class="dest-label">Istanbul, Turkey</div></div>
+      <div class="dest-card" onclick="setDest('Sydney, Australia')"><img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400&q=80" alt="Sydney"><div class="dest-label">Sydney, Australia</div></div>
+    </div>
+  </section>
+
+  <!-- WHY TROYGO -->
+  <section style="background:#003b95;color:#fff;padding:3rem 1.5rem;text-align:center;">
+    <div style="max-width:800px;margin:auto;">
+      <h2 style="font-size:1.8rem;margin-bottom:0.5rem;">Why TRoyGo™?</h2>
+      <p style="opacity:0.9;margin-bottom:2rem;">Powered by AI. Built for real travellers. Backed by TRoy Group™.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.5rem;">
+        <div><div style="font-size:2rem;">🤖</div><div style="font-weight:700;margin:0.4rem 0;">AI Trip Creator</div><div style="opacity:0.85;font-size:0.9rem;">Personalised itineraries generated in seconds.</div></div>
+        <div><div style="font-size:2rem;">🌍</div><div style="font-weight:700;margin:0.4rem 0;">Global Coverage</div><div style="opacity:0.85;font-size:0.9rem;">Hotels, flights, cruises and experiences worldwide.</div></div>
+        <div><div style="font-size:2rem;">💰</div><div style="font-weight:700;margin:0.4rem 0;">Best Price</div><div style="opacity:0.85;font-size:0.9rem;">Compare options and book at the best available rate.</div></div>
+        <div><div style="font-size:2rem;">📱</div><div style="font-weight:700;margin:0.4rem 0;">Mobile Ready</div><div style="opacity:0.85;font-size:0.9rem;">Book and manage trips from any device, anywhere.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#fff;border-top:1px solid #e5e7eb;padding:1.5rem;text-align:center;font-size:0.85rem;color:#6b7280;">
+    © <span id="yr"></span> TRoyGo™ / TRoy Travel Agency™ — TRoy Group™. All rights reserved. · Darwin, NT, Australia ·
+    <a href="mailto:troytravelagency@gmail.com" style="color:#003b95;">troytravelagency@gmail.com</a>
+  </footer>
+
+  <script>
+    // Tab system
+    const tabs = document.querySelectorAll('.tab');
+    const configs = {
+      'stays':        { label:'Where are you going?', guests:'2 adults · 1 room', button:'Search stays' },
+      'flights':      { label:'Where to?', guests:'1 adult', button:'Search flights' },
+      'flight-hotel': { label:'Where to?', guests:'2 adults · 1 room', button:'Search packages' },
+      'cars':         { label:'Pick-up location', guests:'Driver age 26–65', button:'Search cars' },
+      'cruises':      { label:'Cruise destination or ship', guests:'2 adults', button:'Search cruises' },
+      'attractions':  { label:'Destination or attraction', guests:'2 adults', button:'Search attractions' },
+      'taxis':        { label:'Pick-up location', guests:'1 passenger', button:'Search taxis' }
+    };
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabs.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cfg = configs[btn.dataset.tab] || configs['stays'];
+        document.getElementById('field-main-label').textContent = cfg.label;
+        document.getElementById('field-guests-label').textContent = cfg.guests;
+        document.getElementById('search-btn').textContent = cfg.button;
+      });
+    });
+
+    // Destination cards
+    function setDest(d) {
+      document.getElementById('destination').value = d;
+      document.getElementById('destination').focus();
+    }
+
+    // Search submit
+    document.getElementById('search-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const dest = document.getElementById('destination').value;
+      if (dest) window.open('https://www.booking.com/searchresults.html?ss=' + encodeURIComponent(dest), '_blank');
+    });
+
+    // AI Trip Creator
+    async function askTripAI() {
+      const q = document.getElementById('trip-input').value.trim();
+      if (!q) return;
+      const out = document.getElementById('trip-results');
+      out.innerHTML = '<em>Planning your trip...</em>';
+      try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1000,
+            messages: [{ role: 'user', content: 'You are TRoyGo™ AI Trip Creator. Create a helpful, structured travel itinerary or travel advice for: ' + q + '. Keep it concise and practical with day-by-day highlights if relevant.' }]
+          })
+        });
+        const data = await res.json();
+        const text = data.content?.[0]?.text || 'Sorry, could not generate a plan right now.';
+        out.innerHTML = text.replace(/\n/g, '<br>');
+      } catch(e) {
+        out.innerHTML = '⚠️ AI planner unavailable. Please try again later.';
+      }
+    }
+    document.getElementById('trip-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') askTripAI();
+    });
+
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
