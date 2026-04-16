@@ -10,19 +10,56 @@
             margin: 0;
             background: #000;
             font-family: Arial, sans-serif;
+            color: #e6e6e6;
         }
+
+        /* Header */
+        header {
+            width: 100%;
+            padding: 20px 40px;
+            background: #000;
+            border-bottom: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #00aaff;
+        }
+        header a {
+            color: #e6e6e6;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        header a:hover {
+            color: #00aaff;
+        }
+
+        /* Map container */
         #tracker-container {
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
+            width: 100%;
+            height: calc(100vh - 80px);
+            background: #000;
         }
     </style>
 </head>
 
 <body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">TRoyMAR™ Global Tracker</div>
+        <nav>
+            <a href="troy-maritime-home.html">Home</a>
+            <a href="#tracker">Tracker</a>
+        </nav>
+    </header>
+
+    <!-- MARINETRAFFIC AIS MAP -->
     <div id="tracker-container"></div>
 
-    <!-- MarineTraffic Embed Configuration -->
     <script type="text/javascript">
         width = "100%";
         height = "100%";
@@ -31,12 +68,12 @@
         latitude = "25.0";
         longitude = "-12.1";
         zoom = "4";
-        maptype = "0"; 
+        maptype = "0";
         trackvessel = "0";
-        fleet = ""; // If you have a MarineTraffic fleet, put your registered email here
+        fleet = ""; // Add your MarineTraffic registered email if needed
     </script>
 
-    <!-- MarineTraffic Embed Script -->
     <script type="text/javascript" src="https://www.marinetraffic.com/js/embed.js"></script>
+
 </body>
 </html>
