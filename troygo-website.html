@@ -2,121 +2,76 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plan with TRoyGO™</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root{
-  --primary:#003b95;
-  --bg:#f5f7fb;
-  --border:#e5e7eb;
-  --muted:#6b7280;
-}
-
-*{box-sizing:border-box;margin:0;padding:0}
-
 body{
-  font-family:system-ui,Arial,sans-serif;
-  background:var(--bg);
+  font-family: Arial, sans-serif;
+  background:#f5f7fb;
+  margin:0;
   color:#1b1b1b;
 }
-
-/* HEADER */
 header{
   background:#fff;
-  border-bottom:1px solid var(--border);
-  padding:1rem 1.5rem;
+  border-bottom:1px solid #e5e7eb;
+  padding:14px 20px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
 }
-header strong{
-  color:var(--primary);
-  font-size:1.1rem;
-}
+header b{ color:#003b95; }
 
-/* HERO */
-.hero{
+main{
   background:#fff;
-  padding:2rem 1.5rem;
+  padding:30px 20px;
 }
-.hero h1{
-  font-size:1.8rem;
-  margin-bottom:.4rem;
-}
-.hero p{
-  color:var(--muted);
-  margin-bottom:1rem;
-}
+h1{ margin-top:0; }
 
-/* PLANNER */
 .planner{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:1rem;
   max-width:900px;
-}
-.input-row{
-  display:flex;
-  gap:.6rem;
-}
-.input-row input{
-  flex:1;
-  padding:.7rem .9rem;
-  border:1px solid var(--border);
-  border-radius:8px;
-}
-.input-row button{
-  background:var(--primary);
-  color:#fff;
-  border:none;
-  padding:.7rem 1.4rem;
-  border-radius:8px;
-  font-weight:600;
-  cursor:pointer;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  padding:16px;
 }
 
-/* RESULTS */
-#results{
-  margin-top:1rem;
+input{
+  width:70%;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:6px;
 }
-.day{
-  margin-top:1.2rem;
-  border-top:1px solid var(--border);
-  padding-top:1rem;
-}
-.card{
-  border:1px solid var(--border);
-  border-radius:8px;
-  padding:.6rem;
-  margin:.4rem 0;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.card small{color:var(--muted)}
-.card button{
-  background:var(--primary);
+
+button{
+  padding:10px 18px;
+  margin-left:6px;
+  background:#003b95;
   color:#fff;
   border:none;
   border-radius:6px;
-  font-size:.75rem;
-  padding:.35rem .7rem;
   cursor:pointer;
 }
-.map{
-  margin-top:.6rem;
-  border:1px solid var(--border);
-  border-radius:8px;
-  overflow:hidden;
+
+.day{
+  margin-top:20px;
+  border-top:1px solid #e5e7eb;
+  padding-top:15px;
 }
 
-footer{
-  margin:3rem 0;
-  text-align:center;
-  font-size:.8rem;
-  color:var(--muted);
+.card{
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  padding:10px;
+  margin-top:6px;
+  display:flex;
+  justify-content:space-between;
+}
+
+iframe{
+  margin-top:8px;
+  border:0;
+  width:100%;
+  height:200px;
+  border-radius:8px;
 }
 </style>
 </head>
@@ -124,92 +79,69 @@ footer{
 <body>
 
 <header>
-  <strong>TRoyGO™</strong>
+  <b>TRoyGO™</b>
   Trip Planner
 </header>
 
-<section class="hero">
+<main>
   <h1>Plan with TRoyGO™</h1>
   <p>Attractions, food, experiences — organised day by day.</p>
 
   <div class="planner">
-    <div class="input-row">
-      <input id="query" placeholder="e.g. 4 days in Paris food and culture">
-      <button onclick="planTrip()">Plan</button>
-    </div>
+    <input id="query" value="4 days in Paris food and culture">
+    <button onclick="runPlanner()">Plan</button>
 
-    <!-- RESULTS APPEAR HERE -->
-    <div id="results"></div>
+    <div id="results" style="margin-top:20px;"></div>
   </div>
-</section>
-
-<footer>
-© <span id="year"></span> TRoyGO™ / TRoy Travel Agency™
-</footer>
+</main>
 
 <script>
-document.getElementById("year").textContent = new Date().getFullYear();
+function runPlanner(){
 
-/* MAIN ENTRY */
-function planTrip(){
-  const input = document.getElementById("query");
-  const output = document.getElementById("results");
+  // ✅ ABSOLUTE PROOF BUTTON WORKS
+  var out = document.getElementById("results");
+  out.innerHTML = "<b>✅ Button click detected. Building itinerary…</b>";
 
-  if(!input || !output){
-    alert("Planner error: missing elements.");
-    return;
+  var text = document.getElementById("query").value.toLowerCase();
+  var days = 5;
+  var city = "Paris";
+
+  // extract days (simple + safe)
+  for(var i=1;i<=14;i++){
+    if(text.indexOf(i + " day") !== -1){
+      days = i;
+    }
   }
 
-  const text = input.value.trim();
-  if(!text){
-    alert("Please type a trip idea.");
-    return;
-  }
+  if(text.indexOf("rome") !== -1) city="Rome";
+  if(text.indexOf("tokyo") !== -1) city="Tokyo";
+  if(text.indexOf("bangkok") !== -1) city="Bangkok";
+  if(text.indexOf("bali") !== -1) city="Bali";
 
-  output.innerHTML = "<em>Planning your trip…</em>";
+  var html = "<h3>" + city + " – " + days + " days</h3>";
 
-  setTimeout(() => {
-    output.innerHTML = buildTrip(text);
-  }, 400);
-}
+  for(var d=1; d<=days; d++){
+    html +=
+      "<div class='day'>" +
+        "<b>Day " + d + "</b>" +
 
-/* BUILD TRIP */
-function buildTrip(query){
-  const daysMatch = query.match(/(\\d+)/);
-  const days = daysMatch ? parseInt(daysMatch[1]) : 5;
+        "<div class='card'>" +
+          "<div>🏛 Attraction<br><small>Top landmark</small></div>" +
+          "<button onclick=\"window.open('https://www.tripadvisor.com')\">View</button>" +
+        "</div>" +
 
-  let city = "Paris";
-  ["Paris","Rome","Tokyo","Bangkok","Bali","Istanbul","Sydney","New York"]
-    .forEach(c=>{
-      if(query.toLowerCase().includes(c.toLowerCase())) city=c;
-    });
+        "<div class='card'>" +
+          "<div>🍽 Food<br><small>Popular restaurant</small></div>" +
+          "<button onclick=\"window.open('https://www.tripadvisor.com')\">View</button>" +
+        "</div>" +
 
-  let html = `<h3>${city} – ${days} days</h3>`;
+        "<div class='card'>" +
+          "<div>🎟 Experience<br><small>Guided activity</small></div>" +
+          "<button onclick=\"window.open('https://www.getyourguide.com')\">View</button>" +
+        "</div>" +
 
-  for(let d=1; d<=days; d++){
-    html += `
-      <div class="day">
-        <strong>Day ${d}</strong>
-
-        ${card("🏛 Attraction","Top landmark","https://www.tripadvisor.com")}
-        ${card("🍽 Food","Popular restaurant","https://www.tripadvisor.com")}
-        ${card("🎟 Experience","Guided activity","https://www.getyourguide.com")}
-
-        <div class="map">
-          <iframe
-            width="100%"
-            height="200"
-            loading="lazy"
-            src="https://www.google.com/maps?q=${encodeURIComponent(city)}&output=n card(title, subtitle, link){
-  return `
-    <div class="card">
-      <div>
-        <div><strong>${title}</strong></div>
-        <small>${subtitle}</small>
-      </div>
-      <button onclick="window.open('${link}','_blank')">View</button>
-    </div>
-  `;
+        "<iframe src='https://www.google.com/maps?q=" + city + "&output=
+  out.innerHTML = html;
 }
 </script>
 
