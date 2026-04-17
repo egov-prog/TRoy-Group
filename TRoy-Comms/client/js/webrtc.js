@@ -4,7 +4,9 @@
  * © TRoy Group™
  */
 
-const SIGNALING_URL = window.location.origin; // same server
+const SIGNALING_URL = window.location.hostname === 'localhost'
+  ? 'http://localhost:3500'
+  : 'https://troytel-signaling.onrender.com';
 
 class TRoyTelWebRTC {
   constructor() {
