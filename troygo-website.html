@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TRoyGO™ Trip Planner</title>
 
 <style>
@@ -12,141 +12,208 @@
   --bg:#f5f7fb;
   --text:#1b1b1b;
   --muted:#6b7280;
-  --radius:10px;
+  --border:#e5e7eb;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:system-ui,Arial,sans-serif;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
 }
 
+/* HEADER */
 header{
   background:#fff;
-  border-bottom:1px solid #e5e7eb;
+  border-bottom:1px solid var(--border);
   padding:1rem 1.5rem;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
-
-.logo{
-  font-weight:800;
-  font-size:1.1rem;
+header strong{
   color:var(--primary);
+  font-size:1.15rem;
 }
 
-main{
-  max-width:1100px;
-  margin:2rem auto;
-  padding:0 1.5rem;
-}
-
+/* HERO */
 .hero{
-  background:var(--primary);
-  color:#fff;
-  padding:2.5rem;
-  border-radius:var(--radius);
-}
-
-.hero h1{
-  font-size:2rem;
-  margin-bottom:.4rem;
-}
-
-.hero p{
-  opacity:.9;
-}
-
-.trip-box{
   background:#fff;
-  border-radius:var(--radius);
-  margin-top:1.5rem;
-  padding:1.2rem;
-  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  padding:2rem 1.5rem;
+}
+.hero h1{
+  font-size:1.9rem;
+  margin-bottom:.5rem;
+}
+.hero p{
+  color:var(--muted);
+  margin-bottom:1.2rem;
 }
 
-.trip-box-title{
-  font-weight:700;
-  color:var(--primary);
-  margin-bottom:.6rem;
+/* INPUT */
+.planner-box{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:1rem;
+  max-width:900px;
 }
-
-.trip-input-row{
+.planner-input{
   display:flex;
   gap:.6rem;
 }
-
-.trip-input-row input{
+.planner-input input{
   flex:1;
   padding:.7rem .9rem;
-  border:1px solid #ddd;
+  border:1px solid var(--border);
   border-radius:8px;
   font-size:.9rem;
 }
-
-.trip-input-row button{
+.planner-input button{
   background:var(--primary);
   color:#fff;
   border:none;
-  padding:.7rem 1.4rem;
+  padding:.7rem 1.3rem;
   border-radius:8px;
-  cursor:pointer;
   font-weight:600;
+  cursor:pointer;
 }
 
-.trip-results{
-  margin-top:1rem;
-  font-size:.9rem;
-}
-
-/* TripAdvisor-style cards */
+/* DAY */
 .day{
-  margin-top:1rem;
-  border-top:1px solid #e5e7eb;
-  padding-top:.8rem;
+  margin-top:1.2rem;
+  border-top:1px solid var(--border);
+  padding-top:1rem;
 }
-
 .day-title{
   font-weight:700;
-  margin-bottom:.4rem;
+  margin-bottom:.6rem;
 }
 
+/* CARD */
 .card{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  border:1px solid #e5e7eb;
-  border-radius:8px;
-  padding:.6rem;
-  margin-top:.45rem;
   background:#fff;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:.7rem;
+  margin-bottom:.5rem;
 }
-
-.card-title{
-  font-weight:600;
-  font-size:.85rem;
-}
-
-.card-sub{
-  font-size:.78rem;
-  color:var(--muted);
-}
-
+.card small{color:var(--muted)}
 .card button{
   background:var(--primary);
   color:#fff;
   border:none;
-  padding:.35rem .7rem;
-  border-radius:6px;
   font-size:.75rem;
+  padding:.4rem .8rem;
+  border-radius:6px;
   cursor:pointer;
 }
 
+/* MAP */
+.map{
+  margin-top:.6rem;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+
+/* FOOTER */
 footer{
+  margin:2.5rem 0;
   text-align:center;
-  padding:2rem 1.5rem;
   font-size:.8rem;
   color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <strong>TRoyGO™</strong>
+  Trip Planner
+</header>
+
+<section class="hero">
+  <h1>Plan trips like TripAdvisor</h1>
+  <p>Attractions, food, experiences — organised day by day.</p>
+
+  <div class="planner-box">
+    <div class="planner-input">
+      <input id="query" placeholder="e.g. 5 days in Rome culture & food">
+      <button onclick="planTrip()">Plan</button>
+    </div>
+
+    <div id="results" style="margin-top:1rem"></div>
+  </div>
+</section>
+
+<footer>
+© <span id="yr"></span> TRoyGO™ / TRoy Travel Agency™
+</footer>
+
+<script>
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+/* MAIN PLANNER */
+function planTrip(){
+  const q=document.getElementById("query").value.trim();
+  if(!q) return;
+
+  saveQuery(q);
+  renderPlan(buildTrip(q));
+}
+
+/* BUILD TRIP */
+function buildTrip(query){
+  const daysMatch=query.match(/(\\d+)/);
+  const days=daysMatch?parseInt(daysMatch[1]):5;
+
+  let city="Destination";
+  ["Rome","Paris","Tokyo","Bangkok","Bali","Istanbul","Sydney","New York"]
+    .forEach(c=>{
+      if(query.toLowerCase().includes(c.toLowerCase())) city=c;
+    });
+
+  let html=`<strong style="font-size:1.1rem">${city} – ${days} days</strong>`;
+
+  for(let d=1;d<=days;d++){
+    html+=`
+    <div class="day">
+      <div class="day-title">Day ${d}</div>
+      ${card("🏛 Attraction","Top landmark","https://www.tripadvisor.com")}
+      ${card("🍽 Food","Famous local restaurant","https://www.tripadvisor.com")}
+      ${card("🎟 Experience","Popular guided activity","https://www.getyourguide.com")}
+      <div class="map">
+        <iframe
+          width="100%"
+          height="200"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=${encodeURIComponent(city)}&output=embed <div>
+      <div><strong>${title}</strong></div>
+      <small>${desc}</small>
+    </div>
+    <button onclick="window.open('${link}','_blank')">View</button>
+  </div>`;
+}
+
+/* RENDER */
+function renderPlan(html){
+  document.getElementById("results").innerHTML=html;
+}
+
+/* SAVE ITINERARIES */
+function saveQuery(q){
+  const saved=JSON.parse(localStorage.getItem("troygo_trips")||"[]");
+  saved.unshift({q,date:new Date().toISOString()});
+  localStorage.setItem("troygo_trips",JSON.stringify(saved.slice(0,10)));
+}
+</script>
+
+</body>
+</html>
