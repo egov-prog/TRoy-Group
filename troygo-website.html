@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>TRoyGO™ Trip Planner</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan with TRoyGO™</title>
 
 <style>
 :root{
   --primary:#003b95;
-  --accent:#febb02;
   --bg:#f5f7fb;
-  --text:#1b1b1b;
-  --muted:#6b7280;
   --border:#e5e7eb;
+  --muted:#6b7280;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  font-family:system-ui,Arial,sans-serif;
   background:var(--bg);
-  color:var(--text);
+  color:#1b1b1b;
 }
 
 /* HEADER */
@@ -34,7 +32,7 @@ header{
 }
 header strong{
   color:var(--primary);
-  font-size:1.15rem;
+  font-size:1.1rem;
 }
 
 /* HERO */
@@ -43,87 +41,79 @@ header strong{
   padding:2rem 1.5rem;
 }
 .hero h1{
-  font-size:1.9rem;
-  margin-bottom:.5rem;
+  font-size:1.8rem;
+  margin-bottom:.4rem;
 }
 .hero p{
   color:var(--muted);
-  margin-bottom:1.2rem;
+  margin-bottom:1rem;
 }
 
-/* INPUT */
-.planner-box{
+/* PLANNER */
+.planner{
   background:#fff;
   border:1px solid var(--border);
   border-radius:12px;
   padding:1rem;
   max-width:900px;
 }
-.planner-input{
+.input-row{
   display:flex;
   gap:.6rem;
 }
-.planner-input input{
+.input-row input{
   flex:1;
   padding:.7rem .9rem;
   border:1px solid var(--border);
   border-radius:8px;
-  font-size:.9rem;
 }
-.planner-input button{
+.input-row button{
   background:var(--primary);
   color:#fff;
   border:none;
-  padding:.7rem 1.3rem;
+  padding:.7rem 1.4rem;
   border-radius:8px;
   font-weight:600;
   cursor:pointer;
 }
 
-/* DAY */
+/* RESULTS */
+#results{
+  margin-top:1rem;
+}
 .day{
   margin-top:1.2rem;
   border-top:1px solid var(--border);
   padding-top:1rem;
 }
-.day-title{
-  font-weight:700;
-  margin-bottom:.6rem;
-}
-
-/* CARD */
 .card{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:.6rem;
+  margin:.4rem 0;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:.7rem;
-  margin-bottom:.5rem;
 }
 .card small{color:var(--muted)}
 .card button{
   background:var(--primary);
   color:#fff;
   border:none;
-  font-size:.75rem;
-  padding:.4rem .8rem;
   border-radius:6px;
+  font-size:.75rem;
+  padding:.35rem .7rem;
   cursor:pointer;
 }
-
-/* MAP */
 .map{
   margin-top:.6rem;
-  border-radius:10px;
-  overflow:hidden;
   border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
 }
 
-/* FOOTER */
 footer{
-  margin:2.5rem 0;
+  margin:3rem 0;
   text-align:center;
   font-size:.8rem;
   color:var(--muted);
@@ -142,76 +132,84 @@ footer{
   <h1>Plan with TRoyGO™</h1>
   <p>Attractions, food, experiences — organised day by day.</p>
 
-  <div class="planner-box">
-    <div class="planner-input">
-      <input id="query" placeholder="e.g. 5 days in Rome culture & food">
+  <div class="planner">
+    <div class="input-row">
+      <input id="query" placeholder="e.g. 4 days in Paris food and culture">
       <button onclick="planTrip()">Plan</button>
     </div>
 
-    <div id="results" style="margin-top:1rem"></div>
+    <!-- RESULTS APPEAR HERE -->
+    <div id="results"></div>
   </div>
 </section>
 
 <footer>
-© <span id="yr"></span> TRoyGO™ / TRoy Travel Agency™
+© <span id="year"></span> TRoyGO™ / TRoy Travel Agency™
 </footer>
 
 <script>
-document.getElementById("yr").textContent = new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
-/* MAIN PLANNER */
+/* MAIN ENTRY */
 function planTrip(){
-  const q=document.getElementById("query").value.trim();
-  if(!q) return;
+  const input = document.getElementById("query");
+  const output = document.getElementById("results");
 
-  saveQuery(q);
-  renderPlan(buildTrip(q));
+  if(!input || !output){
+    alert("Planner error: missing elements.");
+    return;
+  }
+
+  const text = input.value.trim();
+  if(!text){
+    alert("Please type a trip idea.");
+    return;
+  }
+
+  output.innerHTML = "<em>Planning your trip…</em>";
+
+  setTimeout(() => {
+    output.innerHTML = buildTrip(text);
+  }, 400);
 }
 
 /* BUILD TRIP */
 function buildTrip(query){
-  const daysMatch=query.match(/(\\d+)/);
-  const days=daysMatch?parseInt(daysMatch[1]):5;
+  const daysMatch = query.match(/(\\d+)/);
+  const days = daysMatch ? parseInt(daysMatch[1]) : 5;
 
-  let city="Destination";
-  ["Rome","Paris","Tokyo","Bangkok","Bali","Istanbul","Sydney","New York"]
+  let city = "Paris";
+  ["Paris","Rome","Tokyo","Bangkok","Bali","Istanbul","Sydney","New York"]
     .forEach(c=>{
       if(query.toLowerCase().includes(c.toLowerCase())) city=c;
     });
 
-  let html=`<strong style="font-size:1.1rem">${city} – ${days} days</strong>`;
+  let html = `<h3>${city} – ${days} days</h3>`;
 
-  for(let d=1;d<=days;d++){
-    html+=`
-    <div class="day">
-      <div class="day-title">Day ${d}</div>
-      ${card("🏛 Attraction","Top landmark","https://www.tripadvisor.com")}
-      ${card("🍽 Food","Famous local restaurant","https://www.tripadvisor.com")}
-      ${card("🎟 Experience","Popular guided activity","https://www.getyourguide.com")}
-      <div class="map">
-        <iframe
-          width="100%"
-          height="200"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=${encodeURIComponent(city)}&output=embed <div>
-      <div><strong>${title}</strong></div>
-      <small>${desc}</small>
+  for(let d=1; d<=days; d++){
+    html += `
+      <div class="day">
+        <strong>Day ${d}</strong>
+
+        ${card("🏛 Attraction","Top landmark","https://www.tripadvisor.com")}
+        ${card("🍽 Food","Popular restaurant","https://www.tripadvisor.com")}
+        ${card("🎟 Experience","Guided activity","https://www.getyourguide.com")}
+
+        <div class="map">
+          <iframe
+            width="100%"
+            height="200"
+            loading="lazy"
+            src="https://www.google.com/maps?q=${encodeURIComponent(city)}&output=n card(title, subtitle, link){
+  return `
+    <div class="card">
+      <div>
+        <div><strong>${title}</strong></div>
+        <small>${subtitle}</small>
+      </div>
+      <button onclick="window.open('${link}','_blank')">View</button>
     </div>
-    <button onclick="window.open('${link}','_blank')">View</button>
-  </div>`;
-}
-
-/* RENDER */
-function renderPlan(html){
-  document.getElementById("results").innerHTML=html;
-}
-
-/* SAVE ITINERARIES */
-function saveQuery(q){
-  const saved=JSON.parse(localStorage.getItem("troygo_trips")||"[]");
-  saved.unshift({q,date:new Date().toISOString()});
-  localStorage.setItem("troygo_trips",JSON.stringify(saved.slice(0,10)));
+  `;
 }
 </script>
 
