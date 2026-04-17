@@ -1,6 +1,6 @@
 # MASTER-INDEX.md — TRoy Group™ Repository
 > **Repository:** `egov-prog/TRoy-Group`  
-> **Last Updated:** 2026-04-16  
+> **Last Updated:** 2026-04-18  
 > **Maintainer:** Ertan Govdeli — Founder & CEO, TRoy Group™
 
 ---
@@ -87,6 +87,46 @@ TRoy-Group/
 │   ├── signatures.md
 │   └── workflows.md
 │
+├── TRoy-Comms/                      ← TRoyTel™ Communications Engine
+│   ├── README.md                    ← Full stack overview & cost table
+│   ├── package.json                 ← Node.js dependencies
+│   ├── .env.example                 ← All env vars documented
+│   ├── render.yaml                  ← One-click Render.com free deploy
+│   ├── engine/
+│   │   ├── server.js                ← WebRTC signaling server (Socket.io)
+│   │   └── sms-relay.js             ← SMS dispatcher (TextBelt + Twilio)
+│   ├── client/
+│   │   ├── index.html               ← TRoyTel™ dashboard UI
+│   │   ├── css/style.css            ← Dark/cyan TRoy™ styling
+│   │   ├── js/webrtc.js             ← WebRTC P2P engine
+│   │   └── js/ui.js                 ← Dashboard UI controller
+│   ├── sms/
+│   │   ├── sms.js                   ← Multi-provider SMS + templates
+│   │   └── README.md                ← Provider comparison guide
+│   ├── sip/
+│   │   ├── extensions.conf          ← Asterisk dial plan (exts 001/100/200/300)
+│   │   ├── sip.conf                 ← SIP peers + sip2sip.info free trunk
+│   │   ├── voicemail.conf           ← Voicemail per division
+│   │   └── README.md                ← Asterisk setup guide
+│   ├── jitsi/config.js              ← Jitsi Meet room config per division
+│   ├── matrix/README.md             ← Matrix/Element messaging guide
+│   ├── divisions/
+│   │   ├── maritime/config.json     ← TRoy Maritime Agency™ comms config
+│   │   ├── travel/config.json       ← TRoyGo™ comms config
+│   │   └── trading/config.json      ← TRoy Trading Agency™ comms config
+│   ├── docker/
+│   │   ├── docker-compose.yml       ← Full stack (server+Asterisk+Matrix+Nginx)
+│   │   ├── Dockerfile               ← TRoyTel™ server container
+│   │   └── nginx.conf               ← Reverse proxy + WSS support
+│   ├── scripts/
+│   │   ├── install.sh               ← Full install (Node+Asterisk+Docker)
+│   │   ├── install-asterisk.sh      ← Asterisk-only install
+│   │   └── deploy.sh                ← GitHub push + Render deploy guide
+│   └── docs/
+│       ├── ARCHITECTURE.md          ← Full layer-by-layer architecture
+│       ├── FREE-PHONE-NUMBERS.md    ← Free/cheap AU virtual number guide
+│       └── QUICK-START.md           ← 10-minute no-install quick start
+│
 └── Skills-Folder/                   ← Claude Skill Reference Files
     ├── INDEX.md
     ├── 01_TRoyGroup_Brand_Conventions.md
@@ -119,6 +159,32 @@ TRoy-Group/
 | `troy-gmail-agent.html` | Gmail Agent | ✅ Active |
 | `email-management/index.html` | Email Mgmt | ✅ Active |
 | `ai-agents/email-agent/agent/index.html` | AI Email Agent | ✅ Active |
+
+---
+
+## 📡 TRoyTel™ Communications Engine (Added 2026-04-18)
+
+**Folder:** `TRoy-Comms/` | **Stack:** WebRTC + SIP + SMS + Matrix + Jitsi
+
+| Feature | Technology | Cost |
+|---|---|---|
+| Browser P2P calls | WebRTC (DTLS-SRTP encrypted) | FREE |
+| Multi-party video | Jitsi Meet (meet.jit.si) | FREE |
+| Team messaging | Matrix / Element | FREE |
+| SIP/VoIP PBX | Asterisk + sip2sip.info | FREE |
+| SMS (testing) | TextBelt | FREE (1/day/IP) |
+| SMS (production) | Twilio free trial | $15 credit |
+| Signaling server | Socket.io on Render.com | FREE tier |
+| **Total minimum** | | **$0/month** |
+
+**Division Extensions:**
+- Ext. 001 — TRoy Group™ CEO
+- Ext. 100 — TRoy Maritime Agency™
+- Ext. 200 — TRoyGo™ / TRoy Travel Agency™
+- Ext. 300 — TRoy Trading Agency™
+
+**Quick Start:** See `TRoy-Comms/docs/QUICK-START.md`
+**Deploy free:** Push repo → connect to Render.com → `render.yaml` handles the rest
 
 ---
 

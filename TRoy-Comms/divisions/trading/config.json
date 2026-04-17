@@ -1,0 +1,20 @@
+{
+  "division": "trading",
+  "displayName": "TRoy Trading Agency™",
+  "emoji": "📦",
+  "email": "troytradingagency@gmail.com",
+  "extension": "300",
+  "sipUri": "trading@troy.sip",
+  "matrixRoom": "#troy-trading:matrix.org",
+  "jitsiRoom": "TRoyTrading-Partners",
+  "smsNotifications": true,
+  "specialties": [
+    "International commodity trading",
+    "Supplier & partner communications",
+    "Import/export coordination",
+    "Darwin NT trade operations"
+  ],
+  "contactHours": "09:00-18:00 ACST",
+  "timezone": "Australia/Darwin",
+  "email_group": "troytradingagency@gmail.com"
+}

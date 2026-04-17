@@ -1,0 +1,25 @@
+{
+  "division": "travel",
+  "displayName": "TRoyGo™ / TRoy Travel Agency™",
+  "emoji": "✈️",
+  "email": "troytravelagency@gmail.com",
+  "extension": "200",
+  "sipUri": "travel@troy.sip",
+  "matrixRoom": "#troy-travel:matrix.org",
+  "jitsiRoom": "TRoyGo-TravelTeam",
+  "smsNotifications": true,
+  "specialties": [
+    "AI-powered trip planning",
+    "International travel packages",
+    "Cruise packages",
+    "Darwin & NT tourism"
+  ],
+  "socialMedia": {
+    "youtube": "@TRoyGo-tm",
+    "facebook": "@TRoyTravelAgency",
+    "instagram": "@troytravelagency"
+  },
+  "tagline": "Your World. Your Way. TRoyGo™.",
+  "contactHours": "09:00-18:00 ACST",
+  "timezone": "Australia/Darwin"
+}

@@ -1,0 +1,21 @@
+# ============================================================
+#  TRoyTel™ — Render.com Deploy Config
+#  https://render.com — Free tier hosting
+#  Commit this file to repo root as render.yaml
+# ============================================================
+
+services:
+  - type: web
+    name: troytel-signaling
+    runtime: node
+    rootDir: TRoy-Comms
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3500
+      # Add the rest manually in Render dashboard from .env.example
+    healthCheckPath: /health
+    plan: free   # 750 hrs/month, sleeps after 15min idle

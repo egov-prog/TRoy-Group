@@ -1,0 +1,40 @@
+{
+  "name": "troytel-engine",
+  "version": "1.0.0",
+  "description": "TRoyTel™ — TRoy Group Communications Engine (WebRTC + SIP + SMS + Matrix)",
+  "main": "engine/server.js",
+  "scripts": {
+    "start": "node engine/server.js",
+    "dev": "nodemon engine/server.js",
+    "install:asterisk": "bash scripts/install-asterisk.sh",
+    "deploy": "bash scripts/deploy.sh"
+  },
+  "keywords": [
+    "webrtc",
+    "voip",
+    "sip",
+    "communications",
+    "troy-group",
+    "troytel"
+  ],
+  "author": "TRoy Group™ <groupoftroy@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "^4.7.4",
+    "express": "^4.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "axios": "^1.6.7",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/egov-prog/TRoy-Group.git"
+  }
+}

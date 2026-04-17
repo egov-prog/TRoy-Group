@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRoyTel™ — TRoy Group Communications</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ─── HEADER ─────────────────────────────────────────────── -->
+<header class="header">
+  <div class="logo">
+    <span class="logo-troy">TRoy</span><span class="logo-tel">Tel</span><span class="logo-tm">™</span>
+  </div>
+  <div class="division-selector">
+    <button class="div-btn active" data-div="maritime">🚢 Maritime</button>
+    <button class="div-btn" data-div="travel">✈️ Travel</button>
+    <button class="div-btn" data-div="trading">📦 Trading</button>
+  </div>
+  <div class="connection-status">
+    <span id="statusDot" class="dot disconnected"></span>
+    <span id="statusText">Disconnected</span>
+  </div>
+</header>
+
+<!-- ─── MAIN LAYOUT ─────────────────────────────────────────── -->
+<main class="layout">
+
+  <!-- LEFT: Join Panel -->
+  <aside class="panel panel-join" id="joinPanel">
+    <h2>📡 Start Session</h2>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="userName" placeholder="e.g. Ertan Govdeli" />
+    </div>
+    <div class="form-group">
+      <label>Room / Channel ID</label>
+      <input type="text" id="roomId" placeholder="e.g. maritime-ops-001" />
+    </div>
+    <button id="btnJoin" class="btn btn-primary">🔗 Join Room</button>
+    <button id="btnNewRoom" class="btn btn-secondary">+ New Room</button>
+
+    <hr class="divider" />
+
+    <h2>📱 Send SMS</h2>
+    <div class="form-group">
+      <label>To (phone number)</label>
+      <input type="text" id="smsTo" placeholder="+61XXXXXXXXXX" />
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea id="smsMsg" rows="3" placeholder="TRoy Group™ message..."></textarea>
+    </div>
+    <select id="smsProvider" class="select">
+      <option value="textbelt">TextBelt (Free)</option>
+      <option value="twilio">Twilio (Trial)</option>
+    </select>
+    <button id="btnSMS" class="btn btn-accent">📤 Send SMS</button>
+    <div id="smsResult" class="result-box hidden"></div>
+
+    <hr class="divider" />
+
+    <h2>📹 Video Conference</h2>
+    <div class="form-group">
+      <label>Jitsi Room Name</label>
+      <input type="text" id="jitsiRoom" placeholder="TRoyMaritime-001" />
+    </div>
+    <button id="btnJitsi" class="btn btn-jitsi">🎥 Open Jitsi Room</button>
+  </aside>
+
+  <!-- CENTER: Video + Chat -->
+  <section class="panel panel-main">
+    <!-- Video Grid -->
+    <div class="video-grid" id="videoGrid">
+      <div class="video-wrapper local">
+        <video id="localVideo" autoplay muted playsinline></video>
+        <div class="video-label">You (Local)</div>
+        <div class="video-controls">
+          <button id="btnMic" class="ctrl-btn active" title="Mute/Unmute">🎤</button>
+          <button id="btnCam" class="ctrl-btn active" title="Camera On/Off">📷</button>
+          <button id="btnHangup" class="ctrl-btn red" title="End Call">📵</button>
+          <button id="btnScreen" class="ctrl-btn" title="Share Screen">🖥️</button>
+        </div>
+      </div>
+      <div id="remoteVideos" class="remote-videos"></div>
+    </div>
+
+    <!-- Chat -->
+    <div class="chat-panel">
+      <div class="chat-header">
+        💬 Team Chat
+        <span id="roomLabel" class="room-label">Not connected</span>
+      </div>
+      <div id="chatMessages" class="chat-messages"></div>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Type message..." />
+        <button id="btnSend" class="btn btn-send">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- RIGHT: Participants + Info -->
+  <aside class="panel panel-info">
+    <h2>👥 Participants</h2>
+    <ul id="participantList" class="participant-list">
+      <li class="empty-state">No one connected yet</li>
+    </ul>
+
+    <hr class="divider" />
+
+    <h2>ℹ️ Room Info</h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-label">Room</span>
+        <span id="infoRoom" class="info-value mono">—</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Division</span>
+        <span id="infoDivision" class="info-value">—</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">My ID</span>
+        <span id="infoSocketId" class="info-value mono small">—</span>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <h2>📞 Extensions</h2>
+    <div class="extension-list">
+      <div class="ext-item">🚢 Maritime <span class="ext-num">Ext. 100</span></div>
+      <div class="ext-item">✈️ Travel <span class="ext-num">Ext. 200</span></div>
+      <div class="ext-item">📦 Trading <span class="ext-num">Ext. 300</span></div>
+      <div class="ext-item">👤 CEO <span class="ext-num">Ext. 001</span></div>
+    </div>
+  </aside>
+</main>
+
+<!-- ─── TOAST ────────────────────────────────────────────────── -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+<script src="js/webrtc.js"></script>
+<script src="js/ui.js"></script>
+</body>
+</html>

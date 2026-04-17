@@ -1,0 +1,21 @@
+{
+  "division": "maritime",
+  "displayName": "TRoy Maritime Agency™",
+  "emoji": "🚢",
+  "email": "troymaritimeagency@gmail.com",
+  "extension": "100",
+  "sipUri": "maritime@troy.sip",
+  "matrixRoom": "#troy-maritime:matrix.org",
+  "jitsiRoom": "TRoyMaritime-OpsRoom",
+  "smsNotifications": true,
+  "specialties": [
+    "Turkish Straits (Çanakkale/Dardanelles)",
+    "Bosphorus transit",
+    "Darwin Port operations",
+    "INPEX/Ichthys LNG Port",
+    "Ship agency & port services"
+  ],
+  "contactHours": "24/7",
+  "timezone": "Australia/Darwin",
+  "emergencyContact": "+61 476 496 693"
+}
