@@ -114,6 +114,7 @@
       border: 1px solid transparent;
       transition: background var(--transition-fast), color var(--transition-fast), border var(--transition-fast);
       color: #e6e6e6;
+      background: transparent;
     }
 
     .nav-item.active {
@@ -218,7 +219,7 @@
       cursor: pointer;
     }
 
-    /* SEARCH CARD */
+    /* SEARCH CARD (Booking.com style) */
 
     .search-card {
       background: var(--accent-yellow);
@@ -370,7 +371,7 @@
       font-weight: 700;
     }
 
-    /* RIGHT-SIDE CHATBOT PANEL */
+    /* LEFT-SIDE CHATBOT PANEL (TripAdvisor-style) */
 
     .chatbot-panel-backdrop {
       position: fixed;
@@ -390,13 +391,13 @@
     .chatbot-panel {
       position: fixed;
       top: 0;
-      right: 0;
+      left: 0;
       height: 100vh;
       width: 100%;
       max-width: var(--panel-width);
       background: var(--panel-bg);
-      box-shadow: -2px 0 12px rgba(0, 0, 0, 0.25);
-      transform: translateX(100%);
+      box-shadow: 2px 0 12px rgba(0, 0, 0, 0.25);
+      transform: translateX(-100%);
       transition: transform var(--transition-fast);
       display: flex;
       flex-direction: column;
@@ -460,11 +461,28 @@
       overflow: hidden;
     }
 
+    .chatbot-intro {
+      margin-bottom: 10px;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .chatbot-intro-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .chatbot-intro-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
     .chatbot-messages {
       flex: 1;
       overflow-y: auto;
       padding-right: 4px;
       margin-bottom: 8px;
+      margin-top: 8px;
     }
 
     .chatbot-message {
@@ -504,6 +522,7 @@
       flex-wrap: wrap;
       gap: 6px;
       margin-bottom: 8px;
+      margin-top: 4px;
     }
 
     .chatbot-quick {
@@ -594,36 +613,36 @@
             <div class="logo-text-sub">by TRoy Travel Agency™</div>
           </div>
         </div>
-        <nav class="nav-main" aria-label="Primary navigation">
-          <button class="nav-item active" type="button">
+        <nav class="nav-main" aria-label="Primary navigation" id="navTabs">
+          <button class="nav-item active" type="button" data-tab="stays">
             <span class="nav-item-icon">🏨</span>
             <span>Stays</span>
           </button>
-          <button class="nav-item" type="button">
+          <button class="nav-item" type="button" data-tab="flights">
             <span class="nav-item-icon">✈️</span>
             <span>Flights</span>
           </button>
-          <button class="nav-item" type="button">
+          <button class="nav-item" type="button" data-tab="flight-hotel">
             <span class="nav-item-icon">🧳</span>
             <span>Flight + Hotel</span>
           </button>
-          <button class="nav-item" type="button">
+          <button class="nav-item" type="button" data-tab="cars">
             <span class="nav-item-icon">🚗</span>
             <span>Car rentals</span>
           </button>
-          <button class="nav-item" type="button">
+          <button class="nav-item" type="button" data-tab="attractions">
             <span class="nav-item-icon">🎟️</span>
             <span>Attractions</span>
           </button>
-          <button class="nav-item" type="button">
+          <button class="nav-item" type="button" data-tab="taxis">
             <span class="nav-item-icon">🚕</span>
             <span>Airport taxis</span>
           </button>
-          <button class="nav-item" type="button">
+          <button class="nav-item" type="button" data-tab="cruises">
             <span class="nav-item-icon">🛳️</span>
             <span>Cruises</span>
           </button>
-          <button class="nav-item" type="button" id="headerPlanWithTroygoBtn">
+          <button class="nav-item" type="button" data-tab="plan-troygo" id="headerPlanWithTroygoBtn">
             <span class="nav-item-icon">🤖</span>
             <span>Plan with TRoyGO™</span>
           </button>
@@ -729,7 +748,7 @@
     <span>TRoyGO™ AI Assistant</span>
   </button>
 
-  <!-- RIGHT-SIDE CHATBOT PANEL -->
+  <!-- LEFT-SIDE CHATBOT PANEL (TripAdvisor-style) -->
   <div class="chatbot-panel-backdrop" id="chatbotBackdrop">
     <aside class="chatbot-panel" id="chatbotPanel" aria-label="TRoyGO AI trip planner">
       <header class="chatbot-header">
@@ -737,7 +756,7 @@
           <div class="chatbot-avatar">TG</div>
           <div>
             <div class="chatbot-title">Plan with TRoyGO™</div>
-            <div class="chatbot-subtitle">Trip planner chatbot · Right‑side panel</div>
+            <div class="chatbot-subtitle">Trip planner chatbot · Left‑side panel</div>
           </div>
         </div>
         <button class="chatbot-close-btn" type="button" id="chatbotCloseBtn" aria-label="Close TRoyGO panel">
@@ -746,6 +765,25 @@
       </header>
 
       <div class="chatbot-body">
+        <div class="chatbot-intro">
+          <div class="chatbot-intro-title">Need help deciding?</div>
+          <div class="chatbot-intro-sub">
+            Get recommendations tailored just for you. Ask TRoyGO™ anything about your trip idea.
+          </div>
+        </div>
+
+        <div class="chatbot-quick-row">
+          <button class="chatbot-quick" type="button" data-prompt="What can you help me with?">
+            What can you help me with?
+          </button>
+          <button class="chatbot-quick" type="button" data-prompt="Quiet stays in Brisbane walkable to top sights.">
+            Quiet stays in Brisbane walkable to top sights
+          </button>
+          <button class="chatbot-quick" type="button" data-prompt="Boutique hotels in Melbourne with rooftop views.">
+            Boutique hotels in Melbourne with rooftop views
+          </button>
+        </div>
+
         <div class="chatbot-messages" id="chatbotMessages">
           <div class="chatbot-message bot">
             <div class="chatbot-bubble bot">
@@ -755,21 +793,9 @@
           </div>
           <div class="chatbot-message bot">
             <div class="chatbot-bubble bot">
-              I can help you design a realistic, bookable itinerary using stays, flights, cruises and activities.
+              I’ll help you turn that into a realistic, bookable itinerary using stays, flights, cruises and activities.
             </div>
           </div>
-        </div>
-
-        <div class="chatbot-quick-row">
-          <button class="chatbot-quick" type="button" data-prompt="Plan a 7‑day trip from Darwin to Sydney and Melbourne.">
-            7‑day Darwin → Sydney &amp; Melbourne
-          </button>
-          <button class="chatbot-quick" type="button" data-prompt="Create a 10‑day cruise‑focused itinerary in the Mediterranean.">
-            10‑day Mediterranean cruise
-          </button>
-          <button class="chatbot-quick" type="button" data-prompt="Suggest a 5‑day Top End escape from Darwin.">
-            5‑day Top End escape
-          </button>
         </div>
 
         <div class="chatbot-input-row">
@@ -792,13 +818,15 @@
       const backdrop = document.getElementById("chatbotBackdrop");
       const panel = document.getElementById("chatbotPanel");
       const floatingBtn = document.getElementById("floatingTroygoBtn");
-      const headerBtn = document.getElementById("headerPlanWithTroygoBtn");
+      const headerPlanBtn = document.getElementById("headerPlanWithTroygoBtn");
       const bannerBtn = document.getElementById("bannerPlanWithTroygoBtn");
       const closeBtn = document.getElementById("chatbotCloseBtn");
       const messagesEl = document.getElementById("chatbotMessages");
       const inputEl = document.getElementById("chatbotInput");
       const sendBtn = document.getElementById("chatbotSendBtn");
       const quickButtons = document.querySelectorAll(".chatbot-quick");
+      const navTabs = document.getElementById("navTabs");
+      const navItems = navTabs ? navTabs.querySelectorAll(".nav-item") : [];
 
       function openPanel() {
         backdrop.classList.add("open");
@@ -831,7 +859,7 @@
         appendMessage(text.trim(), "user");
         inputEl.value = "";
 
-        // Simple placeholder bot response (no real AI, static hosting friendly)
+        // Placeholder bot response (static hosting friendly)
         setTimeout(() => {
           appendMessage(
             "Thanks! I’ll structure this into a day‑by‑day plan. " +
@@ -841,9 +869,44 @@
         }, 600);
       }
 
-      floatingBtn.addEventListener("click", openPanel);
-      headerBtn.addEventListener("click", openPanel);
-      if (bannerBtn) bannerBtn.addEventListener("click", openPanel);
+      // Booking.com-style tab behavior
+      function setActiveTab(tabName) {
+        navItems.forEach((btn) => {
+          const t = btn.getAttribute("data-tab");
+          if (t === tabName) {
+            btn.classList.add("active");
+          } else {
+            btn.classList.remove("active");
+          }
+        });
+      }
+
+      navItems.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const tabName = btn.getAttribute("data-tab");
+          setActiveTab(tabName);
+
+          // If Plan with TRoyGO tab is clicked, also open the AI panel
+          if (tabName === "plan-troygo") {
+            openPanel();
+          }
+        });
+      });
+
+      floatingBtn.addEventListener("click", () => {
+        // Keep current active tab, just open panel
+        openPanel();
+      });
+
+      headerPlanBtn.addEventListener("click", () => {
+        // Active state handled by tab logic above
+        openPanel();
+      });
+
+      if (bannerBtn) {
+        bannerBtn.addEventListener("click", openPanel);
+      }
+
       closeBtn.addEventListener("click", closePanel);
 
       backdrop.addEventListener("click", (e) => {
