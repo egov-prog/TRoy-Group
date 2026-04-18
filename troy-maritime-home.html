@@ -337,15 +337,40 @@
     <h2>Contact operations</h2>
     <p class="section-intro">For port calls, projects or general enquiries, contact our team with your vessel and port details.</p>
 
-    <!-- TRoyTel™ One-Click Call Widget -->
-    <script src="https://egov-prog.github.io/TRoy-Group/TRoy-Comms/widget/troytel-widget.js"
-      data-sip="troymaritimeagency@sip2sip.info"
-      data-jitsi="TRoyMaritime-OpsRoom"
-      data-email="troymaritimeagency@gmail.com"
-      data-name="TRoy Maritime Agency™"
-      data-color="#00d4e8"
-      data-target=".contact-grid">
-    </script>
+    <!-- TRoyTel™ — Direct Contact Buttons -->
+    <style>
+      .troytel-box{background:linear-gradient(135deg,#0a1120,#05080d);border:1px solid rgba(0,212,232,.3);border-radius:12px;padding:24px 22px;margin:0 0 24px;font-family:'DM Sans','Segoe UI',sans-serif}
+      .troytel-box-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+      .troytel-box-logo{font-size:17px;font-weight:700;letter-spacing:1px;color:#c8d8f0}
+      .troytel-box-logo span{color:#00d4e8}
+      .troytel-online{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#00ff9d;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.2);padding:2px 10px;border-radius:20px}
+      .troytel-dot{width:6px;height:6px;background:#00ff9d;border-radius:50%;animation:tdot 1.5s infinite}
+      @keyframes tdot{0%,100%{opacity:1}50%{opacity:.3}}
+      .troytel-desc{font-size:13px;color:#6080a0;margin-bottom:18px;line-height:1.5}
+      .troytel-btns{display:flex;flex-wrap:wrap;gap:10px}
+      .troytel-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;transition:all .2s;letter-spacing:.3px;white-space:nowrap}
+      .troytel-btn:hover{transform:translateY(-2px);opacity:.88}
+      .tb-call{background:#00d4e8;color:#05080d}
+      .tb-video{background:transparent;color:#00d4e8;border:1.5px solid #00d4e8}
+      .tb-email{background:transparent;color:#8090a0;border:1.5px solid #1a2f50}
+      .tb-email:hover{color:#c8d8f0;border-color:#2a4060}
+      .troytel-sip{margin-top:12px;font-size:11px;color:#2a4060;font-family:'Courier New',monospace}
+      .troytel-sip span{color:#00d4e888}
+      @media(max-width:500px){.troytel-btn{width:100%;justify-content:center}.troytel-btns{flex-direction:column}}
+    </style>
+    <div class="troytel-box">
+      <div class="troytel-box-header">
+        <div class="troytel-box-logo"><span>TRoy</span>Tel™</div>
+        <div class="troytel-online"><span class="troytel-dot"></span> Online</div>
+      </div>
+      <p class="troytel-desc">Connect directly with <strong style="color:#c8d8f0">TRoy Maritime Agency™</strong> — free SIP call, video meeting or email.</p>
+      <div class="troytel-btns">
+        <a href="sip:troymaritimeagency@sip2sip.info" class="troytel-btn tb-call">📞 Call Now (Free)</a>
+        <a href="https://meet.jit.si/TRoyMaritime-OpsRoom" target="_blank" rel="noopener" class="troytel-btn tb-video">🎥 Video Meeting</a>
+        <a href="mailto:troymaritimeagency@gmail.com" class="troytel-btn tb-email">✉️ Send Email</a>
+      </div>
+      <p class="troytel-sip">SIP: <span>troymaritimeagency@sip2sip.info</span> &nbsp;·&nbsp; Powered by <span>TRoyTel™</span></p>
+    </div>
 
     <div class="contact-grid">
       <div class="highlight-box">

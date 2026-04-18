@@ -491,14 +491,35 @@ a { text-decoration: none; color: inherit; }
   <section id="contact" style="padding:40px 20px;max-width:900px;margin:0 auto;">
     <h2 style="font-family:'Playfair Display',serif;color:#2ECC71;margin-bottom:8px;">Contact TRoyGo™</h2>
     <p style="color:#a0b0a0;margin-bottom:20px;">Speak directly with our travel team — free call, video meeting or email.</p>
-    <script src="https://egov-prog.github.io/TRoy-Group/TRoy-Comms/widget/troytel-widget.js"
-      data-sip="troytravelagency@sip2sip.info"
-      data-jitsi="TRoyGo-TravelTeam"
-      data-email="troytravelagency@gmail.com"
-      data-name="TRoyGo™ Travel Agency"
-      data-color="#2ECC71"
-      data-target="#contact">
-    </script>
+    <style>
+      .troytel-box2{background:linear-gradient(135deg,#0a1a0f,#050d07);border:1px solid rgba(46,204,113,.3);border-radius:12px;padding:24px 22px;font-family:'DM Sans','Segoe UI',sans-serif}
+      .troytel-box2-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+      .troytel-box2-logo{font-size:17px;font-weight:700;letter-spacing:1px;color:#c8d8f0}
+      .troytel-box2-logo span{color:#2ECC71}
+      .troytel-online2{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#00ff9d;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.2);padding:2px 10px;border-radius:20px}
+      .troytel-dot2{width:6px;height:6px;background:#00ff9d;border-radius:50%;animation:tdot2 1.5s infinite}
+      @keyframes tdot2{0%,100%{opacity:1}50%{opacity:.3}}
+      .troytel-btns2{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+      .troytel-btn2{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;white-space:nowrap}
+      .troytel-btn2:hover{transform:translateY(-2px);opacity:.88}
+      .tb2-call{background:#2ECC71;color:#050d07}
+      .tb2-video{background:transparent;color:#2ECC71;border:1.5px solid #2ECC71}
+      .tb2-email{background:transparent;color:#8090a0;border:1.5px solid #1a3020}
+      @media(max-width:500px){.troytel-btn2{width:100%;justify-content:center}.troytel-btns2{flex-direction:column}}
+    </style>
+    <div class="troytel-box2">
+      <div class="troytel-box2-header">
+        <div class="troytel-box2-logo"><span>TRoy</span>Tel™</div>
+        <div class="troytel-online2"><span class="troytel-dot2"></span> Online</div>
+      </div>
+      <p style="font-size:13px;color:#5a8070;line-height:1.5">Connect directly with <strong style="color:#c8d8f0">TRoyGo™ Travel Agency</strong> — free SIP call, video meeting or email.</p>
+      <div class="troytel-btns2">
+        <a href="sip:troytravelagency@sip2sip.info" class="troytel-btn2 tb2-call">📞 Call Now (Free)</a>
+        <a href="https://meet.jit.si/TRoyGo-TravelTeam" target="_blank" rel="noopener" class="troytel-btn2 tb2-video">🎥 Video Meeting</a>
+        <a href="mailto:troytravelagency@gmail.com" class="troytel-btn2 tb2-email">✉️ Send Email</a>
+      </div>
+      <p style="margin-top:12px;font-size:11px;color:#2a4030;font-family:'Courier New',monospace">SIP: <span style="color:#2ECC7188">troytravelagency@sip2sip.info</span> &nbsp;·&nbsp; Powered by <span style="color:#2ECC7188">TRoyTel™</span></p>
+    </div>
   </section>
 
 </body>
