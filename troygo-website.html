@@ -491,35 +491,94 @@ a { text-decoration: none; color: inherit; }
   <section id="contact" style="padding:40px 20px;max-width:900px;margin:0 auto;">
     <h2 style="font-family:'Playfair Display',serif;color:#2ECC71;margin-bottom:8px;">Contact TRoyGo™</h2>
     <p style="color:#a0b0a0;margin-bottom:20px;">Speak directly with our travel team — free call, video meeting or email.</p>
-    <style>
-      .troytel-box2{background:linear-gradient(135deg,#0a1a0f,#050d07);border:1px solid rgba(46,204,113,.3);border-radius:12px;padding:24px 22px;font-family:'DM Sans','Segoe UI',sans-serif}
-      .troytel-box2-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-      .troytel-box2-logo{font-size:17px;font-weight:700;letter-spacing:1px;color:#c8d8f0}
-      .troytel-box2-logo span{color:#2ECC71}
-      .troytel-online2{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#00ff9d;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.2);padding:2px 10px;border-radius:20px}
-      .troytel-dot2{width:6px;height:6px;background:#00ff9d;border-radius:50%;animation:tdot2 1.5s infinite}
-      @keyframes tdot2{0%,100%{opacity:1}50%{opacity:.3}}
-      .troytel-btns2{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-      .troytel-btn2{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;transition:all .2s;white-space:nowrap}
-      .troytel-btn2:hover{transform:translateY(-2px);opacity:.88}
-      .tb2-call{background:#2ECC71;color:#050d07}
-      .tb2-video{background:transparent;color:#2ECC71;border:1.5px solid #2ECC71}
-      .tb2-email{background:transparent;color:#8090a0;border:1.5px solid #1a3020}
-      @media(max-width:500px){.troytel-btn2{width:100%;justify-content:center}.troytel-btns2{flex-direction:column}}
-    </style>
-    <div class="troytel-box2">
-      <div class="troytel-box2-header">
-        <div class="troytel-box2-logo"><span>TRoy</span>Tel™</div>
-        <div class="troytel-online2"><span class="troytel-dot2"></span> Online</div>
-      </div>
-      <p style="font-size:13px;color:#5a8070;line-height:1.5">Connect directly with <strong style="color:#c8d8f0">TRoyGo™ Travel Agency</strong> — free SIP call, video meeting or email.</p>
-      <div class="troytel-btns2">
-        <a href="sip:troytravelagency@sip2sip.info" class="troytel-btn2 tb2-call">📞 Call Now (Free)</a>
-        <a href="https://meet.jit.si/TRoyGo-TravelTeam" target="_blank" rel="noopener" class="troytel-btn2 tb2-video">🎥 Video Meeting</a>
-        <a href="mailto:troytravelagency@gmail.com" class="troytel-btn2 tb2-email">✉️ Send Email</a>
-      </div>
-      <p style="margin-top:12px;font-size:11px;color:#2a4030;font-family:'Courier New',monospace">SIP: <span style="color:#2ECC7188">troytravelagency@sip2sip.info</span> &nbsp;·&nbsp; Powered by <span style="color:#2ECC7188">TRoyTel™</span></p>
+    <section id="contact" style="padding:40px 20px;max-width:900px;margin:0 auto;">
+    <h2 style="font-family:'Playfair Display',serif;color:#2ECC71;margin-bottom:8px;">Contact TRoyGo™</h2>
+
+<style id="troytel-css">
+.ttc-wrap{font-family:'DM Sans','Segoe UI',sans-serif;margin:24px 0}
+.ttc-box{border-radius:12px;padding:26px 24px;margin-bottom:16px}
+.ttc-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.ttc-logo{font-size:17px;font-weight:700;letter-spacing:1px;color:#c8d8f0}
+.ttc-online{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#00ff9d;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.2);padding:2px 10px;border-radius:20px}
+.ttc-dot{width:6px;height:6px;border-radius:50%;background:#00ff9d;display:inline-block;animation:ttcdot 1.5s infinite}
+@keyframes ttcdot{0%,100%{opacity:1}50%{opacity:.3}}
+.ttc-sub{font-size:13px;color:#6080a0;margin:6px 0 18px;line-height:1.5}
+.ttc-btns{display:flex;flex-wrap:wrap;gap:10px}
+.ttc-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all .2s;white-space:nowrap;font-family:inherit}
+.ttc-btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.ttc-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;padding:16px}
+.ttc-modal.open{display:flex}
+.ttc-modal-inner{background:#0a1120;border-radius:14px;width:100%;max-width:740px;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.7)}
+.ttc-modal-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:#050810;border-bottom:1px solid #1a2f50}
+.ttc-modal-title{font-size:13px;font-weight:600;color:#c8d8f0;font-family:'DM Sans',sans-serif}
+.ttc-modal-close{background:none;border:none;color:#6080a0;font-size:22px;cursor:pointer;line-height:1;padding:0 4px}
+.ttc-modal-close:hover{color:#fff}
+.ttc-modal iframe{display:block;width:100%;height:500px;border:none}
+.ttc-form{display:flex;flex-direction:column;gap:10px}
+.ttc-form input,.ttc-form textarea{width:100%;padding:10px 14px;border-radius:6px;border:1px solid #1a2f50;background:#05080d;color:#c8d8f0;font-size:13px;font-family:inherit;outline:none;transition:border .2s;box-sizing:border-box}
+.ttc-form input:focus,.ttc-form textarea:focus{border-color:var(--tc,#00d4e8)}
+.ttc-form textarea{resize:vertical;min-height:90px}
+.ttc-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ttc-fsub{padding:11px 24px;border-radius:6px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
+.ttc-fsub:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.ttc-ok{display:none;padding:14px;border-radius:8px;font-size:14px;text-align:center;margin-top:8px;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.3);color:#00ff9d}
+@media(max-width:520px){.ttc-btn{width:100%;justify-content:center}.ttc-btns{flex-direction:column}.ttc-form-row{grid-template-columns:1fr}}
+</style>
+<div class="ttc-wrap" style="--tc:#2ECC71">
+  <div class="ttc-box" style="background:linear-gradient(135deg,#071a0f,#05080d);border:1px solid #2ECC7144">
+    <div class="ttc-head">
+      <span class="ttc-logo"><span style="color:#2ECC71">TRoy</span>Tel&#8482;</span>
+      <span class="ttc-online"><span class="ttc-dot"></span> Online</span>
     </div>
+    <p class="ttc-sub">Connect with <strong style="color:#e8f0ff">TRoyGo&#8482; Travel Agency</strong> &mdash; free browser call or send a message. <strong style="color:#2ECC71">No app or download needed.</strong></p>
+    <div class="ttc-btns">
+      <button onclick="document.getElementById('ttcM_trv').classList.add('open')" class="ttc-btn" style="background:#2ECC71;color:#05080d">&#128222; Free Call / Video</button>
+      <button onclick="document.getElementById('ttcF_trv_w').scrollIntoView({behavior:'smooth'})" class="ttc-btn" style="background:transparent;color:#2ECC71;border:1.5px solid #2ECC71">&#9993;&#65039; Send Message</button>
+    </div>
+    <p style="margin-top:12px;font-size:11px;color:#2ECC7155;font-family:'Courier New',monospace">No app &nbsp;&middot;&nbsp; No download &nbsp;&middot;&nbsp; Any browser &nbsp;&middot;&nbsp; Powered by TRoyTel&#8482;</p>
+  </div>
+  <div class="ttc-modal" id="ttcM_trv" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="ttc-modal-inner">
+      <div class="ttc-modal-bar">
+        <span class="ttc-modal-title">&#128222; Calling TRoyGo&#8482; Travel Agency &mdash; works in your browser, no app needed</span>
+        <button class="ttc-modal-close" onclick="this.closest('.ttc-modal').classList.remove('open');var f=document.getElementById('ttcM_trv_f');f.src=f.src">&#10005;</button>
+      </div>
+      <iframe id="ttcM_trv_f" src="https://meet.jit.si/TRoyGo-TravelTeam#config.startWithVideoMuted=false&amp;config.startWithAudioMuted=false&amp;config.prejoinPageEnabled=false&amp;config.disableDeepLinking=true&amp;interfaceConfig.SHOW_JITSI_WATERMARK=false" allow="camera; microphone; fullscreen; display-capture; autoplay"></iframe>
+    </div>
+  </div>
+  <div id="ttcF_trv_w" class="ttc-box" style="background:linear-gradient(135deg,#071a0f99,#05080d);border:1px solid #1a2f50">
+    <p style="font-size:15px;font-weight:600;color:#c8d8f0;margin:0 0 14px">&#9993;&#65039; Send a Message</p>
+    <form class="ttc-form" id="ttcF_trv" onsubmit="return ttcSend(event,'ttcF_trv','troytravelagency@gmail.com','TRoyGo&#8482; Travel Agency','ttcO_trv')">
+      <div class="ttc-form-row">
+        <input type="text"  name="uname"   placeholder="Your name"   required>
+        <input type="email" name="uemail"  placeholder="Your email"  required>
+      </div>
+      <input type="text" name="usubject" placeholder="Subject" required>
+      <input type="text" name="dest" placeholder="Destination / trip type (optional)">
+      <textarea name="umsg" placeholder="Your message..." required></textarea>
+      <button type="submit" class="ttc-fsub" style="background:#2ECC71;color:#05080d;align-self:flex-start">Send Message &#8594;</button>
+    </form>
+    <div class="ttc-ok" id="ttcO_trv">&#10003; Message sent! We will reply to your email shortly.</div>
+  </div>
+</div>
+<script>
+if(!window.ttcSend)window.ttcSend=function(e,fid,email,dname,oid){
+  e.preventDefault();
+  var f=document.getElementById(fid);
+  var n=f.querySelector('[name=uname]').value;
+  var em=f.querySelector('[name=uemail]').value;
+  var s=f.querySelector('[name=usubject]').value;
+  var m=f.querySelector('[name=umsg]').value;
+  var sub=encodeURIComponent('['+dname+'] '+s);
+  var bod=encodeURIComponent('From: '+n+' <'+em+'>
+
+'+m);
+  window.location.href='mailto:'+email+'?subject='+sub+'&body='+bod;
+  f.style.display='none';
+  document.getElementById(oid).style.display='block';
+  return false;
+};
+</script>
   </section>
 
 </body>
