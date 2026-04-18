@@ -14,6 +14,8 @@ const JITSI_CONFIG = {
     maritime:  'TRoyMaritime-OpsRoom',
     travel:    'TRoyGo-TravelTeam',
     trading:   'TRoyTrading-Partners',
+    media:     'TRoyMEDIA-Studio',
+    garage:    'TRoyGAR-Lab',
     allhands:  'TRoyGroup-AllHands',
     boardroom: 'TRoyGroup-BoardRoom'
   },

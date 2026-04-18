@@ -178,10 +178,12 @@ TRoy-Group/
 | **Total minimum** | | **$0/month** |
 
 **Division Extensions:**
-- Ext. 001 — TRoy Group™ CEO
-- Ext. 100 — TRoy Maritime Agency™
-- Ext. 200 — TRoyGo™ / TRoy Travel Agency™
-- Ext. 300 — TRoy Trading Agency™
+- Ext. 001 — TRoy Group™ CEO → `troygroup@sip2sip.info`
+- Ext. 100 — TRoy Maritime Agency™ → `troymaritimeagency@sip2sip.info` ✅ tested
+- Ext. 200 — TRoyGo™ / TRoy Travel Agency™ → `troytravelagency@sip2sip.info`
+- Ext. 300 — TRoy Trading Agency™ → `troytradingagency@sip2sip.info`
+- Ext. 400 — TRoyMEDIA™ → `troymedia@sip2sip.info`
+- Ext. 401 — TRoy GAR™ Lab (under TRoyMEDIA™) → `troygar@sip2sip.info`
 
 **Quick Start:** See `TRoy-Comms/docs/QUICK-START.md`
 **Deploy free:** Push repo → connect to Render.com → `render.yaml` handles the rest

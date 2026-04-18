@@ -1,0 +1,21 @@
+{
+  "division": "garage",
+  "displayName": "TRoy GAR™ Lab",
+  "emoji": "🔬",
+  "email": "thetroygarage@gmail.com",
+  "extension": "401",
+  "sipUri": "troygar@sip2sip.info",
+  "matrixRoom": "#troy-gar:matrix.org",
+  "jitsiRoom": "TRoyGAR-Lab",
+  "smsNotifications": false,
+  "parentDivision": "TRoyMEDIA™",
+  "specialties": [
+    "R&D and innovation lab",
+    "Technology experiments",
+    "AI & automation development",
+    "New product prototyping",
+    "TRoy Group™ internal tools"
+  ],
+  "contactHours": "09:00-18:00 ACST",
+  "timezone": "Australia/Darwin"
+}

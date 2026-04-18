@@ -1,0 +1,21 @@
+{
+  "division": "media",
+  "displayName": "TRoyMEDIA™",
+  "emoji": "🎬",
+  "email": "troymadiagency@gmail.com",
+  "extension": "400",
+  "sipUri": "troymedia@sip2sip.info",
+  "matrixRoom": "#troy-media:matrix.org",
+  "jitsiRoom": "TRoyMEDIA-Studio",
+  "smsNotifications": true,
+  "specialties": [
+    "Digital media production",
+    "TRoy Group™ brand content",
+    "Social media management",
+    "YouTube @TRoyGo-tm",
+    "Photography & videography"
+  ],
+  "subDivisions": ["TRoy GAR™ Lab"],
+  "contactHours": "09:00-18:00 ACST",
+  "timezone": "Australia/Darwin"
+}
