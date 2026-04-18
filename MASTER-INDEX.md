@@ -51,12 +51,24 @@ TRoy-Group/
 │       ├── troygo-website.html
 │       └── troygo-website-with-ai.html
 │
-├── TRoy-Trading-Agency/             ← TRoyTR™ Division
+├── TRoy-Trading-Agency/             ← TRoy Trading Agency™ / TRoyTR™
 │   ├── README.md
 │   ├── Logos/
 │   │   └── TRoy-Trading-Agency-Logo.png
 │   └── Website/
 │       └── troytr-website.html
+│
+├── TRoy-Media-Agency/               ← TRoy Media Agency™ / TRoyMEDIA™
+│   ├── README.md
+│   ├── Logos/
+│   └── Website/
+│       └── troymedia-website.html
+│
+├── TRoy-GAR-Lab/                    ← The TRoy Garage Lab™ / TRoy GAR™ (under TRoyMEDIA™)
+│   ├── README.md
+│   ├── Logos/
+│   └── Website/
+│       └── troygar-website.html
 │
 ├── ai-agents/                       ← AI Agent Suite
 │   ├── agents/
@@ -154,6 +166,10 @@ TRoy-Group/
 | `TRoy-Travel-Agency/Website/troygo-website-with-ai.html` | TRoyGo™ + AI | ✅ Active |
 | `troytr-website.html` | TRoyTR™ (root) | ✅ Active |
 | `TRoy-Trading-Agency/Website/troytr-website.html` | TRoyTR™ | ✅ Active |
+| `troymedia-website.html` | TRoyMEDIA™ (root) | ✅ Active |
+| `TRoy-Media-Agency/Website/troymedia-website.html` | TRoyMEDIA™ | ✅ Active |
+| `troygar-website.html` | TRoy GAR™ Lab (root) | ✅ Active |
+| `TRoy-GAR-Lab/Website/troygar-website.html` | TRoy GAR™ Lab | ✅ Active |
 | `troygar-website.html` | TRoy GAR™ | ✅ Active |
 | `troymedia-website.html` | TRoyMEDIA™ | ✅ Active |
 | `troy-gmail-agent.html` | Gmail Agent | ✅ Active |
@@ -206,12 +222,14 @@ TRoy-Group/
 
 ## 🏢 TRoy Group™ Corporate Structure
 
-| Division | Brand | Contact |
-|---|---|---|
-| Group HQ | TRoy Group™ | groupoftroy@gmail.com |
-| Maritime | TRoy Maritime Agency™ / TRoyMAR™ | troymaritimeagency@gmail.com |
-| Travel | TRoy Travel Agency™ / TRoyGo™ | troytravelagency@gmail.com |
-| Trading | TRoy Trading Agency™ / TRoyTR™ | troytradingagency@gmail.com |
+| Division | Brand | SIP | Contact |
+|---|---|---|---|
+| Group HQ | TRoy Group™ | `troygroup@sip2sip.info` | groupoftroy@gmail.com |
+| Maritime | TRoy Maritime Agency™ | `troymaritimeagency@sip2sip.info` | troymaritimeagency@gmail.com |
+| Travel | TRoy Travel Agency™ / TRoyGo™ | `troytravelagency@sip2sip.info` | troytravelagency@gmail.com |
+| Trading | TRoy Trading Agency™ | `troytradingagency@sip2sip.info` | troytradingagency@gmail.com |
+| Media | TRoy Media Agency™ / TRoyMEDIA™ | `troymedia@sip2sip.info` | troymadiagency@gmail.com |
+| R&D Lab | The TRoy Garage Lab™ / TRoy GAR™ | `troygar@sip2sip.info` | thetroygarage@gmail.com |
 
 ---
 *© TRoy Group™. All rights reserved. Repository maintained by egov-prog.*
