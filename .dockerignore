@@ -3,12 +3,26 @@
 
 .git
 .gitignore
-*.md
-!index.md
-node_modules
-npm-debug.log
+*.log
 .env
 .env.*
-*.log
 .DS_Store
 Thumbs.db
+npm-debug.log
+node_modules
+
+# Python AI agents (not served by nginx)
+ai-agents/
+
+# Skills folder (internal docs)
+Skills-Folder/
+
+# Comms engine (separate Render service)
+TRoy-Comms/engine/
+TRoy-Comms/scripts/
+TRoy-Comms/docker/
+TRoy-Comms/sip/
+TRoy-Comms/matrix/
+TRoy-Comms/package.json
+TRoy-Comms/package-lock.json
+TRoy-Comms/render.yaml

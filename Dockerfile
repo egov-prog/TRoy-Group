@@ -1,32 +1,24 @@
 # ============================================================
-# TRoy Group™ — Render Web Service
+# TRoy Group™ — Static Web Service
+# nginx:alpine serving HTML/CSS/JS assets
 # © TRoy Group™ | Darwin, NT, Australia
 # ============================================================
 
 FROM nginx:alpine
 
-# Copy all site files into nginx web root
+# Remove default nginx config
+RUN rm -f /etc/nginx/conf.d/default.conf
+
+# Copy custom nginx config (uses __PORT__ placeholder)
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copy all static site files
 COPY . /usr/share/nginx/html
 
-# Custom nginx config — reads $PORT env var set by Render
-RUN printf 'server {\n\
-    listen ${PORT};\n\
-    root /usr/share/nginx/html;\n\
-    index index.html;\n\
-    location / {\n\
-        try_files $uri $uri/ /index.html;\n\
-    }\n\
-    # Cache static assets\n\
-    location ~* \.(css|js|png|jpg|jpeg|gif|ico|svg|woff2?)$ {\n\
-        expires 1y;\n\
-        add_header Cache-Control "public, immutable";\n\
-    }\n\
-}\n' > /etc/nginx/templates/default.conf.template
-
-# Render injects PORT — nginx-alpine with envsubst picks it up automatically
-# Default fallback port if PORT not set
+# Render injects $PORT (default 10000)
 ENV PORT=10000
 
-EXPOSE ${PORT}
+EXPOSE 10000
 
-CMD ["nginx", "-g", "daemon off;"]
+# At startup: replace __PORT__ with actual $PORT value, then start nginx
+CMD sh -c "sed -i 's/__PORT__/'"$PORT"'/g' /etc/nginx/nginx.conf && nginx -g 'daemon off;'"
