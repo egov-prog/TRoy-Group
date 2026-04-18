@@ -1,0 +1,14 @@
+# TRoy Group™ — Docker ignore
+# © TRoy Group™ | Darwin, NT, Australia
+
+.git
+.gitignore
+*.md
+!index.md
+node_modules
+npm-debug.log
+.env
+.env.*
+*.log
+.DS_Store
+Thumbs.db
