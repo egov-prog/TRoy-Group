@@ -1,585 +1,652 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>TRoyGo™ | TRoy Travel Agency™</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TRoyGo™ | Your World. Your Way.</title>
+<meta name="description" content="TRoyGo™ — AI-powered online travel platform by TRoy Travel Agency™. Book stays, flights, cruises, tours and more.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* --------------------------------------------------
-   ROOT VARIABLES
--------------------------------------------------- */
-:root {
-  --primary-blue: #003580;
-  --primary-blue-dark: #00224d;
-  --accent-yellow: #febb02;
-  --bg-light: #f5f5f5;
-  --text-main: #111;
-  --text-muted: #555;
-  --border-color: #dcdcdc;
-  --panel-bg: #ffffff;
-  --shadow-soft: 0 2px 8px rgba(0,0,0,0.15);
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --transition-fast: 0.25s ease;
-  --header-height: 64px;
-  --panel-width: 420px;
-  --z-header: 1000;
-  --z-floating: 1100;
-  --z-panel: 1200;
+:root{
+  --blue:#003580;--blue-dark:#00224d;--blue-mid:#003b95;--blue-btn:#0071c2;--blue-btn-hov:#005fa3;
+  --yellow:#febb02;--yellow-dark:#f5a623;--green:#2ECC71;--green-dark:#1fa355;
+  --bg:#f5f5f5;--white:#ffffff;--text:#1a1a1a;--text-muted:#6b6b6b;--border:#e0e0e0;
+  --shadow:0 2px 8px rgba(0,0,0,0.12);--shadow-lg:0 8px 32px rgba(0,0,0,0.18);
+  --radius-sm:4px;--radius-md:8px;--radius-lg:12px;--radius-xl:16px;
+  --transition:0.22s ease;--header-h:60px;--panel-w:420px;
 }
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+input,textarea{font-family:inherit;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:#f0f0f0;}
+::-webkit-scrollbar-thumb{background:#c0c0c0;border-radius:3px;}
 
-/* --------------------------------------------------
-   GLOBAL RESET
--------------------------------------------------- */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg-light);
-  color: var(--text-main);
-  line-height: 1.4;
-}
-a { text-decoration: none; color: inherit; }
+/* HEADER */
+.header{position:sticky;top:0;z-index:900;background:var(--blue);color:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.3);}
+.header-top{max-width:1200px;margin:0 auto;padding:0 16px;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.logo-icon{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,#2ECC71,#1fa355);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;box-shadow:0 2px 8px rgba(46,204,113,0.4);}
+.logo-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;}
+.logo-sub{font-size:10px;opacity:0.7;margin-top:-2px;}
+.nav-row{background:var(--blue-dark);border-top:1px solid rgba(255,255,255,0.1);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-btn{padding:10px 14px;border:none;background:transparent;color:rgba(255,255,255,0.8);font-size:13px;font-weight:400;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;border-bottom:3px solid transparent;transition:var(--transition);}
+.nav-btn:hover{color:#fff;background:rgba(255,255,255,0.08);}
+.nav-btn.active{color:#fff;border-bottom-color:#fff;font-weight:500;}
+.nav-btn.plan-btn{color:var(--yellow);border:1px solid rgba(254,187,2,0.35);border-radius:999px;margin-left:8px;border-bottom:1px solid rgba(254,187,2,0.35);padding:7px 14px;}
+.nav-btn.plan-btn:hover{background:rgba(254,187,2,0.12);}
+.header-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.hdr-link{font-size:13px;padding:6px 10px;border-radius:999px;cursor:pointer;opacity:0.9;}
+.hdr-link:hover{opacity:1;background:rgba(255,255,255,0.1);}
+.hdr-cta{padding:7px 13px;border-radius:999px;border:1.5px solid #fff;background:transparent;color:#fff;font-size:13px;font-weight:500;transition:var(--transition);}
+.hdr-cta:hover{background:#fff;color:var(--blue);}
+.hdr-cta.primary{background:#fff;color:var(--blue);}
+.hdr-cta.primary:hover{background:#e8f0ff;}
 
-/* --------------------------------------------------
-   HEADER (BOOKING.COM STYLE)
--------------------------------------------------- */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: var(--z-header);
-  background: var(--primary-blue);
-  color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.25);
-}
-.header-inner {
-  max-width: 1180px;
-  margin: 0 auto;
-  height: var(--header-height);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
-}
-.logo-area { display: flex; align-items: center; gap: 8px; }
-.logo-mark {
-  width: 32px; height: 32px;
-  border-radius: 8px;
-  background: linear-gradient(135deg,#00aaff,#00d4ff);
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 16px; color: #00324f;
-}
-.logo-text-main { font-weight: 700; font-size: 20px; }
-.logo-text-sub { font-size: 11px; opacity: 0.8; }
+/* HERO */
+.hero-wrap{background:var(--blue-mid);padding:28px 24px 32px;}
+.hero-title{font-size:30px;font-weight:700;color:#fff;margin-bottom:6px;}
+.hero-subtitle{font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:20px;}
+.ai-banner{background:rgba(255,255,255,0.1);border:1px solid rgba(254,187,2,0.35);border-radius:var(--radius-md);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;}
+.ai-banner-text{font-size:14px;color:#fff;}
+.ai-banner-text strong{color:var(--yellow);}
+.ai-banner-btn{flex-shrink:0;padding:9px 18px;border-radius:var(--radius-sm);background:var(--yellow);color:#003b95;border:none;font-size:13px;font-weight:700;transition:var(--transition);white-space:nowrap;}
+.ai-banner-btn:hover{background:var(--yellow-dark);}
+.search-box{background:var(--yellow);border-radius:var(--radius-md);padding:10px;display:flex;flex-wrap:wrap;gap:2px;box-shadow:0 4px 16px rgba(0,0,0,0.2);}
+.sf{background:#fff;flex:1 1 200px;padding:10px 12px;border-radius:var(--radius-sm);border:2px solid transparent;cursor:text;transition:var(--transition);}
+.sf:focus-within{border-color:var(--blue-btn);}
+.sf-label{font-size:11px;color:var(--text-muted);font-weight:500;margin-bottom:2px;}
+.sf-input{border:none;outline:none;font-size:14px;color:var(--text);width:100%;background:transparent;}
+.sf-input::placeholder{color:#999;}
+.search-btn{background:var(--blue-btn);color:#fff;border:none;border-radius:var(--radius-sm);padding:0 28px;font-size:15px;font-weight:700;transition:var(--transition);flex-shrink:0;min-height:52px;}
+.search-btn:hover{background:var(--blue-btn-hov);}
 
-.nav-main { display: flex; align-items: center; gap: 4px; margin-left: 24px; }
-.nav-item {
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: 13px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  border: 1px solid transparent;
-  color: #e6e6e6;
-  background: transparent;
-  transition: var(--transition-fast);
-}
-.nav-item.active {
-  background: #fff;
-  color: var(--primary-blue);
-  font-weight: 600;
-}
-.nav-item:hover:not(.active) {
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.2);
-}
+/* PAGE */
+.page{max-width:1200px;margin:0 auto;padding:28px 16px 48px;}
+.section{margin-bottom:36px;}
+.section-title{font-size:20px;font-weight:700;margin-bottom:16px;color:var(--text);}
 
-.header-right { display: flex; align-items: center; gap: 12px; }
-.header-link { font-size: 13px; cursor: pointer; opacity: 0.9; }
-.header-link:hover { opacity: 1; }
-.header-cta {
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid #fff;
-  background: transparent;
-  color: #fff;
-  font-size: 13px;
-  cursor: pointer;
-  transition: var(--transition-fast);
-}
-.header-cta:hover { background: #fff; color: var(--primary-blue); }
+/* DESTINATION CARDS */
+.dest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;}
+.dest-card{border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;height:200px;position:relative;transition:var(--transition);box-shadow:var(--shadow);}
+.dest-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.dest-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:64px;}
+.dest-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,30,80,0.85) 0%,rgba(0,30,80,0.1) 60%,transparent 100%);}
+.dest-info{position:absolute;bottom:0;left:0;right:0;padding:14px 12px 12px;color:#fff;}
+.dest-name{font-size:15px;font-weight:700;margin-bottom:2px;}
+.dest-count{font-size:11px;opacity:0.8;}
+.dest-tag{position:absolute;top:10px;right:10px;background:var(--yellow);color:var(--blue);font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;}
 
-/* --------------------------------------------------
-   PAGE WRAPPER
--------------------------------------------------- */
-.page { max-width: 1180px; margin: 0 auto; padding: 16px; }
+/* CONTENT GRID */
+.content-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:36px;}
+.card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:20px;}
+.card-title{font-size:16px;font-weight:700;margin-bottom:10px;}
+.card-text{font-size:13px;color:var(--text-muted);margin-bottom:12px;line-height:1.6;}
+.pill-row{display:flex;flex-wrap:wrap;gap:6px;}
+.pill{font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:#fafafa;cursor:pointer;transition:var(--transition);}
+.pill:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+.why-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.why-list li{display:flex;align-items:flex-start;gap:10px;font-size:13px;}
+.why-list li span.icon{font-size:18px;flex-shrink:0;margin-top:1px;}
 
-/* --------------------------------------------------
-   HERO SECTION
--------------------------------------------------- */
-.hero { margin-top: 16px; margin-bottom: 24px; }
-.hero-title { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
-.hero-subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; }
+/* CRUISE CARDS */
+.cruise-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.cruise-card{background:var(--white);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:var(--transition);}
+.cruise-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.cruise-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative;}
+.cruise-badge{position:absolute;top:10px;right:10px;background:var(--blue);color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;}
+.cruise-body{padding:14px;}
+.cruise-name{font-size:15px;font-weight:700;margin-bottom:4px;}
+.cruise-route{font-size:12px;color:var(--text-muted);margin-bottom:8px;}
+.cruise-footer{display:flex;align-items:center;justify-content:space-between;}
+.cruise-price{font-size:18px;font-weight:700;color:var(--blue);}
+.cruise-price small{font-size:11px;font-weight:400;color:var(--text-muted);}
+.cruise-btn{padding:7px 14px;border-radius:var(--radius-sm);background:var(--blue-btn);color:#fff;border:none;font-size:12px;font-weight:600;transition:var(--transition);}
+.cruise-btn:hover{background:var(--blue-btn-hov);}
 
-.hero-banner {
-  background: #003b95;
-  color: #fff;
-  border-radius: var(--radius-md);
-  padding: 16px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-.hero-banner-cta {
-  padding: 8px 14px;
-  border-radius: var(--radius-sm);
-  background: #fff;
-  color: #003b95;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-}
+/* CONTACT */
+.contact-section{background:var(--white);border-radius:var(--radius-xl);box-shadow:var(--shadow);padding:32px;margin-bottom:36px;}
+.contact-section h2{font-family:'Playfair Display',serif;font-size:22px;color:#2ECC71;margin-bottom:6px;}
+.contact-section p{font-size:14px;color:var(--text-muted);margin-bottom:20px;}
+.ttc-wrap{font-family:'DM Sans','Segoe UI',sans-serif;}
+.ttc-box{border-radius:12px;padding:24px;margin-bottom:16px;}
+.ttc-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.ttc-logo{font-size:17px;font-weight:700;letter-spacing:1px;color:#c8d8f0;}
+.ttc-online{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#00c97a;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.2);padding:2px 10px;border-radius:20px;}
+.ttc-dot{width:6px;height:6px;border-radius:50%;background:#00c97a;display:inline-block;animation:ttcdot 1.5s infinite;}
+@keyframes ttcdot{0%,100%{opacity:1}50%{opacity:.3}}
+.ttc-sub{font-size:13px;color:#6080a0;margin:6px 0 18px;line-height:1.6;}
+.ttc-btns{display:flex;flex-wrap:wrap;gap:10px;}
+.ttc-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:6px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .2s;white-space:nowrap;font-family:inherit;}
+.ttc-btn:hover{transform:translateY(-2px);filter:brightness(1.1);}
+.ttc-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;padding:16px;}
+.ttc-modal.open{display:flex;}
+.ttc-modal-inner{background:#0a1120;border-radius:14px;width:100%;max-width:740px;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.7);}
+.ttc-modal-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:#050810;border-bottom:1px solid #1a2f50;}
+.ttc-modal-title{font-size:13px;font-weight:600;color:#c8d8f0;}
+.ttc-modal-close{background:none;border:none;color:#6080a0;font-size:22px;cursor:pointer;}
+.ttc-modal-close:hover{color:#fff;}
+.ttc-modal iframe{display:block;width:100%;height:500px;border:none;}
+.ttc-form{display:flex;flex-direction:column;gap:10px;}
+.ttc-form input,.ttc-form textarea{width:100%;padding:10px 14px;border-radius:6px;border:1px solid #1a2f50;background:#05080d;color:#c8d8f0;font-size:13px;font-family:inherit;outline:none;transition:border .2s;box-sizing:border-box;}
+.ttc-form input:focus,.ttc-form textarea:focus{border-color:#2ECC71;}
+.ttc-form textarea{resize:vertical;min-height:90px;}
+.ttc-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.ttc-fsub{padding:11px 24px;border-radius:6px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;}
+.ttc-fsub:hover{filter:brightness(1.1);transform:translateY(-1px);}
+.ttc-ok{display:none;padding:14px;border-radius:8px;font-size:14px;text-align:center;margin-top:8px;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.3);color:#00c97a;}
+@media(max-width:520px){.ttc-btn{width:100%;justify-content:center}.ttc-btns{flex-direction:column}.ttc-form-row{grid-template-columns:1fr}}
 
-/* --------------------------------------------------
-   SEARCH CARD (BOOKING.COM STYLE)
--------------------------------------------------- */
-.search-card {
-  background: var(--accent-yellow);
-  border-radius: var(--radius-md);
-  padding: 10px;
-  box-shadow: var(--shadow-soft);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-}
-.search-field {
-  background: #fff;
-  border-radius: var(--radius-sm);
-  padding: 8px 10px;
-  flex: 1 1 220px;
-}
-.search-field-label {
-  font-size: 11px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-.search-field-input {
-  border: none;
-  outline: none;
-  font-size: 13px;
-  width: 100%;
-}
-.search-button {
-  background: #0071c2;
-  color: #fff;
-  border-radius: var(--radius-sm);
-  border: none;
-  padding: 12px 24px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-}
+/* FOOTER */
+.footer{background:#fff;border-top:1px solid var(--border);padding:32px 16px 20px;}
+.footer-inner{max-width:1200px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px;margin-bottom:28px;}
+.footer-col-title{font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text);}
+.footer-col a{display:block;font-size:12px;color:var(--text-muted);margin-bottom:7px;}
+.footer-col a:hover{color:var(--blue);}
+.footer-bottom{border-top:1px solid var(--border);padding-top:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.footer-copy{font-size:11px;color:var(--text-muted);}
+.footer-social{display:flex;gap:10px;}
+.social-pill{font-size:11px;padding:4px 10px;border-radius:999px;border:1px solid var(--border);color:var(--text-muted);transition:var(--transition);}
+.social-pill:hover{border-color:var(--blue);color:var(--blue);}
 
-/* --------------------------------------------------
-   CONTENT GRID
--------------------------------------------------- */
-.content-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 16px;
-  margin-top: 24px;
-  margin-bottom: 40px;
-}
-.card {
-  background: #fff;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-soft);
-  padding: 16px;
-}
-.card-title { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-.card-text { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
-.pill-row { display: flex; flex-wrap: wrap; gap: 6px; }
-.pill {
-  font-size: 12px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border-color);
-  background: #fafafa;
-}
+/* FLOATING BUTTON */
+.float-btn{position:fixed;right:20px;bottom:20px;z-index:800;background:var(--blue);color:#fff;border-radius:999px;padding:12px 20px;display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,53,128,0.45);border:none;font-size:13px;font-weight:600;transition:var(--transition);animation:floatPulse 3s ease-in-out infinite;}
+.float-btn:hover{background:var(--blue-mid);transform:translateY(-2px);animation:none;}
+.float-btn-dot{width:8px;height:8px;border-radius:50%;background:var(--yellow);flex-shrink:0;}
+@keyframes floatPulse{0%,100%{box-shadow:0 4px 20px rgba(0,53,128,0.45)}50%{box-shadow:0 4px 28px rgba(0,53,128,0.7),0 0 0 6px rgba(0,53,128,0.12)}}
 
-/* --------------------------------------------------
-   FOOTER
--------------------------------------------------- */
-.footer {
-  border-top: 1px solid var(--border-color);
-  padding: 16px;
-  font-size: 11px;
-  color: var(--text-muted);
-  text-align: center;
-}
-.footer a { color: var(--primary-blue); font-weight: 600; }
+/* AI PANEL */
+.panel-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.35);z-index:1100;opacity:0;pointer-events:none;transition:opacity 0.25s ease;}
+.panel-backdrop.open{opacity:1;pointer-events:auto;}
+.ai-panel{position:fixed;top:0;left:0;height:100vh;width:var(--panel-w);max-width:96vw;background:#fff;z-index:1200;transform:translateX(-100%);transition:transform 0.28s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;box-shadow:4px 0 32px rgba(0,0,0,0.2);}
+.ai-panel.open{transform:translateX(0);}
+.panel-hdr{background:var(--blue);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+.panel-hdr-left{display:flex;align-items:center;gap:10px;}
+.panel-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--yellow-dark));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.panel-title{font-size:15px;font-weight:700;}
+.panel-subtitle{font-size:11px;opacity:0.75;}
+.panel-close{background:rgba(255,255,255,0.15);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:18px;display:flex;align-items:center;justify-content:center;transition:var(--transition);}
+.panel-close:hover{background:rgba(255,255,255,0.3);}
+.panel-prompts{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;background:#f8f9fa;}
+.qprompt{font-size:11px;padding:5px 10px;border-radius:999px;border:1px solid var(--border);background:#fff;cursor:pointer;transition:var(--transition);color:var(--blue);font-weight:500;}
+.qprompt:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+.panel-msgs{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:12px;}
+.msg{display:flex;gap:8px;align-items:flex-start;}
+.msg.user{flex-direction:row-reverse;}
+.msg-avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:2px;}
+.msg.bot .msg-avatar{background:linear-gradient(135deg,var(--blue),var(--blue-mid));}
+.msg.user .msg-avatar{background:linear-gradient(135deg,#e0e0e0,#c0c0c0);font-size:11px;}
+.msg-bubble{padding:10px 13px;border-radius:16px;font-size:13px;line-height:1.55;max-width:82%;}
+.msg.bot .msg-bubble{background:#f0f4ff;color:var(--text);border-bottom-left-radius:4px;}
+.msg.user .msg-bubble{background:var(--blue);color:#fff;border-bottom-right-radius:4px;}
+.typing-dot{display:inline-flex;gap:3px;align-items:center;padding:10px 13px;}
+.typing-dot span{width:7px;height:7px;border-radius:50%;background:#999;animation:typingBounce 1.2s infinite ease-in-out;}
+.typing-dot span:nth-child(2){animation-delay:.2s;}
+.typing-dot span:nth-child(3){animation-delay:.4s;}
+@keyframes typingBounce{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
+.panel-input-wrap{padding:12px 14px;border-top:1px solid var(--border);flex-shrink:0;background:#fff;}
+.panel-input-row{display:flex;gap:8px;align-items:flex-end;}
+.panel-input{flex:1;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:10px 14px;font-size:13px;outline:none;resize:none;max-height:100px;line-height:1.4;transition:var(--transition);}
+.panel-input:focus{border-color:var(--blue-btn);}
+.panel-send{width:38px;height:38px;border-radius:50%;background:var(--blue-btn);border:none;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;transition:var(--transition);flex-shrink:0;}
+.panel-send:hover{background:var(--blue-btn-hov);}
+.panel-send:disabled{background:#ccc;cursor:not-allowed;}
+.panel-powered{text-align:center;font-size:10px;color:#bbb;margin-top:6px;}
 
-/* --------------------------------------------------
-   FLOATING TRoyGo BUTTON
--------------------------------------------------- */
-.floating-troygo-btn {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: var(--z-floating);
-  background: #00a680;
-  color: #fff;
-  border-radius: 999px;
-  padding: 10px 16px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  box-shadow: var(--shadow-soft);
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  border: none;
-}
-.floating-troygo-icon {
-  width: 22px; height: 22px;
-  border-radius: 999px;
-  background: #fff;
-  color: #00a680;
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700;
-}
-
-/* --------------------------------------------------
-   LEFT-SIDE AI PANEL (TRIPADVISOR STYLE)
--------------------------------------------------- */
-.chatbot-panel-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.25);
-  z-index: var(--z-panel);
-  opacity: 0;
-  pointer-events: none;
-  transition: var(--transition-fast);
-}
-.chatbot-panel-backdrop.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-.chatbot-panel {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  max-width: var(--panel-width);
-  width: 100%;
-  background: var(--panel-bg);
-  box-shadow: 2px 0 12px rgba(0,0,0,0.25);
-  transform: translateX(-100%);
-  transition: var(--transition-fast);
-  display: flex;
-  flex-direction: column;
-}
-.chatbot-panel.open { transform: translateX(0); }
-
-.chatbot-header {
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.chatbot-avatar {
-  width: 32px; height: 32px;
-  border-radius: 999px;
-  background: linear-gradient(135deg,#00a680,#00c49a);
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-weight: 700;
-}
-.chatbot-body { flex: 1; padding: 12px 16px; overflow: hidden; }
-.chatbot-messages { flex: 1; overflow-y: auto; margin-bottom: 8px; }
-.chatbot-message { margin-bottom: 10px; font-size: 13px; }
-.chatbot-bubble {
-  display: inline-block;
-  padding: 8px 10px;
-  border-radius: 12px;
-  max-width: 90%;
-}
-.chatbot-bubble.bot {
-  background: #f1f3f7;
-  color: var(--text-main);
-}
-.chatbot-bubble.user {
-  background: #00a680;
-  color: #fff;
-}
-.chatbot-input-row {
-  display: flex; gap: 6px;
-  border-top: 1px solid var(--border-color);
-  padding-top: 8px;
-}
-.chatbot-input {
-  flex: 1;
-  border-radius: 999px;
-  border: 1px solid var(--border-color);
-  padding: 8px 10px;
-}
-.chatbot-send-btn {
-  border-radius: 999px;
-  border: none;
-  background: #00a680;
-  color: #fff;
-  padding: 8px 12px;
-  font-weight: 600;
-}
-
-/* --------------------------------------------------
-   CONTACT PAGE (#contact)
--------------------------------------------------- */
-#contactPage {
-  display: none;
-  max-width: 600px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 24px;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-soft);
-}
-#contactPage.active { display: block; }
-.contact-title {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-.contact-field {
-  margin-bottom: 12px;
-}
-.contact-field label {
-  display: block;
-  font-size: 13px;
-  margin-bottom: 4px;
-}
-.contact-field input,
-.contact-field textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid var(--border-color);
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-}
-.contact-send-btn {
-  background: #0071c2;
-  color: #fff;
-  padding: 12px 20px;
-  border-radius: var(--radius-sm);
-  border: none;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* --------------------------------------------------
-   RESPONSIVE
--------------------------------------------------- */
-@media (max-width: 900px) {
-  .content-grid { grid-template-columns: 1fr; }
-  .nav-main { display: none; }
-}
+/* RESPONSIVE */
+@media(max-width:900px){.content-grid{grid-template-columns:1fr;}.nav-inner{gap:0;}.nav-btn{padding:9px 10px;font-size:12px;}.header-right .hdr-link{display:none;}.float-btn span{display:none;}.float-btn{padding:12px;}}
+@media(max-width:600px){.dest-grid{grid-template-columns:1fr 1fr;}.cruise-grid{grid-template-columns:1fr;}.hero-wrap{padding:20px 16px 24px;}.hero-title{font-size:22px;}.search-box{flex-direction:column;}.search-btn{min-height:44px;padding:12px;}.ai-banner{flex-direction:column;align-items:flex-start;gap:10px;}:root{--panel-w:100vw;}}
 </style>
 </head>
-
 <body>
 
-<!-- --------------------------------------------------
-     HEADER
--------------------------------------------------- -->
+<!-- HEADER -->
 <header class="header">
-  <div class="header-inner">
-    <div style="display:flex;align-items:center;gap:16px;">
-      <div class="logo-area">
-        <div class="logo-mark">TG</div>
-        <div>
-          <div class="logo-text-main">TRoyGo™</div>
-          <div class="logo-text-sub">by TRoy Travel Agency™</div>
-        </div>
+  <div class="header-top">
+    <div class="logo">
+      <div class="logo-icon">TG</div>
+      <div>
+        <div class="logo-name">TRoyGo™</div>
+        <div class="logo-sub">by TRoy Travel Agency™</div>
       </div>
-
-      <nav class="nav-main" id="navTabs">
-        <button class="nav-item active" data-tab="stays" onclick="location.href='https://www.booking.com'">🏨 Stays</button>
-        <button class="nav-item" data-tab="flights" onclick="location.href='https://www.booking.com/flights'">✈️ Flights</button>
-        <button class="nav-item" data-tab="flight-hotel" onclick="location.href='https://www.booking.com/flight-hotel'">🧳 Flight + Hotel</button>
-        <button class="nav-item" data-tab="cars" onclick="location.href='https://www.booking.com/cars'">🚗 Car rentals</button>
-        <button class="nav-item" data-tab="attractions" onclick="location.href='https://www.booking.com/attractions'">🎟️ Attractions</button>
-        <button class="nav-item" data-tab="taxis" onclick="location.href='https://www.booking.com/taxi'">🚕 Airport taxis</button>
-        <button class="nav-item" data-tab="cruises" onclick="location.href='https://www.booking.com/cruise'">🛳️ Cruises</button>
-
-        <!-- AI PANEL TRIGGER -->
-        <button class="nav-item" data-tab="plan-troygo" id="headerPlanWithTroygoBtn">🤖 Plan with TRoyGo™</button>
-      </nav>
     </div>
-
     <div class="header-right">
-      <div class="header-link">AUD</div>
-      <div class="header-link">Help</div>
-      <button class="header-cta">List your property</button>
-      <button class="header-cta">Register</button>
-      <button class="header-cta">Sign in</button>
+      <span class="hdr-link">AUD</span>
+      <span class="hdr-link">🌐 EN</span>
+      <span class="hdr-link">Help</span>
+      <button class="hdr-cta">List your property</button>
+      <button class="hdr-cta">Register</button>
+      <button class="hdr-cta primary">Sign in</button>
     </div>
+  </div>
+  <div class="nav-row">
+    <nav class="nav-inner">
+      <button class="nav-btn active" onclick="setTab(this,'stays')">&#127968; Stays</button>
+      <button class="nav-btn" onclick="setTab(this,'flights')">&#9992;&#65039; Flights</button>
+      <button class="nav-btn" onclick="setTab(this,'flight-hotel')">&#129523; Flight + Hotel</button>
+      <button class="nav-btn" onclick="setTab(this,'cars')">&#128663; Car rentals</button>
+      <button class="nav-btn" onclick="setTab(this,'attractions')">&#127903;&#65039; Attractions</button>
+      <button class="nav-btn" onclick="setTab(this,'taxis')">&#128661; Airport taxis</button>
+      <button class="nav-btn" onclick="setTab(this,'cruises')">&#128755;&#65039; Cruises</button>
+      <button class="nav-btn plan-btn" onclick="openPanel()">&#10022; Plan with TRoyGo™</button>
+    </nav>
   </div>
 </header>
 
-<!-- --------------------------------------------------
-     HOME PAGE CONTENT
--------------------------------------------------- -->
-<div id="homePage">
-
-<main class="page">
-  <section class="hero">
+<!-- HERO -->
+<div class="hero-wrap">
+  <div style="max-width:1200px;margin:0 auto;padding:0 16px;">
     <h1 class="hero-title">Find your next trip with TRoyGo™</h1>
-    <p class="hero-subtitle">Search stays, flights, cruises and more — then refine your itinerary with the TRoyGo™ AI trip planner.</p>
-
-    <div class="hero-banner">
-      <div>
-        <strong>TRoyGo™ smart planning</strong><br>
-        Start with dates and destination — then let TRoyGo™ refine your perfect itinerary.
+    <p class="hero-subtitle">Search stays, flights, cruises and more — or let TRoyGo™ AI plan your perfect itinerary.</p>
+    <div class="ai-banner">
+      <div class="ai-banner-text">
+        <strong>&#10022; TRoyGo™ AI Trip Planner</strong> — Tell us where you want to go and we'll build your perfect itinerary with flights, hotels, transfers and more.
       </div>
-      <button class="hero-banner-cta" id="bannerPlanWithTroygoBtn">Plan with TRoyGo™</button>
+      <button class="ai-banner-btn" onclick="openPanel()">Plan with TRoyGo™ →</button>
     </div>
-
-    <div class="search-card">
-      <div class="search-field">
-        <div class="search-field-label">Destination</div>
-        <input class="search-field-input" type="text" placeholder="Where are you going?">
+    <div class="search-box">
+      <div class="sf">
+        <div class="sf-label">&#128269; Destination</div>
+        <input class="sf-input" id="sfDest" type="text" placeholder="Where are you going?">
       </div>
-      <div class="search-field">
-        <div class="search-field-label">Check-in – Check-out</div>
-        <input class="search-field-input" type="text" placeholder="Add dates">
+      <div class="sf">
+        <div class="sf-label">&#128197; Check-in</div>
+        <input class="sf-input" type="date" id="sfCheckin">
       </div>
-      <div class="search-field">
-        <div class="search-field-label">Travellers</div>
-        <input class="search-field-input" type="text" placeholder="2 adults · 0 children · 1 room">
+      <div class="sf">
+        <div class="sf-label">&#128197; Check-out</div>
+        <input class="sf-input" type="date" id="sfCheckout">
       </div>
-      <button class="search-button" onclick="location.href='https://www.booking.com'">Search</button>
-    </div>
-  </section>
-
-  <section class="content-grid">
-    <div class="card">
-      <h2 class="card-title">Popular with TRoyGo™ travellers</h2>
-      <p class="card-text">Explore trending destinations and then ask TRoyGo™ to optimise your route, timing and budget.</p>
-      <div class="pill-row">
-        <div class="pill">Darwin & Top End escapes</div>
-        <div class="pill">Sydney city breaks</div>
-        <div class="pill">Great Barrier Reef getaways</div>
-        <div class="pill">Mediterranean cruises</div>
-        <div class="pill">Asia multi‑city trips</div>
+      <div class="sf" style="flex:0 1 180px;">
+        <div class="sf-label">&#128100; Travellers</div>
+        <input class="sf-input" type="text" placeholder="2 adults · 1 room">
       </div>
+      <button class="search-btn" onclick="doSearch()">Search</button>
     </div>
-
-    <div class="card">
-      <h2 class="card-title">Why plan with TRoyGo™?</h2>
-      <p class="card-text">TRoy
-
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" style="padding:40px 20px;max-width:900px;margin:0 auto;">
-    <h2 style="font-family:'Playfair Display',serif;color:#2ECC71;margin-bottom:8px;">Contact TRoyGo™</h2>
-    <p style="color:#a0b0a0;margin-bottom:20px;">Speak directly with our travel team — free call, video meeting or email.</p>
-    <section id="contact" style="padding:40px 20px;max-width:900px;margin:0 auto;">
-    <h2 style="font-family:'Playfair Display',serif;color:#2ECC71;margin-bottom:8px;">Contact TRoyGo™</h2>
-
-<style id="troytel-css">
-.ttc-wrap{font-family:'DM Sans','Segoe UI',sans-serif;margin:24px 0}
-.ttc-box{border-radius:12px;padding:26px 24px;margin-bottom:16px}
-.ttc-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
-.ttc-logo{font-size:17px;font-weight:700;letter-spacing:1px;color:#c8d8f0}
-.ttc-online{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#00ff9d;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.2);padding:2px 10px;border-radius:20px}
-.ttc-dot{width:6px;height:6px;border-radius:50%;background:#00ff9d;display:inline-block;animation:ttcdot 1.5s infinite}
-@keyframes ttcdot{0%,100%{opacity:1}50%{opacity:.3}}
-.ttc-sub{font-size:13px;color:#6080a0;margin:6px 0 18px;line-height:1.5}
-.ttc-btns{display:flex;flex-wrap:wrap;gap:10px}
-.ttc-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:6px;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all .2s;white-space:nowrap;font-family:inherit}
-.ttc-btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
-.ttc-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;padding:16px}
-.ttc-modal.open{display:flex}
-.ttc-modal-inner{background:#0a1120;border-radius:14px;width:100%;max-width:740px;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.7)}
-.ttc-modal-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:#050810;border-bottom:1px solid #1a2f50}
-.ttc-modal-title{font-size:13px;font-weight:600;color:#c8d8f0;font-family:'DM Sans',sans-serif}
-.ttc-modal-close{background:none;border:none;color:#6080a0;font-size:22px;cursor:pointer;line-height:1;padding:0 4px}
-.ttc-modal-close:hover{color:#fff}
-.ttc-modal iframe{display:block;width:100%;height:500px;border:none}
-.ttc-form{display:flex;flex-direction:column;gap:10px}
-.ttc-form input,.ttc-form textarea{width:100%;padding:10px 14px;border-radius:6px;border:1px solid #1a2f50;background:#05080d;color:#c8d8f0;font-size:13px;font-family:inherit;outline:none;transition:border .2s;box-sizing:border-box}
-.ttc-form input:focus,.ttc-form textarea:focus{border-color:var(--tc,#00d4e8)}
-.ttc-form textarea{resize:vertical;min-height:90px}
-.ttc-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ttc-fsub{padding:11px 24px;border-radius:6px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s}
-.ttc-fsub:hover{filter:brightness(1.1);transform:translateY(-1px)}
-.ttc-ok{display:none;padding:14px;border-radius:8px;font-size:14px;text-align:center;margin-top:8px;background:rgba(0,255,157,.08);border:1px solid rgba(0,255,157,.3);color:#00ff9d}
-@media(max-width:520px){.ttc-btn{width:100%;justify-content:center}.ttc-btns{flex-direction:column}.ttc-form-row{grid-template-columns:1fr}}
-</style>
-<div class="ttc-wrap" style="--tc:#2ECC71">
-  <div class="ttc-box" style="background:linear-gradient(135deg,#071a0f,#05080d);border:1px solid #2ECC7144">
-    <div class="ttc-head">
-      <span class="ttc-logo"><span style="color:#2ECC71">TRoy</span>Tel&#8482;</span>
-      <span class="ttc-online"><span class="ttc-dot"></span> Online</span>
-    </div>
-    <p class="ttc-sub">Connect with <strong style="color:#e8f0ff">TRoyGo&#8482; Travel Agency</strong> &mdash; free browser call or send a message. <strong style="color:#2ECC71">No app or download needed.</strong></p>
-    <div class="ttc-btns">
-      <button onclick="document.getElementById('ttcM_trv').classList.add('open')" class="ttc-btn" style="background:#2ECC71;color:#05080d">&#128222; Free Call / Video</button>
-      <button onclick="document.getElementById('ttcF_trv_w').scrollIntoView({behavior:'smooth'})" class="ttc-btn" style="background:transparent;color:#2ECC71;border:1.5px solid #2ECC71">&#9993;&#65039; Send Message</button>
-    </div>
-    <p style="margin-top:12px;font-size:11px;color:#2ECC7155;font-family:'Courier New',monospace">No app &nbsp;&middot;&nbsp; No download &nbsp;&middot;&nbsp; Any browser &nbsp;&middot;&nbsp; Powered by TRoyTel&#8482;</p>
-  </div>
-  <div class="ttc-modal" id="ttcM_trv" onclick="if(event.target===this)this.classList.remove('open')">
-    <div class="ttc-modal-inner">
-      <div class="ttc-modal-bar">
-        <span class="ttc-modal-title">&#128222; Calling TRoyGo&#8482; Travel Agency &mdash; works in your browser, no app needed</span>
-        <button class="ttc-modal-close" onclick="this.closest('.ttc-modal').classList.remove('open');var f=document.getElementById('ttcM_trv_f');f.src=f.src">&#10005;</button>
-      </div>
-      <iframe id="ttcM_trv_f" src="https://meet.jit.si/TRoyGo-TravelTeam#config.startWithVideoMuted=false&amp;config.startWithAudioMuted=false&amp;config.prejoinPageEnabled=false&amp;config.disableDeepLinking=true&amp;interfaceConfig.SHOW_JITSI_WATERMARK=false" allow="camera; microphone; fullscreen; display-capture; autoplay"></iframe>
-    </div>
-  </div>
-  <div id="ttcF_trv_w" class="ttc-box" style="background:linear-gradient(135deg,#071a0f99,#05080d);border:1px solid #1a2f50">
-    <p style="font-size:15px;font-weight:600;color:#c8d8f0;margin:0 0 14px">&#9993;&#65039; Send a Message</p>
-    <form class="ttc-form" id="ttcF_trv" onsubmit="return ttcSend(event,'ttcF_trv','troytravelagency@gmail.com','TRoyGo&#8482; Travel Agency','ttcO_trv')">
-      <div class="ttc-form-row">
-        <input type="text"  name="uname"   placeholder="Your name"   required>
-        <input type="email" name="uemail"  placeholder="Your email"  required>
-      </div>
-      <input type="text" name="usubject" placeholder="Subject" required>
-      <input type="text" name="dest" placeholder="Destination / trip type (optional)">
-      <textarea name="umsg" placeholder="Your message..." required></textarea>
-      <button type="submit" class="ttc-fsub" style="background:#2ECC71;color:#05080d;align-self:flex-start">Send Message &#8594;</button>
-    </form>
-    <div class="ttc-ok" id="ttcO_trv">&#10003; Message sent! We will reply to your email shortly.</div>
   </div>
 </div>
-<script>
-if(!window.ttcSend)window.ttcSend=function(e,fid,email,dname,oid){
-  e.preventDefault();
-  var f=document.getElementById(fid);
-  var n=f.querySelector('[name=uname]').value;
-  var em=f.querySelector('[name=uemail]').value;
-  var s=f.querySelector('[name=usubject]').value;
-  var m=f.querySelector('[name=umsg]').value;
-  var sub=encodeURIComponent('['+dname+'] '+s);
-  var bod=encodeURIComponent('From: '+n+' <'+em+'>
 
-'+m);
-  window.location.href='mailto:'+email+'?subject='+sub+'&body='+bod;
-  f.style.display='none';
-  document.getElementById(oid).style.display='block';
-  return false;
-};
-</script>
+<!-- MAIN -->
+<main class="page">
+
+  <!-- Destinations -->
+  <section class="section">
+    <h2 class="section-title">Popular destinations with TRoyGo™ travellers</h2>
+    <div class="dest-grid">
+      <div class="dest-card" onclick="searchDest('Bali')" style="background:linear-gradient(135deg,#1a4a2a,#2d7a4a)">
+        <div class="dest-bg">&#127796;</div><div class="dest-overlay"></div>
+        <div class="dest-info"><div class="dest-name">Bali</div><div class="dest-count">Indonesia</div></div>
+        <div class="dest-tag">Trending</div>
+      </div>
+      <div class="dest-card" onclick="searchDest('Istanbul')" style="background:linear-gradient(135deg,#4a1a1a,#8a3030)">
+        <div class="dest-bg">&#128332;</div><div class="dest-overlay"></div>
+        <div class="dest-info"><div class="dest-name">Istanbul</div><div class="dest-count">Turkey</div></div>
+      </div>
+      <div class="dest-card" onclick="searchDest('Maldives')" style="background:linear-gradient(135deg,#1a3a5c,#1a6080)">
+        <div class="dest-bg">&#127965;&#65039;</div><div class="dest-overlay"></div>
+        <div class="dest-info"><div class="dest-name">Maldives</div><div class="dest-count">Indian Ocean</div></div>
+        <div class="dest-tag">Hot Deal</div>
+      </div>
+      <div class="dest-card" onclick="searchDest('Santorini')" style="background:linear-gradient(135deg,#1a3060,#2d4a90)">
+        <div class="dest-bg">&#9971;</div><div class="dest-overlay"></div>
+        <div class="dest-info"><div class="dest-name">Santorini</div><div class="dest-count">Greece</div></div>
+      </div>
+      <div class="dest-card" onclick="searchDest('Tokyo')" style="background:linear-gradient(135deg,#3a1a4a,#6a3080)">
+        <div class="dest-bg">&#128508;</div><div class="dest-overlay"></div>
+        <div class="dest-info"><div class="dest-name">Tokyo</div><div class="dest-count">Japan</div></div>
+      </div>
+      <div class="dest-card" onclick="searchDest('Darwin Australia')" style="background:linear-gradient(135deg,#1a3a1a,#2d6040)">
+        <div class="dest-bg">&#129432;</div><div class="dest-overlay"></div>
+        <div class="dest-info"><div class="dest-name">Darwin</div><div class="dest-count">NT, Australia</div></div>
+        <div class="dest-tag">Local</div>
+      </div>
+    </div>
   </section>
+
+  <!-- Two-col -->
+  <div class="content-grid">
+    <div class="card">
+      <h3 class="card-title">&#9992;&#65039; Popular trip ideas</h3>
+      <p class="card-text">Explore trending routes and popular packages that TRoyGo™ travellers love — click any idea to ask TRoyGo™ AI to plan it for you.</p>
+      <div class="pill-row">
+        <div class="pill" onclick="panelAsk('Plan a 7-day trip to Bali from Darwin')">&#127796; 7 days in Bali</div>
+        <div class="pill" onclick="panelAsk('Plan a Mediterranean cruise itinerary')">&#128755; Mediterranean cruise</div>
+        <div class="pill" onclick="panelAsk('Best weekend trips from Darwin NT Australia')">&#129432; Darwin weekend escape</div>
+        <div class="pill" onclick="panelAsk('Plan an Asia multi-city trip from Australia')">&#128506; Asia multi-city</div>
+        <div class="pill" onclick="panelAsk('Plan a honeymoon trip to Maldives from Australia')">&#128145; Maldives honeymoon</div>
+        <div class="pill" onclick="panelAsk('Budget Europe backpacking trip from Australia')">&#127920; Europe budget trip</div>
+        <div class="pill" onclick="panelAsk('Turkish Straits cruise from Istanbul')">&#9875; Turkish Straits cruise</div>
+        <div class="pill" onclick="panelAsk('Best cruise packages from Sydney Australia')">&#127758; Pacific cruise</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 class="card-title">&#10022; Why plan with TRoyGo™?</h3>
+      <ul class="why-list">
+        <li><span class="icon">&#129302;</span><span><strong>AI-powered planning</strong> — personalised itineraries built around your budget, style and dates.</span></li>
+        <li><span class="icon">&#128755;</span><span><strong>Cruise specialist</strong> — Turkish Straits expert with 30+ years of maritime experience.</span></li>
+        <li><span class="icon">&#127758;</span><span><strong>100% online, global</strong> — international operations using local sub-agents worldwide.</span></li>
+        <li><span class="icon">&#128172;</span><span><strong>Free consultation</strong> — video call or chat with our team, no download needed.</span></li>
+        <li><span class="icon">&#128204;</span><span><strong>Based in Darwin</strong> — your Australian gateway for Asia-Pacific and beyond.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Cruises -->
+  <section class="section">
+    <h2 class="section-title">&#128755;&#65039; Featured Cruise Packages</h2>
+    <div class="cruise-grid">
+      <div class="cruise-card">
+        <div class="cruise-img" style="background:linear-gradient(135deg,#1a3060,#003b95);">
+          &#127754;<div class="cruise-badge">TRoyGo™ Pick</div>
+        </div>
+        <div class="cruise-body">
+          <div class="cruise-name">Turkish Straits Explorer</div>
+          <div class="cruise-route">Istanbul → Çanakkale → Bosphorus</div>
+          <div class="cruise-footer">
+            <div class="cruise-price">AUD 2,490<br><small>per person</small></div>
+            <button class="cruise-btn" onclick="panelAsk('Tell me about the Turkish Straits cruise package, including Canakkale and Bosphorus')">Enquire</button>
+          </div>
+        </div>
+      </div>
+      <div class="cruise-card">
+        <div class="cruise-img" style="background:linear-gradient(135deg,#1a4a5a,#0d7a9a);">
+          &#9971;<div class="cruise-badge">Popular</div>
+        </div>
+        <div class="cruise-body">
+          <div class="cruise-name">Mediterranean Dream</div>
+          <div class="cruise-route">Athens → Santorini → Dubrovnik → Venice</div>
+          <div class="cruise-footer">
+            <div class="cruise-price">AUD 3,890<br><small>per person</small></div>
+            <button class="cruise-btn" onclick="panelAsk('Tell me about the Mediterranean cruise package Athens Santorini Dubrovnik Venice')">Enquire</button>
+          </div>
+        </div>
+      </div>
+      <div class="cruise-card">
+        <div class="cruise-img" style="background:linear-gradient(135deg,#1a3a20,#2d7a4a);">
+          &#127965;&#65039;<div class="cruise-badge">Best Value</div>
+        </div>
+        <div class="cruise-body">
+          <div class="cruise-name">Pacific Island Hopper</div>
+          <div class="cruise-route">Sydney → Fiji → Vanuatu → New Caledonia</div>
+          <div class="cruise-footer">
+            <div class="cruise-price">AUD 1,990<br><small>per person</small></div>
+            <button class="cruise-btn" onclick="panelAsk('Tell me about the Pacific Islands cruise Sydney Fiji Vanuatu New Caledonia')">Enquire</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-section" id="contact">
+    <h2>Contact TRoyGo™</h2>
+    <p>Speak directly with our travel team — free browser call, video meeting or email. No app or download needed.</p>
+    <div class="ttc-wrap">
+      <div class="ttc-box" style="background:linear-gradient(135deg,#071a0f,#05080d);border:1px solid #2ECC7144;">
+        <div class="ttc-head">
+          <span class="ttc-logo"><span style="color:#2ECC71">TRoy</span>Tel™</span>
+          <span class="ttc-online"><span class="ttc-dot"></span> Online</span>
+        </div>
+        <p class="ttc-sub">Connect with <strong style="color:#e8f0ff">TRoyGo™ Travel Agency</strong> — free browser call or send a message. <strong style="color:#2ECC71">No app or download needed.</strong></p>
+        <div class="ttc-btns">
+          <button onclick="document.getElementById('ttcModal').classList.add('open')" class="ttc-btn" style="background:#2ECC71;color:#05080d;">&#128222; Free Call / Video</button>
+          <button onclick="document.getElementById('ttcFormWrap').scrollIntoView({behavior:'smooth'})" class="ttc-btn" style="background:transparent;color:#2ECC71;border:1.5px solid #2ECC71;">&#9993;&#65039; Send Message</button>
+        </div>
+        <p style="margin-top:12px;font-size:11px;color:#2ECC7155;font-family:'Courier New',monospace;">No app &nbsp;·&nbsp; No download &nbsp;·&nbsp; Any browser &nbsp;·&nbsp; Powered by TRoyTel™</p>
+      </div>
+      <div class="ttc-modal" id="ttcModal" onclick="if(event.target===this)this.classList.remove('open')">
+        <div class="ttc-modal-inner">
+          <div class="ttc-modal-bar">
+            <span class="ttc-modal-title">&#128222; Calling TRoyGo™ Travel Agency — works in your browser, no app needed</span>
+            <button class="ttc-modal-close" onclick="this.closest('.ttc-modal').classList.remove('open');var f=document.getElementById('ttcJitsi');f.src=f.src">✕</button>
+          </div>
+          <iframe id="ttcJitsi" src="https://meet.jit.si/TRoyGo-TravelTeam#config.startWithVideoMuted=false&config.startWithAudioMuted=false&config.prejoinPageEnabled=false&config.disableDeepLinking=true&interfaceConfig.SHOW_JITSI_WATERMARK=false" allow="camera; microphone; fullscreen; display-capture; autoplay"></iframe>
+        </div>
+      </div>
+      <div id="ttcFormWrap" class="ttc-box" style="background:linear-gradient(135deg,#071a0f99,#05080d);border:1px solid #1a2f50;">
+        <p style="font-size:15px;font-weight:600;color:#c8d8f0;margin:0 0 14px;">&#9993;&#65039; Send a Message</p>
+        <form class="ttc-form" id="ttcForm" onsubmit="return ttcSend(event)">
+          <div class="ttc-form-row">
+            <input type="text" name="uname" placeholder="Your name" required>
+            <input type="email" name="uemail" placeholder="Your email" required>
+          </div>
+          <input type="text" name="usubject" placeholder="Subject" required>
+          <input type="text" name="dest" placeholder="Destination / trip type (optional)">
+          <textarea name="umsg" placeholder="Your message..." required></textarea>
+          <button type="submit" class="ttc-fsub" style="background:#2ECC71;color:#05080d;align-self:flex-start;">Send Message →</button>
+        </form>
+        <div class="ttc-ok" id="ttcOk">✓ Message sent! We will reply to your email shortly.</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-col-title">TRoyGo™</div>
+        <a href="#">About TRoyGo™</a>
+        <a href="#">TRoy Travel Agency™</a>
+        <a href="#">TRoy Group™</a>
+        <a href="#contact">Contact us</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <a href="#">Stays</a>
+        <a href="#">Flights</a>
+        <a href="#">Cruises</a>
+        <a href="#">Car rentals</a>
+        <a href="#">Attractions</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Specialties</div>
+        <a href="#" onclick="panelAsk('Turkish Straits cruise expert advice');return false;">Turkish Straits cruises</a>
+        <a href="#" onclick="panelAsk('Visa assistance for Australians');return false;">Visa assistance</a>
+        <a href="#" onclick="panelAsk('Airport transfer options');return false;">Airport transfers</a>
+        <a href="#" onclick="panelAsk('Group travel packages');return false;">Group travel</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Support</div>
+        <a href="#">Help Centre</a>
+        <a href="#">Partner with us</a>
+        <a href="#">List your property</a>
+        <a href="#">Privacy policy</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Follow TRoyGo™</div>
+        <a href="https://www.youtube.com/@TRoyGo-tm" target="_blank">▶ YouTube</a>
+        <a href="https://www.facebook.com/TRoyTravelAgency" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/troytravelagency" target="_blank">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Pinterest</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 TRoy Travel Agency™ · TRoy Group™ · Darwin, NT, Australia · <a href="mailto:troytravelagency@gmail.com" style="color:var(--blue);">troytravelagency@gmail.com</a></p>
+      <div class="footer-social">
+        <a class="social-pill" href="https://www.youtube.com/@TRoyGo-tm" target="_blank">YouTube</a>
+        <a class="social-pill" href="https://www.facebook.com/TRoyTravelAgency" target="_blank">Facebook</a>
+        <a class="social-pill" href="https://www.instagram.com/troytravelagency" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTON -->
+<button class="float-btn" onclick="openPanel()">
+  <div class="float-btn-dot"></div>
+  <span>Plan with TRoyGo™</span>
+  <span>&#10022;</span>
+</button>
+
+<!-- AI PANEL BACKDROP -->
+<div class="panel-backdrop" id="backdrop" onclick="closePanel()"></div>
+
+<!-- AI PANEL -->
+<div class="ai-panel" id="aiPanel">
+  <div class="panel-hdr">
+    <div class="panel-hdr-left">
+      <div class="panel-avatar">&#9992;&#65039;</div>
+      <div>
+        <div class="panel-title">TRoyGo™ AI Travel Agent</div>
+        <div class="panel-subtitle">Powered by Claude · Always online</div>
+      </div>
+    </div>
+    <button class="panel-close" onclick="closePanel()">✕</button>
+  </div>
+  <div class="panel-prompts">
+    <button class="qprompt" onclick="panelAsk('Plan a 7-day trip to Bali from Darwin')">&#127796; Bali from Darwin</button>
+    <button class="qprompt" onclick="panelAsk('Best Mediterranean cruise options from Australia')">&#128755; Med cruise</button>
+    <button class="qprompt" onclick="panelAsk('Cheapest flights from Darwin this month')">&#9992;&#65039; Cheap flights</button>
+    <button class="qprompt" onclick="panelAsk('Do I need a visa for Turkey as an Australian?')">&#128203; Visa help</button>
+    <button class="qprompt" onclick="panelAsk('Honeymoon trip ideas under AUD 5000 from Australia')">&#128145; Honeymoon</button>
+    <button class="qprompt" onclick="panelAsk('Turkish Straits cruise expert advice from Canakkale specialist')">&#9875; Straits cruise</button>
+  </div>
+  <div class="panel-msgs" id="panelMsgs">
+    <div class="msg bot">
+      <div class="msg-avatar">&#9992;&#65039;</div>
+      <div class="msg-bubble">
+        &#128075; Hello! I'm your <strong>TRoyGo™ AI Travel Agent</strong>, powered by Claude.<br><br>
+        I can help you plan trips, find destinations, cruise packages, visa info, airport transfers and more.<br><br>
+        <strong>Where would you like to go?</strong> &#127758;
+      </div>
+    </div>
+  </div>
+  <div class="panel-input-wrap">
+    <div class="panel-input-row">
+      <textarea class="panel-input" id="panelInput" rows="1" placeholder="Ask me anything about travel…" onkeydown="inputKeydown(event)"></textarea>
+      <button class="panel-send" id="panelSend" onclick="sendMessage()">&#10148;</button>
+    </div>
+    <div class="panel-powered">Powered by TRoyGo™ AI · Claude by Anthropic</div>
+  </div>
+</div>
+
+<script>
+/* Panel */
+function openPanel(){document.getElementById('aiPanel').classList.add('open');document.getElementById('backdrop').classList.add('open');document.getElementById('panelInput').focus();}
+function closePanel(){document.getElementById('aiPanel').classList.remove('open');document.getElementById('backdrop').classList.remove('open');}
+
+/* Nav */
+function setTab(btn,tab){
+  document.querySelectorAll('.nav-btn:not(.plan-btn)').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const urls={stays:'https://www.booking.com',flights:'https://www.booking.com/flights','flight-hotel':'https://www.booking.com/flight-hotel',cars:'https://www.booking.com/cars',attractions:'https://www.booking.com/attractions',taxis:'https://www.booking.com/taxi',cruises:'https://www.booking.com/cruise'};
+  if(urls[tab])window.open(urls[tab],'_blank');
+}
+
+/* Search */
+function doSearch(){const d=document.getElementById('sfDest').value.trim();window.open('https://www.booking.com/search.html'+(d?'?ss='+encodeURIComponent(d):''),'_blank');}
+function searchDest(d){document.getElementById('sfDest').value=d;window.open('https://www.booking.com/search.html?ss='+encodeURIComponent(d),'_blank');}
+
+/* Quick panel prompt */
+function panelAsk(msg){openPanel();setTimeout(()=>{sendMessage(msg);},300);}
+
+/* Auto-grow textarea */
+document.getElementById('panelInput').addEventListener('input',function(){this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px';});
+function inputKeydown(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
+
+/* AI Agent */
+const CONV=[];
+const SYS=`You are TRoyGo™ AI Travel Agent, the official AI assistant for TRoy Travel Agency™, part of TRoy Group™, based in Darwin, NT, Australia.
+
+You are a full-service, AI-powered online travel agency — 100% online, international, using local sub-agents worldwide.
+
+YOUR EXPERTISE:
+- Complete trip planning: flights, hotels, tours, cruises, transfers, visa requirements
+- Cruise specialist: Turkish Straits expert (\u00c7anakkale/Dardanelles, Bosphorus, Istanbul) — backed by 30+ years maritime industry experience
+- Australia-based travel: Darwin departures, Top End escapes, Pacific cruises, Asia routes from Australia
+- Budget optimisation: best deals, seasonal advice, package bundling
+- Visa guidance: requirements for Australians and international travellers
+- Honeymoon, family, adventure, group, and business travel
+
+TROYGO™ SERVICES:
+\u{1f3e8} Stays (Booking.com partner) | \u2708\ufe0f Flights | \u{1f9f3} Flight+Hotel | \u{1f697} Car rentals | \u{1f39f}\ufe0f Attractions | \u{1f695} Airport taxis | \u{1f6f3}\ufe0f Cruises | \u{1f4cb} Visa help
+
+CRUISE SPECIALTY — Turkish Straits:
+- Dardanelles/\u00c7anakkale strait navigation
+- Bosphorus Istanbul transit
+- Black Sea access
+- Expert knowledge of Turkish ports, regulations and maritime culture
+
+CONTACT (share when asked or relevant):
+- Email: troytravelagency@gmail.com
+- Video call: TRoyTel™ (in-browser, no download needed)
+- YouTube: @TRoyGo-tm | Facebook: @TRoyTravelAgency | Instagram: @troytravelagency
+
+STYLE:
+- Warm, professional, expert travel consultant tone
+- Use emojis to make responses readable
+- Give concrete AUD price estimates where useful (flag as estimates)
+- Keep responses focused but complete
+- Always offer to build a full itinerary
+- End with a clear next step or question
+- Tagline: "Your World. Your Way. TRoyGo™"`;
+
+async function sendMessage(preset){
+  const inp=document.getElementById('panelInput');
+  const txt=(preset||inp.value).trim();
+  if(!txt)return;
+  inp.value='';inp.style.height='auto';
+  const btn=document.getElementById('panelSend');
+  btn.disabled=true;
+  addMsg('user',escHtml(txt));
+  CONV.push({role:'user',content:txt});
+  const tid='t'+Date.now();addTyping(tid);
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:SYS,messages:CONV})});
+    const d=await r.json();
+    removeTyping(tid);
+    const reply=d.content&&d.content[0]&&d.content[0].text?d.content[0].text:'\u26a0\ufe0f Sorry, I had trouble responding. Please try again or email us at troytravelagency@gmail.com';
+    CONV.push({role:'assistant',content:reply});
+    addMsg('bot',fmtReply(reply));
+  }catch(e){
+    removeTyping(tid);
+    addMsg('bot','\u26a0\ufe0f Connection issue. Please try again or contact us at <a href="mailto:troytravelagency@gmail.com">troytravelagency@gmail.com</a>');
+  }
+  btn.disabled=false;inp.focus();
+}
+
+function escHtml(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function addMsg(role,html){
+  const m=document.getElementById('panelMsgs');
+  const d=document.createElement('div');d.className='msg '+role;
+  const av=role==='bot'?'\u2708\ufe0f':'\u{1f464}';
+  d.innerHTML='<div class="msg-avatar">'+av+'</div><div class="msg-bubble">'+html+'</div>';
+  m.appendChild(d);m.scrollTop=m.scrollHeight;
+}
+function addTyping(id){
+  const m=document.getElementById('panelMsgs');
+  const d=document.createElement('div');d.className='msg bot';d.id=id;
+  d.innerHTML='<div class="msg-avatar">\u2708\ufe0f</div><div class="msg-bubble" style="padding:0"><div class="typing-dot"><span></span><span></span><span></span></div></div>';
+  m.appendChild(d);m.scrollTop=m.scrollHeight;
+}
+function removeTyping(id){const e=document.getElementById(id);if(e)e.remove();}
+function fmtReply(t){
+  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g,'<em>$1</em>')
+    .replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>');
+}
+
+/* Contact form */
+function ttcSend(e){
+  e.preventDefault();
+  const f=document.getElementById('ttcForm');
+  const n=f.querySelector('[name=uname]').value,em=f.querySelector('[name=uemail]').value,s=f.querySelector('[name=usubject]').value,m=f.querySelector('[name=umsg]').value;
+  window.location.href='mailto:troytravelagency@gmail.com?subject='+encodeURIComponent('[TRoyGo™] '+s)+'&body='+encodeURIComponent('From: '+n+' <'+em+'>\n\n'+m);
+  f.style.display='none';document.getElementById('ttcOk').style.display='block';
+  return false;
+}
+</script>
 
 </body>
 </html>
