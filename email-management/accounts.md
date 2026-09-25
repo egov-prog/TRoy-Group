@@ -18,7 +18,7 @@
 
 | Field | Detail |
 |-------|--------|
-| **Address** | groupoftroy@gmail.com |
+| **Address** | goupoftroy@gmail.com |
 | **Purpose** | Corporate communications, inter-division coordination, partnerships |
 | **Display Name** | TRoy Group™ |
 | **Status** | ✅ Active |
@@ -134,6 +134,17 @@
 
 ---
 
+## 5b. TRoyGo™ — Primary Send Address
+
+| Field | Detail |
+|-------|--------|
+| **Address** | agency@troytravelagency.com |
+| **Purpose** | Primary outbound address on t-roy-lab.vercel.app — Contact Us replies & Request a Quote confirmations |
+| **Display Name** | TRoyGo™ |
+| **Status** | ✅ Active |
+
+---
+
 ## 6. TRoy Media Agency™
 
 | Field | Detail |
@@ -156,18 +167,55 @@
 
 ---
 
+## 8. TRoy Garage Lab™
+
+| Field | Detail |
+|-------|--------|
+| **Address** | thetroygaragelab@gmail.com |
+| **Purpose** | Secondary creative lab account, sibling to The TRoy Garage™ |
+| **Display Name** | TRoy Garage Lab™ |
+| **Status** | ✅ Active |
+
+---
+
+## 9. TRoyAI™ — Email (Support)
+
+| Field | Detail |
+|-------|--------|
+| **Address** | troyaiagent@gmail.com |
+| **Purpose** | TRoyAI dashboard's Email department inbox — Triage, Reply Drafter & Label Manager agents |
+| **Display Name** | TRoyAI™ Support |
+| **Status** | ✅ Active |
+
+---
+
+## 10. TRoyAI™ — Email (Agent) / Business
+
+| Field | Detail |
+|-------|--------|
+| **Address** | agent@troyaiagent.com |
+| **Purpose** | TRoyAI business correspondence |
+| **Display Name** | TRoyAI™ Business |
+| **Status** | ✅ Active |
+
+---
+
 ## 📊 Summary
 
 | # | Email | Brand | Division | Status |
 |---|-------|-------|----------|--------|
 | 1 | ertangovdeli@gmail.com | — | Personal / CEO | ✅ Fully Active |
-| 2 | groupoftroy@gmail.com | TRoy Group™ | Corporate | ✅ Active |
+| 2 | goupoftroy@gmail.com | TRoy Group™ | Corporate | ✅ Active |
 | 3 | troymaritimeagency@gmail.com | **TRoyMAR™** | TRoy Maritime Agency™ | ✅ Active |
 | 4 | troytradingagency@gmail.com | **TRoyTR™** | TRoy Trading Agency™ | ✅ Gmail ⏳ Website |
 | 5 | troytravelagency@gmail.com | TRoyGo™ | TRoy Travel Agency™ | ✅ Active |
+| 5b | agency@troytravelagency.com | TRoyGo™ | Primary Send | ✅ Active |
 | 6 | troymediagency@gmail.com | TRoy Media Agency™ | Media | ✅ Active |
 | 7 | thetroygarage@gmail.com | The TRoy Garage™ | Creative Lab | ✅ Active |
+| 8 | thetroygaragelab@gmail.com | TRoy Garage Lab™ | Creative Lab | ✅ Active |
+| 9 | troyaiagent@gmail.com | TRoyAI™ Support | Email (Support) | ✅ Active |
+| 10 | agent@troyaiagent.com | TRoyAI™ Business | Email (Agent) | ✅ Active |
 
 ---
 
-*Last updated: April 2026*
+*Last updated: 2026-09-26 — corrected "groupoftroy" → "goupoftroy" (the account actually connected in dashboard.troyaiagent.com's live inbox has no "r"), and added the 4 accounts that were live in the dashboard but missing from this page.*
